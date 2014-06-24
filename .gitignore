@@ -1,4 +1,4 @@
 *.pyc
 *swp
 tuto.md
-.ipynb_checkpoints
+/.ipynb_checkpoints
