@@ -1,0 +1,819 @@
+
+%Fichier: algorithmique-python3.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 08 sept. 2014 21:44:07
+
+\documentclass[10pt,dvipsnames,  dvips]{article}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%mise en page
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+\usepackage{ulem}
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{xcolor} % utiliser par exemple black!20
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+
+
+
+
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+%\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+
+%les fontes
+%\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Correspondance algorithmique python}       %sous Acrobat.
+}
+
+
+
+%\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+%\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+%\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\C}{\mathbb{C}}
+%\newcommand{\e}{\mathrm{e}}
+\newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
+
+%\setcounter{secnumdepth}{1}% enlève la numérotation après les sections
+\usepackage{titlesec}
+
+
+%redéfinition des sections
+\titleformat{\section}
+   {\large\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesection}% apparence du numéro
+   {1em}% espacement numéro/texte
+   {}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{1pt}{1pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+
+%redéfinition des subsubsections
+\titleformat{\subsubsection}[hang]
+   {\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesubsubsection}% apparence du numéro
+   {0em}% espacement numéro/texte
+   {\underline}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{0pt}{0pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+%\setlength{\parindent}{0pt}
+\pagestyle{fancy}  \lhead{\small\textsc{Isn: Pablo neruda}}
+\rhead{Page \thepage/\pageref{LastPage} } \cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Pour les algorithmes
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+%\setlength{\parskip}{2pt}
+%Pour l'environnement multicolonne
+%\setlength{\columnseprule}{0pt}
+%\setlength{\columnsep}{0.5cm}
+
+%\setlength{\parindent}{1cm} %
+%\setlength{\parskip}{1cm plus4mm minus3mm}
+
+
+
+%%%% debut macro figure à gauche \figgauche %%%%
+ \newlength\jataille
+ \newcommand{\figgauche}[3]%
+ {\jataille=\linewidth\advance\jataille by -#1
+ %\jataille=\textwidth\advance\jataille by -#1
+ \advance\jataille by -1cm
+ \begin{minipage}[t]{#1}
+ #2
+ \end{minipage}\hfill
+ \begin{minipage}[t]{\jataille}
+  #3
+ \end{minipage}}
+ %%%% fin macro %%%%
+
+ %%%% debut macro figure à droite \figdroite%%%%
+ \newlength\jatail
+ \newcommand{\figdroite}[3]%
+ {\jatail=\linewidth\advance\jatail by -#1
+ \advance\jatail by -0.5cm
+\begin{minipage}[t]{\jatail}
+ #2
+ \end{minipage}
+ \hfill
+\begin{minipage}[t]{#1}
+  #3
+\end{minipage}}
+
+
+\begin{document}
+
+\Chapter{Algorithmique et python}
+
+\vspace{-0.2cm}
+\lstset{ style=PYTHON}
+
+
+\section{Les bases de python3}
+
+\subsubsection*{Les types}
+
+Les différents types entiers, flottants, complexes, chaînes de caractères, boléens, listes, tuples et dictionnaires.
+
+
+%\begin{minipage}[3]{0.3\linewidth}
+
+\begin{list}{-}{}
+\item \textbf{\textit{entier}}: 3
+\item \textbf{\textit{flotant}}: 2.3
+\item \textbf{\textit{complexe}}: 1+2j
+\item \textbf{\textit{chaînes de caractères (string)}}: 'ISN'
+\item \textbf{\textit{Boléen}}: True
+\item \textbf{\textit{Listes}}: [0,1,2,3]
+\item \textbf{\textit{Tuples}}: (0,1,2,3)
+\item \textbf{\textit{Dictionnaires}}: {'zero':0, 'un':1, 'deux':2,'trois':3}
+\item \textbf{\textit{Byte}}: b'toto'
+%\end{minipage}
+
+\item  On aura toujours à l'esprit que $0.2+0.7=0.8999999999999999\neq 0.9$
+
+ \item \textbf{\textit{int()}} permet de convertir, un nombre ou une chaîne de caractère en un entier.
+
+ \item \textbf{\textit{float()}} permet de convertir, un nombre ou une chaîne de caractère en un flottant.
+\item On utilise le caractère \# pour écrire un commentaire 
+\end{list}
+
+%Quelques opérateur déjà vu et très utiles
+
+
+
+
+%\section{Les bases}
+
+%\section{Les opérateurs}
+%\underline{Les opérateurs}
+\subsubsection*{Les opérateurs}
+
+\begin{tabular}[]{| r |>{\raggedright}m{6 cm} | >{\raggedright}m{3cm} |}
+\hline Opération & algorithme &  python\tabularnewline
+\hline  Addition & 2+3 & 2+3\tabularnewline
+\hline  Soustraction & 12-5 & 12-5\tabularnewline
+\hline  Multiplication & 3*6 & 3*6\tabularnewline
+\hline  Division & 7/2 & 7/2\tabularnewline
+\hline  Quotient  de  la  division  euclidienne & 7 div  2  ou  div(7,2) & 7//2\tabularnewline
+\hline  Reste  de  la  division euclidienne & 7  mod  2  ou  mod(7,2) & 7\%2\tabularnewline
+\hline  puissance & 7\string^2 & 7**2\tabularnewline
+\hline  racine  carrée & $\sqrt[]{2}$ ou  sqrt(2) & sqrt(2)\tabularnewline
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+\subsubsection*{Variables}
+
+\begin{minipage}[t]{12cm}
+\begin{list}{$\bullet$}{}
+\item Python utilise le symbole $\boldsymbol{=}$ pour affecter une valeur à une variable.
+\item Attention à ne pas confondre $a=12$ et $a==12$.
+\end{list}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{5cm}
+\lstset{ title='Python3', style=PYTHON}
+\vspace{-1cm}
+\begin{lstlisting}
+A=3; B=5
+C='toto'
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection*{Entrées}
+
+
+\begin{minipage}[t]{9cm}
+\begin{list}{$\bullet$}{}
+\item \textbf{\textit{input("texte")}} permet de saisir du texte pour un programme.
+\item Il faudra éventuellement convertir ce texte dans le type voulu avec \textbf{\textit{int()}} ou \textbf{\textit{float()}}
+\end{list}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{8cm}
+\lstset{ style=PYTHON}
+\begin{lstlisting}
+a=input("Entrer un texte a:  ")
+b=int(input("Entrer un entier b:    "))
+c=float(input("Entrer un réel c:    "))
+\end{lstlisting}
+\end{minipage}
+
+
+\subsubsection*{Affichage}
+
+\begin{list}{$\bullet$}{}
+\item On utilise de préférence la méthode \textbf{\textit{format()}} pour afficher du texte et des variables.
+\end{list}
+
+\begin{lstlisting}
+print("La valeur de la variable a est",str(a),".") # si a est un nombre
+print("La valeur de la variable a est " + str(a) + ".") # autre forme
+print("La valeur de la variable a est {}.".format(a)) # je préfére
+print("Le produit de {} par {} est {}".format(a,b,a*b))
+print("{0}*{1}={2} et {0}/{1}={3}".format(a,b,a*b,a/b))
+\end{lstlisting}
+
+\subsubsection*{Connecteurs logiques}
+
+\begin{center}
+\begin{minipage}[t]{5cm}
+\begin{tabular}[]{|c |>{\centering}m{2cm} |}
+\hline algorithmique & python \tabularnewline
+\hline a = b  &   a==b\tabularnewline
+\hline a$\neq $b    &  a!=b\tabularnewline
+\hline A et B &   A and B \\ A \& B  \tabularnewline
+\hline
+\end{tabular}
+\end{minipage}\hspace{1cm}
+\begin{minipage}[t]{5cm}
+\begin{tabular}[]{|c |>{\centering}m{2cm} |}
+\hline algorithmique & python \tabularnewline
+\hline A ou B  &  A or B\\ A | B \tabularnewline
+\hline A xor B  & A \string^ B \tabularnewline
+\hline non A &  not(A)  \tabularnewline
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+
+
+\subsubsection*{Condition SI}
+
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Deb{
+%\Si{<~condition~>}{<~instructions~>}
+%}
+%\end{algorithm}
+%\end{minipage}
+%\hspace{0.5cm}
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Si{<~condition~>}
+%{<~instructions~>}
+%\Sinon{<~autre instructions~>}
+%\end{algorithm}
+%\end{minipage}
+%\hspace{0.5cm}
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Deb{
+%\Si{<~condition 1~>}
+%{<~instructions 1~>}
+%\eSi{<~condition 2~>}{<~instructions 2~>}{<~autre instructions~>}
+%}
+%\end{algorithm}
+%\end{minipage}\vspace{0.2cm}
+
+\hspace{-0.5cm}
+\begin{minipage}[t]{5.6cm}
+\begin{lstlisting}
+if x<=0:
+	print('Pas de racines')
+\end{lstlisting}
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[t]{6cm}
+\begin{lstlisting}
+if x<=0:
+	print('Pas de racines')
+else:
+	print('1 ou  2 racines')
+\end{lstlisting}
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[t]{6.7cm}
+\begin{lstlisting}
+if x<=0:
+	print('Pas de racines')
+elif x==0:
+	print('1 racines double')
+else:
+	print('2 racines distinctes')
+\end{lstlisting}
+\end{minipage}
+
+%\newpage
+\begin{lstlisting}
+print("Saisissez deux valeurs numériques")
+a=float(input("Saisir a: "))
+b=float(input("Saisir b: "))
+if a==b :
+	print("Vous avez saisi deux fois la même valeur, à savoir {}.".format(a))
+else :
+	print("Vous avez saisi deux valeurs différentes {} et {}.".format(a,b))
+\end{lstlisting}
+
+
+\subsubsection*{Boucle pour}
+
+\begin{lstlisting}
+for i in range(4,21,2): # 4 6 ... 20
+	print(i)
+for i in range(6):     # de 0 à 5 sinon utiliser range(1,7) pour 1 2 ...6
+	print(i)
+\end{lstlisting}
+
+La syntaxe générale est \textbf{\textit{for i in range(m,n,p)}}:
+
+\textbf{\textit{i}} prend alors toutes les valeurs de \textbf{\textit{m à n-1 par pas de p}}
+
+\subsubsection*{Tant que}
+
+\begin{lstlisting}
+i=1
+while i<=5:
+	print(i)
+	i=i+1 #où en plus concis i+=1
+#À la sortie de la boucle i=6
+\end{lstlisting}
+
+
+\newpage
+\section{Les principales méthodes}
+\subsection{Chaîne de caractères}
+
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{str.split(): }} Retourne une liste des mots de la chaîne, en utilisant \textit{sep} pour séparateur.
+
+
+\begin{lstlisting}
+In [28]: 'Pablo Neruda'.split(' ')
+Out[28]: ['Pablo', 'Neruda']
+\end{lstlisting}
+
+Il existe aussi une variante avec  \textit{rsplit()}, (r pour right) la différence  se produit lorsque le deuxième argument est spécifié.
+
+\begin{lstlisting}
+In [29]: 'Pablo Neruda Meilland jean claude'.rsplit(' ',2)
+Out[29]: ['Pablo Neruda Meilland', 'jean', 'claude']
+In [30]: 'Pablo Neruda Meilland jean claude'.split(' ',2)
+Out[30]: ['Pablo', 'Neruda', 'Meilland jean claude']
+\end{lstlisting}
+\item \textit{\textbf{str.join(iterable): }} Retourne une chaîne qui est la concaténation de str dans iterable
+\begin{lstlisting}
+In [16]: '-'.join('abcd')
+Out[16]: 'a-b-c-d'
+In [16]: ''.join(['a','e','i','o','u','y'])
+Out[16]: 'aeiouy'
+\end{lstlisting}
+\item  \textit{\textbf{len()}} compte le nombre de caractère de la chaîne.
+\begin{lstlisting}
+In [20]: len('Pablo Neruda')
+Out[20]: 12
+\end{lstlisting}
+\item \textit{\textbf{str.count(sub[, start[, end]]): }} Retourne le nombre d'occurrences du caractère \textit{sub} dans l'intervalle \string[\textit{start};\textit{end}\string].
+\begin{lstlisting}
+In [4](): 'Pablo Neruda'.count('a')
+Out[4](): 2
+\end{lstlisting}
+\item \textit{\textbf{ str.find(sub[, start[, end]]): }} Retourne l'indice le plus faible dans la chaîne où sub se trouve. Retourne -1 si sub n'est pas trouvé.
+\begin{lstlisting}
+In [10]: 'Pablo Neruda'.find('a')
+Out[10]: 1
+In [11]: 'Pablo Neruda'.find('ll')
+Out[11]: -1
+\end{lstlisting}
+\item \textit{\textbf{str.index(sub[, start[, end]]): }} Comme find() , mais retourne une \textit{ValueError} quand la sous-chaîne n'est pas trouvée.
+\item \textit{\textbf{str.rfind(sub[, start[, end]]): }} Retourne l'indice le plus élevé dans la chaîne où \textit{sub} sous se trouve. Retourne -1 en cas d'échec.
+\begin{lstlisting}
+In [26]: 'Pablo Neruda'.rfind('a')
+Out[26]: 11
+\end{lstlisting}
+\item \textit{\textbf{str.replace(old, new[, count]): }} Retourne une copie de la chaîne de toutes les occurrences de la chaîne \textit{old} remplacées par de \textit{new}
+\begin{lstlisting}
+In [24]: 'Pablo Neruda'.replace('a','*')
+Out[24]: 'P*blo Nerud*'
+In [25]: 'Pablo Neruda'.replace('a','*',1)
+Out[25]: 'P*blo Neruda
+\end{lstlisting}
+\item  \textit{\textbf{sub in str: }} Retourne \textit{True}  si \textit{sub} est une sous-chaîne de \textit{str} False sinon.
+\begin{lstlisting}
+In [12]: 'a' in  'Pablo Neruda'
+Out[12]: True
+\end{lstlisting}
+\end{list}
+
+
+
+%\newpage
+
+\subsection{Les tuples}
+
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{t.count(x) :}} Retourne le nombre d'occurrences de x dans le tuple t.
+\begin{lstlisting}
+In [1]: t=(2,3,2,4,2)
+In [2]: t.count(2)
+Out[2]: 3
+\end{lstlisting}
+\item \textit{\textbf{t.index(x) :}}  Retourne l'indice le plus faible dans le tuple t où x se trouve. retourne une \textit{ValueError} quand x n'est pas trouvée.
+\begin{lstlisting}
+In [3]: t=(2,3,4,2
+In [4]: t.index(2)
+Out[4]: 0
+\end{lstlisting}
+\end{list}
+
+\subsection{Les listes}
+
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{l.append(x) :}} Ajoute x à la fin de la liste.
+\begin{lstlisting}
+In [1]: l=[1,2,3,4,5]
+In [2]: l.append(6)
+In [3]: l
+Out[3]: [1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+
+
+\item \textit{\textbf{l.clear() }} Efface la liste l \textit{(depuis python3.3)}.
+\begin{lstlisting}
+In [4]: l.clear()
+In [5]: l
+Out[5]: []
+\end{lstlisting}
+
+\item \textit{\textbf{l.extend (t) :}} concatène la liste l avec le contenu de la liste t sans réaffectation.
+\begin{lstlisting}
+In [6]: t=(2,3,4,2)
+In [7]: l1=[1,2,3]
+In [8]: l2=[4,5,6]
+In [9]: l1.extend(l2)
+\end{lstlisting}
+\item \textit{\textbf{l.insert(n,x) :}} insert x à la liste l à l'indice n.
+\begin{lstlisting}
+In [10]: l=[1,2,3,4]
+In [11]: l.insert(1,8)
+In [12]: l
+Out[13]: [1, 8, 2, 3, 4]
+\end{lstlisting}
+
+\item \textit{\textbf{l.pop ([i]) :}}  affiche l'élément d'indice i et aussi supprime cet élément de l.
+\begin{lstlisting}
+In [14]: l=[1,2,3,1]
+In [15]: a=l.pop(2)
+In [16]: a
+Out[16]: 3
+In [17]: l
+Out[17]: [1, 2, 1]
+\end{lstlisting}
+
+\newpage
+\item \textit{\textbf{l.remove (x) :}} supprime le premier élément x de $s$ et affiche une \textit{ValueError} s'il ne le trouve pas.
+\begin{lstlisting}
+In [9]: l=[1,2,3,1]
+In [10]: l.remove(1)
+In [11]: l
+Out[11]: [2, 3, 1]
+In [12]: l.remove(1)
+In [13]: l
+Out[13]: [2, 3]
+In [14]: l.remove(1)
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-14-ce3fdfde5d67> in <module>()
+----> 1 l.remove(1)
+ValueError: list.remove(x): x not in list
+\end{lstlisting}
+
+\item \textit{\textbf{l.reverse() }} inverse les éléments de l.
+\begin{lstlisting}
+In [16]: l=[1,2,3]
+In [17]: l.reverse()
+In [18]: l
+Out[18]: [3, 2, 1]
+\end{lstlisting}
+
+\item \textit{\textbf{l.sort() }} Trie les éléments de l.
+\begin{lstlisting}
+In [19]: l=[4,6,2,1,0,5,3]
+In [20]: l.sort()
+In [21]: l
+Out[21]: [0, 1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+\end{list}
+
+\newpage
+\section{Toutes les méthodes}
+\subsection{Chaîne de caractères}
+
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{str.capitalize(): }}  Retourne une copie de la chaîne avec son premier caractère en majuscule et le reste en minuscule.
+\begin{lstlisting}
+In [1]: 'pablo neruda'.capitalize()
+Out[1]: 'Pablo neruda'
+\end{lstlisting}
+\item \textit{\textbf{str.casefold(): }} \textit{Casefolding} est similaire à \textit{lowercasing} mais plus agressif. Par exemple, la lettre minuscule allemand "ß" est convertie en "ss"
+\begin{lstlisting}
+In [2]: 'Pablo Neruda'.casefold()
+Out[2]: 'pablo neruda'
+\end{lstlisting}
+\item \textit{\textbf{str.center(width[, fillchar]): }} place \textit{str} au centre d'une chaine de longueur \textit{width} et complète avec le caractère \textit{fillchar} (par un espace si on ne précise pas le caractère).
+\begin{lstlisting}
+In [3](): 'Pablo Neruda'.center(20,'-')
+Out[3](): '----Pablo Neruda----'
+\end{lstlisting}
+\item \textit{\textbf{str.count(sub[, start[, end]]): }} Retourne le nombre d'occurrences du caractère \textit{sub} dans l'intervalle \string[\textit{start};\textit{end}\string].
+\begin{lstlisting}
+In [4](): 'Pablo Neruda'.count('a')
+Out[4](): 2
+\end{lstlisting}
+\item \textit{\textbf{str.encode(encoding="utf-8", errors="strict")}} Retourne une version codée de la chaîne comme un objet \textit{bytes}. L'encodage par défaut est "utf-8" .
+\begin{lstlisting}
+In [6]: 'Pablo Neruda'.encode('utf8')
+Out[6]:  b'Pablo Neruda'
+\end{lstlisting}
+\item \textit{\textbf{ str.endswith(suffix[, start[, end]]): }}  Retour Vrai si la chaîne se termine avec le suffixe spécifié, sinon retourner faux. suffixe peut aussi être un tuple de suffixes à rechercher. %Avec en option \textit{départ} , le test à partir de cette position. Avec en option \textit{fin} , arrête de comparer à cette position.
+\begin{lstlisting}
+In [7]: 'Pablo Neruda'.endswith('lo')
+Out[7]: False
+In [8]:  'Pablo Neruda'.endswith('da')
+Out[8]: True
+\end{lstlisting}
+\item \textit{\textbf{str.expandtabs(tabsize=8): }} Retourne une copie de la chaîne où tous les caractères de tabulation sont remplacés par un ou plusieurs espaces, en fonction de la colonne courante et la taille de l'onglet donné. positions Tab se produisent tous les TabSize caractères.
+\begin{lstlisting}
+In [9]: 'Pablo\tNeruda'.expandtabs()
+Out[9]: 'Pablo      Neruda'
+\end{lstlisting}
+\item \textit{\textbf{ str.find(sub[, start[, end]]): }} Retourne l'indice le plus faible dans la chaîne où sub se trouve.Retourne -1 si sub n'est pas trouvé.
+\begin{lstlisting}
+In [10]: 'Pablo Neruda'.find('a')
+Out[10]: 1
+In [11]: 'Pablo Neruda'.find('ll')
+Out[11]: -1
+\end{lstlisting}
+
+Remarque: La méthode \textit{find()} doit être utilisée que si vous avez besoin de connaître la position de \textit{sub} . Pour vérifier si \textit{sub} est une sous-chaîne ou pas, utilisez l'opérateur \textbf{\textit{in}} :
+\begin{lstlisting}
+In [12]: 'a' in  'Pablo Neruda'
+Out[12]: True
+\end{lstlisting}
+\item \textit{\textbf{str.format(): }}Effectuer une opération de formatage de chaîne. La chaîne sur laquelle cette méthode est appelée peut contenir du texte littéral ou champs de remplacement délimités par des accolades \{\}.
+\begin{lstlisting}
+In [13]: "1+2={0}".format(1+2)
+Out[13]: '1+2=3'
+\end{lstlisting}
+%\item \textit{\textbf{str.format\_map(): }}
+%\begin{lstlisting}
+%
+%\end{lstlisting}
+\item \textit{\textbf{str.index(sub[, start[, end]]): }} Comme find() , mais retourne une \textit{ValueError} quand la sous-chaîne n'est pas trouvée.
+\begin{lstlisting}
+In [10]: In [14]: 'Pablo Neruda'.index('a')
+Out[10]: 1
+In [11]: In [14]: 'Pablo Neruda'.index('y')
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-11-0a9111e44db1> in <module>()
+----> 1 'Pablo Neruda'.index('y')
+
+ValueError: substring not found
+\end{lstlisting}
+
+\item \textit{\textbf{str.isalnum(): }} Retourne vrai si tous les caractères de la chaîne sont alphanumériques (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.isalpha(): }} Retourne vrai si tous les caractères de la chaîne sont alphabétiques (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.isdecimal(): }} Retourne vrai si tous les caractères de la chaîne sont des caractères décimaux (et s'il y a au moins un caractère), sinon false
+\item \textit{\textbf{str.isdigit(): }} Retourne vrai si tous les caractères de la chaîne sont des chiffres (et s'il y a au moins un caractère), sinon false.
+%\item \textit{\textbf{str.isidentifier(): }}
+\item \textit{\textbf{str.islower(): }}Retourne vrai si tous les caractères de la chaîne sont minuscules (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.isnumeric(): }}Retourne vrai si tous les caractères de la chaîne sont des caractères numériques (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.isprintable(): }}Retourne vrai si tous les caractères de la chaîne sont imprimables ou la chaîne est vide sinon, false.
+\item \textit{\textbf{str.isspace(): }}Retourne vrai si il ya seulement des caractères blancs dans la chaîne (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.istitle(): }}Retourne vrai si la chaîne est une chaîne titlecased (1\ier lettre en majuscule) (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.isupper(): }}Retourne vrai si tous les caractères de la chaîne sont en majuscules (et s'il y a au moins un caractère), sinon false.
+\item \textit{\textbf{str.join(iterable): }}Retourne une chaîne qui est la concaténation de str dans iterable
+\begin{lstlisting}
+In [16]: '-'.join('abcd')
+Out[16]: 'a-b-c-d'
+\end{lstlisting}
+\item \textit{\textbf{ str*ljust()width[, fillchar])¶: }} Retourne une chaîne justifiée à gauche dans une chaîne de longueur \textit{largeur}. Le remplissage est fait en utilisant \textit{FillChar} (par défaut un espace).
+\begin{lstlisting}
+In [17]: 'pablo'.ljust(8,'*')
+Out[17]: 'pablo***'
+\end{lstlisting}
+\item \textit{\textbf{str.lower(): }} Retourne une copie de la chaîne avec tous les caractères convertie en minuscules.
+\begin{lstlisting}
+In [18]: 'Pablo Neruda'.lower()
+Out[18]: 'pablo neruda'
+\end{lstlisting}
+\item \textit{\textbf{ str.lstrip([chars]): }}  Retourne une copie de la chaîne avec les caractères de début supprimés. L'argument de caractères est une chaîne spécifiant le jeu de caractères à supprimer (par défaut espace, tabulation, newline etc...).
+\begin{lstlisting}
+In [19]: '  \t \n  Pablo Neruda    '.lstrip()
+Out[19]: 'Pablo Neruda    '
+\end{lstlisting}
+\item \textit{\textbf{str.maketrans(x[, y[, z]])¶: }} Cette méthode statique retourne une table de traduction utilisable pour \textit{str.translate()}.
+\begin{lstlisting}
+In [18]: str='Pablo Neruda'
+In [19]: intab = "aeiou"
+In [H]: outtab = "12345"
+In [20]: str.maketrans(intab, outtab)
+Out[20]: {97: 49, 111: 52, 117: 53, 101: 50, 105: 51}
+In [21]: print("97 est le code acsci de 'a'")
+97 est le code acsci de 'a'
+In [22]: str.translate(str.maketrans(intab, outtab))
+Out[22]: 'P1bl4 N2r5d1'
+\end{lstlisting}
+\item \textit{\textbf{str.partition(sep): }} Divise la chaîne à la première occurrence de \textit{sep} , et retourner un 3-uplet contenant la partie avant le séparateur, le séparateur lui-même, et la partie après le séparateur.
+\begin{lstlisting}
+In [23]: 'Pablo Neruda'.partition(' ')
+Out[23]: ('Pablo', ' ', 'Neruda')
+\end{lstlisting}
+\item \textit{\textbf{str.replace(old, new[, count]): }} Retourne une copie de la chaîne de toutes les occurrences de la chaîne \textit{old} remplacées par de \textit{new}
+\begin{lstlisting}
+In [24]: 'Pablo Neruda'.replace('a','*')
+Out[24]: 'P*blo Nerud*'
+In [25]: 'Pablo Neruda'.replace('a','*',1)
+Out[25]: 'P*blo Neruda
+\end{lstlisting}
+\item \textit{\textbf{str.rfind(sub[, start[, end]]): }} Retourne l'indice le plus élevé dans la chaîne où \textit{sub} sous se trouve. Retourne -1 en cas d'échec.
+\begin{lstlisting}
+In [26]: 'Pablo Neruda'.rfind('a')
+Out[26]: 11
+In [27]: 'Pablo Neruda'.rfind('y')
+Out[27]: -1
+\end{lstlisting}
+\item \textit{\textbf{str.rindex(): }} Comme \textit{rfind()} , mais elle retourne une \textit{ValueError} quand la \textit{sub} n'est pas trouvé.
+\begin{lstlisting}
+
+\end{lstlisting}
+\item \textit{\textbf{str.rjust(width[, fillchar]): }} Retourne une chaîne justifié à droite dans une chaîne de longueur \textit{width}. Le remplissage est fait en utilisant le spécifié \textit{FillChar} (valeur par défaut est un espace).
+\begin{lstlisting}
+In [24]: 'Neruda'.rjust(10,'*')
+Out[24]: '****Neruda'
+\end{lstlisting}
+\item \textit{\textbf{str.rpartition(sep): }} Divise la chaîne lors de la dernière apparition de \textit{sep}, et retourne un 3-uplet contenant la partie avant le séparateur, le séparateur lui-même, et la partie après le séparateur.
+\begin{lstlisting}
+n [25]: 'Neruda'.rpartition(' ')
+Out[25]: ('', '', 'Neruda')
+\end{lstlisting}
+\item \textit{\textbf{str.rsplit(sep=None, maxsplit=-1) : }} Retourne une liste des mots de la chaîne, en utilisant \textit{sep} pour séparateur.
+
+Utiliser \textit{split()} de préfrence
+\begin{lstlisting}
+In [26]: 'Pablo Neruda'.split(' ')
+Out[26]: ['Pablo', 'Neruda']
+\end{lstlisting}
+\item \textit{\textbf{str.rstrip([chars]): }} Retourne une copie de la chaîne avec les caractères de fin supprimés. L'argument de caractères est une chaîne spécifiant le jeu de caractères à supprimer.
+\begin{lstlisting}
+In [27]: 'Pablo Neruda'.rstrip('da')
+Out[27]: 'Pablo Neru'
+\end{lstlisting}
+\item \textit{\textbf{str.split(): }} Retourne une liste des mots de la chaîne, en utilisant \textit{sep} pour séparateur.
+
+
+\begin{lstlisting}
+In [28]: 'Pablo Neruda'.split(' ')
+Out[28]: ['Pablo', 'Neruda']
+\end{lstlisting}
+
+
+La seule différence avec  \textit{rsplit()} se produit lorsque le deuxième argument est spécifié.
+
+\begin{lstlisting}
+In [29]: 'Pablo Neruda Meilland jean claude'.rsplit(' ',2)
+Out[29]: ['Pablo Neruda Meilland', 'jean', 'claude']
+In [30]: 'Pablo Neruda Meilland jean claude'.split(' ',2)
+Out[30]: ['Pablo', 'Neruda', 'Meilland jean claude']
+\end{lstlisting}
+\item \textit{\textbf{str.splitlines([keepends]): }} Retourne une liste de lignes dans la chaîne, la rupture au niveau des limites de ligne.
+\begin{lstlisting}
+In [31]: 'Pablo\nNeruda'.splitlines()
+Out[31]: ['Pablo', 'Neruda']
+\end{lstlisting}
+\item \textit{\textbf{ str.startswith(prefixe[, start[, end]]): }} Retourne \textbf{True} si la chaîne commence par le \textit{préfixe},   \textbf{False} sinon. préfixe peut aussi être un tuple de préfixes à rechercher
+\begin{lstlisting}
+In [32]: 'Pablo Neruda'.startswith('Pa')
+Out[32]: True
+\end{lstlisting}
+\item \textit{\textbf{str.strip([chars]): }} Retourne une copie de la chaîne avec les avant et arrière caractères supprimés. L'argument de chars est une chaîne spécifiant le jeu de caractères à supprimer (espace par defaut).
+\begin{lstlisting}
+In [33]: '   Pablo Neruda   '.strip()
+Out[33]: 'Pablo Neruda'
+\end{lstlisting}
+\item \textit{\textbf{str.swapcase(): }} Retourne une copie de la chaîne avec des caractères majuscules converties en minuscules et vice versa.
+\begin{lstlisting}
+In [34]: 'Pablo Neruda'.swapcase()
+Out[34]: 'pABLO nERUDA'
+\end{lstlisting}
+\item \textit{\textbf{str.title(): }} Retourner une chaîne où les mots commencent par une majuscule et les autres caractères sont minuscules.
+\begin{lstlisting}
+In [35]: 'pablo neruda'.title()
+Out[35]: 'Pablo Neruda'
+\end{lstlisting}
+\item \textit{\textbf{str.translate(map): }} Renvoyer une copie où tous les caractères ont été remplacés par le dictionaire map obtenu avec \textit{maketrans}.
+\begin{lstlisting}
+In [36]: str='Pablo Neruda'
+In [37]: intab = "aeiou"
+In [38]: outtab = "12345"
+In [39]: str.translate(str.maketrans(intab, outtab))
+Out[39]: 'P1bl4 N2r5d1'
+\end{lstlisting}
+\item \textit{\textbf{str.upper(): }} Retourne une copie de la chaîne avec tous les caractères convertie en majuscules.
+\begin{lstlisting}
+In [40]: 'pablo neruda'.upper()
+Out[40]: 'PABLO NERUDA
+\end{lstlisting}
+\item \textit{\textbf{str.zfill(width): }} Retourne à gauche de chaîne numérique rempli de zéros dans une chaîne de longueur \textit{width}. La chaîne d'origine est renvoyé si la largeur est inférieure ou égale à len(s).
+\begin{lstlisting}
+In [41]: '125'.zfill(5)
+Out[41]: '00125'
+\end{lstlisting}
+\end{list}
+
+
+
+
+
+
+
+
+
+\end{document}
+
