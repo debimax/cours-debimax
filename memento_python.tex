@@ -1,0 +1,644 @@
+
+%Fichier: memento_python.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 05 oct. 2014 17:46:47
+
+\documentclass[landscape,10pt,dvipsnames,  dvips]{report}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%mise en page
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{xcolor} % utiliser par exemple black!20
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+
+
+
+
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+%\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+
+%les fontes
+%\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Gnu Debian}          %sous Acrobat.
+}
+
+
+
+\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
+
+
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}  \lhead{\small\textsc{Mémento}}
+\rhead{Page \thepage/\pageref{LastPage} } \cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Pour les algorithmes
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+
+%Pour l'environnement multicolonne
+\setlength{\columnseprule}{0pt}
+\setlength{\columnsep}{0.5cm}
+
+\begin{document}
+
+\Chapter{Memento python}
+\begin{multicols*}{2}
+
+
+\begin{Sec}
+{Fondamentaux}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{Déclaration de variable: }>>}  \code{var=1} sera un entier, \code{var=1.0} (sera un réel),  \code{var="1"} (sera une chaine de caractère), \code{var=[var1,var2,var3]} (sera une liste),  \code{var=(var1,var2,var3)} sera un tuple.
+\item \textcolor{red}{<<\texttt{Changer le type d'une variable: }>>} \code{var=int("1")} (sera un entier),  \textbf{float} (pour réel), \textbf{str}(pour chaine de caractères).
+\item \textcolor{red}{<<\texttt{Variable saisie au clavier: }>>}
+
+	\code{var=input("texte s'affichant à l'écran et demandant de saisir une variable")}
+
+	le contenu  de la variable saisie au clavier est par défaut  une chaine de caractère, il faudra la convertir si on veut des nombres.
+\item \textcolor{red}{<<\texttt{Opérateurs: }>>} \lstinline{ +  -  *  % } (modulo) \lstinline{ //}  (Quotient de la division euclidienne) \quad    \textbf{**} (puissance)  \quad    \textbf{=} (affectation)
+\item \textcolor{red}{<<\texttt{1e5}>>}Écriture scientifique de $10^{5}$.
+\item \textcolor{red}{<<\texttt{1j}>>}Nombre complexe $i$ tel que $i^2=-1$.
+\item \textcolor{red}{<<\texttt{Opérateurs logiques: }>>}   \lstinline{not} (ou !) \quad   \lstinline{and} (ou \&)   \quad  \lstinline{or} (ou |)  \quad   \lstinline{True} (ou 1)   \quad   \lstinline{False} (ou 0)
+%\item \textcolor{red}{<<\texttt{comparer des chaines de caractères}>>} 'a'<'g' donne True , c'est l'ordre dans la tablette ASCII qui est comparé.
+\item \textcolor{red}{<<\texttt{Affichage: }>>} \code{print("var1=\{0\}  et var2=\{1\}".format(var1, var2))}
+	%\lstinline!print('var1={0}  et var2={1}'.format(var1, var2))!
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Conditions et boucles}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{Condition si (if)}>>}
+%\lstPYTHON
+
+\lstset{style=PYTHON}
+\begin{lstlisting}
+if (condition1):
+	instruction1
+elif (condition2):
+	instruction2
+else:
+	instruction final
+\end{lstlisting}
+
+\item \textcolor{red}{<<\texttt{Boucle pour (for)}>>}
+\begin{lstlisting}
+for i in range(1,10,1):
+	instruction à répéter pour i allant de 1 à 9  par pas de 1.
+\end{lstlisting}
+\item \textcolor{red}{<<\texttt{Boucle tant que (while)}>>}
+\begin{lstlisting}
+while (condition):
+	instruction tant que condition est vraie
+\end{lstlisting}
+\item \textcolor{red}{<<\texttt{Try}>>}
+\begin{lstlisting}
+try:
+	instruction1
+except (type d'erreur):
+	instruction2 s'il y a une erreur à instruction1
+\end{lstlisting}
+
+Type d'erreur: ValueError  RuntimeError, TypeError, NameError , ZeroDivisionError, IOError \dots
+
+\begin{lstlisting}
+try:
+	a/b
+except ZeroDivisionError :
+	print("impossible de diviser par 0")
+\end{lstlisting}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les listes}
+Une liste est modifiable.
+\begin{list}{$\bullet $}{}
+\item 
+\begin{list}{\ding{212}}{\underline{Création de liste}}
+\item \textcolor{red}{<<\texttt{L = [el1  ,el2 , el3]}>>} créer une liste $L$.
+\item \textcolor{red}{<<\texttt{L = [i**2 for i in range(10)]}>>} créer la liste des carrés.\\
+C'est une compréhension de liste.
+\item \textcolor{red}{<<\texttt{list(T)}>>} Transforme un tuple en une liste.
+\item \textcolor{red}{<<\texttt{range(10)}>>} : liste de 0 à 9 par pas de 1
+\item \textcolor{red}{<<\texttt{range (2, 20, 3)}>>} liste de 2 à 20 (exclue) par pas de 3
+\item \textcolor{red}{<<\texttt{Concaténation}>>}  L1+L2
+\end{list}
+	%au dernier élément de la liste constituant le premier élément de L
+\item %\textcolor{red}{<<\texttt{Sélection de liste}>>}
+\begin{list}{\ding{212}}{\underline{Sélection de liste}}
+  \item \textcolor{red}{<<\texttt{L[1:6:3]}>>} sélection du 2eme au 7eme (exclu) éléments  par pas de 3.
+  \item \textcolor{red}{<<\texttt{L[-2]}>>} sélection des deux derniers éléments de L.
+  \item \textcolor{red}{<<\texttt{L[2:]}>>} sélection de l'élément 2 jusqu'à la fin de L.
+  \item \textcolor{red}{<<\texttt{L[::-1]}>>} sélection de L mais inversée.
+  \item \textcolor{red}{<<\texttt{L[0][-1]}>>} sélection du premier élément de L et en prendre le dernier élément de celui ci
+\end{list}
+\item \begin{list}{\ding{212}}{\underline{Fonctions sur les  listes}}
+	\item \textcolor{red}{<<\texttt{len(L)}>>} compte le nombre d'éléments de L.
+	\item \textcolor{red}{<<\texttt{sorted(L)}>>} Trie les éléments de L dans l'ordre croissant.
+	\item \textcolor{red}{<<\texttt{sorted(L,reverse=True)}>>} Trie les éléments de L dans l'ordre décroissant.
+	\item \textcolor{red}{<<\texttt{tuple(L)}>>} Convertit un tupple en liste.
+	\end{list}
+\item \begin{list}{\ding{212}}{\underline{Modification de liste (méthodes)}}
+	\item \textcolor{red}{<<\texttt{L.append(x)}>>} Ajoute $x$ à la fin de la liste L.
+	\item \textcolor{red}{<<\texttt{L.clear()}>>} Efface la liste l \textit{(depuis python3.3)}.
+	\item \textcolor{red}{<<\texttt{L.extend(t)}>>}  concatène la liste $l$ avec le contenu de la liste $t$ sans réaffectation.
+	\item \textcolor{red}{<<\texttt{L.insert(i,x)}>>} insère  $x$ dans la liste avant l'élément à la position i %(le reste est décalé)
+	\item \textcolor{red}{<<\texttt{L.pop([i])}>>} affiche l'élément d'indice i et supprime cet élément de L.
+	\item \textcolor{red}{<<\texttt{L.remove(x)}>>} supprime le premier élément x de L et affiche une \textit{ValueError} s'il ne le trouve pas.
+	\item \textcolor{red}{<<\texttt{L.reverse()}>>}   inverse les éléments de L.
+	\item \textcolor{red}{<<\texttt{L.sort()}>>}  Trie les éléments de L dans l'ordre croissant.
+	\item \textcolor{red}{<<\texttt{L.sort(reverse=True)}>>}  Trie les éléments de L dans l'ordre décroissant.
+	\item \textcolor{red}{<<\texttt{L.count(el) }>>} compter combien de fois \textit{el} apparait dans L.
+	\end{list}
+\end{list}
+\end{Sec}
+
+%ajout d'un élément en fin L=L1+[var] ou L=L1*3 (3concaténations de L1)
+
+\begin{Sec}
+	{chaines de caractères}
+
+	Une chaîne de caractère est non modifiable.
+	\begin{list}{$\bullet $}{}
+	\item \textcolor{red}{<<\texttt{len(str)}>>} compte le nombre de caractère de la chaîne str.\\
+len('Pablo Neruda')=12
+\item \textcolor{red}{<<\texttt{str.split('sep')}>>}  Retourne une liste des mots de la chaîne, en utilisant sep pour séparateur.\\
+ \texttt{'Pablo Neruda'.split(' ')} retourne ['Pablo','Neruda']
+\item \textcolor{red}{<<\texttt{'str'.join(L)}>>} reforme la chaîne qui est la concaténation de \textit{str} dans les éléments de la \textit{liste L}.\\
+\texttt{'-'.join(['Pablo','Neruda'])} retourne 'Pablo-Neruda'
+\item \textcolor{red}{<<\texttt{str.count(sub[, start[, end]])}>>} Compte le nombre d'occurrences du caractère sub dans str (dans l'intervalle [start ;end]).
+\item \textcolor{red}{<<\texttt{str.find(sub[, start[, end]])}>>} Retourne l'indice le plus faible dans la chaîne où \textit{sub} se trouve. Retourne -1 si  \textit{sub} n'est pas trouvé.
+\item \textcolor{red}{<<\texttt{ str.index(sub[, start[, end]])}>>}Comme \textit{find()} , mais retourne une ValueError quand la sous-chaîne n'est pas trouvée.
+\item \textcolor{red}{<<\texttt{str.rfind(sub[, start[, end]])}>>}Retourne l'indice le plus élevé dans la chaîne \textit{str} où \textit{sub} sous se trouve. Retourne -1 en cas d'echec.
+\item \textcolor{red}{<<\texttt{ str.replace(old, new[, count])}>>}Retourne une copie de la chaîne de toutes les occurrences de la chaîne \textit{old} remplacées par de \textit{new}.\\
+Pablo Neruda .replace('a','*') retourne 'P*blo Nerud*'
+\item \textcolor{red}{<<\texttt{sub in str}>>}Retourne \textit{True} si \textit{sub} est une sous-chaîne de \textit{str\textit{} False} sinon.\\
+'a' in Pablo Neruda  retourne True
+\item \textcolor{red}{<<\texttt{str.upper()}>>} Mettre tout en majuscule
+\item \textcolor{red}{<<\texttt{str.lower() }>>} Mettre tout en minuscule
+\item \textcolor{red}{<<\texttt{str.title()}>>} Mettre la première lettre de chaque mots en majuscule, le reste en minuscule
+\item \textcolor{red}{<<\texttt{str.swapcase()}>>} Mettre les minuscules en majuscule et les majuscules en minuscule
+\item \textcolor{red}{<<\texttt{str.islower()}>>} Indique si \textit{str} est en minuscule    (True/False)
+\item \textcolor{red}{<<\texttt{str.isupper()}>>} Indique si \textit{str} est en majuscule   (True/False)
+\item \textcolor{red}{<<\texttt{str.isalpha()}>>} Indique si \textit{str} contient uniquement des caractères alphabétique    (True/False)
+\item \textcolor{red}{<<\texttt{str.isdigit()}>>} Indique si \textit{str} contient uniquement des caractères numériques  (True/False)
+\item \textcolor{red}{<<\texttt{str.isalnum()}>>} Indique si \textit{str} contient uniquement des caractères alphanumérique   (True/False)
+%\item \textcolor{red}{<<\texttt{str.replace(old , new)}>>} Remplacer les bouts de chaine old par un new
+%\item \textcolor{red}{<<\texttt{"el".join(L)}>>} Concaténer une liste avec l'élément `el' entre chaque items
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Tuples :}
+Un tuple est non modifiable.
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{T = (el1  ,el2 , el3)}>>} définit un tuple.
+\item \textcolor{red}{<<\texttt{tuple(L)}>>} transforme la liste L en un tuple.
+\item \textcolor{red}{<<\texttt{Permuter des données}>>} var1, var2 = var2, var1
+\item \textcolor{red}{<<\texttt{Affichage}>>} \code{print ("x=\%d y=\%d"\%(l))}
+
+	\code{print("x=\{0[0]\} y=\{0[1]\}".format(l))}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les dictionnaires}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{D = \{"clé1": valeur1, "clé2": valeur2, "clé3": valeur3\}}>>} Définit un dictionnaire D.
+\item \textcolor{red}{<<\texttt{ print(D["cle1"] )}>>} Affiche valeur1
+\item \textcolor{red}{<<\texttt{D["cle"] = valeur}>>}  Ajoute un élément ou modifie la valeur de cle
+\item \textcolor{red}{<<\texttt{D.keys()}>>} renvoie une liste contenant les clés.
+\item \textcolor{red}{<<\texttt{D.values()}>>} renvoi une liste contenant les valeurs du dictionnaire.
+\item \textcolor{red}{<<\texttt{D.has\_key(clé)}>>} revoit le booléen True si le dictionnaire contient la clé   ou  la valeur,  False sinon.
+\item \textcolor{red}{<<\texttt{D.get(clé, valsinon)}>>} renvoit la valeur d'une clé ou valsinon si la clé n'existe pas.
+\item \textcolor{red}{<<\texttt{len(D)}>>} renvoi la taille du dico (nombre de clés)
+\item \textcolor{red}{<<\texttt{ D.items()}>>}  renvoi une liste de tuple, chaque tuple contenant clé puis valeur
+\item \textcolor{red}{<<\texttt{ del D[clé]}>>} supprime un élément du dico (clé et valeur)
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les fonctions}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{importer un module}>>}
+
+	\begin{list}{\ding{212}}{}
+	\item \code{import math}, on sera obligé d'utiliser math. avant d'utiliser un fonction du module  \code{math.sqrt(2)}.
+	\item \code{import numpy as np}, np sera alors un racourci du module numpy  \code{np.exp(1)}.
+	\item \code{from math import sqrt, sin} (on importe seulement la fonctions \textit{sqrt} et \textit{sin}  du module \textit{math})
+	\item \code{from math import *} idem que précédemment mais on importe toutes les fonctions du module.%)  \code{sqrt(2)}.
+
+		Avec \textbf{from} il ne faut pas mettre le nom du module, seulement le nom de la fonction, par exemple \code{sqrt(2)}  et non \textit{math.sqrt(2)}.
+	\end{list}
+\item \textcolor{red}{<<\texttt{def}>>}
+\begin{lstlisting}
+def  nomDeLaFonction (param1 , param2=valParDefault2 etc... ):
+	""" description de la fonction, Docstring """
+	Actions
+	return var1, var2
+	\end{lstlisting}
+
+ Les variables sont locales SAUF pour les listes qui sont définitivement modifiées !
+
+\item \textcolor{red}{<<\texttt{modules courants}>>} maths, os (système), random, time, tkinter (fenêtres), numpy, matplotlib (graphique), sympy (calcul formel), httplib (connections http) \dots
+\item \textcolor{red}{<<\texttt{Exemple}>>}
+%\begin{lstlisting}
+%def factorielle_rec ( n):
+%""" Fonction factorielle , version recursive """
+%	if n ==0:
+%		return 1
+%	else :
+%		return n* factorielle_rec (n -1)
+%	\end{lstlisting}
+
+
+\lstset{style=PYTHON}
+\begin{lstlisting}
+def factorielle ( n):
+""" Fonction factorielle """
+	facto=1
+	for i in range(1,n+1):
+		facto*=i
+	return facto
+\end{lstlisting}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Manipilation de fichier}
+\begin{list}{$\bullet $}{}
+
+\item  \textcolor{red}{<<\texttt{fichier = open("monfichier.txt", "r")}>>}  pour ouvrir un fichier en lecture
+
+	Les options sont: \textbf{r} lecture seule,  \textbf{w} écriture, \textbf{a} pour ajouter du texte \textbf{b} binaire
+
+\item \textcolor{red}{<<\texttt{contents = fichier.read()}>>} pour la lecture du fichier.
+\item \textcolor{red}{<<\texttt{lines = fichier.readlines()}>>} pour lire une seule ligne.
+\item \textcolor{red}{<<\texttt{fichier.close()}>>} pour fermer le fichier.
+\item \textcolor{red}{<<\texttt{fichier.write("Ceci est un texte")}>>} pour écrire le texte.  Si le fichier n'existe pas, il sera créé. %S'il existe le contenu est écrasé.
+\item \textcolor{red}{<<\texttt{ fichier.writeline(line)}>>} Pour écrire une ligne supplémentaire.
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Expressions régulières} %https://bitbucket.org/Melsophos/tutoriel-python-3/src/02df23ecfd8b/aspects/regex.rst#id8
+
+Les \textbf{Expressions régulières}  (ou \textbf{rationnelles}, ou encore "pattern" en anglais), communément abrégé en \textit{regex}, consiste en une chaine de caractères, souvent appelée \og \textit{motif}\fg. %Elle sera donc écrite entre guillemets.
+
+Un r placé devant la chaine permet de considérer l'antislash \string\ comme un caractère normal. Par exemple, on pourra écrire : \code{regex = r'a0\\'}
+
+%OpenOffice permet de faire des recherches par regex (menu selection \ding{212} Rechercher \ding{212} Autres options).
+
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{import re}>>} pour importer le module
+\item \textcolor{red}{<<\texttt{.}>>}  désigne n'importe quel caractère ;
+\item \textcolor{red}{<<\texttt{\string^}>>} indique que le début de la chaine doit correspondre
+\item \textcolor{red}{<<\texttt{\$}>>}  indique que la fin de la chaine doit correspondre
+\item \textcolor{red}{<<\texttt{\{n\}}>>} indique que le caractère précédent doit être répété n fois.
+\item \textcolor{red}{<<\texttt{\{n,m\} }>>}  indique que le caractère précédent doit être répété entre n et m fois.
+\item \textcolor{red}{<<\texttt{*}>>} le caractère précédent peut être répété 0 ou plusieurs fois.
+\item \textcolor{red}{<<\texttt{+}>>} le caractère précédent peut être répété 1 ou plusieurs fois.
+\item \textcolor{red}{<<\texttt{?}>>} le caractère précédent peut être répété zéro ou une fois.
+%	\end{list}
+\item 	Les quatres derniers symboles sont dits "gourmands", cela signifie qu'ils chercheront un maximum de caractères, ce qui peut parfois poser problème. Pour éviter ce comportement, on peut rajouter un ? après ces derniers, c'est à dire utiliser : \textbf{??}, \textbf{+?} et \textbf{*?}.
+
+\item L'antislash \string\ permet d'échapper tous ces caractères spéciaux.\\
+Par exemple pour le point on utilisera \string\.
+\item Les crochets \textbf{[]} permettent d'indiquer une plage de caractère, par exemple [e-h] correspondra à e, f, g ou h.
+\item Les parenthèses \textbf{()} permettent de grouper certaines expressions ce qui peut permettre de s'y référer par la suite avec \textbf{\string\1 \string\2} etc \dots
+%\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{\string\w }>>} correspond à tout caractère alphabétique,ce qui est équivalent à [a-zA-Z];
+\item \textcolor{red}{<<\texttt{\string\W}>>} correspond à tout ce qui n'est pas un caractère alphabétique ;
+\item \textcolor{red}{<<\texttt{\string\d}>>} correspond à tout caractère numérique, ce qui est équivalent à [0-9];
+\item \textcolor{red}{<<\texttt{\string\D}>>} correspond à tout ce qui n'est pas un caractère numérique.
+\item Il existe deux manières d'utiliser les regex :
+
+\begin{list}{-}{}
+\item La première consiste à appeler la fonction avec en premier paramètre le motif, et en deuxième paramètre la chaine à analyser.
+\item La seconde consiste à compiler la regex, et à ensuite utiliser les méthodes de l'objet créer pour analyser une chaine passée en argument. Cette méthode permet d'accélérer le traitement lorsqu'une regex est utilisée plusieurs fois.
+\end{list}
+
+%La plupart des fonctions et méthodes prennent des arguments optionnels, appelés drapeau ("flag" en anglais) qui permettent de modifier le traitement de l'objet. Le drapeau le plus intéressant est re.I (ou re.IGNORECASE) qui permet d'ignorer la casse lors de la recherche.
+%Le principal intérêt est d'utiliser la fonction :func:`~re.match` afin de vérifier si une chaine se trouve dans une autre ou si elle respecte un certain format (ce qui peut être utilisé pour vérifier si un numéro de téléphone ou une adresse email à un format correct).
+%Pour tout autre utilisation des MatchObject, je renvoie le lecteur à la documentation.
+%La séquence
+
+\lstset{style=PYTHON}
+%\lstPYTHON
+\begin{lstlisting}
+prog = re.compile(pattern)
+result = prog.match(string)
+\end{lstlisting}
+
+est équivalent à
+
+\code{result = re.match(pattern, string)}
+
+Exemples
+
+\lstset{style=PYTHON}
+%\lstPYTHON
+\begin{lstlisting}
+In [1]: import re
+In [2]: text = "Il s'était prudemment déguisé mais fut rapidement capturé par la police."
+In [3]: # trouver tous les adverbes en -ment
+In [4]: re.findall(r"\w+ment", text)
+Out[4]: ['prudemment', 'rapidement']
+In [5]: # Du debut jusqu'au dernier mot ayant la syllabe ment.
+In [6]: re.findall(r"^.*ment", text)
+Out[6]: ["Il s'était prudemment déguisé mais fut rapidement"]
+In [7]: # idem mais au premier mot ayant la syllabe ment.
+In [8]: re.findall(r"^.*?ment", text)
+Out[8]: ["Il s'était prudemment"]
+\end{lstlisting}
+
+Utilisation de substitute
+\begin{lstlisting}
+In [9]: text = "Confessions Publiques (Live)/20-Madame rêve.mp3"
+In [10]: re.sub(r'/[0-9]+-','/',text)
+Out[10]: 'Confessions Publiques (Live)/Madame rêve.mp3'
+In [11]: regex = re.compile('/[0-9]+-')  # ou alors
+In [12]: regex.sub('/',text)
+Out[12]: 'Confessions Publiques (Live)/Madame rêve.mp3';
+\end{lstlisting}
+
+
+\end{list}
+
+
+\end{Sec}
+
+\begin{Sec}
+{Les classes}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{Exemple}>>}
+
+\begin{lstlisting}
+class Edwige:
+	"""Classe qui définit un individu. Un individu sera définie par son nom, son prénom et son âge"""
+	def __init__( self, nom, prénom, âge):
+		"""Constructeur d'un individu """
+		âge : l'âge de l'individu"""
+		self.n = nom
+		self.p = prénom
+		self.a = âge
+	def __str__( self):
+		"""Renvoie une chaine de caractères  décrivant l'individu"""
+		return "individu
+		: Nom={}, Prénom={}, âge={} ".format(self.n, self.p, self.a)
+\end{lstlisting}
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{Sympy}
+On utilise sympy pour le calcul formel
+
+Dans sympy il faut déclarer les variables symboliques explicitement avec \textbf{Symbol} ou \textbf{S}.
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{Rational(1,2)}>>} ou  \textcolor{red}{<<\texttt{S('1/2')}>>} détermine le rationnel $\dfrac{1}{2}$.
+\item \textcolor{red}{<<\texttt{sqrt(12)}>>} détermine le radical $\sqrt[]{12}$.
+\item \textcolor{red}{<<\texttt{pprint(sqrt(12))}>>} pour afficher $\sqrt[]{12}$.
+\item \textcolor{red}{<<\texttt{x=Symbol('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
+\item \textcolor{red}{<<\texttt{((x+3)**2).expand()}>>} pour développer $(x+3)^2$
+\item \textcolor{red}{<<\texttt{(x**2+2*x-3).factor()}>>} pour factoriser.
+\item \textcolor{red}{<<\texttt{(x**2+2*x-3)**2).subs(x, 1)}>>} pour substituer x par 1.
+\item \textcolor{red}{<<\texttt{limit(sin(x)/x, x, 0)}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0}\sin x$
+\item \textcolor{red}{<<\texttt{limit(1/x,x,0,'+')}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0^+}\dfrac{1}{x}$
+\item \textcolor{red}{<<\texttt{solve('x\string^2-2*x-3',x)}>>} pour résoudre $x^2-2*x-3=0$
+\item \textcolor{red}{<<\texttt{integrate(x+1/x, x)}>>} pour la primitive de $f(x)=x^{2}+\dfrac{1}{x}$
+\item \textcolor{red}{<<\texttt{integrate(sin(x), (x, 0, pi/2))}>>} pour calculer $\displaystyle\int_{0}^{\dfrac{\pi}{2}}x+\dfrac{1}{x}dx$
+\item \textcolor{red}{<<\texttt{integrate(exp(-x), (x, 0, oo))}>>} pour calculer $\displaystyle\int_{0}^{+\infty}e^{-x}dx$.
+\item \textcolor{red}{<<\texttt{A = Matrix([[1,2],[3,4]])}>>} définie la matrice A.
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{Numpy}  %http://www.labri.fr/perso/renault/working/teaching/algonum/sheet.php
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{int(x)}>>} Nombre entier le plus proche de $x$.
+\item \textcolor{red}{<<\texttt{rint(x)}>>} Nombre entier le plus proche de $x$.
+\item \textcolor{red}{<<\texttt{floor(x)}},  \textcolor{red}{\texttt{ceil(x)}>>}  Partie entière supérieure et inférieure de $x$.
+\item \textcolor{red}{<<\texttt{rand(n,p)}>>}  Générateur aléatoire de matrice de dimension $n\times p$ sur $\left[ 0;1 \right]$. (\textcolor{orange}{numpy.random})
+\item \textcolor{red}{<<\texttt{pi}>>} Valeur approchée de $\pi\approx 3.1415$.
+\item \textcolor{red}{<<\texttt{exp(1)}>>} Valeur approchée de $e\approx 2.7183$.
+\item
+		\begin{list}{\ding{212}}{\underline{Vecteur}}
+		\item \textcolor{red}{<<\texttt{array([1, 2, 3])}>>} Représente le vecteur horizontal $\begin{pmatrix} 1 & 2 & 3 \\ \end{pmatrix}$.
+	\item \textcolor{red}{<<\texttt{array([[1], [2], [3]])}>>} Représente le vecteur vertical $\begin{pmatrix} 1 \\ 2 \\ 3 \\ \end{pmatrix}$.
+\item \textcolor{red}{<<\texttt{x.size}>>} Renvoie la longueur du vecteur x.
+\item \textcolor{red}{<<\texttt{arange(a,b,i)}>>} Construit le tableau $\begin{pmatrix} a & a+i& a+2i & \dots  & b \\ \end{pmatrix}$.
+	\end{list}
+\item \begin{list}{\ding{212}}{\underline{Matrice}}
+	\item \textcolor{red}{<<\texttt{array([[1,2], [3,4]]])}>>} Représente la matrice $\begin{pmatrix} 1 & 2 \\ 3 & 4 \\ \end{pmatrix}$.
+\item \textcolor{red}{<<\texttt{m[i,j]}>>} Représente l'élément $a_{ij}$ de la matrice m
+\item \textcolor{red}{<<\texttt{m.shape}>>} Renvoie la taille de la matrice m sous forme d'une liste.
+\item \textcolor{red}{<<\texttt{m[i,:]}>>} Extrait la i\ieme ligne de la matrice m.
+\item \textcolor{red}{<<\texttt{m[:,i]}>>}  Extrait la i\ieme colonne de la matrice m.
+\item \textcolor{red}{<<\texttt{zeros([n,p])}>>} Représente la matrice nulle de taille $n\times p$.
+\item \textcolor{red}{<<\texttt{eye(n,p)}>>} Représente la matrice identité de taille $n\times p$.
+\item \textcolor{red}{<<\texttt{ones([n,p])}>>} Représente la matrice de coefficients 1 de taille $n\times p$.
+\item \textcolor{red}{<<\texttt{asarray(m)}>>} Transforme une matrice en tableau.
+\item \textcolor{red}{<<\texttt{asmatrix(m)}>>} Transforme un tableau en matrice.
+\item \textcolor{red}{<<\texttt{norm(m)}>>} Norme de la matrice m. (\textcolor{orange}{numpy.linalg})
+\item \textcolor{red}{<<\texttt{transpose(m)}>>} Transposée de la matrice m.
+\item \textcolor{red}{<<\texttt{det(m)}>>} Déterminant de la matrice m. (\textcolor{orange}{numpy.linalg})
+\end{list}
+\item \begin{list}{\ding{212}}{\underline{Polynômes}}
+	\item \textcolor{red}{<<\texttt{poly1d([1, 2, 3, 5, 8])}>>} Représente le polynôme $x^4+2x^3+3x^2+5x+8$.
+\item \textcolor{red}{<<\texttt{poly1d([1,2, 3, 5, 8],True)}>>} Représente le polynôme $(x-1)(x-2)(x-3)(x-5)(x-8)$.
+\item \textcolor{red}{<<\texttt{p.order}>>} Degrés du polynôme p.
+\item \textcolor{red}{<<\texttt{p.roots}>>} ou \textcolor{red}{<<\texttt{roots(p)}>>} Racines du polynôme p.
+\item \textcolor{red}{<<\texttt{p.coeffs}>>} Coefficients du polynôme p.
+\item \textcolor{red}{<<\texttt{p(3)}>>} ou  \textcolor{red}{<<\texttt{polyval(p,3)}>>}  Évalue le polynôme p en 3 (selon le schéma de Hörner)
+\end{list}
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{matplotlib.pyplot}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{plot(x,y,c?)}>>} Affiche les points définis par les vecteurs  et , (Option~:  permet de définir le format et la couleur du tracé)
+\item \textcolor{red}{<<\texttt{imshow(m,c?)}>>} Affiche la matrice  en deux dimensions
+\item \textcolor{red}{<<\texttt{show()}>>} Affiche la figure courante
+\item \textcolor{red}{<<\texttt{savefig(name)}>>} Sauvegarde la figure courante dans le fichier name.
+\item \textcolor{red}{<<\texttt{clf()}>>}  Efface la figure courante
+\item \textcolor{red}{<<\texttt{legend(array,loc?)}>>} Dessine une légende contenant les lignes apparaissant dans array (Option~:  pour définir l'emplacement)
+\item \textcolor{red}{<<\texttt{xlabel(str) ylabel(str)}>>} Imprime une légende pour décrire les axes horizontaux et verticaux
+\item \textcolor{red}{<<\texttt{axis([xl,xr,yb,yt])}>>} Cadre la figure sur le rectangle décrit par les 4 coordonnées.
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{scipy.stats}  %http://www.labri.fr/perso/renault/working/teaching/algonum/sheet.php
+
+Pour faire des statistiques comme avec R. Pour toutes les lois la corespondance suivante.
+
+\begin{center}
+\begin{tabular}[]{|c |c |>{\raggedright}m{8cm}|}
+\hline Python & R &   \\
+\hline  \textcolor{orange}{loi}.pdf & d\textcolor{orange}{loi} & densité  $f(x)$ \tabularnewline
+\hline  \textcolor{orange}{loi}.pmf & d\textcolor{orange}{loi} & calcule  $P(X=a)$ pour une loi discrète \tabularnewline
+\hline  \textcolor{orange}{loi}.cdf & p\textcolor{orange}{loi} & calcule  $P(X\leq a)$ \tabularnewline
+\hline  \textcolor{orange}{loi}.ppf & q\textcolor{orange}{loi} & renvoie $a$ tel que $P(X\leq a)=b$  \tabularnewline
+\hline  \textcolor{orange}{loi}.rvs & r\textcolor{orange}{loi} & générer des nombres alatoires (r pour random) \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\begin{list}{$\bullet $}{}
+\item  \textcolor{red}{<<\texttt{choose(10, 6)}>>}Pour calculer $\begin{pmatrix} 10 \\ 6 \\\end{pmatrix}$
+\item \textcolor{red}{<<\texttt{stats.binom}>>} C'est la loi binomiale. Par exemple si $X \sim B(10,0.4)$:
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{stats.binom.pmf(5,10,0.4)}>>} Pour calculer $P(X=5)$.
+\item \textcolor{red}{<<\texttt{scipy.stats.binom(10,0.4).pmf(5)}>>} Idem pour calculer $P(X=5)$.
+\item \textcolor{red}{<<\texttt{stats.binom.cdf(5,10,0.5)}>>} Pour calculer $P(X\leq 5)$.
+\item \textcolor{red}{<<\texttt{stats.binom.rvs(10,0.5)}>>} Pour générer des nombres alatoires selon la loi $B(10,0.4)$.
+\end{list}
+\item \textcolor{red}{<<\texttt{stats.uniforme}>>} C'est la loi uniforme. Par exemple si $X \sim U(8,12)$.
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{stats.uniform.pdf(9,8,4)}>>} f(9) et on trouve 0.25.  4 est la longueur de l'intervalle.
+\end{list}
+\item \textcolor{red}{<<\texttt{stats.norm}>>} C'est la loi normale
+%\begin{list}{\ding{212}}{}
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\end{list}
+\item \textcolor{red}{<<\texttt{stats.expon}>>} C'est la loi exponentielle
+%\begin{list}{\ding{212}}{}
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\end{list}
+\end{list}
+\end{Sec}
+
+%\begin{Sec}
+%{<++>}
+%\begin{list}{$\bullet $}{}
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\end{list}
+%\end{Sec}
+
+
+\end{multicols*}
+
+
+
+\end{document}
+
