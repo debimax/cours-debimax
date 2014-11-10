@@ -1,7 +1,7 @@
 
 %Fichier: memento_python.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 05 oct. 2014 17:46:47
+%Dernière modification: 26 oct. 2014 09:10:30
 
 \documentclass[landscape,10pt,dvipsnames,  dvips]{report}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -23,9 +23,6 @@
 \usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
 \usepackage{graphicx} %%%%
 
-
-
-
 \usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
 \usepackage{graphicx} %%%%pour inclure les graphiques
 \usepackage{lastpage} %%%%pour inclure le le nombre total de page
@@ -42,7 +39,7 @@
 
 % mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
 \input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
-
+\lstset{style=PYTHON} 
 \usepackage[frenchb]{babel}
 %%%%%%%%            %%%%%%%%%%%%%%%%%
 \hypersetup{
@@ -61,23 +58,12 @@
      pdfsubject={Gnu Debian}          %sous Acrobat.
 }
 
-
-
-\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
-\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
-\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\e}{\mathrm{e}}
 \newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
 
 \newcounter{Chapter}
 \newcounter{Sec}[Chapter]
 \newcounter{Subsec}[Sec]
 %\newcounter{Subsubsection}[Subsec]
-
-
 %\newsavebox\boxofgeogebra
 
 \newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
@@ -104,7 +90,6 @@
 
 \newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
 
-
 \setlength{\parindent}{0pt}
 \pagestyle{fancy}  \lhead{\small\textsc{Mémento}}
 \rhead{Page \thepage/\pageref{LastPage} } \cfoot{}
@@ -112,8 +97,6 @@
 \renewcommand{\footrulewidth}{0pt}
 
 % Pour les algorithmes
-
-
 \usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
 %SetKwData{fonction}{fonction: }
 \SetKwInput{Fonction}{\textbf{fonction}}
@@ -128,7 +111,6 @@
 \SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
 \SetAlCapFnt{\color{red}}
 
-
 %Pour l'environnement multicolonne
 \setlength{\columnseprule}{0pt}
 \setlength{\columnsep}{0.5cm}
@@ -138,20 +120,19 @@
 \Chapter{Memento python}
 \begin{multicols*}{2}
 
-
 \begin{Sec}
 {Fondamentaux}
 \begin{list}{$\bullet $}{}
-\item \textcolor{red}{<<\texttt{Déclaration de variable: }>>}  \code{var=1} sera un entier, \code{var=1.0} (sera un réel),  \code{var="1"} (sera une chaine de caractère), \code{var=[var1,var2,var3]} (sera une liste),  \code{var=(var1,var2,var3)} sera un tuple.
+\item \textcolor{red}{<<\texttt{Déclaration de variable: }>>} \lstset{style=PYTHON} \code{var=1} sera un entier, \code{var=1.0} (sera un réel),  \code{var="1"} (sera une chaine de caractère), \code{var=[var1,var2,var3]} (sera une liste),  \code{var=(var1,var2,var3)} sera un tuple.
 \item \textcolor{red}{<<\texttt{Changer le type d'une variable: }>>} \code{var=int("1")} (sera un entier),  \textbf{float} (pour réel), \textbf{str}(pour chaine de caractères).
 \item \textcolor{red}{<<\texttt{Variable saisie au clavier: }>>}
 
-	\code{var=input("texte s'affichant à l'écran et demandant de saisir une variable")}
+	\code{var=input("texte s'affichant à l'écran")}
 
 	le contenu  de la variable saisie au clavier est par défaut  une chaine de caractère, il faudra la convertir si on veut des nombres.
-\item \textcolor{red}{<<\texttt{Opérateurs: }>>} \lstinline{ +  -  *  % } (modulo) \lstinline{ //}  (Quotient de la division euclidienne) \quad    \textbf{**} (puissance)  \quad    \textbf{=} (affectation)
-\item \textcolor{red}{<<\texttt{1e5}>>}Écriture scientifique de $10^{5}$.
-\item \textcolor{red}{<<\texttt{1j}>>}Nombre complexe $i$ tel que $i^2=-1$.
+\item \textcolor{red}{<<\texttt{Opérateurs: }>>}\lstset{style=PYTHON} \lstinline{ +  -  *  % } (modulo) \lstinline{ //}  (Quotient de la division euclidienne) \quad    \textbf{**} (puissance)  \quad    \textbf{=} (affectation)
+\item \textcolor{red}{<<\texttt{1e5}>>} Écriture scientifique de $10^{5}$.
+\item \textcolor{red}{<<\texttt{1j}>>} Nombre complexe $i$ tel que $i^2=-1$.
 \item \textcolor{red}{<<\texttt{Opérateurs logiques: }>>}   \lstinline{not} (ou !) \quad   \lstinline{and} (ou \&)   \quad  \lstinline{or} (ou |)  \quad   \lstinline{True} (ou 1)   \quad   \lstinline{False} (ou 0)
 %\item \textcolor{red}{<<\texttt{comparer des chaines de caractères}>>} 'a'<'g' donne True , c'est l'ordre dans la tablette ASCII qui est comparé.
 \item \textcolor{red}{<<\texttt{Affichage: }>>} \code{print("var1=\{0\}  et var2=\{1\}".format(var1, var2))}
@@ -210,8 +191,9 @@ Une liste est modifiable.
 \begin{list}{$\bullet $}{}
 \item 
 \begin{list}{\ding{212}}{\underline{Création de liste}}
-\item \textcolor{red}{<<\texttt{L = [el1  ,el2 , el3]}>>} créer une liste $L$.
-\item \textcolor{red}{<<\texttt{L = [i**2 for i in range(10)]}>>} créer la liste des carrés.\\
+\item \textcolor{red}{<<\texttt{L = [el1  ,el2 , el3]}>>} crée une liste $L$.
+\item \textcolor{red}{<<\texttt{[0]*10}>>} crée une liste avec dix 0.
+\item \textcolor{red}{<<\texttt{L = [i**2 for i in range(10)]}>>} crée la liste des carrés.\\
 C'est une compréhension de liste.
 \item \textcolor{red}{<<\texttt{list(T)}>>} Transforme un tuple en une liste.
 \item \textcolor{red}{<<\texttt{range(10)}>>} : liste de 0 à 9 par pas de 1
@@ -229,14 +211,18 @@ C'est une compréhension de liste.
 \end{list}
 \item \begin{list}{\ding{212}}{\underline{Fonctions sur les  listes}}
 	\item \textcolor{red}{<<\texttt{len(L)}>>} compte le nombre d'éléments de L.
+	\item \textcolor{red}{<<\texttt{max(L)}>>} détermine le maximum des éléments de L.
+	\item \textcolor{red}{<<\texttt{min(L)}>>} détermine le maximum des éléments de L.
+	\item \textcolor{red}{<<\texttt{sum(L)}>>} détermine la somme des éléments de L.
 	\item \textcolor{red}{<<\texttt{sorted(L)}>>} Trie les éléments de L dans l'ordre croissant.
 	\item \textcolor{red}{<<\texttt{sorted(L,reverse=True)}>>} Trie les éléments de L dans l'ordre décroissant.
 	\item \textcolor{red}{<<\texttt{tuple(L)}>>} Convertit un tupple en liste.
 	\end{list}
-\item \begin{list}{\ding{212}}{\underline{Modification de liste (méthodes)}}
+\item \begin{list}{\ding{212}}{\underline{Modification de liste \textit{(méthodes de la classe liste).}}}
 	\item \textcolor{red}{<<\texttt{L.append(x)}>>} Ajoute $x$ à la fin de la liste L.
-	\item \textcolor{red}{<<\texttt{L.clear()}>>} Efface la liste l \textit{(depuis python3.3)}.
-	\item \textcolor{red}{<<\texttt{L.extend(t)}>>}  concatène la liste $l$ avec le contenu de la liste $t$ sans réaffectation.
+	\item \textcolor{red}{<<\texttt{L.clear()}>>} Efface la liste L \textit{(depuis python3.3)}.
+	\item \textcolor{red}{<<\texttt{L.extend(t)}>>}  concatène la liste $l$ avec le contenu de $t$.\\ %sans réaffectation.
+ \code{L=[1, 2]} \code{L.extend('abc')} L devient \code{[1, 2, 'a', 'b','c']}
 	\item \textcolor{red}{<<\texttt{L.insert(i,x)}>>} insère  $x$ dans la liste avant l'élément à la position i %(le reste est décalé)
 	\item \textcolor{red}{<<\texttt{L.pop([i])}>>} affiche l'élément d'indice i et supprime cet élément de L.
 	\item \textcolor{red}{<<\texttt{L.remove(x)}>>} supprime le premier élément x de L et affiche une \textit{ValueError} s'il ne le trouve pas.
@@ -248,38 +234,34 @@ C'est une compréhension de liste.
 \end{list}
 \end{Sec}
 
-%ajout d'un élément en fin L=L1+[var] ou L=L1*3 (3concaténations de L1)
-
 \begin{Sec}
 	{chaines de caractères}
 
 	Une chaîne de caractère est non modifiable.
 	\begin{list}{$\bullet $}{}
 	\item \textcolor{red}{<<\texttt{len(str)}>>} compte le nombre de caractère de la chaîne str.\\
-len('Pablo Neruda')=12
+\code{len('Pablo Neruda')=12}
 \item \textcolor{red}{<<\texttt{str.split('sep')}>>}  Retourne une liste des mots de la chaîne, en utilisant sep pour séparateur.\\
- \texttt{'Pablo Neruda'.split(' ')} retourne ['Pablo','Neruda']
+ \code{'Pablo Neruda'.split(' ')} retourne \code{['Pablo','Neruda']}
 \item \textcolor{red}{<<\texttt{'str'.join(L)}>>} reforme la chaîne qui est la concaténation de \textit{str} dans les éléments de la \textit{liste L}.\\
-\texttt{'-'.join(['Pablo','Neruda'])} retourne 'Pablo-Neruda'
-\item \textcolor{red}{<<\texttt{str.count(sub[, start[, end]])}>>} Compte le nombre d'occurrences du caractère sub dans str (dans l'intervalle [start ;end]).
-\item \textcolor{red}{<<\texttt{str.find(sub[, start[, end]])}>>} Retourne l'indice le plus faible dans la chaîne où \textit{sub} se trouve. Retourne -1 si  \textit{sub} n'est pas trouvé.
-\item \textcolor{red}{<<\texttt{ str.index(sub[, start[, end]])}>>}Comme \textit{find()} , mais retourne une ValueError quand la sous-chaîne n'est pas trouvée.
-\item \textcolor{red}{<<\texttt{str.rfind(sub[, start[, end]])}>>}Retourne l'indice le plus élevé dans la chaîne \textit{str} où \textit{sub} sous se trouve. Retourne -1 en cas d'echec.
+\code{'-'.join(['Pablo','Neruda'])} retourne \code{'Pablo-Neruda'}
+\item \textcolor{red}{<<\texttt{str.count(sub\textit{[, start[, end]]})}>>} Compte le nombre d'occurrences du caractère sub dans str (dans l'intervalle \textit{[start ;end]}).
+\item \textcolor{red}{<<\texttt{str.find(sub\textit{[, start[, end]]})}>>} Retourne l'indice le plus faible dans la chaîne où \textit{sub} se trouve. Retourne -1 si  \textit{sub} n'est pas trouvé.
+\item \textcolor{red}{<<\texttt{ str.index(sub\textit{[, start[, end]]})}>>}Comme \textit{find()} , mais retourne une ValueError quand la sous-chaîne n'est pas trouvée.
+\item \textcolor{red}{<<\texttt{str.rfind(sub\textit{[, start[, end]]})}>>}Retourne l'indice le plus élevé dans la chaîne \textit{str} où \textit{sub} sous se trouve. Retourne -1 en cas d'echec.
 \item \textcolor{red}{<<\texttt{ str.replace(old, new[, count])}>>}Retourne une copie de la chaîne de toutes les occurrences de la chaîne \textit{old} remplacées par de \textit{new}.\\
-Pablo Neruda .replace('a','*') retourne 'P*blo Nerud*'
+\code{Pablo Neruda .replace('a','*')} retourne \code{'P*blo Nerud*'}
 \item \textcolor{red}{<<\texttt{sub in str}>>}Retourne \textit{True} si \textit{sub} est une sous-chaîne de \textit{str\textit{} False} sinon.\\
 'a' in Pablo Neruda  retourne True
-\item \textcolor{red}{<<\texttt{str.upper()}>>} Mettre tout en majuscule
-\item \textcolor{red}{<<\texttt{str.lower() }>>} Mettre tout en minuscule
-\item \textcolor{red}{<<\texttt{str.title()}>>} Mettre la première lettre de chaque mots en majuscule, le reste en minuscule
-\item \textcolor{red}{<<\texttt{str.swapcase()}>>} Mettre les minuscules en majuscule et les majuscules en minuscule
-\item \textcolor{red}{<<\texttt{str.islower()}>>} Indique si \textit{str} est en minuscule    (True/False)
-\item \textcolor{red}{<<\texttt{str.isupper()}>>} Indique si \textit{str} est en majuscule   (True/False)
-\item \textcolor{red}{<<\texttt{str.isalpha()}>>} Indique si \textit{str} contient uniquement des caractères alphabétique    (True/False)
-\item \textcolor{red}{<<\texttt{str.isdigit()}>>} Indique si \textit{str} contient uniquement des caractères numériques  (True/False)
-\item \textcolor{red}{<<\texttt{str.isalnum()}>>} Indique si \textit{str} contient uniquement des caractères alphanumérique   (True/False)
-%\item \textcolor{red}{<<\texttt{str.replace(old , new)}>>} Remplacer les bouts de chaine old par un new
-%\item \textcolor{red}{<<\texttt{"el".join(L)}>>} Concaténer une liste avec l'élément `el' entre chaque items
+%\item \textcolor{red}{<<\texttt{str.upper()}>>} Mettre tout en majuscule
+%\item \textcolor{red}{<<\texttt{str.lower() }>>} Mettre tout en minuscule
+%\item \textcolor{red}{<<\texttt{str.title()}>>} Mettre la première lettre de chaque mots en majuscule, le reste en minuscule
+%\item \textcolor{red}{<<\texttt{str.swapcase()}>>} Mettre les minuscules en majuscule et les majuscules en minuscule
+%\item \textcolor{red}{<<\texttt{str.islower()}>>} Indique si \textit{str} est en minuscule    (True/False)
+%\item \textcolor{red}{<<\texttt{str.isupper()}>>} Indique si \textit{str} est en majuscule   (True/False)
+%\item \textcolor{red}{<<\texttt{str.isalpha()}>>} Indique si \textit{str} contient uniquement des caractères alphabétique    (True/False)
+%\item \textcolor{red}{<<\texttt{str.isdigit()}>>} Indique si \textit{str} contient uniquement des caractères numériques  (True/False)
+%\item \textcolor{red}{<<\texttt{str.isalnum()}>>} Indique si \textit{str} contient uniquement des caractères alphanumérique   (True/False)
 \end{list}
 \end{Sec}
 
@@ -318,38 +300,31 @@ Un tuple est non modifiable.
 \item \textcolor{red}{<<\texttt{importer un module}>>}
 
 	\begin{list}{\ding{212}}{}
-	\item \code{import math}, on sera obligé d'utiliser math. avant d'utiliser un fonction du module  \code{math.sqrt(2)}.
-	\item \code{import numpy as np}, np sera alors un racourci du module numpy  \code{np.exp(1)}.
-	\item \code{from math import sqrt, sin} (on importe seulement la fonctions \textit{sqrt} et \textit{sin}  du module \textit{math})
-	\item \code{from math import *} idem que précédemment mais on importe toutes les fonctions du module.%)  \code{sqrt(2)}.
+	\item \code{import math}, on sera obligé d'utiliser \textit{math.} avant:   \code{math.sqrt(2)}.
+	\item \code{import numpy as np}, \textit{np} sera alors un racourci du module numpy:  \code{np.exp(1)}.
+	\item \code{from math import *} pour importer toutes les fonctions du module \textit{math}.\\
+Avec \textbf{from} il ne faut pas mettre le nom du module, seulement le nom de la fonction, par exemple \code{sqrt(2)}  et non \textit{math.sqrt(2)}.
+\item \code{from math import sqrt, sin} pour importer seulement la fonctions \textit{sqrt} et \textit{sin}  du module \textit{math}
+%	\item \code{from math import *} idem que précédemment mais on importe toutes les fonctions du module.%)  \code{sqrt(2)}.
 
-		Avec \textbf{from} il ne faut pas mettre le nom du module, seulement le nom de la fonction, par exemple \code{sqrt(2)}  et non \textit{math.sqrt(2)}.
+%		Avec \textbf{from} il ne faut pas mettre le nom du module, seulement le nom de la fonction, par exemple \code{sqrt(2)}  et non \textit{math.sqrt(2)}.
 	\end{list}
-\item \textcolor{red}{<<\texttt{def}>>}
+\item \textcolor{red}{<<\texttt{def}>>} permet de définir une fonction.
+\lstset{style=PYTHON}
 \begin{lstlisting}
-def  nomDeLaFonction (param1 , param2=valParDefault2 etc... ):
+def  NomDeLaFonction (param1 , param2=valParDefault2 etc... ):
 	""" description de la fonction, Docstring """
 	Actions
 	return var1, var2
-	\end{lstlisting}
+\end{lstlisting}
+Les variables sont locales SAUF pour les listes qui sont définitivement modifiées!
 
- Les variables sont locales SAUF pour les listes qui sont définitivement modifiées !
-
-\item \textcolor{red}{<<\texttt{modules courants}>>} maths, os (système), random, time, tkinter (fenêtres), numpy, matplotlib (graphique), sympy (calcul formel), httplib (connections http) \dots
+\item \textcolor{red}{<<\texttt{modules courants}>>} maths, os (système), random, time, tkinter (fenêtres), numpy, matplotlib (graphique), sympy (calcul formel), httplib (connections http)
+%\columnbreak
 \item \textcolor{red}{<<\texttt{Exemple}>>}
-%\begin{lstlisting}
-%def factorielle_rec ( n):
-%""" Fonction factorielle , version recursive """
-%	if n ==0:
-%		return 1
-%	else :
-%		return n* factorielle_rec (n -1)
-%	\end{lstlisting}
-
-
 \lstset{style=PYTHON}
 \begin{lstlisting}
-def factorielle ( n):
+def factorielle (n):
 """ Fonction factorielle """
 	facto=1
 	for i in range(1,n+1):
@@ -378,6 +353,9 @@ def factorielle ( n):
 \end{list}
 \end{Sec}
 
+%\vfill
+%\columnbreak
+%\pagebreak
 \begin{Sec}
 {Expressions régulières} %https://bitbucket.org/Melsophos/tutoriel-python-3/src/02df23ecfd8b/aspects/regex.rst#id8
 
@@ -423,7 +401,6 @@ Par exemple pour le point on utilisera \string\.
 %La séquence
 
 \lstset{style=PYTHON}
-%\lstPYTHON
 \begin{lstlisting}
 prog = re.compile(pattern)
 result = prog.match(string)
@@ -436,7 +413,6 @@ est équivalent à
 Exemples
 
 \lstset{style=PYTHON}
-%\lstPYTHON
 \begin{lstlisting}
 In [1]: import re
 In [2]: text = "Il s'était prudemment déguisé mais fut rapidement capturé par la police."
@@ -467,28 +443,38 @@ Out[12]: 'Confessions Publiques (Live)/Madame rêve.mp3';
 
 \end{Sec}
 
-\begin{Sec}
-{Les classes}
-\begin{list}{$\bullet $}{}
-\item \textcolor{red}{<<\texttt{Exemple}>>}
+%\begin{Sec}
+%{Les classes}
+%\begin{list}{$\bullet $}{}
+%\item \textcolor{red}{<<\texttt{Exemple}>>}
+%
+%\begin{lstlisting}
+%class Edwige:
+%	"""Classe qui définit un individu. Un individu sera définie par son nom, son prénom et son âge"""
+%	def __init__( self, nom, prénom, âge):
+%		"""Constructeur d'un individu """
+%		âge : l'âge de l'individu"""
+%		self.n = nom
+%		self.p = prénom
+%		self.a = âge
+%	def __str__( self):
+%		"""Renvoie une chaine de caractères  décrivant l'individu"""
+%		return "individu
+%		: Nom={}, Prénom={}, âge={} ".format(self.n, self.p, self.a)
+%\end{lstlisting}
+%\end{list}
+%\end{Sec}
 
-\begin{lstlisting}
-class Edwige:
-	"""Classe qui définit un individu. Un individu sera définie par son nom, son prénom et son âge"""
-	def __init__( self, nom, prénom, âge):
-		"""Constructeur d'un individu """
-		âge : l'âge de l'individu"""
-		self.n = nom
-		self.p = prénom
-		self.a = âge
-	def __str__( self):
-		"""Renvoie une chaine de caractères  décrivant l'individu"""
-		return "individu
-		: Nom={}, Prénom={}, âge={} ".format(self.n, self.p, self.a)
-\end{lstlisting}
+\begin{Sec}
+{fractions}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{from fractions  import Fraction}>>} Pour importer la fonction Fraction.
+\item \textcolor{red}{<<\texttt{Fraction(1,2)}>>} pour la fraction $\dfrac{1}{2}$.
+\item \textcolor{red}{<<\texttt{Fraction('1/2')}>>} pour la fraction $\dfrac{1}{2}$.
+%\item \textcolor{red}{<<\texttt{}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
 \end{list}
 \end{Sec}
-
 
 \begin{Sec}
 {Sympy}
@@ -497,24 +483,43 @@ On utilise sympy pour le calcul formel
 Dans sympy il faut déclarer les variables symboliques explicitement avec \textbf{Symbol} ou \textbf{S}.
 
 \begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{x=symbols('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
+\item \textcolor{red}{<<\texttt{i,n=symbols('i n')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} pour définir plusieurs variables.\item \textcolor{red}{<<\texttt{x=Symbol('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
 \item \textcolor{red}{<<\texttt{Rational(1,2)}>>} ou  \textcolor{red}{<<\texttt{S('1/2')}>>} détermine le rationnel $\dfrac{1}{2}$.
 \item \textcolor{red}{<<\texttt{sqrt(12)}>>} détermine le radical $\sqrt[]{12}$.
 \item \textcolor{red}{<<\texttt{pprint(sqrt(12))}>>} pour afficher $\sqrt[]{12}$.
-\item \textcolor{red}{<<\texttt{x=Symbol('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
-\item \textcolor{red}{<<\texttt{((x+3)**2).expand()}>>} pour développer $(x+3)^2$
-\item \textcolor{red}{<<\texttt{(x**2+2*x-3).factor()}>>} pour factoriser.
-\item \textcolor{red}{<<\texttt{(x**2+2*x-3)**2).subs(x, 1)}>>} pour substituer x par 1.
+\item \textcolor{red}{<<\texttt{evalf(sqrt(12))}>>} ou \textcolor{red}{<<\texttt{(sqrt(12)).evalf()}>>} pour evaluer $\sqrt[]{12}$.
+\item \textcolor{red}{<<\texttt{expand(\textit{expr})}>>} ou  \textcolor{red}{<<\texttt{(\textit{expr}).expand()}>>} pour développer \textit{expr}.
+\item \textcolor{red}{<<\texttt{factor(\textit{expr})}>>} ou \textcolor{red}{<<\texttt{(\textit{expr}).factor()}>>}  pour factoriser \textit{expr}.
+\item \textcolor{red}{<<\texttt{(\textit{expr}).subs(x, 1)}>>} pour substituer x par 1 dans \textit{expr}.
 \item \textcolor{red}{<<\texttt{limit(sin(x)/x, x, 0)}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0}\sin x$
 \item \textcolor{red}{<<\texttt{limit(1/x,x,0,'+')}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0^+}\dfrac{1}{x}$
-\item \textcolor{red}{<<\texttt{solve('x\string^2-2*x-3',x)}>>} pour résoudre $x^2-2*x-3=0$
+\item \textcolor{red}{<<\texttt{((x+1)/(x-2)).limit(x,+oo)}>>}
+\item \textcolor{red}{<<\texttt{summation(1/2**i, (i, 0,oo))}>>} pour calculer $\displaystyle\sum_{i=0}^{+\infty}\dfrac{1}{2^i}\quad$  \textit{(résultat: 2)}.
+\item \textcolor{red}{<<\texttt{product(i, (i, 1, n))}>>} pour calculer $\displaystyle\prod_{i=1}^{n}i$ \quad \textit{(résultat: factorial(n))}.
+
+\item \textcolor{red}{<<\texttt{solve(x**2-2*x-3,x)}>>} pour résoudre $x^2-2x-3=0$
+\item \textcolor{red}{<<\texttt{solve('x\string^2-2*x-3',x)}>>} variante pour résoudre $x^2-2x-3=0$
+\item \textcolor{red}{<<\texttt{solve([x+y-1,x-y-2],[x,y])}>>} pour résoudre le système  $\left\lbrace\begin{array}{l} x+y-1=0 \\ x-y-2=0 \\ \end{array}\right.$
+\item \textcolor{red}{<<\texttt{diff(x+1/x,x)}>>} pour calculer la dérivée de $f(x)=x+\dfrac{1}{x}$.
+\item \textcolor{red}{<<\texttt{diff(x+1/x,x,2)}>>} pour calculer la dérivée seconde de $f(x)=x+\dfrac{1}{x}$.
 \item \textcolor{red}{<<\texttt{integrate(x+1/x, x)}>>} pour la primitive de $f(x)=x^{2}+\dfrac{1}{x}$
 \item \textcolor{red}{<<\texttt{integrate(sin(x), (x, 0, pi/2))}>>} pour calculer $\displaystyle\int_{0}^{\dfrac{\pi}{2}}x+\dfrac{1}{x}dx$
 \item \textcolor{red}{<<\texttt{integrate(exp(-x), (x, 0, oo))}>>} pour calculer $\displaystyle\int_{0}^{+\infty}e^{-x}dx$.
 \item \textcolor{red}{<<\texttt{A = Matrix([[1,2],[3,4]])}>>} définie la matrice A.
+\item \textcolor{red}{<<\texttt{apart(expr,x)}>>}  décomposition en éléments simples des fractions\\
+	\code{apart((x**2+1)/(x**2+3))}  retourne \code{1 - 2/(x**2 + 3)}
+\item \textcolor{red}{<<\texttt{I}>>}  est le complexe i
+\item \textcolor{red}{<<\texttt{series(\textit{expr},x=0,2)}>>} pour calculer le développement limité de \textit{expr} en 0 à l'ordre 1.
+\item \textcolor{red}{<<\texttt{\_}>>}  est l'expression précédente. (on a de même \texttt{\_\_},  \texttt{\_\_\_}, etc \dots )\\
+\code{x**3} \code{diff(\_)} \code{pprint(\_)} renvoie $3x^2$ et \code{pprint(\_\_)} renvoie $x^{3}$.
+\item \textcolor{red}{<<\texttt{plot(\textit{expr}, (x,1,4), ylim=(-10,10), line\_color='red')}>>} pour tracer \textit{expr} sur $[1,4]$ en rouge. On réduit $y$ à $[-10;10]$.
+
+%line_color title xlabel ylabel xlim ylim
+
 %\item \textcolor{red}{<<\texttt{<++>}>>} <++>
 \end{list}
 \end{Sec}
-
 
 \begin{Sec}
 {Numpy}  %http://www.labri.fr/perso/renault/working/teaching/algonum/sheet.php
@@ -572,7 +577,6 @@ Dans sympy il faut déclarer les variables symboliques explicitement avec \textb
 \item \textcolor{red}{<<\texttt{axis([xl,xr,yb,yt])}>>} Cadre la figure sur le rectangle décrit par les 4 coordonnées.
 \end{list}
 \end{Sec}
-
 
 \begin{Sec}
 {scipy.stats}  %http://www.labri.fr/perso/renault/working/teaching/algonum/sheet.php
@@ -637,7 +641,6 @@ Pour faire des statistiques comme avec R. Pour toutes les lois la corespondance 
 
 
 \end{multicols*}
-
 
 
 \end{document}
