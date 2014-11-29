@@ -1,0 +1,1201 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{slicing}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    \author{Meilland}
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+
+    \section{2 Le slicing et les structures de liste}
+
+
+    \subsection{2.1 Complément pour la chaîne de
+caractères.}\label{compluxe9ment-pour-la-chauxeene-de-caractuxe8res.}
+
+Une chaîne de caractères est une liste particulière ne contenant que des
+caractères.\\Comme pour une liste, on peut accéder à ses éléments (les
+caractères) en spécifiant un indice :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{chaine}\PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Lycée Pablo Neruda}\PY{l+s}{\PYZdq{}}
+       \PY{n}{chaine}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+    Par contre, il est impossible de modifier une chaîne de caractères ! On
+dit alors qu'il s'agit d'une liste non modifiable :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{chaine}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}
+\end{Verbatim}
+
+    Si vous décidiez de lui ajouter des caractères en fin de chaîne à l'aide
+d'une concaténation du type suivant :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{chaine}\PY{o}{=}\PY{n}{chaine}\PY{o}{+}\PY{l+s}{\PYZdq{}}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
+       \PY{n}{chaine}
+\end{Verbatim}
+
+    Il existe de nombreuse méthode pour les chaînes de caratères. Ouvrez
+ipython3 puis tapez
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{x}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}
+\end{Verbatim}
+
+    tapez alors juste \textbf{\emph{x. (n'oubliez pas le point) puis appuyez
+sur la tabulation}}, vous devez voir toutes les méthodes.
+
+\begin{longtable}[c]{@{}cccc@{}}
+\toprule\addlinespace
+a & b & c & d
+\\\addlinespace
+\midrule\endhead
+x.capitalize & x.isalnum & x.join & x.rsplit
+\\\addlinespace
+x.casefold & x.isalpha & x.ljust & x.rstrip
+\\\addlinespace
+x.center & x.isdecimal & x.lower & x.split
+\\\addlinespace
+x.count & x.isdigit & x.lstrip & x.splitlines
+\\\addlinespace
+x.encode & x.isidentifier & x.maketrans & x.startswith
+\\\addlinespace
+x.endswith & x.islower & x.partition & x.strip
+\\\addlinespace
+x.expandtabs & x.isnumeric & x.replace & x.swapcase
+\\\addlinespace
+x.find & x.isprintable & x.rfind & x.title
+\\\addlinespace
+x.format & x.isspace & x.rindex & x.translate
+\\\addlinespace
+x.format\_map & x.istitle & x.rjust & x.upper
+\\\addlinespace
+x.index & x.isupper & x.rpartition & x.zfill
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+    Inutile de toutes les connaître. Je vous propose de voir ici les
+fonctions les plus utiles.
+
+\subsubsection{a. Couper et joindre}\label{a.-couper-et-joindre}
+
+La fonction \textbf{\emph{split()}} permet de \textbf{\emph{découper}}
+la chaîne de caractères qui lui est passée en paramètre suivant un ou
+des caractère(s) de séparation et renvoie une liste des chaînes
+découpées. Les caractères de séparation lui sont également passés en
+paramètre et, si ce n'est pas le cas, ce sera le caractère espace qui
+sera utilisé :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n+nb}{str}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Pablo Neruda Saint martin d}\PY{l+s}{\PYZsq{}}\PY{l+s}{hère}\PY{l+s}{\PYZdq{}}
+       \PY{n+nb}{str}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n+nb}{str}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{ }\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+    L'opération inverse s'appelle \textbf{\emph{join()}}. Elle consiste a
+rendre une liste de chaînes de caractères pour former une chaîne en
+concaténant tous les éléments et en les assemblant à l'aide d'un
+caractère.
+
+Cette méthode prend en paramètre une liste de caractères et s'applique à
+une chaîne de caractères désignant le ou les caractère(s) de liaison :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{n+nb}{str}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{ \PYZhy{} }\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+    On peut faire aussi la transformation directement
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{ \PYZhy{} }\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Pablo Neruda Saint martin d}\PY{l+s}{\PYZsq{}}\PY{l+s}{hère}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsubsection{b. Majuscule et
+minuscule}\label{b.-majuscule-et-minuscule}
+
+Deux autres méthodes standards peuvent être utiles:
+
+\textbf{\emph{lower()}} et \textbf{\emph{upper()}} permettant
+respectivement de convertir les caractères d'une chaîne en minuscules ou
+en majuscules.\\Attention, bien que parlant de \textless{}\textless{}
+conversion \textgreater{}\textgreater{}, ces méthodes ne modifient pas
+la chaîne de départ mais renvoient une nouvelle chaîne :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{upper}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    La fonction \textbf{\emph{capitalize()}} permet de ne mettre en
+majuscule que la première lettre d'une chaîne :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{pablo neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    Si maintenant nous souhaitons que la première lettre de chaque mot soit
+une majuscule, que pouvons-nous faire?\\En utilisant les quelques
+fonctions vues précédemment, cela est tout à fait réalisable :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{p}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{une petite phrase de test}\PY{l+s}{\PYZsq{}}
+       \PY{n}{l}\PY{o}{=}\PY{n}{p}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+       \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{l}\PY{p}{:}
+           \PY{n}{l}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{s}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+           \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+       \PY{l+s}{\PYZsq{}}\PY{l+s}{ }\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+    On peut même le faire beaucoup plus \textless{}\textless{} simplement
+\textgreater{}\textgreater{}, en utilisant la compréhension de listes
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{ }\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{n}{s}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{p}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    On reverra les compréhensions de listes un peu plus tard
+
+\subsubsection{c. rechercher un caractère, une position etc\ldots{} dans
+une
+chaîne.}\label{c.-rechercher-un-caractuxe8re-une-position-etc-dans-une-chauxeene.}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La fonction \textbf{\emph{len()}} permet de compter le nombre de
+  caractères.
+\end{itemize}
+
+    len(`Pablo Neruda')
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La méthode \textbf{\emph{count()}} permet de compter le nombre
+  d'occurrences d'une sous chaîne dans une chaîne de caractères.\\Le
+  premier paramètre est la chaîne dans laquelle effectuer la recherche
+  et le second paramètre est la sous chaîne :
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La fonction \textbf{\emph{find()}} permet de trouver l'indice de la
+  première occurrence d'une sous chaîne. Les paramètres sont les mêmes
+  que pour la fonction \textbf{\emph{count()}}\\En cas d'échec,
+  \textbf{\emph{find()}} renvoie la valeur -1 ( 0 correspond à l'indice
+  du premier caractère): On utilisera \textbf{\emph{rfind()}} pour la
+  dernière ocurrence.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{find}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{aa}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{rfind}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \textbf{\emph{index()}} est identique à \textbf{\emph{find()}} mais
+  retourne une erreur en cas d'échec
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{aa}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    Avec les méthode qui renvoie une \textbf{\emph{ValueError}} on utlilise
+généralement la ``condition'' try except.\\
+
+try: Quelquechose except: S'il y a une erreur alors autre chose 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{k}{try}\PY{p}{:} \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{aa}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+       \PY{k}{except}\PY{p}{:}  \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Il n}\PY{l+s}{\PYZsq{}}\PY{l+s}{y a pas de aa}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La fonction \textbf{\emph{replace()}} permet, comme son nom l'indique,
+  de remplacer une sous chaîne par une autre à l'intérieur d'une chaîne
+  de caractères.\\Les paramètres sont, dans l'ordre : la chaîne de
+  caractères à modifier, la sous chaîne à remplacer, la sous chaîne de
+  remplacement,et, éventuellement, le nombre maximum d'occurrences à
+  remplacer (si non spécifié, toutes les occurrences seront remplacées).
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{1}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    Pour des recerches un peu plus complète on utilisera le module
+\textbf{\emph{re}} (regex)
+
+\subsubsection{d. Convertion}\label{d.-convertion}
+
+\textbf{\emph{str.encode(encoding=``utf-8'', errors=``strict'')}}
+Retourne une version codée de la chaîne comme un objet
+\textbf{\emph{bytes}}. L'encodage par défaut est ``utf-8''.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{encode}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{utf8}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    *\#\# À retenir:
+
+Il faut savoir utiliser \textbf{\emph{split()}} , \textbf{\emph{join()}}
+, \textbf{\emph{len()}} , \textbf{\emph{count()}} ,
+\textbf{\emph{find()}} , \textbf{\emph{index()}} ,
+\textbf{\emph{rfind()}}, \textbf{\emph{replace()}}.
+
+\subsubsection{b. Exercice string}\label{b.-exercice-string}
+
+\textbf{Exercice 1}:\\Écrire un programme qui dans une phrase compte:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    le nombre de voyelle.\\ Entrée: `Un matin'\\ Sortie: 3
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Le nombre de caratères (on utilisera la méthode \textbf{isalnum()}
+    qui retourne True si le caracère est une lettre ou un chiffres)\\
+    Entrée: ``l'avis n°1''\\ Sortie: 7
+  \end{enumerate}
+\end{itemize}
+
+    \emph{\textbf{Exercice 2}:\\Écrire un programme qui teste si la chaîne
+}str* est une adresse mail. On va simplifier sur le fait que \emph{str}
+doit se terminer par @****.**\\- Un seul caractère @ - Un seul caractère
+.(point) après @.
+
+    \textbf{\emph{Exercice 3:}}\\Écrire un programme qui détermine si une
+chaîne de caractères est un palindrome (un mot qui pour lequel la
+signification est la même dans les deux sens de lecture, par exemple
+\emph{ressasser}.
+
+    \textbf{\emph{Exercice 4:}}\\Demandez la saisie d'un message puis
+afficher ce dernier de façon indentée.
+
+Exemple: si str=`toto'\\t\\to\\tot\\toto
+
+    \subsection{2.2 Les spécificités des
+tuples}\label{les-spuxe9cificituxe9s-des-tuples}
+
+Les tuples sont également des listes non modifiables (les chaînes de
+caractères sont donc en fait des tuples particuliers) :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{t}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+       \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+\end{Verbatim}
+
+    Attention de ne pas utiliser le mot-clé tuple comme nom de variable: ce
+dernier permet de créer un tuple de manière explicite. Il vous faudra
+utiliser en paramètre. . . une liste. Il permet donc d'effectuer une
+conversion :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}
+       \PY{n}{t}\PY{o}{=}\PY{n+nb}{tuple}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+       \PY{n}{t}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{t}\PY{o}{=}\PY{n+nb}{tuple}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{1234}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+       \PY{n}{t}
+\end{Verbatim}
+
+    Tout comme avec les chaînes, il sera possible de concaténer des tuples
+et avoir la sensation d'avoir modifié un tuple alors que nous aurons
+simplement réaffecté une variable :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{t}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+       \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{o}{+}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}
+       \PY{n}{t}
+\end{Verbatim}
+
+    Pour rappel, un tuple ne contenant qu'un seul élément est noté entre
+parenthèses, mais avec une virgule précédant la dernière
+parenthèse:\\Quel peut être l'intérêt d'utiliser ce type plutôt qu'une
+liste ?
+
+Tout d'abord, les données ne peuvent pas être modifiées par erreur mais
+surtout, leur implémentation en machine fait qu'elles occupent moins
+d'espace mémoire et que leur traitement par l'interpréteur est plus
+rapide que pour des valeurs identiques mais stockées sous forme de
+listes.
+
+De plus, de par leur aspect non modifiable, les valeurs contenues dans
+un tuple peuvent être utilisées en tant que clé pour accéder à une
+valeur dans un dictionnaire (alors que c'est beaucoup plus dangereux
+avec les valeurs contenues dans une liste) :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle3}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+       \PY{n}{t}\PY{o}{=}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle3}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+       \PY{n}{d}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle3}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+       \PY{n}{d}\PY{p}{[}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle\PYZus{}modifiee}\PY{l+s}{\PYZsq{}}
+       \PY{n}{d}\PY{p}{[}\PY{n}{l}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+    Les tuples dispose de deux méthodes \textbf{\emph{count()}} et
+\textbf{\emph{t.index}}. Leur utilisation est semblable aux chaînes de
+caractère.
+
+\subsubsection{À retenir}\label{uxe0-retenir}
+
+Les tuples s'écrivent avec des parenthèses et ne sont pas modifiables.
+
+    \subsection{2.3 Les spécificités des
+listes}\label{les-spuxe9cificituxe9s-des-listes}
+
+Nous avons vu que les listes étaient des éléments modifiables pouvant
+contenir différents types de données.\\Il est bien sûr possible de
+modifier les éléments d'une liste:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+       \PY{n}{l}
+\end{Verbatim}
+
+    Plusieurs \textbf{méthodes} peuvent être employées pour ajouter des
+éléments a une liste existante (sans réaffectation).\\Voici la liste des
+méthodes pour les listes.
+
+   \begin{longtable}[c]{@{}cccccc@{}}
+\toprule\addlinespace
+a & b & c & d & e & f
+\\\addlinespace
+\midrule\endhead
+l.append & l.copy & l.extend & l.insert & l.remove & l.sort
+\\\addlinespace
+l.clear & l.count & l.index & l.pop & l.reverse
+\\\addlinespace
+\bottomrule
+\end{longtable}
+
+    \subsubsection{a. Ajouter des
+éléments}\label{a.-ajouter-des-uxe9luxe9ments}
+
+La méthode \textbf{\emph{append(x)}} permet de rajouter l'élément x à la
+fin de la liste.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+       \PY{n}{l}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    La méthode \textbf{\emph{insert(n,x)}} permet d'insérer l'élément x dans
+la liste à l'indice n.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}
+       \PY{n}{l}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    La méthode \textbf{\emph{extend(l2)}} permet de réaliser la
+concaténation de deux listes sans réaffectation.\\Cette opération est
+réalisable avec réaffectation en utilisant l'opérateur \textbf{+} :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l1}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}
+       \PY{n}{l2}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}
+       \PY{n}{l1}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{l2}\PY{p}{)}
+       \PY{n}{l1}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l1}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}
+       \PY{n}{l1}\PY{o}{=}\PY{n}{l1}\PY{o}{+}\PY{n}{l2}  \PY{c}{\PYZsh{}On peur remplacer par l1+=l2}
+       \PY{n}{l1}
+\end{Verbatim}
+
+    \subsubsection{b. Supprimer des
+éléments}\label{b.-supprimer-des-uxe9luxe9ments}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La méthode \textbf{\emph{clear()}} (depuis python3.3) permet d'effacer
+  la liste
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{.}\PY{n}{clear}\PY{p}{(}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    Si la version de python est inférieur à 3.2 alors on utilisera
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \textbf{\emph{remove(x)}} supprime la première occurrence de x.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+       \PY{n}{l}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{.}\PY{n}{remove}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La méthode \textbf{\emph{l.pop({[}i{]})}} Retourne l'élément de la
+  liste l d'indice i et supprime cet élément de la liste.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+       \PY{n}{a}\PY{o}{=}\PY{n}{l}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+       \PY{k}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+       \PY{k}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  La fonction \textbf{\emph{del}} supprime aussi un élément précis en
+  fonction de son indice :
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+       \PY{k}{del} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+       \PY{n}{l}
+\end{Verbatim}
+
+    \subsubsection{c. Autres méthodes}\label{c.-autres-muxe9thodes}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Pour savoir si un élément appartient bien à une liste on utilise le
+  mot-clé \textbf{\emph{in}}.\\Si l'élément testé est dans la liste, la
+  valeur retournée sera \textbf{\emph{True}} et sinon ce sera
+  \textbf{\emph{False}}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{distrib} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{debian}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{ubuntu}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{fedora}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+       \PY{l+s}{\PYZsq{}}\PY{l+s}{debian}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{distrib}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{mandriva}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{distrib}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Il est également possible d'obtenir l'indice de la première occurrence
+  d'un élément par la méthode \textbf{\emph{index()}}:
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{distrib}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{ubuntu}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Pour connaître la taille d'une liste (nombre d'éléments qu'elle
+  contient), on pourra utiliser comme pour les chaîne de caractère la
+  fonction \textbf{\emph{len()}}:
+\end{itemize}
+
+Mais attention : cette fonction ne compte que les éléments de
+\emph{\textless{}\textless{} premier niveau
+\textgreater{}\textgreater{}} ! Si vous avez une structure de liste
+complexe contenant des sous-listes, chaque sous-liste ne comptera que
+comme un seul élément:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{a}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{b}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{000}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{001}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{010}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{]}
+       \PY{n+nb}{len}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+    \subsubsection{d. Les compréhensions de
+listes}\label{d.-les-compruxe9hensions-de-listes}
+
+Nous souhaitons obtenir la liste des carrés pour i allant de 0 à
+20.\\Une première méthode peut être celle-ci
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{carre}\PY{o}{=}\PY{p}{[}\PY{p}{]}                 \PY{c}{\PYZsh{} On créer une liste vide}
+       \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{)}\PY{p}{:}      \PY{c}{\PYZsh{} pour i allant de 0 à 20}
+           \PY{n}{carre}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}   \PY{c}{\PYZsh{} On ajoute le carré}
+       \PY{k}{print}\PY{p}{(}\PY{n}{carre}\PY{p}{)}             \PY{c}{\PYZsh{} On affiche la liste}
+\end{Verbatim}
+
+    Python implémente un mécanisme appelé \textless{}\textless{}
+\textbf{\emph{compréhension de listes}} \textgreater{}\textgreater{},
+permettant d'utiliser une fonction qui sera appliquée sur chacun des
+éléments d'une liste.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{n}{i}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{)}\PY{p}{]}
+       \PY{k}{print}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+    À l'aide de l'instruction \emph{for i in range(21)}, on récupère les
+entiers i de 0 à 20, et on place les carré (i**2 ) dans la liste.\\Ce
+mécanisme peut produire des résultats plus complexes et on peut aussi
+appliquer une condition aux éléments \emph{i} à utiliser.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{carre}\PY{o}{=}\PY{p}{[}\PY{n}{i}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{)} \PY{k}{if} \PY{n}{i}\PY{o}{\PYZpc{}}\PY{k}{2}\PY{o}{==}\PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{i}\PY{o}{\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{]}  \PY{c}{\PYZsh{} si i est pair et strictement supérieur à 2}
+       \PY{n}{carre}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{k+kn}{import} \PY{n+nn}{random}
+       \PY{n}{l}\PY{o}{=}\PY{p}{[}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{]}
+       \PY{n}{l} \PY{c}{\PYZsh{} liste de 20 nombres aléatoires entre 1 et 6}
+\end{Verbatim}
+
+    Il y a donc différentes façon de construire une liste
+
+    ou par compréhension
+
+    les compréhensions de listes peuvent également être utilisés avec les
+dictionnaires.
+
+    \subsubsection{e. À retenir}\label{e.-uxe0-retenir}
+
+Il faut savoir ajouter, rechercher , enlever un élément dans une liste
+Les méthodes à connaitre sont \emph{append(), insert(), remove(),
+count(), index(), pop()} ou la fonction \emph{del}
+
+\subsubsection{f. Exercices}\label{f.-exercices}
+
+\textbf{Exercice 1}: Soit $(u_n)$ la suite définie par $ \left\lbrace  \begin{array}{l}
+u_0=1,2 \\
+u_{n+1}=-2u_n+1
+  \end{array}
+\right.$
+
+Demander à l'utilisateur de saisir un entier n puis afficher dans une
+liste tous les termes de la suite $(u_n)$.\\Afficher enfin la somme avec
+la fonction \emph{sum()}.
+
+    \textbf{Exercice 2}: On met un grain de riz sur la 1° case d'un
+échiquier, deux sur la deuxième, 4 sur la troisième, 8 sur la quatrième
+etc\ldots{}.\\Combien y a t il de grain de grain sur l'échiquier? On
+fera apparaitre dans une liste le nombre de nombre de grain de chaque
+case.\\idem pour un damier
+
+    \textbf{Exercice 3}:\\Écrire un programme qui inverse les mots (séparés
+par un espace) d'une phrase.
+
+Entrée: `Un matin nous partons, le cerveau plein de flamme'\\sortie:
+`flamme de plein cerveau le partons, nous matin un'
+
+    \textbf{\emph{Exercice 4:}}\\Soit $(u_n)$ et $(v_n)$ les suites définies
+par $u_0=2,\quad \forall n \in N \ v_{n+1}=\dfrac{2}{u_n}$ et
+$u_{n+1}=\dfrac{u_n+v_n}{2}$.
+
+Déterminer dans les listes U et V les termes des suites $(u_n)$ et
+$(v_n)$
+
+    \textbf{\emph{Exercice 5:}} \emph{Une marche aléatoire}
+
+Un point $M$ peut se déplacer sur un quadrillage d'un pas dans l'une des
+quatre directions. Les quatre déplacements possibles se font au hasard
+(ils sont donc équiprobables). La position de $M$ est repérée par ses
+coordonnées $(x;y)$ entières dans le repère indiqué sur la figure. Au
+départ $M$ est en $(0,0)$.
+
+On continue les déplacements jusqu'à ce que $M$ sorte du cercle de
+centre $O$ et de rayon 10.
+
+On appelle $N$ le nombre de pas duquel $M$ sort du cercle pour la
+première fois \emph{($N$ est donc une variable aléatoire)}.
+
+Le but de l'exercice est d'essayer, en utilisant des simulations,
+d'avoir une idée des probabilités des évènements suivants:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  A: \textless{}\textless{} $M$ sort du cercle en moins de 20 pas
+  \textgreater{}\textgreater{} (soit $N\leq 20)$,
+\item
+  B: \textless{}\textless{} $M$ sort du cercle après un nombre de pas
+  compris entre 21 et 30 \textgreater{}\textgreater{} (soit
+  $20<N\leq 30)$,
+\item
+  C: \textless{}\textless{} $M$ sort du cercle après un nombre de pas
+  compris entre 31 et 40 \textgreater{}\textgreater{} (soit
+  $30<N\leq 40)$,
+\item
+  D: \textless{}\textless{} $M$ sort du cercle en plus de 40 pas
+  \textgreater{}\textgreater{} (soit $40<N)$,
+\end{itemize}
+
+Simuler un programme pour faire une simulation, puis pour faire 2000
+simulations.
+
+On Mettra les nombres N dans une liste L.
+
+    \subsection{2.4 Les spécificités des
+dictionnaires}\label{les-spuxe9cificituxe9s-des-dictionnaires}
+
+Comme nous l'avons vu, les dictionnaires sont des listes d'éléments
+indicés par des clés.\\Comme pour les listes, la commande
+\textbf{\emph{del}} permet de supprimer un élément et son mot clé ,
+\textless{}\textless{} \textbf{\emph{in}} \textgreater{}\textgreater{}
+permet de vérifier l'existence d'une clé :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{d}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle3}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+       \PY{k}{del} \PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+       \PY{n}{d}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{d}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{d}
+\end{Verbatim}
+
+    Vous aurez pu remarquer lors de l'affichage du dictionnaire
+\textbf{\emph{d}}, que les couples \emph{clé/valeur} n'étaient pas
+affichés dans l'ordre de création.\\C'est tout à fait normal car les
+dictionnaires ne sont pas ordonnés !\\Plusieurs méthodes permettent de
+récupérer des listes de clés, de valeurs et de couples \emph{clé/valeur}
+:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses} \PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{pommes}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{poires}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{5} \PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{kiwis}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}
+       \PY{n}{courses}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses}\PY{o}{.}\PY{n}{values}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    Ces méthodes renvoient \textbf{des objets itérables}: ce ne sont pas des
+listes et ils ne consomment donc pas autant de place mémoire que pour
+stocker une liste, on ne stocke qu'un \emph{pointeur} vers l'élément
+courant.\\Avec ces structures vous pourrez toujours utiliser les boucles
+\textbf{\emph{for}} classiques, par contre vous n'aurez plus un accès
+direct aux valeurs en spécifiant leur indice.
+
+Dans un dictionnaire, pour obtenir la valeur correspondant à une clé on
+peut bien entendu utiliser la notation classique
+\textbf{\emph{dictionnaire{[}clé{]}}}, mais on peut aussi utiliser la
+méthode \textbf{\emph{get()}} qui renvoie la valeur associée a la clé
+passée en premier paramètre ou, si elle n'existe pas, la valeur passée
+en second paramétré :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses} \PY{o}{=}\PY{p}{\PYZob{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{pommes}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{poires}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{5} \PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{kiwis}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}
+       \PY{n}{courses}\PY{o}{.}\PY{n}{get}\PY{p}{(} \PY{l+s}{\PYZsq{}}\PY{l+s}{pommes}\PY{l+s}{\PYZsq{}} \PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{stock epuise}\PY{l+s}{\PYZsq{}} \PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses}\PY{o}{.}\PY{n}{get}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{salades}\PY{l+s}{\PYZsq{}} \PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{stock epuise}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    On peut fusionner deux dictionnaires avec la méthode
+\textbf{\emph{update()}} : Notez que si une clé existe déjà, la valeur
+stockée sera écrasée:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{courses} \PY{o}{=}\PY{p}{\PYZob{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{pommes}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{poires}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{5} \PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{kiwis}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}
+       \PY{n}{courses2}\PY{o}{=}\PY{p}{\PYZob{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{kiwis}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{salades}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{\PYZcb{}}
+       \PY{n}{courses}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{courses2}\PY{p}{)}
+       \PY{n}{courses}
+\end{Verbatim}
+
+    \subsection{2.5 Le slicing}\label{le-slicing}
+
+Le \textbf{\emph{slicing}} est une méthode applicable à tous les objets
+de type liste ordonnée (donc pas aux dictionnaires). ll s'agit d'un
+\textless{}\textless{} découpage en tranches
+\textgreater{}\textgreater{} des éléments d'une liste de manière à
+récupérer des objets respectant cette découpe.
+
+Pour cela, nous devrons spécifier l'indice de l'élément de départ,
+l'indice de l'élément d'arrivée (qui ne sera pas compris dans la plage)
+et le pas de déplacement. Pour une variable v donnée, l'écriture se fera
+en utilisant la notation entre crochets et en séparant chacun des
+paramètres par le caractère deux-points:
+\textbf{\emph{v{[}début:fin:pas{]}}}. Cette écriture peut se traduire
+par : \textless{}\textless{} les caractères de la variable
+\textbf{\emph{v}} depuis l'indice \textbf{\emph{début}} jusqu'à l'indice
+\textbf{\emph{fin}} non compris avec un déplacement de
+\textbf{\emph{pas}} caractère(s) \textgreater{}\textgreater{}.
+
+Pour bien comprendre le fonctionnement du slicing, nous commencerons par
+l'appliquer aux chaînes de caractères avant de voir les listes et les
+tuples.
+
+\subsubsection{a) Le slicing sur une chaîne de
+caratère}\label{a-le-slicing-sur-une-chauxeene-de-caratuxe8re}
+
+Voici un premier exemple simple
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Pablo Neruda}\PY{l+s}{\PYZsq{}}
+       \PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{:}\PY{l+m+mi}{12}\PY{p}{]}
+\end{Verbatim}
+
+    Vous avez remarque que dans ce code aucune indication de pas n'a été
+donnée : c'est la valeur par défaut qui est alors utilisée, c'est-a-dire
+\textbf{\emph{1}}. De même, si la valeur de début est omise, la valeur
+par défaut utilisée sera \textbf{\emph{0}} et si la valeur de fin est
+omise, la valeur par défaut utilisée sera la \emph{taille de la
+chaîne+1}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]} \PY{c}{\PYZsh{} équivaut à c[0:5], équivaut à c[0:5:1]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{:}\PY{p}{]} \PY{c}{\PYZsh{} équivaut à c[6:12], équivaut à c[6:12:1]}
+\end{Verbatim}
+
+    Du fait de ces valeurs par défaut, que pensez vous que l'on sélectionne
+en tapant: c{[}:{]} ou encore c{[}::{]}?\\La chaîne entière, bien sûr :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+\end{Verbatim}
+
+    Il devient alors très simple d'inverser une chaîne en utilisant le pas :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+    Une première solution pour effectuer une copie peut être d'utiliser le
+slicing.\\En effet, l'opération {[}:{]} renvoie une nouvelle liste, ce
+qui résout le problème des pointeurs vers la même zone mémoire, comme le
+montrent l'exemple suivant :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listea} \PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+       \PY{n}{listeb} \PY{o}{=}\PY{n}{listea}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+       \PY{n}{listea}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+       \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listea}
+\end{Verbatim}
+
+    Cette copie peut paraître satisfaisante\ldots{} et elle l'est, mais à
+condition de ne manipuler que des listes de premier niveau ne comportant
+aucune sous-liste :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listea}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}
+       \PY{n}{listeb} \PY{o}{=}\PY{n}{listea}\PY{p}{[}\PY{p}{:}\PY{p}{]}
+       \PY{n}{listea}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+       \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listea}
+\end{Verbatim}
+
+    En effet, le slicing n'effectue pas de copie récursive: en cas de
+sous-liste, on retombe dans la problématique des pointeurs mémoire. La
+solution est alors d'utiliser un module spécifique, le module
+\textbf{\emph{copy}}, qui permet d'effectuer une copie récursive. Bien
+que n'ayant pas encore approfondi la manipulation des modules, voici
+comment réaliser une copie de liste par cette méthode:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{k+kn}{from} \PY{n+nn}{copy}   \PY{k+kn}{import} \PY{o}{*}
+       \PY{n}{listea}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{]}\PY{p}{]}
+       \PY{n}{listeb}\PY{o}{=}\PY{n}{deepcopy}\PY{p}{(}\PY{n}{listea}\PY{p}{)}
+       \PY{n}{listea}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listeb}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+       \PY{n}{listeb}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{listea}
+\end{Verbatim}
+
+    Le problème est exactement le même avec la copie de dictionnaires. Il
+faudra utiliser ici la méthode \textbf{\emph{copy()}}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{dicoa}\PY{o}{=}\PY{p}{\PYZob{}} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle2}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{cle3}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{\PYZcb{}}
+       \PY{n}{dicob}\PY{o}{=}\PY{n}{dicoa}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+       \PY{n}{dicoa}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{dicob}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{dicob}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{cle1}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{0}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{dicob}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} \PY{n}{dicoa}
+\end{Verbatim}
+
+    \subsection{Conclusion}\label{conclusion}
+
+Les structures de liste en Python sont particulièrement fournies et il
+existe pour chacune d'elles de nombreuses méthodes permettant de
+manipuler leurs éléments.\\Le slicing représente un raccourci efficace
+pour récupérer ou modifier des éléments d'une liste: il masque la
+complexité des opérations sous une syntaxe claire et lisible\ldots{}
+pour peu que l'on ait pris le temps de se familiariser avec elle.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
