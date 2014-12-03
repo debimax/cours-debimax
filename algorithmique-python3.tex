@@ -1,7 +1,7 @@
 
 %Fichier: algorithmique-python3.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 08 sept. 2014 21:44:07
+%Dernière modification: 03 déc. 2014 15:15:26
 
 \documentclass[10pt,dvipsnames,  dvips]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -80,7 +80,8 @@
 
 %\newsavebox\boxofgeogebra
 
-\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+%\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+\newcommand{\Chapter}[1]{\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
 
 
 \newlength\taille
