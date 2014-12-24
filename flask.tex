@@ -1,0 +1,623 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{flask}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+
+    \section{5 Applications Web et python}
+
+
+    Classiquement sur internet on utilise un serveur \textbf{\emph{lamp}}
+:\\\textbf{l}inux (os), \textbf{a}pache (serveur), \textbf{m}ysql (base
+de données), \textbf{p}hp (language de programmation pour avoir des
+pages dynamiques).
+
+Il existe de nombreux outils pour le web écrit en python: \emph{serveur
+Web} (Zope, gunicorn) ; \emph{script cgi}; \emph{frameworks Web} (Flask,
+Django, cherrypy etc \ldots{},
+
+nous utiliserons le framework \textbf{\emph{flask}}. Pour se documenter
+je vous conseille deux sites.\\- \url{http://flask.pocoo.org/docs} -
+\url{http://openclassrooms.com/courses/creez-vos-applications-web-avec-flask}
+
+\subsection{5.1 Une page web avec flask}\label{une-page-web-avec-flask}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Télécharger le fichier
+  \url{https://github.com/debimax/cours-debimax/raw/master/documents/isn-flask.tar.gz}.
+\item
+  Décompressez le (en console : tar zxvf isn-flask.tar.gz).
+\end{itemize}
+
+\subsubsection{5.1.1 Flask et les
+templates}\label{flask-et-les-templates}
+
+\paragraph{a) Le principe}\label{a-le-principe}
+
+Avec \emph{Flask} on pourrait mettre le code dans un seul
+\emph{fichier.py} mais on utilise de préférence des \emph{templates}
+(avec \emph{jinja2}).
+
+L'arborescence d'un projet Flask sera :
+
+\begin{verbatim}
+   projet/script.py
+   projet/static/
+   projet/templates
+   projet/templates/les_templates.html
+\end{verbatim}
+
+On met tous les templates dans le dossier \textbf{\emph{templates/}}. Le
+dossier \textbf{\emph{static/}} contiendra lui toutes les images,
+fichiers css, js \ldots{}
+
+Ouvrez avec \emph{geany} le fichier \textbf{\emph{exemple.py}} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \DecValTok{1} \CommentTok{#!/usr/bin/python3}
+ \DecValTok{2} \CommentTok{# -*- coding: utf-8 -*-}
+ \DecValTok{3} \CharTok{from} \NormalTok{flask }\CharTok{import} \NormalTok{Flask, render_template, url_for}
+ \DecValTok{4} \NormalTok{app = Flask(}\OtherTok{__name__}\NormalTok{)   }\CommentTok{# Initialise l'application Flask}
+ \DecValTok{5}
+ \DecValTok{6} \NormalTok{@app.route(}\StringTok{'/'}\NormalTok{)}
+ \DecValTok{7} \KeywordTok{def} \NormalTok{accueil():}
+ \DecValTok{8}     \NormalTok{lignes=[}\StringTok{'ligne \{\}'}\NormalTok{.}\DataTypeTok{format}\NormalTok{(i) }\KeywordTok{for} \NormalTok{i in }\DataTypeTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{)]}
+ \DecValTok{9}     \KeywordTok{return} \NormalTok{render_template(}\StringTok{"accueil.html"}\NormalTok{, titre=}\StringTok{"Bienvenue !"}\NormalTok{,lignes=lignes)}
+\DecValTok{10}
+\DecValTok{11} \KeywordTok{if} \OtherTok{__name__} \NormalTok{== __main__ :}
+\DecValTok{12}     \NormalTok{app.run(debug=}\OtherTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Dans le code ci-dessous, quel est le contenu de la variable
+\textbf{\emph{lignes}}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{liges=[}\StringTok{'ligne\{\}'}\NormalTok{.}\DataTypeTok{format}\NormalTok{(i) }\KeywordTok{for} \NormalTok{i in }\DataTypeTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}
+
+Ouvrez avec \emph{geany} maintenant le fichier
+\textbf{\emph{templates/accueil.html}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{1 }\DataTypeTok{<!DOCTYPE }\NormalTok{html}\DataTypeTok{>}
+ \NormalTok{2 }\KeywordTok{<html>}
+ \NormalTok{3 }\KeywordTok{<head>}
+ \NormalTok{4 }\KeywordTok{<meta}\OtherTok{ charset=}\StringTok{"utf-8"} \KeywordTok{/>}
+ \NormalTok{5 }\KeywordTok{<title>}\NormalTok{\{\{ titre \}\}}\KeywordTok{</title>}
+ \NormalTok{6 }\KeywordTok{</head>}
+ \NormalTok{7 }\KeywordTok{<body>}
+ \NormalTok{8 }\KeywordTok{<h1>}\NormalTok{\{\{ titre \}\}}\KeywordTok{</h1>}
+ \NormalTok{9 }\KeywordTok{<ul>}
+\NormalTok{10 \{% for ligne in lignes %\}}
+\NormalTok{11 }\KeywordTok{<li>}\NormalTok{\{\{ ligne \}\}}\KeywordTok{</li>}
+\NormalTok{12 \{% endfor %\}}
+\NormalTok{13 }\KeywordTok{</ul>}
+\NormalTok{14 }\KeywordTok{</body>}
+\NormalTok{15 }\KeywordTok{</html>}
+\end{Highlighting}
+\end{Shaded}
+
+Ouvrez une console dans \textbf{\emph{/isn-flask/}} puis tapez ***
+python3.4 exemple.py***\\Ouvrez alors un navigateur internet à l'adresse
+\url{http://localhost:5000} (celui qui n'est pas écrit pablo).
+
+\paragraph{b Ajouter la date}\label{b-ajouter-la-date}
+
+Il faudra importer la librairie \textbf{\emph{time}} puis utiliser le
+décorateur \textbf{\emph{@app.context\_processor}} pour passer l'heure à
+tous les templates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \DecValTok{3} \CharTok{from} \NormalTok{flask }\CharTok{import} \NormalTok{Flask, render_template, url_for}
+ \DecValTok{4} \CharTok{import} \NormalTok{time}
+ \DecValTok{5} \NormalTok{app = Flask(}\OtherTok{__name__}\NormalTok{) }\CommentTok{# Initialise l'application Flask}
+ \DecValTok{6} 
+ \DecValTok{7} \NormalTok{@app.context_processor}
+ \DecValTok{8} \KeywordTok{def} \NormalTok{passer_date_heure():}
+ \DecValTok{9}     \NormalTok{date=time.strftime(}\StringTok{'}\OtherTok{%d}\StringTok{/%m/%Y'}\NormalTok{,time.localtime())}
+\DecValTok{10}     \NormalTok{heure=time.strftime(}\StringTok{'%H'}\NormalTok{,time.localtime())}
+\DecValTok{11}     \KeywordTok{return} \DataTypeTok{dict}\NormalTok{(date=date,heure=heure)}
+\DecValTok{12} 
+\DecValTok{13} \NormalTok{@app.route(}\StringTok{'/'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Il faut maintenant modifier le template \textbf{\emph{accueil.html}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{13     }\KeywordTok{</ul>}
+\NormalTok{14    }\KeywordTok{<footer>}\NormalTok{Nous somme le \{\{ date \}\} et il est \{\{ heure \}\} heures.}\KeywordTok{</footer>}
+\NormalTok{15     }\KeywordTok{</body>}
+\end{Highlighting}
+\end{Shaded}
+
+Question: Pourquoi est il peu judicieux d'utiliser le serveur python
+pour afficher l'heure?
+
+\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}\ldots{}
+
+\paragraph{c Les fichiers css}\label{c-les-fichiers-css}
+
+Nous allons utiliser un fichiers \emph{css} pour l'habillage
+(présentation) de notre page web.
+
+Modifions le fichier \textbf{\emph{templates/accueil.html}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{4 }\KeywordTok{<title>} \NormalTok{titre }\KeywordTok{</title>}
+\NormalTok{6 }\KeywordTok{<link}\OtherTok{ href=}\StringTok{"\{\{ url_for('static',filename='mon_style.css')\}\}"}\OtherTok{ rel=}\StringTok{"stylesheet"}\OtherTok{ type=}\StringTok{"text/css"} \KeywordTok{/>}
+\NormalTok{7 }\KeywordTok{</head>}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{15    }\KeywordTok{<footer>}\NormalTok{Nous somme le }\KeywordTok{<em}\OtherTok{ class=}\StringTok{"Rouge"}\KeywordTok{>}\NormalTok{\{\{ date \}\}}\KeywordTok{</em>} \NormalTok{et il est }\KeywordTok{<em}\OtherTok{ class=}\StringTok{"Rouge"}\KeywordTok{>}\NormalTok{\{\{ heure \}\}}\KeywordTok{</em>} \NormalTok{heures.}\KeywordTok{</footer>}
+\end{Highlighting}
+\end{Shaded}
+
+Créer ensuite le fichier \textbf{\emph{static/mon\_style.css}} avec
+ceci:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{1 h1 }\KeywordTok{\{}
+ \ErrorTok{2}   \KeywordTok{color:} \DataTypeTok{#ff00ff}\KeywordTok{;}
+ \ErrorTok{3}   \KeywordTok{text-align:} \DataTypeTok{center}\KeywordTok{;}
+ \ErrorTok{4} \KeywordTok{\}}
+ \NormalTok{5}
+ \NormalTok{6 footer }\KeywordTok{\{}
+ \ErrorTok{7}   \KeywordTok{position:} \DataTypeTok{absolute}\KeywordTok{;}
+ \ErrorTok{8}   \KeywordTok{bottom:} \DataTypeTok{0}\KeywordTok{;}
+ \ErrorTok{9}   \KeywordTok{width:} \DataTypeTok{100%}\KeywordTok{;}
+\ErrorTok{10}   \KeywordTok{height:} \DataTypeTok{20px}\KeywordTok{;}
+\ErrorTok{11}   \KeywordTok{background-color:} \DataTypeTok{#f5f5f5}\KeywordTok{;}
+\ErrorTok{12}   \KeywordTok{text-align:} \DataTypeTok{center}\KeywordTok{;}
+\ErrorTok{13} \KeywordTok{\}}
+\NormalTok{14}
+\NormalTok{15 em}\FloatTok{.Rouge} \KeywordTok{\{color:} \DataTypeTok{#ff0000}\KeywordTok{;\}}
+\end{Highlighting}
+\end{Shaded}
+
+Je met le contenu de la balise
+
+\textless{}h1\textgreater{}
+
+au centre et en couleur.\\Je place le `footer' au centre en bas de la
+page avec un fond de couleur.\\Je met en rouge la classe Rouge.
+
+\paragraph{d Le javascript}\label{d-le-javascript}
+
+Nous allons maintenant utiliser un fichier \textbf{\emph{jascript
+(.js)}} pour afficher l'heure. Le code javascript sera effectué par le
+navigateur. Ce n'est pas le serveur qui exécute le code donc pas besoin
+de rafraichir la page internet pour que le code soit exécuté.\\Il n'est
+pas question d'expliquer le code javascript mais vous pouvez regarder à
+quoi cela ressemble dans le ficher
+\textbf{\emph{static/mes\_scripts.js}}.
+
+Comme pour le fichier \emph{.css} Il faut indiquer le fichier \emph{.js}
+aux templates.
+
+\begin{itemize}
+\item
+  Modifions le fichier \textbf{\emph{templates/accueil.html}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{6 }\KeywordTok{<link}\OtherTok{ href=}\StringTok{" url_for('static', filename='mon_style.css') "}\OtherTok{ rel=}\StringTok{"stylesheet"}\OtherTok{ type=}\StringTok{"text/css"} \KeywordTok{/>}
+ \NormalTok{7 }\KeywordTok{<script}\OtherTok{ type=}\StringTok{text/javascript}\OtherTok{ src=}\StringTok{"\{\{url_for('static', filename='mes_scripts.js') \}\}"}\KeywordTok{></script>}
+ \NormalTok{8 }\KeywordTok{</head>}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{25 }\KeywordTok{</div>}
+\NormalTok{26 }\KeywordTok{<footer>}\NormalTok{Nous sommes le }\KeywordTok{<em}\OtherTok{ class=}\StringTok{Rouge}\OtherTok{ id=}\StringTok{"date"}\KeywordTok{></em>} \KeywordTok{<script}\OtherTok{ type=}\StringTok{"text/javascript"}\KeywordTok{>} \OtherTok{window}\NormalTok{.}\FunctionTok{onload} \NormalTok{= }\FunctionTok{datejs}\NormalTok{(}\StringTok{'date'}\NormalTok{);<}\OtherTok{/script> et il est <em class=Rouge id="heure"></em}\NormalTok{><script type=}\StringTok{"text/javascript"}\NormalTok{>}\OtherTok{window}\NormalTok{.}\FunctionTok{onload} \NormalTok{= }\FunctionTok{heurejs}\NormalTok{(}\StringTok{'heure'}\NormalTok{);<}\OtherTok{/script>.</footer}\NormalTok{>}
+\DecValTok{27}\NormalTok{<}\OtherTok{/body>}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Modifions le fichier \textbf{\emph{templates/accueil.html}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{6 }\KeywordTok{<script}\OtherTok{ type=}\StringTok{text/javascript}\OtherTok{ src=}\StringTok{"url_for('static', filename='mes_scripts.js') "}\KeywordTok{></script>}
+ \NormalTok{7 }\KeywordTok{<link}\OtherTok{ rel=}\StringTok{"shortcut icon"}\OtherTok{ href=}\StringTok{"\{\{ url_for('static', filename='favicon.ico') \}\}"}\KeywordTok{>}
+ \NormalTok{8 }\KeywordTok{</head>}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{11 }\KeywordTok{<p>}\NormalTok{Bonjour }\KeywordTok{<b>} \NormalTok{prenom}
+\NormalTok{12 }\KeywordTok{<footer>}\NormalTok{Nous sommes le }\KeywordTok{<em}\OtherTok{ class=}\StringTok{Rouge}\OtherTok{ id=}\StringTok{"date"}\KeywordTok{></em>} \KeywordTok{<script}\OtherTok{ type=}\StringTok{"text/javascript"}\KeywordTok{>}\OtherTok{window}\NormalTok{.}\FunctionTok{onload} \NormalTok{= }\FunctionTok{datejs}\NormalTok{(}\StringTok{'date'}\NormalTok{);<}\OtherTok{/script> et il est <em class=Rouge id="heure"></em}\NormalTok{><script type=}\StringTok{"text/javascript"}\NormalTok{>}\OtherTok{window}\NormalTok{.}\FunctionTok{onload} \NormalTok{= }\FunctionTok{heurejs}\NormalTok{(}\StringTok{'heure'}\NormalTok{);<}\OtherTok{/script>.</footer}\NormalTok{>}
+\DecValTok{13} \NormalTok{<}\OtherTok{/body>}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+\paragraph{d Les images}\label{d-les-images}
+
+Ajoutons un favicon. Vous savez c'est la petite images à gauche de
+l'adresse dans un navigateur. Le nom de l'image doit être
+\textbf{\emph{favicon.ico}}.
+
+J'ai déjà mis deux images dans le dossier \textbf{\emph{static/}}.\\Il
+suffit donc de rajouter dans \textbf{\emph{templates/accueil.html}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \NormalTok{7 }\KeywordTok{<link}\OtherTok{ rel=}\StringTok{"shortcut icon"}\OtherTok{ href=}\StringTok{"\{\{ url_for('static' , filename='favicon.ico')\}\}"}\KeywordTok{>}
+ \NormalTok{8 }\KeywordTok{</head>}
+ \NormalTok{9 }\KeywordTok{<body>}
+\NormalTok{10 }\KeywordTok{<h1>}\NormalTok{\{\{ titre \}\} }\KeywordTok{<img}\OtherTok{ src=}\StringTok{"\{\{ url_for('static',filename ='fleur.png') \}\}"}\OtherTok{ alt=}\StringTok{"fleur"}\OtherTok{ title=}\StringTok{"fleur"}\OtherTok{ border=}\StringTok{"0"}\KeywordTok{></h1>}
+\NormalTok{11 }\KeywordTok{<ul>}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5.1.2 Les formulaires}\label{les-formulaires}
+
+Modifions la page \textbf{\emph{templates/accueil.html}} pour mettre un
+\emph{formulaire}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{15  }\KeywordTok{</ul>}
+\NormalTok{16  }\KeywordTok{<div}\OtherTok{ id=}\StringTok{"content"}\KeywordTok{>}
+\NormalTok{17     }\KeywordTok{<form}\OtherTok{ method=}\StringTok{"post"}\OtherTok{ action=}\StringTok{"\{\{ url_for('hello') \}\}"}\KeywordTok{>}
+\NormalTok{18     }\KeywordTok{<label}\OtherTok{ for=}\StringTok{"nom"}\KeywordTok{>}\NormalTok{Entrez votre nom:}\KeywordTok{</label>}
+\NormalTok{19     }\KeywordTok{<input}\OtherTok{ type=}\StringTok{"text"}\OtherTok{ name=}\StringTok{"nom"} \KeywordTok{/><br} \KeywordTok{/>}
+\NormalTok{20     }\ErrorTok{<}\NormalTok{label for="prenom">Entrez votre prénom:}\KeywordTok{</label>}
+\NormalTok{21     }\KeywordTok{<input}\OtherTok{ type=}\StringTok{"text"}\OtherTok{ name=}\StringTok{"prenom"} \KeywordTok{/><br} \KeywordTok{/>}
+\NormalTok{22     }\KeywordTok{<input}\OtherTok{ type=}\StringTok{"submit"} \KeywordTok{/>}
+\NormalTok{23     }\KeywordTok{</form>}
+\NormalTok{24 }\KeywordTok{</div>}
+\end{Highlighting}
+\end{Shaded}
+
+pour le fichier \textbf{\emph{exemple.py}} on crée une nouvelle route.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{13}  \NormalTok{@app.route(}\StringTok{'/'}\NormalTok{)}
+\DecValTok{14}  \KeywordTok{def} \NormalTok{accueil():}
+\DecValTok{15}      \NormalTok{lignes=[}\StringTok{'ligne \{\}'}\NormalTok{.}\DataTypeTok{format}\NormalTok{(i) }\KeywordTok{for} \NormalTok{i in }\DataTypeTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{10}\NormalTok{)]}
+\DecValTok{16}      \KeywordTok{return} \NormalTok{render_template(}\StringTok{"accueil.html"}\NormalTok{, titre=}\StringTok{"Bienvenue !"}\NormalTok{,lignes=lignes, date=date, heure=heure)}
+\DecValTok{17}
+\DecValTok{18} \NormalTok{@app.route(}\StringTok{'/hello/'}\NormalTok{, methods=[}\StringTok{'POST'}\NormalTok{])}
+\DecValTok{19} \KeywordTok{def} \NormalTok{hello():}
+\DecValTok{20}     \NormalTok{nom=request.form[ nom ]}
+\DecValTok{21}     \NormalTok{prenom=request.form[ prenom ]}
+\DecValTok{22}     \KeywordTok{return} \NormalTok{render_template( page2.html ,titre=}\StringTok{"Page 2"}\NormalTok{, nom=nom, prenom=prenom,date=date,heure=heure)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{5.1.3 Une partie commune à toutes les
+pages}\label{une-partie-commune-uxe0-toutes-les-pages}
+
+Nous avons plusieurs templates qui utilisent le même bas de page.\\Il
+est donc possible d'utiliser un seul fichier template et de l'inclure
+dans les autres. Créer un fichier \emph{templates/footer.html}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{<footer>Nous sommes le <em }\KeywordTok{class}\NormalTok{=Rouge }\DataTypeTok{id}\NormalTok{=}\StringTok{"date"}\NormalTok{></em> <script }\DataTypeTok{type}\NormalTok{=}\StringTok{"text/javascript"}\NormalTok{>window.onload = datejs(}\StringTok{'date'}\NormalTok{);</script> et il est <em }\KeywordTok{class}\NormalTok{=Rouge }\DataTypeTok{id}\NormalTok{=}\StringTok{"heure"}\NormalTok{></em><script }\DataTypeTok{type}\NormalTok{=}\StringTok{"text/javascript"}\NormalTok{>window.onload = heurejs(}\StringTok{'heure'}\NormalTok{);</script>.</footer>}
+\end{Highlighting}
+\end{Shaded}
+
+Puis modifier les templates \textbf{\emph{templates/accueil.html}}
+
+\begin{verbatim}
+25 </div>
+26 {% include 'footer.html' %}
+27 </body>
+\end{verbatim}
+
+et \textbf{\emph{templates/page2.html}}.
+
+\begin{verbatim}
+12 <p>Bonjour <b>{{ prenom }} {{ nom }}.</b></p>
+13 {% include 'footer.html' %}
+14 </body>
+\end{verbatim}
+
+\subsubsection{5.1.4 Mettre le site sur
+internet}\label{mettre-le-site-sur-internet}
+
+Habituellement on s'héberge soit même mais il est possible de mettre son
+site chez un hébergeur. Il en existe plusieurs qui autorise les scripts
+python.
+
+Ouvrez le navigateur pablo à l'adresse
+\url{https://isn-flask.herokuapp.com/}\\Oui vous avez reconnu notre tp.
+J'ai simplement affiché la \emph{date} et l'\emph{heure} avec du code du
+javascript.
+
+\subsubsection{5.1.5 Prolongement}\label{prolongement}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Utilisation d'une base de donnée
+\item
+  Créer une image aux couleurs aléatoire (module pil) et l'afficher.
+\end{itemize}
+
+\subsection{5.2 Exercices}\label{exercices}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Créer un dossier \textbf{\emph{static/file/}} et mettre dans ce
+    dossier quelques fichiers textes (.txt) et images (.png ou .jpg).\\
+  \end{itemize}
+\end{enumerate}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Créer dans le fichier \textbf{\emph{exemple.py}} une fonction
+  \textbf{\emph{listdir()}} qui retourne la liste les noms des fichiers
+  contenus dans le dossier \textbf{\emph{static/file/}} \emph{(On
+  utilisera la librairie \textbf{os} pour lister)}.
+\item
+  modifier le \textbf{\emph{templates/accueil.html}} pour faire afficher
+  le nom des fichiers.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Modifier alors la fonction \textbf{\emph{listdir()}} pour n'afficher
+  que le nom des images.
+\item
+  Afficher cette fois les images dans la page internet.
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
