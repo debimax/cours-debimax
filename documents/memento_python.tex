@@ -1,7 +1,7 @@
 
 %Fichier: memento_python.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 26 oct. 2014 09:10:30
+%Dernière modification: 05 juil. 2015 10:20:15
 
 \documentclass[landscape,10pt,dvipsnames,  dvips]{report}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -224,7 +224,7 @@ C'est une compréhension de liste.
 	\item \textcolor{red}{<<\texttt{L.extend(t)}>>}  concatène la liste $l$ avec le contenu de $t$.\\ %sans réaffectation.
  \code{L=[1, 2]} \code{L.extend('abc')} L devient \code{[1, 2, 'a', 'b','c']}
 	\item \textcolor{red}{<<\texttt{L.insert(i,x)}>>} insère  $x$ dans la liste avant l'élément à la position i %(le reste est décalé)
-	\item \textcolor{red}{<<\texttt{L.pop([i])}>>} affiche l'élément d'indice i et supprime cet élément de L.
+	\item \textcolor{red}{<<\texttt{L.pop(i)}>>} affiche l'élément d'indice i et supprime cet élément de L.
 	\item \textcolor{red}{<<\texttt{L.remove(x)}>>} supprime le premier élément x de L et affiche une \textit{ValueError} s'il ne le trouve pas.
 	\item \textcolor{red}{<<\texttt{L.reverse()}>>}   inverse les éléments de L.
 	\item \textcolor{red}{<<\texttt{L.sort()}>>}  Trie les éléments de L dans l'ordre croissant.
@@ -340,13 +340,22 @@ def factorielle (n):
 
 \item  \textcolor{red}{<<\texttt{fichier = open("monfichier.txt", "r")}>>}  pour ouvrir un fichier en lecture
 
-	Les options sont: \textbf{r} lecture seule,  \textbf{w} écriture, \textbf{a} pour ajouter du texte \textbf{b} binaire
+	Les options sont: \textbf{r} (lecture seule),  \textbf{w} (écriture), \textbf{a} (ajout) et \textbf{b} (binaire).
 
-\item \textcolor{red}{<<\texttt{contents = fichier.read()}>>} pour la lecture du fichier.
+\item \textcolor{red}{<< \texttt{contents = fichier.read()}>>} pour la lecture du fichier.
 \item \textcolor{red}{<<\texttt{lines = fichier.readlines()}>>} pour lire une seule ligne.
 \item \textcolor{red}{<<\texttt{fichier.close()}>>} pour fermer le fichier.
 \item \textcolor{red}{<<\texttt{fichier.write("Ceci est un texte")}>>} pour écrire le texte.  Si le fichier n'existe pas, il sera créé. %S'il existe le contenu est écrasé.
-\item \textcolor{red}{<<\texttt{ fichier.writeline(line)}>>} Pour écrire une ligne supplémentaire.
+
+\begin{lstlisting}
+fichier = open("monfichier.txt", "a")
+for i in range(1,11):
+	fichier.write("ligne {}\n".format(i))
+fichier.close()
+\end{lstlisting}
+
+
+%\item \textcolor{red}{<<\texttt{ fichier.writeline(line)}>>} Pour écrire une ligne supplémentaire.
 %\item \textcolor{red}{<<\texttt{<++>}>>} <++>
 %\item \textcolor{red}{<<\texttt{<++>}>>} <++>
 %\item \textcolor{red}{<<\texttt{<++>}>>} <++>
@@ -384,8 +393,8 @@ Par exemple pour le point on utilisera \string\.
 \item Les crochets \textbf{[]} permettent d'indiquer une plage de caractère, par exemple [e-h] correspondra à e, f, g ou h.
 \item Les parenthèses \textbf{()} permettent de grouper certaines expressions ce qui peut permettre de s'y référer par la suite avec \textbf{\string\1 \string\2} etc \dots
 %\begin{list}{$\bullet $}{}
-\item \textcolor{red}{<<\texttt{\string\w }>>} correspond à tout caractère alphabétique,ce qui est équivalent à [a-zA-Z];
-\item \textcolor{red}{<<\texttt{\string\W}>>} correspond à tout ce qui n'est pas un caractère alphabétique ;
+\item \textcolor{red}{<<\texttt{\string\w }>>} correspond à tout caractère alphanumérique,ce qui est équivalent à [a-zA-Z0-9];
+\item \textcolor{red}{<<\texttt{\string\W}>>} correspond à tout ce qui n'est pas un caractère alphanumérique ;
 \item \textcolor{red}{<<\texttt{\string\d}>>} correspond à tout caractère numérique, ce qui est équivalent à [0-9];
 \item \textcolor{red}{<<\texttt{\string\D}>>} correspond à tout ce qui n'est pas un caractère numérique.
 \item Il existe deux manières d'utiliser les regex :
@@ -480,18 +489,27 @@ Out[12]: 'Confessions Publiques (Live)/Madame rêve.mp3';
 {Sympy}
 On utilise sympy pour le calcul formel
 
-Dans sympy il faut déclarer les variables symboliques explicitement avec \textbf{Symbol} ou \textbf{S}.
+
 
 \begin{list}{$\bullet $}{}
+ \item \begin{list}{\ding{212}}{\underline{Généralité}: Dans sympy il faut déclarer les variables symboliques explicitement avec \textbf{Symbol} ou \textbf{S}.}
 \item \textcolor{red}{<<\texttt{x=symbols('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
-\item \textcolor{red}{<<\texttt{i,n=symbols('i n')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} pour définir plusieurs variables.\item \textcolor{red}{<<\texttt{x=Symbol('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
+\item \textcolor{red}{<<\texttt{i,n=symbols('i n')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} pour définir plusieurs variables.
+\item \textcolor{red}{<<\texttt{x=Symbol('x')}>>} ou \textcolor{red}{<<\texttt{x=S('x')}>>} définit x comme variable
+\item \textcolor{red}{<<\texttt{pprint(1/(1+x))}>>} pour afficher $\dfrac{1}{x+1}$.
+\item \textcolor{red}{<<\texttt{\_}>>}  est l'expression précédente. (on a de même \texttt{\_\_},  \texttt{\_\_\_}, etc \dots )\\
+\code{x**3} \code{diff(\_)} \code{pprint(\_)} renvoie $3x^2$ et \code{pprint(\_\_)} renvoie $x^{3}$.
+\end{list}
+\item \begin{list}{\ding{212}}{\underline{Les nombres}}
 \item \textcolor{red}{<<\texttt{Rational(1,2)}>>} ou  \textcolor{red}{<<\texttt{S('1/2')}>>} détermine le rationnel $\dfrac{1}{2}$.
 \item \textcolor{red}{<<\texttt{sqrt(12)}>>} détermine le radical $\sqrt[]{12}$.
-\item \textcolor{red}{<<\texttt{pprint(sqrt(12))}>>} pour afficher $\sqrt[]{12}$.
-\item \textcolor{red}{<<\texttt{evalf(sqrt(12))}>>} ou \textcolor{red}{<<\texttt{(sqrt(12)).evalf()}>>} pour evaluer $\sqrt[]{12}$.
-\item \textcolor{red}{<<\texttt{expand(\textit{expr})}>>} ou  \textcolor{red}{<<\texttt{(\textit{expr}).expand()}>>} pour développer \textit{expr}.
-\item \textcolor{red}{<<\texttt{factor(\textit{expr})}>>} ou \textcolor{red}{<<\texttt{(\textit{expr}).factor()}>>}  pour factoriser \textit{expr}.
-\item \textcolor{red}{<<\texttt{(\textit{expr}).subs(x, 1)}>>} pour substituer x par 1 dans \textit{expr}.
+\item \textcolor{red}{<<\texttt{evalf(sqrt(12))}>>} ou \textcolor{red}{<<\texttt{(sqrt(12)).evalf()}>>} pour \textbf{évaluer} $\sqrt[]{12}$.
+\item \textcolor{red}{<<\texttt{I}>>}  est le complexe $i$.
+\item \textcolor{red}{<<\texttt{E}>>}  est le nombre $exp(1)=e$.
+\end{list}
+\item \textcolor{red}{<<\texttt{expand(\textit{expr})}>>} ou  \textcolor{red}{<<\texttt{(\textit{expr}).expand()}>>} pour \textbf{développer} \textit{expr}.
+\item \textcolor{red}{<<\texttt{factor(\textit{expr})}>>} ou \textcolor{red}{<<\texttt{(\textit{expr}).factor()}>>}  pour \textbf{factoriser} \textit{expr}.
+\item \textcolor{red}{<<\texttt{(\textit{expr}).subs(x, 1)}>>} pour \textbf{substituer} x par 1 dans \textit{expr}.
 \item \textcolor{red}{<<\texttt{limit(sin(x)/x, x, 0)}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0}\sin x$
 \item \textcolor{red}{<<\texttt{limit(1/x,x,0,'+')}>>} pour calculer $\displaystyle\lim_{x\rightarrow 0^+}\dfrac{1}{x}$
 \item \textcolor{red}{<<\texttt{((x+1)/(x-2)).limit(x,+oo)}>>}
@@ -509,10 +527,7 @@ Dans sympy il faut déclarer les variables symboliques explicitement avec \textb
 \item \textcolor{red}{<<\texttt{A = Matrix([[1,2],[3,4]])}>>} définie la matrice A.
 \item \textcolor{red}{<<\texttt{apart(expr,x)}>>}  décomposition en éléments simples des fractions\\
 	\code{apart((x**2+1)/(x**2+3))}  retourne \code{1 - 2/(x**2 + 3)}
-\item \textcolor{red}{<<\texttt{I}>>}  est le complexe i
 \item \textcolor{red}{<<\texttt{series(\textit{expr},x=0,2)}>>} pour calculer le développement limité de \textit{expr} en 0 à l'ordre 1.
-\item \textcolor{red}{<<\texttt{\_}>>}  est l'expression précédente. (on a de même \texttt{\_\_},  \texttt{\_\_\_}, etc \dots )\\
-\code{x**3} \code{diff(\_)} \code{pprint(\_)} renvoie $3x^2$ et \code{pprint(\_\_)} renvoie $x^{3}$.
 \item \textcolor{red}{<<\texttt{plot(\textit{expr}, (x,1,4), ylim=(-10,10), line\_color='red')}>>} pour tracer \textit{expr} sur $[1,4]$ en rouge. On réduit $y$ à $[-10;10]$.
 
 %line_color title xlabel ylabel xlim ylim
