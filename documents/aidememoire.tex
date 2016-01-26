@@ -1,0 +1,1621 @@
+
+%Fichier: aidememoire.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 18 avril 2014 21:08:51
+
+\documentclass[landscape,10pt,usenames,dvips]{report}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage[]{color} %%% pour avoir des textes de couleur %%%
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage[fleqn]{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{pifont} %%% pour les fonts  ding
+\usepackage{xcolor} %%%%pour les couleurs comme black!20
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+\usepackage{listings}
+\lstloadlanguages{R} % Pour écrire du code R
+\lstset{
+escapeinside={(@}{@)},
+showspaces=false,
+ }
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Gnu Debian}          %sous Acrobat.
+}
+
+
+
+\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\e}{\mathrm{e}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
+
+
+\setlength{\parindent}{0pt}
+\pagestyle{fancy}  \lhead{\small\textsc{Mémento}}
+\rhead{Page \thepage/\pageref{LastPage} } \cfoot{}
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\lstdefinelanguage{Xcas}{% pour les environnement de xcas listings
+ morekeywords={%
+    %%% BOUCLE, TEST & Co.
+      if, elif, then, else, for, to,
+	 alors, de, faire, fpour, fsi, ftantque, jusque, jusqu_a, local, pour,  repeter, retourne, si, sinon, tantque,
+	  break, case, switch, while,
+    %%% IMPORT & Co.
+      import, from,
+    %%% FONCTIONS NUMERIQUES
+      cos, sin, tan, acos, asin, atan, saisir,
+    %%% en rouge grenat
+      pi, True, False,i, e, print, input, irem
+  },
+       sensitive,%
+   morecomment=[s]{/*}{*/},%
+   morecomment=[l]//,% nonstandard
+   morestring=[b]"%,
+   }
+   \def\lstR{
+   \lstset{language=R,
+  %basicstyle=\ttfamily,
+    morecomment=[l][\color{cyan}]{\#}{},
+  basicstyle      = \ttfamily\color{black},%
+ % emphstyle=\color{red},
+  commentstyle=\color{red}\textit,
+  keywordstyle=\color{black}\bfseries,
+  %stringstyle=\color{green!50}\ttfamily,
+  }
+   }
+   \def\lstXcas{
+  \lstset{language=Xcas,
+    showspaces=false,
+  showstringspaces=false,
+  % On va pouvoir définir différents types de mises en forme suivant le type de mots-clés.
+  % La méthode est fastidieuse mais pas compliquée.
+  emph={[1]alors, de, faire, fpour, fsi, ftantque, jusque, jusqu_a, local, pour, repeter, retourn, si, if, sinon, tantque, break, case, switch, while},
+  emphstyle=[1]\color{blue}\textbf,
+	  	%%% GEOMETRIE %%%
+      emph={[2] point, mediatrice, bissectrice},
+      emphstyle=[2]\color{red},
+    %%% FONCTIONS NUMERIQUES
+     emph={[3]cos, sin, tan, acos, asin, atan},
+     emphstyle=[3]\color{black!50},
+    %%% CONSTANTES
+      emph={[4]pi, i, e,  print, input, irem,saisir},
+     emphstyle=[4]\color{Maroon},
+	 morecomment=[s][\color{green}]{/*}{*/},
+  basicstyle      = \ttfamily\color{red},%
+  commentstyle    = \sffamily\color{green},%
+  %emphstyle=\color{blue},
+  commentstyle    = \sffamily\color{green},%
+    %%% Les Commentaires
+  }
+  }
+
+
+\begin{document}
+
+\Chapter{Xcas AU LYCÉE}
+\begin{multicols*}{2}
+
+\begin{Sec}
+{Les entrées}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{Alt+n}>>} ouvre une nouvelle ligne de commandes.
+\item \textcolor{red}{<<\texttt{Alt+p}>>} ouvre l'environnement de programme.
+\item \textcolor{red}{<<\texttt{Alt+t}>>} ouvre l'environnement de tableur.
+\item \textcolor{red}{<<\texttt{Alt+g}>>} ouvre l'environnement de graphique 2d.
+\item \textcolor{red}{<<\texttt{Alt+h}>>} ouvre l'environnement de graphique 3d.
+\item \textcolor{red}{<<\texttt{Alt+c}>>} ouvre une ligne de commentaires.
+\item \textcolor{red}{<<\texttt{Alt+d}>>} ouvre l'environnement dessin tortue.
+\item \textcolor{red}{<<\texttt{Alt+e}>>} ouvre l'éditeur d'expression.
+\item Pour \textbf{supprimer un niveau}, cliquez sur le numéro du niveau, il devient noir Edit\ding{212}Supprimer niveaux sélectionnés
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les éléments et constantes prédéfinies}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{L:=[1,2,4,2]}>>} Pour créer une \textbf{liste} pour les statistiques par exemple.
+\item \textcolor{red}{<<\texttt{S:=(1,2,4,2)}>>} Pour créer une \textbf{séquence}.
+\item \textcolor{red}{<<\texttt{E:= \% \{1,2,4,2\%\}}>>} ou \textcolor{red}{<<\texttt{E:=set[1,2,4,2]>>}}   Pour créer un \textbf{ensemble}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}\underline{Les Constantes prédéfinies}}
+\item\begin{list}{\ding{212}}{\underline{Les Constantes prédéfinies}}
+\item \textcolor{red}{<<\texttt{pi}>>} est le nombre $\boldsymbol{\pi} \approx 3,14$
+\item \textcolor{red}{<<\texttt{e}>>} est le nombre $\boldsymbol{e}=exp(1)\approx 2,71$
+\item \textcolor{red}{<<\texttt{infinity}>>} est $\boldsymbol{\infty}$.
+\item \textcolor{red}{<<\texttt{inf}>>} ou \textcolor{red}{<<\texttt{+infinity}>>} est $\boldsymbol{+\infty}$.
+\item \textcolor{red}{<<\texttt{-infinity}>>} est $\boldsymbol{-\infty}$.
+\end{list}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Nombres réels et opération sur les nombres}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{4\string^2}>>} retourne le \textbf{carré} de 4.
+\item \textcolor{red}{<<\texttt{sqrt(2)}>>} retourne la \textbf{racine carrée} de 4.
+\item \textcolor{red}{<<\texttt{approx(x,0)}>>} \textbf{arrondi} $x$ à l'entier
+\item \textcolor{red}{<<\texttt{approx(x,2)}>>}  \textbf{arrondi} $x$ au centième.
+\item \textcolor{red}{<<\texttt{approx(x,-1)}>>} \textbf{arrondi} $x$ aux dizaines
+\item \textcolor{red}{<<\texttt{ceiling(x)}>>} ou  \textcolor{red}{<<\texttt{ceiling(x)}>>} renvoie le plus petit entier supérieur à $x$.
+\item \textcolor{red}{<<\texttt{floor(x)}>>} renvoie le plus grand entier inférieur à $x$.
+\item \textcolor{red}{<<\texttt{trunc(x)}>>} renvoie la \textbf{troncature} de $x$.
+\item \textcolor{red}{<<\texttt{iquo(7,2)}>>} renvoie le \textbf{quotient} de la division euclidienne de 7 par 2.
+\item \textcolor{red}{<<\texttt{irem(7,2)}>>} renvoie le \textbf{reste} de la division euclidienne de 7 par 2.\\
+Si irem(n,2)=0 alors n est pair  sinon n est impair.
+\item \textcolor{red}{<<\texttt{cos(x)}>>} renvoie le \textbf{cosinus} de x. x étant en radian
+\item \textcolor{red}{<<\texttt{sin(x)}>>} renvoie le \textbf{sinus} de x.
+\item \textcolor{red}{<<\texttt{tan(x)}>>} renvoie la \textbf{tangente} de x.
+\item \textcolor{red}{<<\texttt{acos(x)}>>} est la fonction réciproque de la fonction cosinus.\\
+acos(sqrt(3)/2)  renvoie $\dfrac{\pi}{6}$
+\item \textcolor{red}{<<\texttt{asin(x)}>>} est la fonction réciproque de la fonction sinus.
+\item \textcolor{red}{<<\texttt{atan(x)}>>} est la fonction réciproque de la fonction tangente.
+\item \textcolor{red}{<<\texttt{ln(x)}>>} ou \textcolor{red}{<<\texttt{log(x)}>> } est le \textbf{logarithme népérien} de $x$.
+\item \textcolor{red}{<<\texttt{log10(x)}>>} est le logarithme de base 10 de $x$.
+\item \textcolor{red}{<<\texttt{exp(x)}>>} ou \textcolor{red}{<<\texttt{e\string^x}>>} est l'\textbf{exponentielle} de $x$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les listes (ou vecteur) et les séquences}
+\begin{list}{$\bullet $}%{Une liste est de la forme [1,2,3,4] et une séquence est de la forme (1,2,3,4)}
+{Les listes sont écrites entre crochets et les séquences entre parenthèses.}
+\item \textcolor{red}{<<\texttt{x:=[1,2,3,4]}>>} pour définir la liste (1,2,3,4) dans la variable $x$.
+\item \textcolor{red}{<<\texttt{x:=(1,2,3,4)}>>} ou  \textcolor{red}{<<\texttt{x:=seq[1,2,3,4]}>>} ou encore  \textcolor{red}{<<\texttt{x:=1,2,3,4}>>} pour définir la séquence (1,2,3,4) dans la variable $x$.
+\item \textcolor{red}{<<\texttt{x[2]}>>} pour accéder au 3\ieme élément de la liste (ou de la séquence) $x$.
+\item \textcolor{red}{<<\texttt{x[0]}>>} revoie le 1\ier élément de la liste (ou de la séquence) $x$.
+\item \textcolor{red}{<<\texttt{x[n]}>>} revoie le n+1\ieme élément de la liste (ou de la séquence) $x$.
+\item \textcolor{red}{<<\texttt{x[0..2]}>>} pour extraire une sous-séquence (sous-liste) des  3 premiers éléments de la liste (ou de la séquence).
+\item \textcolor{red}{<<\texttt{y:=seq(j\string^2,j,1,4)}>>} pour créer une liste (des carrés ici).
+\item \textcolor{red}{<<\texttt{y:=seq(j\string^2,j,1..4)}>>} ou \textcolor{red}{<<\texttt{y:=seq(j\string^2,j=1..4)}>>} pour créer une séquence (des carrés ici).
+\item \textcolor{red}{<<\texttt{x:=append(x,d)}>>}  ajoute l’élément d à la fin de la liste x.
+\item \textcolor{red}{<<\texttt{x:=x,d}>>} ajoute l'élément d à la fin de la séquence x.
+\item \textcolor{red}{<<\texttt{x,y}>>} pour concaténer les séquences $x$ et $y$.
+\item \textcolor{red}{<<\texttt{nop(x)}>>} ou \textcolor{red}{<<\texttt{[x]}>>} Pour transformer la séquence $x$ en liste.
+\item \textcolor{red}{<<\texttt{op(x)}>>}  Pour transformer la liste $x$ en séquence.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Statistiques}
+\begin{list}{$\bullet $}{On fait des statistiques avec des listes}
+\item \textcolor{red}{<<\texttt{u:=[8,9,9,8,10,8]}>>}crée une liste (ou vecteur) $u$\\
+\item 	Pour les séries statistiques \textbf{avec regroupement par classe} on utilise deux listes de même dimension.\\
+
+\vspace{-0.2cm}\begin{minipage}[t]{3.7cm}
+\begin{tabular}[]{|c |c |c |c |}
+	\hline valeurs & 8 & 9 & 10 \\
+	\hline effectifs & 3 & 2 & 1 \\
+	\hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[t]{8.4cm}\vspace{-0.7cm}
+est représenté par val:=[8,9,10] et eff:=[3,2,1]\\
+la moyenne est obtenue avec \textcolor{red}{<<moyenne(val,eff)>>} et il en est de même pour les autres
+paramètres statistiques.
+\end{minipage}\\
+
+\item \textcolor{red}{<<\texttt{size(u)}>>}renvoie le nombre d’éléments de la liste $u$.
+\item \textcolor{red}{<<\texttt{count\string_inf(3,u)}>>}renvoie le nombre d’éléments de la liste $u$ strictement inférieures à 3.
+\item \textcolor{red}{<<\texttt{count\string_sup(3,u)}>>} renvoie le nombre d’éléments de la liste $u$ strictement supérieures à 3.
+\item \textcolor{red}{<<\texttt{count\string_eq(3,u)}>>} renvoie le nombre d’éléments de la liste $u$ égales à 3.
+\item \textcolor{red}{<<\texttt{moyenne(u)}>>}  renvoie la \textbf{moyenne} de $u$.\\
+	\textcolor{red}{<<\texttt{moyenne(val,eff)}>>}renvoie la \textbf{moyenne} de la série (val,eff).
+\item \textcolor{red}{<<\texttt{variance(u)}>>}renvoie la \textbf{variance} de $u$.\\
+	\textcolor{red}{<<\texttt{variance(val,eff)}>>} pour la \textbf{variance} de la série (val,eff).
+\item \textcolor{red}{<<\texttt{ecart\string_type(u)}>>}renvoie l’\textbf{écart-type} de $u$
+	\textcolor{red}{<<\texttt{ecart\string_type( val,eff )}>>}renvoie l'\textbf{écart-type} de la série (val,eff).
+\item \textcolor{red}{<<\texttt{mediane(u)}>>}renvoie la \textbf{médiane} de $u$.
+\item \textcolor{red}{<<\texttt{quartile1(u)}>>} ou  \textcolor{red}{<<\texttt{quantile(u,0.25)}>>} renvoie le \textbf{premier quartile} de $u$.
+\item \textcolor{red}{<<\texttt{quartile3(u)}>>} ou  \textcolor{red}{<<\texttt{quantile(u,0.75)}>>} renvoie le \textbf{troisième quartile} de $u$.
+\item \textcolor{red}{<<\texttt{quantile(u,0.1)}>>}renvoie le \textbf{premier décile} de $u$.
+\item \textcolor{red}{<<\texttt{quantile(u,0.9)}>>}renvoie le \textbf{neuvième décile} de $u$.
+\item \textcolor{red}{<<\texttt{quartiles(u)}>>} renvoie dans l'ordre: le minimum, le 1\ier quartile, la médiane, le 3\ieme quartile et le maximum de $u$.
+\item \textcolor{red}{<<\texttt{moustache(u)}>>}trace la boîte à moustaches de $u$.
+%\item Pour les séries statistiques avec regroupement par classes.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Aléatoire}
+\begin{list}{$\bullet $}{On pourra utiliser pour générer un nombre aléatoire  \textcolor{red}{\texttt{rand}}, \textcolor{red}{\texttt{alea}} ou  \textcolor{red}{\texttt{hasard}}.}
+
+\item \textcolor{red}{<<\texttt{alea(6)}>>} renvoie au hasard un nombre entier entre 0 et 5.
+\item \textcolor{red}{<<\texttt{alea(6)}+1>>}renvoie au hasard, un nombre entier entre 1 et 6.
+\item \textcolor{red}{<<\texttt{alea(1,6)}>>}renvoie au hasard un nombre décimal entre 1 et 6.
+\item \textcolor{red}{<<\texttt{alea(4,1,6)}>>}renvoie au hasard 4 nombres entiers entre 1 et 6 \textbf{sans répétition}(sans remise).
+\item \textcolor{red}{<<\texttt{randvector(100,'rand(6)+1')}>>}renvoie au hasard 100 nombres entiers entre 1 et 6  donc \textbf{avec répétition}(avec remise).
+\item \textcolor{red}{<<\texttt{alea(randnorm(0,1))}>>} renvoie au hasard des nombres répartis selon la \textbf{loi normale} de moyenne 0 et d'écart type 1.
+\item \textcolor{red}{<<\texttt{binomial(n,k,p)}>>}renvoie $p(X=k)$ lorsque $X$ suit une \textbf{loi binomiale} $\mathcal{B}(n,p)$.
+\item \textcolor{red}{<<\texttt{comb(n,k)=}>>} renvoie ${n}{k}$ le nombre de \textbf{combinaison} de k éléments parmi n.
+\item \textcolor{red}{<<\texttt{factorial(4)}>>} renvoie la \textbf{factorielle} 4
+\item \textcolor{red}{<<\texttt{perm(10,2)}>>} renvoie le nombre d'\textbf{arrangements} de 2 objets parmi 10.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les programmes}
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{saisir("X=",x)}>>}Pour demander une valeur qui sera stockée dans la variable $x$.
+\item \textcolor{red}{<<\texttt{input("X=",x)}>>} idem mais en anglais.
+\item \textcolor{red}{<<\texttt{saisir("age=",age,"taille=",taille)}>>} pour demander deux valeurs.
+\item \textcolor{red}{<<\texttt{print("X="+x)}>>} pour afficher dans un programme X= suivi de la valeur de x.
+\item \textcolor{red}{<<\texttt{print("X="+x+" et Y="+y)}>>} idem en plus complet.
+\item \textcolor{red}{<<\texttt{output("X="+x)}>>}Pour afficher dans une fenêtre la valeur de la variable $x$.
+\item \textcolor{red}{<<\texttt{F9}>>} pour compiler le programme.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les tests et opérateurs}
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{x==20}>>} $x$ est il égal à 20?
+\item \textcolor{red}{<<\texttt{est\string_element(20,x)}>>} 20 appartient il à $x$?
+\item \textcolor{red}{<<{x<20 \textbf{or} x>40 }>>} x est il  inférieur à 20 \textbf{ou} supérieur à 40?
+\item \textcolor{red}{<<\texttt{x<20 \textbf{ou} x>40 }>>} x est il  inférieur à 20 \textbf{ou} supérieur à 40?
+\item \textcolor{red}{<<\texttt{x<40 \textbf{\string&} x>30}>>} x est il  inférieur à 20 \textbf{et} supérieur à 40?
+\item \textcolor{red}{<<\texttt{!}>>} signifie le contraire.
+\item \textcolor{red}{<<\texttt{x!=20}>>} $x$ est il différent de 20?
+\item \textcolor{red}{<<\texttt{\&\&}>>} ou \textcolor{red}{<<\texttt{et}>>} ou \textcolor{red}{<<\texttt{and}>>}  signifie \textbf{et}. Par exemple \texttt{x>=1 et x<=5}
+\item \textcolor{red}{<<\texttt{||}>>} ou \textcolor{red}{<<\texttt{ou}>>} ou  \textcolor{red}{<<\texttt{or}>>}  signifie \textbf{ou}. Par exemple \texttt{x<=1 ou x<=5}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les boucles}
+
+\begin{list}{$\bullet $}{}
+\item \underline{Le test \textcolor{red}{si}.}
+
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item En francais:\\
+\texttt{\textcolor{red}{si} condition  \textcolor{red}{alors}  <instruction1>  \textcolor{red}{sinon}  <instruction2>  \textcolor{red}{fsi ;} }
+
+\item Avec la même syntaxe que R-cran\\
+	\texttt{\textcolor{red}{si} condition $\textcolor{red}{\boldsymbol{\{}}$  <instruction> $\textcolor{red}{\boldsymbol{\}}}$  \textcolor{red}{sinon} $\textcolor{red}{\boldsymbol{\{}}$  <instruction2> $\textcolor{red}{\boldsymbol{\}}}$  }
+
+\item En Anglais:\\
+\texttt{\textcolor{red}{if} condition  \textcolor{red}{then}  <instruction>  \textcolor{red}{else}  <instruction2>  \textcolor{red}{end\string_if ;} }
+
+\item Exemple:
+
+\begin{minipage}[t]{6.5cm}
+Pour plus de clareté il est préférable de rédiger en verticale
+\end{minipage}\hspace{0.5cm}
+\begin{minipage}[t]{5.5cm}
+	\texttt{\textcolor{red}{si} condition \\ $\textcolor{red}{alors}$\\ <instruction1>; \\ <instruction2>;\\$\textcolor{red}{sinon}$\\  <instruction3>; \\ <instruction4>; \\ $\textcolor{red}{fsi}$ }
+	\end{minipage}
+
+%\lstset{language=Xcas}
+\lstXcas
+\begin{lstlisting}
+saisir("entrer un nombre",n) ;
+si irem(n,2)=0
+alors print("ce nombre est pair");
+sinon print("ce nombre est impair");
+fsi;
+\end{lstlisting}
+
+
+\end{list}
+
+\item \underline{La boucle \textcolor{red}{pour}.}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \texttt{\textcolor{red}{pour} (k de 1 jusque 100 pas 3) \textcolor{red}{faire} <instructions> \textcolor{red}{fpour} }\\
+	%\textbf{\textit{Attention n'utilisez pas la variable i qui est réservé pour le nombre complexe i}}\\
+	\textit{(On peut omettre pas 3, le pas sera alors de 1.}
+\item En anglais\\
+	\texttt{\textcolor{red}{for} (k from 1 to 100 by 2) \textcolor{red}{do} <instructions> \textcolor{red}{end\string_for} } \\
+	\textit{(on peut utiliser step à la place de by).}
+\item Encore une autre façon de rédiger.\\
+	\texttt{\textcolor{red}{for} (k:=1;k<=100;k:=k+2)  $\textcolor{red}{\boldsymbol{\{}}$  <instructions>  $\textcolor{red}{\boldsymbol{\}}}$}
+\end{list}
+
+Exemple:
+\lstXcas
+%\lstset{language=R}
+\begin{lstlisting}
+	for (k in 1:10) {print(k^2)}
+\end{lstlisting}
+
+
+\item \underline{La boucle \textcolor{red}{tantque}.}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+
+\item \texttt{\textcolor{red}{tantque} condition \textcolor{red}{faire}  <instructions> \textcolor{red}{ftantque}}
+\item \texttt{\textcolor{red}{tantque} condition $\textcolor{red}{\boldsymbol{\{}}$ <instructions>; \dots $\textcolor{red}{\boldsymbol{\}}}$}
+
+\item \texttt{\textcolor{red}{while} condition \textcolor{red}{do}  <instructions>; \textcolor{red}{end\string_while}}
+
+\item Exemple:
+\lstXcas
+%\lstset{language=R}
+\begin{lstlisting}
+i:=0;
+tantque i<=10 faire
+print(i); i=i+1;
+ftantque;
+\end{lstlisting}
+\end{list}
+
+\item \underline{La boucle \textcolor{red}{repeter}.}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \texttt{\textcolor{red}{repeter} <instruction>; \textcolor{red}{jusqu\string_a}  condition }
+\item \texttt{\textcolor{red}{repeat} <instruction>; \textcolor{red}{until}  condition }
+\item Exemple:
+\lstXcas
+\begin{lstlisting}
+repeter x:=x-5; jusqu_a x<5;
+\end{lstlisting}
+
+\end{list}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les fonctions}
+
+	\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{f(x):=x\string^2+2x+1}>>} pour définir la fonction $f(x)=x^2+2x+1$.
+\item \textcolor{red}{<<\texttt{graphe(f(x),x=-3..2)}>>} pour \textbf{tracer} la courbe représentative de $f$ sur $[-3;2]$.
+\item \textcolor{red}{<<\texttt{graphe([f(x),g(x)],x=-3..2)}>>} pour \textbf{tracer} la courbe représentative de $f$ et de $g$.
+\item \textcolor{red}{<<\texttt{g:=deriver(f(x))}>>} donne la \textbf{dérivée} de $f$. $g$ est alors une \textbf{expression} pas une fonction.
+\item \textcolor{red}{<<\texttt{f'(x)}>>} donne la dérivée de la fonction $f$.
+\item \textcolor{red}{<<\texttt{f''(x)}>>} donne la dérivée seconde de la fonction $f$.
+\item \textcolor{red}{<<\texttt{g:=unapply(g,x)}>>} pour transformer l'expression $g$ en fonction $g$.
+\item \textcolor{red}{<<\texttt{g:=fonction\string_derivee(f)}>>} pour avoir directement la \textbf{fonction dérivée}.
+\item \textcolor{red}{<<\texttt{integrer(f,x)}>>} pour calculer la \textbf{primitive} de $f$.
+\item \textcolor{red}{<<\texttt{integrer(f,x,0,1)}>>} pour calculer \textbf{l'intégrale} $\displaystyle\int_{0}^{1}f(x)dx$
+\item \textcolor{red}{<<\texttt{limite(f(x),x,a)}>>} pour calculer la \textbf{limite} de $f$ en $a$. \\
+	$a$ peut être un nombre, +inf  ou -inf (pour $+\infty$ et $-\infty$).\\
+	On peut rajouter un 4\ieme paramètre, +1 pour une \textbf{limite à droite} de $a$ ou -1 ou une \textbf{limite à gauche} de $a$.\\
+	\begin{list}{\ding{212}}{Exemple:}
+	\item \texttt{limite(1/(x-1),x,1,+1)} pour $\displaystyle\lim_{x_{\rightarrow}^{ > }1}\dfrac{1}{x-1}$
+	\item \texttt{limite(1/(x-1),x,1,-1)} pour $\displaystyle\lim_{x_{\rightarrow}^{ < }1}\dfrac{1}{x-1}$
+	\item \texttt{limite(1/(x-1),x,+inf)} pour $\displaystyle\lim_{x\rightarrow +\infty}\dfrac{1}{x-1}$
+	\end{list}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Calcul algébrique}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{developper((x+1)*(x+3))}>>} pour \textbf{développer} $(x+1)*(x+3)$. Le signe * est obligatoire.\\
+	Pour modifier une expression déjà écrite (développer, factoriser \dots) on sélectionne à la souris cette expression puis on clique sur le bouton du menu d'équation \raisebox{-0.1cm}{\includegraphics[scale=0.7]{menu-edition}} et on sélectionne factor pour factoriser par exemple.
+\item \textcolor{red}{<<\texttt{factoriser(x\string^2+4*x+3)}>>} pour \textbf{factoriser}, on obtient $(x+1)*(x+3)$.\\
+Par défaut, la factorisation est faite sur $\mathcal{Q}$. Pour factoriser les polynomes de degré 2 même si cela introduit des radicaux, il faut changer la configuration, cliquer sur:\quad Cfg\ding{212}Configuration du CAS\ding{212}Cocher la case Sqrt
+\item \textcolor{red}{<<\texttt{factoriser\string_sur\string_C(z\string^2+1)}>>} pour \textbf{factoriser} sur $\mathcal{C}$, On obtient   $(i+z)*(-i+z)$.\\
+\item \textcolor{red}{<<\texttt{resoudre(x\string^2+4x+3=0)}>>} ou \textcolor{red}{<<\texttt{solve(x\string^2+4x+3=0)}>>}  pour résoudre l'équation dans $\mathcal{R}$. \\
+<<[]>> signifie que l'équation n'a pas de solution dans $\mathcal{R}$.\\
+<<[x]>> signifie que tous les réels sont solutions.\\
+\item \textcolor{red}{<<\texttt{resoudre\string_dans\string_C(x\string^2+4=0)}>>} ou \textcolor{red}{<<\texttt{csolve(x\string^2+4=0)}>>}  pour résoudre l'équation dans $\mathcal{C}$. \\
+\item \textcolor{red}{<<\texttt{resoudre\string_systeme\string_lineaire([3*x-2*y=3,5*x+y=7],[x,y])}>>} pour résoudre le système $\left\lbrace\begin{array}{l} 3x-2y=3 \\ 5x+y=7 \\ \end{array}\right.$
+\item \textcolor{red}{<<\texttt{forme\string_canonique(x\string^2+5x-6)}>>} retourne la \textbf{forme canonique} $(x-1)^2+2$.
+\item \textcolor{red}{<<\texttt{propFrac((x+2)(x-1))}>>} pour \textbf{décomposer} une fonction rationnelle. $1+\dfrac{3}{x-1}$.
+\item \textcolor{red}{<<\texttt{divide(x\string^2-2x-5,\ x-4)}>>} renvoie $[x+2,3]$ qui est le quotient et le reste de la division euclienne de $x^2-2x-5$ par $x-4$.
+\item \textcolor{red}{<<\texttt{partfrac((x\string^2-2*x+3)/(x\string^2-3*x+2)) }>>} renvoie $1+\frac{3}{x-2}+\frac{-2}{x-1}$qui est la \textbf{décomposition en éléments simple} de la fonction rationnelle.
+\item \textcolor{red}{<<\texttt{substituer(f(x),x=sqrt(2))}>>} Remplace dans $f(x)$ la variable x par $\sqrt[]{2}$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les nombres complexes}
+\begin{list}{$\bullet $}{Dans le menu Math (Cmplx) se trouve les fonctions ayant comme paramètre une expression à valeur complexe.}
+\item \textcolor{red}{<<\texttt{\%i}>>}  est le nombre complexe $i$.
+\item \textcolor{red}{<<\texttt{z:=(1+2*\%i)\string^2}>>} On affecte à $z$ le nombre complexe $(1+2*i)^2$.
+\item \textcolor{red}{<<\texttt{re(z)}>> ou <<\texttt{real(z)}>>} renvoie la \textbf{partie réelle} de $z$.
+\item \textcolor{red}{<<\texttt{im(z)}>> ou <<\texttt{imag(z)}>>} renvoie la \textbf{partie imaginaire} de $z$.
+\item \textcolor{red}{<<\texttt{evalc(z)}>>} Écriture de $z$ sous la \textbf{forme cartésienne} $re(z)+i*im(z)$.
+\item \textcolor{red}{<<\texttt{abs(z)}>>} renvoie le \textbf{module} de $z$.
+\item \textcolor{red}{<<\texttt{arg(z)}>>} renvoie l'\textbf{argument} de $z$.
+\item \textcolor{red}{<<\texttt{conj(z)}>>}renvoie le \textbf{conjugué} de $z$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Géométrie}
+\begin{list}{$\bullet $}{}
+\item Alt+g (Alt+h) pour obtenir l'environnement de graphique 2d (3d).
+\item pour choisir des angles en radian (ou en degré)  Cfg\ding{212}Configuration du Cas\ding{212}cocher (ou décocher) radian
+\item \textcolor{red}{<<\texttt{distance(A,B)}>>} ou textcolor{red}{<<\texttt{longueur(A,B)}>>}  pour avoir la \textbf{distance} $AB$.
+%\item \textcolor{red}{<<\texttt{longueur(A,B)}>>} renvoie la longueur du segment $[AB]$.
+\item \textcolor{red}{<<\texttt{angle(A,B,C)}>>} la mesure en radians (ou en degrés) de l'angle $\left(\vec{AB},\vec{AC}  \right)$
+\item \textcolor{red}{<<\texttt{droite(3x+3)}>>} pour tracer la droite $y=3x+3$.
+\item \textcolor{red}{<<\texttt{graphe(3x+3)}>>} pour tracer la droite $y=3x+3$ et plus généralement la courbe d'équation $f(x)$.
+
+\item \underline{objets élémentaires}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{A:=point(2,3)}>>} pour placer le \textbf{point} $A$ de coordonnée (2;3)
+\item \textcolor{red}{<<\texttt{S:=segment}>>} pour définir et tracer le \textbf{segment} $[AB]$.
+\item \textcolor{red}{<<\texttt{d1:=droite(A,B)}>>} pour définir et tracer la \textbf{droite} $(AB)$.
+\item \textcolor{red}{<<\texttt{dd1:=demi\string_droite(A,B)}>>} pour définir et tracer la \textbf{demi droite} $[AB)$
+\item \textcolor{red}{<<\texttt{E:=element(d1,1)}>>} pour créer le point E sur la droite $d_1$.\\
+	On modifie le nombre 1 pour positionner le point sur la droite.\\
+%	on peut aussi bouger E a la souris sur d1\\
+	On peut aussi utiliser un curseur comme ci-dessous.
+\item \textcolor{red}{<<\texttt{t:=element(-2..2)}>>} pour crér le \textbf{curseur} $t$ avec $t\in[-2;2]$.
+\item \textcolor{red}{<<\texttt{E:=element(d1,t)}>>} sélectionner alors le curseur et modifier la valeur de $t$ en cliquant.
+\begin{center}
+\includegraphics[scale=0.6]{./images/curseur}
+\end{center}
+\item \textcolor{red}{<<\texttt{C1:=cercle(A,2)}>>} pour définir et tracer le \textbf{cercle} de centre $A$ et de rayon 2.
+\item \textcolor{red}{<<\texttt{C2:=cercle(A,B)}>>} pour définir et tracer le \textbf{cercle} de diamètre $[AB]$.
+\item \textcolor{red}{<<\texttt{C2:=cercle(A,B-A)}>>} pour définir et tracer le \textbf{cercle} de centre $A$ qui passe par $B$.
+\end{list}
+
+\item \underline{Les vecteurs}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{vecteur(A,B)}>>} pour tracer le \textbf{vecteur} $\vec{AB}$
+\item \textcolor{red}{<<\texttt{vecteur(B-A)}>>} Pour tracer le \textbf{vecteur} $\vec{AB}$ d'origine $O$.
+\item \textcolor{red}{<<\texttt{vecteur(C,C+B-A)}>>} Pour tracer le \textbf{vecteur} $\vec{AB}$ d'origine $C$.
+\end{list}
+
+
+\item \underline{Constructions élémentaires}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{mediatrice(A,B)}>>} pour tracer la \textbf{médiatrice} du segment $[AB]$.
+\item \textcolor{red}{<<\texttt{milieu(A,B)}>>} pour construire le \textbf{milieu} du segment $[AB]$.
+\item \textcolor{red}{<<\texttt{mediane(A,B,C)}}trace la \textbf{médiane} du triangle $ABC$ issue de $A$.
+\item \textcolor{red}{<<\texttt{hauteur(A,B,C)}} trace la \textbf{hauteur} du triangle $ABC$ issue de $A$.
+\item \textcolor{red}{<<\texttt{bissectrice(A,B,C)}>>} trace la \textbf{bissectrice} intérieure de l'angle A du triangle ABC.
+%\item \textcolor{red}{<<\texttt{exbissectrice(A,B,C)}>>} trace la bissectrice extérieure de l'angle A du triangle ABC.
+\item \textcolor{red}{<<\texttt{perpendiculaire(A,d)}>>} pour tracer la \textbf{perpendiculaire} à la droite d passant par A.
+\item \textcolor{red}{<<\texttt{parallele(A,d)}>>} pour tracer la \textbf{parallèle} à la droite $d$ passant par $A$.
+\item \textcolor{red}{<<\texttt{tangent(C,A)}>>} pour tracer les deux \textbf{tangentes} au cercle C passant par A si le point A est extérieur au cercle.
+\item \textcolor{red}{<<\texttt{K:=barycentre([A,2],[B,1],[C,-2],[D,3],[E,1]) }>>} pour créer le \textbf{barycentre} du système.
+\item \textcolor{red}{<<\texttt{K:=isobarycentre(A,B,C,D,E) }>>} pour créer l'\textbf{isobarycentre} du système.
+\end{list}
+
+\item \underline{Les transformations}
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0cm}}
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{t:=translation(C-B)}>>} pour créer la \textbf{translation} de vecteur $\vec{BC}$.\\
+\textcolor{red}{\texttt{t(A)}}  pour créer l'image du point $A$.
+\item \textcolor{red}{<<\texttt{translation(C-B,A)}>>} pour créer directement l'image de A par la \textbf{translation} de vecteur $\vec{BC}$.
+\item \textcolor{red}{<<\texttt{symetrie(d,A)}>>} pour créer l'image de $A$ par la \textbf{symétrie} d'axe d.
+\item \textcolor{red}{<<\texttt{symetrie(B,A)}>>} pour créer l'image de $A$ par la \textbf{symétrie} de centre $B$.
+\item \textcolor{red}{<<\texttt{rotation(B,u,A)}} pour créer l'image de $A$ par la \textbf{rotation} de centre $B$ et d'angle $u$.
+\item \textcolor{red}{<<\texttt{projection(d,A)}} pour créer le \textbf{projeté orthogonal} de $A$ sur la droite $d$.
+\item \textcolor{red}{<<\texttt{h:=homothetie(A,2)}>>} pour créer \textbf{l'homothétie} de centre $A$ et de rapport 2.
+\item \textcolor{red}{<<\texttt{s:=similitude(B,k,u)}} pour créer la \textbf{similitude} de centre  $B$, de rapport $k$ et d'angle $u$.
+\end{list}
+\end{list}
+\end{Sec}
+
+%\begin{Sec}
+{Les graphiques}
+%\end{Sec}
+%\begin{list}{$\bullet $}{}
+%\item \textcolor{red}{<<\texttt{}>>}
+%\end{list}
+\end{multicols*}
+
+
+%\Chapter{R-cran AU LYCÉE}
+
+\Chapter{GEOGEBRA ANALYSE}
+
+Pour télécharger le logiciel Geogebra, il faut aller sur le site :
+\href{http://www.geogebra.org/}{http://www.geogebra.org}
+\begin{multicols*}{3}
+
+\begin{Sec}
+{Les suites (listes et séquences)}
+\begin{list}{$\bullet$}{}
+	\item\textcolor{red}{\texttt{L=\{A,B,C\}}}: définit une liste contenant trois points A, B,  et C créés auparavant.
+	\item\textcolor{red}{\texttt{L=\{(0,0),(1,1),(2,2)\}}}: définit une liste contenant les points définis, bien qu'ils n'aient pas été nommés.
+	\item\textcolor{red}{\texttt{Longueur[liste L]}}: Longueur de la liste L (nombre d'éléments de la liste).
+	\item\textcolor{red}{\texttt{Elément[ L, n]}}: n\ieme élément de la liste L
+	\item\textcolor{red}{\texttt{Min[ L]}}: Plus petit élément de la liste L
+	\item\textcolor{red}{\texttt{Max[ L]}}: Plus grand élément de la liste L
+	\item \textcolor{red}{\texttt{Séquence[ $e$, $i$, $a$, $b$]}}: Liste des objets créés en utilisant l'expression $e$ et l'indice $i$ variant du nombre $a$ au nombre $b$. ( Se traduit par : de $i=a$ à $i=b$ calculer la valeur de $e$).
+
+\underline{Exemple} : L=Séquence[(2, i),i,1,5] crée une liste de 5 points dont l'ordonnée varie de 1 à 5.
+
+	\item \textcolor{red}{\texttt{Séquence[ $e$, $i$, $a$, $b$, $s$]}}: Liste des objets créés en utilisant l'expression $e$ et l'indice $i$ variant du nombre $a$ au nombre $b$ avec un pas de $s$.
+
+\underline{Exemple} : L=Séquence[(2, i),$i$,1,5,0.5] crée une liste de 9 points dont l'ordonnée varie de 1 à 5 avec un pas de 0.5.
+	\item \textcolor{red}{\texttt{ItérationListe[ $f$, $x_0$, $n$]}}: Liste L de longueur $n+1$ dont les éléments sont les images itératives par la fonction $f$ de la valeur $x_0$.
+
+\underline{Exemple}: la commande L=ItérationListe[x$\char94 2$,3,2] vous donne la liste\\
+	L = \{3, $3^2$,$\left( 3^2 \right)^2$\} = \{3, 9, 81\}.
+
+	\item \textcolor{red}{\underline{Définir une suite par sa formule générale $u_n=f(n)$}}\\
+Par exemple $u_{n}=3n+1$
+
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0.4cm}}
+\begin{list}{\ding{212}}{}
+\item On utilise \texttt{Séquence[3n+1,n,0,10]} pour obtenir les 10 premiers termes de la suite\\
+\item \texttt{Séquence[ (n,3n+1), n, 0, 10]} pour obtenir sa représentation graphique.
+\end{list}
+
+
+\item \textcolor{red}{\underline{Définir une suite par la formule générale $u_{n+1}=f(u_n)$}}\\
+Par exemple $u_{n+1}=2u_n+1$ avec $u_0=1$.
+
+On écrira donc
+
+%\begin{list}{\ding{212}}{\setlength{\leftmargin}{0.4cm}}
+\begin{list}{\ding{212}}{}
+\item \texttt{\textbf{u0=1}} (juste pour avoir plus de clarté dans les formules, ce n'est pas nécessaire)
+\item \texttt{L=Itération[2*x+1,u0,10]} pour avoir $u_{10}$.
+\item \texttt{Séquence[Itération[2*x+1,u0,i],i,0,9]} pour obtenir la liste des valeurs jusqu'à $u_9$.
+\item \texttt{Séquence[(i,Itération[2*x+1,u0,i]) ,i,0,9]} Pour obtenir la représentation graphique des 10 premiers
+\end{list}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Quelques icônes importants}
+\begin{list}{$\bullet$}{}
+\item 	\includegraphics[scale=0.7]{mode_slider.eps} Permet de définir une variable ou un paramètre qui appartient à un intervalle et que l'on pourra faire varier avec la souris. %\input{mode_slider.tex}
+
+\item \includegraphics[scale=0.7]{mode_locus.eps} Permet de tracer le lieu (la trace) d'un point dépendant d'un autre objet que l'on pourra faire varier ou déplacer.
+
+\item \includegraphics[scale=0.7]{svgmode_area.eps} Permet de calculer l'aire d'un polygone.
+
+\item \includegraphics[scale=0.7]{mode_intersect.eps} Permet de définir et de tracer les points d'intersection entre deux objets que l'on sélectionne avec la souris.
+
+\item \includegraphics[scale=0.7]{mode_relation.eps} Permet de comparer deux objets que l'on sélectionne avec la souris.
+\end{list}
+\end{Sec}
+
+
+
+\begin{Sec}
+{	Quelques fonctions de base}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{abs($x$)}}: Valeur absolue de $x$.
+\item \textcolor{red}{\texttt{sgn($x$)}}: Renvoie $\dfrac{x}{|x|}$ pour avoir le signe de $x$.
+\item \textcolor{red}{\texttt{sqrt($x$)}}: Renvoie la racine carrée de $x$.
+\item \textcolor{red}{\texttt{exp($x$)}}: Renvoie l'exponentielle de $x$.
+\item \textcolor{red}{\texttt{log($x$)}}: Renvoie le logarithme népérien de $x$.
+\item \textcolor{red}{\texttt{lg($x$)}}: Renvoie le logarithme décimal de $x$.
+\item \textcolor{red}{\texttt{ld($x$)}}: Renvoie le logarithme en base 2 de $x$.
+\item \textcolor{red}{\texttt{cos($x$)}}: Renvoie le cosinus de $x$.
+\item \textcolor{red}{\texttt{sin($x$)}}: Renvoie le sinus de $x$.
+\item \textcolor{red}{\texttt{tan($x$)}}: Renvoie la tangente de $x$.
+\item \textcolor{red}{\texttt{acos($x$)}}: Renvoie arc cosinus de $x$.
+\item \textcolor{red}{\texttt{asin($x$)}}: Renvoie arc sinus de $x$.
+\item \textcolor{red}{\texttt{atan($x$)}}: Renvoie arc tangente de $x$.
+\item \textcolor{red}{\texttt{cosh($x$)}}: Renvoie le cosinus hyperbolique de $x$.
+\item \textcolor{red}{\texttt{sinh($x$)}}: Renvoie le sinus hyperbolique de $x$.
+\item \textcolor{red}{\texttt{tanh($x$)}}: Renvoie la tangente hyperbolique de $x$.
+\item \textcolor{red}{\texttt{acosh($x$)}}: Renvoie arc cosinus hyperbolique de $x$.
+\item \textcolor{red}{\texttt{asinh($x$)}}: Renvoie arc sinus hyperbolique de $x$.
+\item \textcolor{red}{\texttt{atanh($x$)}}: Renvoie arc tangente hyperbolique de $x$.
+\item \textcolor{red}{\texttt{floor($x$)}}: Renvoie le plus grand entier inférieur ou =.
+\item \textcolor{red}{\texttt{ceil($x$)}}: Renvoie le plus petit entier supérieur =.
+\item \textcolor{red}{\texttt{round($x$)}}: Renvoie l'arrondi à l'unité de $x$.
+\item \textcolor{red}{\texttt{$x(A)$}}: Renvoie l'abscisse de $A$.
+\item \textcolor{red}{\texttt{$y(A)$}}: Renvoie l'ordonnée de $A$.
+\item \textcolor{red}{\texttt{cbrt($x$)}}: Renvoie la racine cubique de $x$.
+\item \textcolor{red}{\texttt{random()}}: Renvoie un nombre aléatoire entre 0 et 1.
+\item \textcolor{red}{\texttt{gamma($x$)}}: Renvoie l'image de $x$ par la fonction gamma.
+\item \textcolor{red}{\texttt{$x$!}}: Renvoie factorielle de $x$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Les Fonctions}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{$f(x)=3*x\char94 2+5$}}: Définie la fonction $f$ qui à $x$ associe  $3x^2+5$ et trace sa représentation graphique.
+\item \textcolor{red}{\texttt{Fonction[f,a,b]}}: Trace $C_f$ entre $a$ et $b$.
+\item \textcolor{red}{\texttt{Si[C1,f,g]}}: Renvoie $f$ si condition $C_1$ sinon renvoie $g$. Permet de définir des fonctions par morceaux.
+\item \textcolor{red}{\texttt{PointInflexion [f]}}: Tous les points d'inflexion de la fonction $f$.
+\item \textcolor{red}{\texttt{Extremum[f]}}: Tous les extremums locaux de la fonction $f$ .
+\item \textcolor{red}{\texttt{g(x)=f(x+a) }}: Définie $g$ comme la fonction qui à $x$ associe $f(x+a)$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x) +a}}: Définie $g$ comme la fonction $f+a$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=af(x) +b}}: Définie $g$ comme la fonction $af+b$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x)+h(x)}}: Définie $g$ comme la fonction $f+h$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x)-h(x)}}: Définie $g$ comme la fonction $f-h$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x)*h(x)}}: Définie $g$ comme la fonction $f\times h$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x)/h(x)}}: Définie $g$ comme la fonction $\dfrac{f}{h}$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{g(x)=f(x)\char94 n}}: Définie $g$ comme la fonction $f^n$ et trace $\cc{g}$.
+\item \textcolor{red}{\texttt{Translation[f, v]}}: Translate $\cc{f}$ par la translation de vecteur $\vec{v}$.
+\item \textcolor{red}{\texttt{Itération[f,x0,n]}}: compose $n$ fois l'image du nombre de départ $x_0$ par la fonction $f$.
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{	Les équations}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Racine [f,a]}}: Une racine de $f$ à partir de $a$ (par la méthode de Newton).
+\item \textcolor{red}{\texttt{Racine [f, a, b]}}: Une racine de $f$ sur $[a; b]$ (par la méthode de fausse position ).
+\item \textcolor{red}{\texttt{Racine[f]}}: Toutes les racines de la fonction $f$ .
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les fonctions dérivées}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Dérivée[f] ou f'(x)}}: Définie et trace la fonction dérivée de $f$.
+\item \textcolor{red}{\texttt{f'(x)}}: Définie et trace la fonction dérivée seconde de $f$.
+\item \textcolor{red}{\texttt{Dérivée[f,n]}}: Définie et trace la fonction dérivée $n$\ieme de $f$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Intégrales et primitives}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Intégrale[ f,a,b]}}: Renvoie le résultat de l'intégrale de $f$ entre $a$ et $b$ et colorie l'aire entre $\cc{f}$, l'axe des abscisses et les droites $x=a$ et $x=b$.
+\item \textcolor{red}{\texttt{Intégrale[f, g,a,b]}}: Renvoie le résultat de l'intégrale de $f-g$ entre $a$ et $b$ et colorie l'aire entre $\cc{f}$, $\cc{g}$ , l'axe des abscisses et les droites $x=a$ et $x=b$.
+\item \textcolor{red}{\texttt{Intégrale[f]}}: Renvoie une primitive de $f$.
+\item \textcolor{red}{\texttt{SommeInférieure[f,a,b,n]}}: Approximation inférieure de l'intégrale de $f$ sur l'intervalle $[a;b]$ par $n$.
+\item \textcolor{red}{\texttt{rectangles. Note}}: Cette commande dessine aussi les rectangles.
+\item \textcolor{red}{\texttt{SommeSupérieure[f,a,b,n]}}: Approximation supérieure de l'intégrale de $f$ sur l'intervalle $[a;b]$ par $n$.
+\item \textcolor{red}{\texttt{rectangles. Note}}: Cette commande dessine aussi les rectangles.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Quelques longueurs}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Longueur[f,x1, x2]}}: Longueur de la portion de la courbe de la fonction $f$ entre ses points d'abscisses $x_1$ et $x_2$.
+\item \textcolor{red}{\texttt{Longueur[f,A,B]}}: Longueur de la portion de la courbe de la fonction $f$ entre deux de ses points $A$ et $B$.
+\item \textcolor{red}{\texttt{Longueur[c,t1,t2]}}: Longueur de la courbe $c$ entre les deux points de paramètres $t_1$ et $t_2$.
+\item \textcolor{red}{\texttt{Longueur[c,A,B]}}: Longueur de la courbe $c$ entre deux de ses points $A$ et $B$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Les Tangentes}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Tangente[ a, f]}}: Tangente à $\cc{f}$ en $x=a$.
+\item \textcolor{red}{\texttt{Tangente[ A, f]}}: Tangente à $\cc{f}$ en $x=x(A)$.
+\item \textcolor{red}{\texttt{Tangente[ A, c]}}: Tangente à la courbe $c$ au point $A$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{LesPolynômes}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Polynôme[f]}}: Renvoie l'écriture polynomiale développée de la fonction $f$.
+\item \textcolor{red}{\texttt{PolynômeTaylor[f,a,n]}}: Renvoie le développement de Taylor de la fonction $f$ à partir du point $x=a$ d'ordre $n$.
+\item \textcolor{red}{\texttt{Racine[f]}}: Toutes les racines du polynôme $f$.
+\item \textcolor{red}{\texttt{Extremum[f]}}: Tous les extremums locaux du polynôme $f$.
+\item \textcolor{red}{\texttt{PointInflexion [f]}}: Tous les points d'inflexion du polynôme $f$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les intersections}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Intersection[ f1, f2]}}: Tous les points d'intersection entre les courbes $\cc{f_1}$ et $\cc{f_2}$ des polynômes $f_1$ et $f_2$.
+\item \textcolor{red}{\texttt{Intersection[ f1, f2, n]}}: nème point d'intersection entre les courbes $\cc{f_1}$ et $\cc{f_2}$ des polynômes $f_1$ et $f_2$.
+\item \textcolor{red}{\texttt{Intersection[ f, g, A]}}: Premier point d'intersection entre $\cc{f}$ et $\cc{g}$ à partir de $A$ (par la méthode de Newton).
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les fonctions d'arithmétique}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Reste[a,b]}}: Reste de la division euclidienne du nombre $a$ par le nombre $b$.
+\item \textcolor{red}{\texttt{Quotient[a,b]}}: Quotient de la division euclidienne du nombre $a$ par le nombre $b$.
+\item \textcolor{red}{\texttt{Min[a,b]}}: Minimum des deux nombres $a$ et $b$.
+\item \textcolor{red}{\texttt{Max[a,b]}}: Maximum des deux nombres $a$ et $b$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Courbes paramétrées}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Courbe[ e1, e2, t, a, b]}}: Courbe paramétrée de paramètre $t$ variant dans l'intervalle $[a;b]$ l'abscisse d'un point étant expression $e_1$ et son ordonnée expression $e_2$ .
+
+\underline{Exemple} : $c = Courbe[2 cos(t), 2 sin(t), t, 0, 2 pi]$
+
+\item \textcolor{red}{\texttt{Dérivée[ c]}}: Dérivée de la courbe $c$.
+\item \textcolor{red}{\texttt{	Valider c(3)}}: retourne le point de la courbe $c$ dont la position correspond à la valeur 3 du paramètre.
+\end{list}
+\end{Sec}
+
+
+\end{multicols*}
+
+\newpage
+
+\Chapter{GEOGEBRA GÉOMÉTRIE}
+\begin{multicols*}{3}
+
+\begin{Sec}
+{	Transformations géométriques}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Translation[ A, v]}}: Translaté du point $A$ de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ g, v]}}: Translaté de la ligne $g$ de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ c, v]}}: Translatée de la conique $c$ de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ f, v]}}: Translatée de la courbe de la fonction $f$ de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ poly, v]}}: Translation du polygone poly de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ pic, v]}}: Translation de l'image $pic$ de vecteur $v$.
+\item \textcolor{red}{\texttt{Translation[ v, P]}}: Donne au vecteur $v$ le point $P$ comme origine.
+\item \textcolor{red}{\texttt{Rotation[ A, phi]}}: Tourne le point $A$ d'un angle $\phi$ autour de l'origine.
+\item \textcolor{red}{\texttt{Rotation[ v, phi]}}: Tourne le vecteur $v$ d'un angle $\phi$ .
+\item \textcolor{red}{\texttt{Rotation[ g, phi]}}: Tourne la ligne $g$ d'un angle $\phi$  autour de l'origine.
+\item \textcolor{red}{\texttt{Rotation[ c, phi]}}: Tourne la conique $c$ d'un angle $\phi$  autour de l'origine.
+\item \textcolor{red}{\texttt{Rotation[ poly, phi]}}: Tourne le polygone poly d'un angle $\phi$  autour de l'origine.
+\item \textcolor{red}{\texttt{Rotation[ pic, phi]}}: Tourne l'image $pic$ d'un angle $\phi$ autour de l'origine.
+\item \textcolor{red}{\texttt{Rotation[ A, phi, B]}}: Tourne le point $A$ d'un angle $\phi$ autour du point B.
+\item \textcolor{red}{\texttt{Rotation[ g, phi, B]}}: Tourne la ligne $g$ d'un angle $\phi$ autour du point B.
+\item \textcolor{red}{\texttt{Rotation[ c, phi, B]}}: Tourne la conique $c$ d'un angle $\phi$ autour du point B.
+\item \textcolor{red}{\texttt{Rotation[ poly, phi, B]}}: Tourne le polygone $poly$ d'un angle $\phi$ autour du point B.
+\item \textcolor{red}{\texttt{Rotation[ pic, phi, B]}}: Tourne l'image $pic$ d'un angle $\phi$  autour du point $B$.
+\item \textcolor{red}{\texttt{Symétrie[ A, B]}}: Symétrique du point $A$ par rapport au point $B$.
+\item \textcolor{red}{\texttt{Symétrie[ g, B]}}: Symétrie de la ligne $g$ par rapport au point $B$.
+\item \textcolor{red}{\texttt{Symétrie[ c, B]}}: Symétrie de la conique $c$ par rapport à $B$.
+\item \textcolor{red}{\texttt{Symétrie[ poly, B]}}: Symétrie du polygone $poly$ par rapport au point $B$.
+\item \textcolor{red}{\texttt{Symétrie[ pic, B]}}: Symétrie de l'image $pic$ par rapport à $B$.
+\item \textcolor{red}{\texttt{Symétrie[ A, h]}}: Symétrie du point $A$ par rapport à la ligne $h$.
+\item \textcolor{red}{\texttt{Symétrie[ g, h]}}: Symétrie de la ligne $g$ par rapport à la ligne $h$.
+\item \textcolor{red}{\texttt{Symétrie[ c, h]}}: Symétrie de la conique $c$ par rapport à $h$.
+\item \textcolor{red}{\texttt{Symétrie[ poly, h]}}: Symétrie du polygone $poly$ par rapport à la ligne $h$.
+\item \textcolor{red}{\texttt{Symétrie[ pic, h]}}: Symétrie de l'image $pic$ par rapport à $h$.
+\item \textcolor{red}{\texttt{Homothétie[ A, f, S]}}: Image du point $A$ par l'homothétie de centre $S$, de rapport $f$.
+\item \textcolor{red}{\texttt{Homothétie[ h, f, S]}}: Image de la ligne $h$ par l'homothétie de centre $S$, de rapport $f$.
+\item \textcolor{red}{\texttt{Homothétie[ c, f, S]}}: Image de la conique $c$ par l'homothétie de centre $S$, de rapport $f$.
+\item \textcolor{red}{\texttt{Homothétie[ poly, f, S]}}: Image du polygone $poly$ par l'homothétie de centre $S$, de rapport $f$.
+\item \textcolor{red}{\texttt{Homothétie[ pic, f, S]}}: Transformée de l'image $pic$ par l'homothétie de centre $S$, de rapport $f$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Les coniques}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Ellipse[ F, G, a]}}: Ellipse de foyers $F$ et $G$ et dont la longueur de l'axe principal vaut $a$. Note : Condition: $2a>Distance[F, G]$.
+\item \textcolor{red}{\texttt{Ellipse[ F, G, s]}}: Ellipse de foyers $F$ et $G$ et dont la longueur de l'axe principal vaut $a=Longueur[s]$.
+\item \textcolor{red}{\texttt{Hyperbole[ F, G, a]}}: Hyperbole de foyers $F$ et $G$ dont la longueur de l'axe principal vaut $a$. Note : Condition: $0 < 2a < Distance[F, G]$.
+\item \textcolor{red}{\texttt{Hyperbole[ F, G, s]}}: Hyperbole avec foyers $F$ et $G$ dont la longueur de l'axe principal vaut $a= Longueur[s]$.
+\item \textcolor{red}{\texttt{Parabole[ F, g]}}: Parabole de foyer $F$ et de directrice $g$.
+\item \textcolor{red}{\texttt{Conique[ A, B, C, D, E]}}: Conique passant par les cinq point A, B, C, D, et C. Note : Quatre de ces points ne doivent pas être alignés.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Les angles}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Angle[ v1, v2]}}: Angle entre deux vecteurs $v1$ et $v2$ (entre 0 et 360°).
+\item \textcolor{red}{\texttt{Angle[ g, h]}}: Angle entre les vecteurs directeurs de deux lignes $g$ et $h$ (entre 0 et 360°).
+\item \textcolor{red}{\texttt{Angle[ A, B, C]}}: Angle $\widehat{ABC}$, délimité par $[AB]$ et $[BC]$ (entre 0 et 360°). $B$ représente donc le sommet de l'angle.
+\item \textcolor{red}{\texttt{Angle[ A, B, alpha]}}: Dessine un angle $\alpha$ à partir de $B$ avec pour sommet $B$.
+\item \textcolor{red}{\texttt{Angle[ c]}}: Angle de l'axe principal de la conique $c$ par rapport à l'horizontale.
+\item \textcolor{red}{\texttt{Angle[ v]}}: Angle entre l'axe $(Ox)$ et le vecteur $v$.
+\item \textcolor{red}{\texttt{Angle[ A]}}: Angle entre l'axe $(Ox)$ et le vecteur $\vec{OA}$.
+\item \textcolor{red}{\texttt{Angle[ n]}}: Convertit un nombre en un angle (le résultat entre $0$ et $2\pi$).
+\item \textcolor{red}{\texttt{Angle[ poly]}}: Tous les angles intérieurs du polygone direct poly.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Quelques points en géométrie}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{A=(a,b) }}: Définie et place le pt $A$ de coordonnées $(a;b)$.
+\item \textcolor{red}{\texttt{Point[g]}}: Point libre sur la ligne $g$.
+\item \textcolor{red}{\texttt{Point[c]}}: Point libre sur la conique $c$ (par ex. cercle, ellipse, hyperbole).
+\item \textcolor{red}{\texttt{Point[f]}}: Point libre sur la courbe représentative de la fonction $f$.
+\item \textcolor{red}{\texttt{Point[poly]}}: Point libre sur la ligne polygonale frontière de poly.
+\item \textcolor{red}{\texttt{Point[P, v]}}: Image du point $P$ dans la translation de vecteur $v$.
+\item \textcolor{red}{\texttt{MilieuCentre[A,B]}}: Milieu des points $A$ et $B$.
+\item \textcolor{red}{\texttt{MilieuCentre [s]}}: Milieu du segment $s$.
+\item \textcolor{red}{\texttt{CentreGravité[poly]}}: Centre de gravité du polygone poly.
+\item \textcolor{red}{\texttt{Intersection[g,h]}}: Point d'intersection entre les lignes $g$ et $h$.
+\item \textcolor{red}{\texttt{Intersection[g,c]}}: Tous les points d'intersection de la ligne $g$ avec la conique $c$ (max. 2).
+\item \textcolor{red}{\texttt{Intersection[g, c, n]}}: nème point d'intersection de la ligne $g$ avec la conique $c$.
+\item \textcolor{red}{\texttt{Intersection[ c1, c2]}}: Tous les points d'intersection entre les coniques $c_1$ et $c_2$ (max. 4).
+\item \textcolor{red}{\texttt{Intersection[ c1, c2, n]}}: nème point d'intersection entre les coniques $c_1$ et $c_2$.
+\item \textcolor{red}{\texttt{Intersection[ f1, f2]}}: Tous les points d'intersection entre les courbes $\cc{f_1}$ et $\cc{f_2}$ des polynômes $f_1$ et $f_2$.
+\item \textcolor{red}{\texttt{Intersection[ f1, f2, n]}}: nème point d'intersection entre les courbes $\cc{f_2}$ et $\cc{f_2}$ des polynômes $f_1$ et $f_2$.
+\item \textcolor{red}{\texttt{Intersection[ f, g]}}: Tous les points d'intersection entre la courbe $\cc{f}$ du polynôme $f$ et la ligne $g$.
+\item \textcolor{red}{\texttt{Intersection[ f, g, n]}}: nème point d'intersection entre la courbe $\cc{f}$ du polynôme $f$ et la ligne $g$.
+\item \textcolor{red}{\texttt{Intersection[ f, g, A]}}: Premier point d'intersection entre $\cc{f}$ et $\cc{g}$ à partir de $A$ (par la méthode de Newton).
+\item \textcolor{red}{\texttt{Intersection[ f, g, A]}}: Premier point d'intersection entre $\cc{f}$ et la ligne $g$ à partir de $A$ (par la méthode de Newton).
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Les vecteurs}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Vecteur[A,B]}}: Vecteur $AB$.
+\item \textcolor{red}{\texttt{Vecteur[A]}}: Vecteur $OA$.
+\item \textcolor{red}{\texttt{Direction[g]}}: Vecteur directeur de la ligne $g$.
+\item \textcolor{red}{\texttt{VecteurUnitaire[g]}}: Vecteur directeur unitaire de la ligne $g$.
+\item \textcolor{red}{\texttt{VecteurUnitaire [v]}}: Vecteur unitaire de même direction et même sens que le vecteur donné $v$.
+\item \textcolor{red}{\texttt{VecteurOrthogonal[g]}}: Vecteur orthogonal à la ligne $g$.
+\item \textcolor{red}{\texttt{VecteurOrthogonal[v]}}: Vecteur orthogonal au vecteur $v$.
+\item \textcolor{red}{\texttt{VecteurUnitaireOrthogonal[g]}}: Vecteur orthogonal unitaire à la ligne $g$.
+\item \textcolor{red}{\texttt{VecteurUnitaireOrthogonal[v]}}: Vecteur orthogonal unitaire au vecteur $v$.
+\item \textcolor{red}{\texttt{VecteurCourbure[ A, f]}}: Vecteur de courbure de la courbe représentative de la fonction $f$ au point $A$.
+\item \textcolor{red}{\texttt{VecteurCourbure[ A, c]}}: Vecteur de courbure de la courbe c au point $A$.
+\item \textcolor{red}{\texttt{u*v}}: Produit scalaire $\vec{u}.\vec{v}$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Objets courants de géométrie}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Segment[ A, B]}}: Segment $[AB]$.
+\item \textcolor{red}{\texttt{Segment[ A, a]}}: Segment d'origine le point $A$ et de  longueur $a$.
+\item \textcolor{red}{\texttt{DemiDroite[ A, B]}}: Demi-droite $[AB)$.
+\item \textcolor{red}{\texttt{DemiDroite[ A, v]}}: Demi-droite d'origine $A$ et de vecteur directeur $v$.
+\item \textcolor{red}{\texttt{Polygone[ A, B, C,...]}}: Polygone défini par les points donnés $A, B, C$,\dots
+\item \textcolor{red}{\texttt{Polygone[ A, B, n]}}: Polygone régulier à $n$ sommets (points $A$ et $B$ inclus)
+\item \textcolor{red}{\texttt{Droite[ A, B]}}: Droite $(AB)$.
+\item \textcolor{red}{\texttt{Droite[ A, g]}}: Droite passant par $A$ et parallèle à la ligne $g$.
+\item \textcolor{red}{\texttt{Droite[ A, v]}}: Droite passant par $A$ et de vecteur directeur $v$.
+\item \textcolor{red}{\texttt{Cercle[ M, r]}}: Cercle de centre $M$ et de rayon $r$.
+\item \textcolor{red}{\texttt{Cercle[ M, s]}}: Cercle de centre $M$ et de $rayon = Longueur[s]$.
+\item \textcolor{red}{\texttt{Cercle[ M, A]}}: Cercle de centre $M$ passant par $A$.
+\item \textcolor{red}{\texttt{Cercle[ A, B, C]}}: Cercle circonscrit à $ABC$ (i.e. cercle passant par $A, B$ et $C$).
+\item \textcolor{red}{\texttt{DemiCercle[ A, B]}}: Demi-cercle de diamètre le segment $[AB]$.
+\item \textcolor{red}{\texttt{ArcCercle[ M, A, B]}}: Arc de cercle de centre $M$ entre les deux points $A$ et $B$.
+\item \textcolor{red}{\texttt{ArcCercleCirconscrit[ A, B, C]}}: Arc de cercle passant par les trois points $A, B,$ et $C$.
+\item \textcolor{red}{\texttt{Arc[ c, A, B]}}: Arc entre les deux points $A$ et $B$ de la conique $c$ (Cercle ou Ellipse).
+\item \textcolor{red}{\texttt{SecteurCirculaire[ M, A, B]}}: Secteur circulaire de centre $M$ entre les deux points $A$ et $B$.
+\item \textcolor{red}{\texttt{SecteurCirculaireCirconscrit[ A, B, C]}}: Secteur circulaire passant par les trois points $A, B$, et $C$.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Droites particulières}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{axeX}}: Axe des abscisses.
+\item \textcolor{red}{\texttt{axeY}}: Axe des ordonnées.
+\item \textcolor{red}{\texttt{Perpendiculaire[point A,ligne g]}}: Droite passant par $A$ et perpendiculaire à la ligne $g$.
+\item \textcolor{red}{\texttt{Perpendiculaire[point A,vecteur v]}}: Droite passant par $A$ et orthogonale au vecteur $v$.
+\item \textcolor{red}{\texttt{Médiatrice[point A,point B]}}: Médiatrice du segment $[AB]$.
+\item \textcolor{red}{\texttt{Médiatrice[segment s]}}: Médiatrice du segment $s$.
+\item \textcolor{red}{\texttt{Bissectrice[ A, B, C]}}: Bissectrice de l'angle .
+\item \textcolor{red}{\texttt{Bissectrice[ g, h]}}: Les deux bissectrices des lignes $g$ et $h$.
+\item \textcolor{red}{\texttt{Tangente[ A, c]}}: (Toutes les) tangentes à $c$ passant par $A$.
+\item \textcolor{red}{\texttt{Tangente[ g, c]}}: Toutes les tangentes à $c$ parallèles à $g$.
+\item \textcolor{red}{\texttt{Tangente[ a, f]}}: Tangente à $\cc{f}$ en $x = a$.
+\item \textcolor{red}{\texttt{Tangente[ A, f]}}: Tangente à $\cc{f}$ en $x = x(A)$.
+\item \textcolor{red}{\texttt{Tangente[ A, c]}}: Tangente à la courbe $c$ au point $A$.
+\item \textcolor{red}{\texttt{Asymptote[ h]}}: Les deux asymptotes à l'hyperbole $h$.
+\item \textcolor{red}{\texttt{Directrice[ p]}}: Directrice de la parabole $p$.
+\item \textcolor{red}{\texttt{Axes[ c]}}: Les deux axes de la conique $c$.
+\item \textcolor{red}{\texttt{PremierAxe[ c]}}: Axe principal de la conique $c$.
+\item \textcolor{red}{\texttt{SecondAxe[ c]}}: Axe secondaire de la conique $c$.
+\item \textcolor{red}{\texttt{Polaire[ A, c]}}: Droite polaire de $A$ par rapport à la conique $c$.
+\item \textcolor{red}{\texttt{Diamètre[ g , c]}}: Diamètre de la conique $c$ parallèle à $g$.
+\item \textcolor{red}{\texttt{Diamètre[ v, c]}}: Diamètre de la conique $c$ ayant pour vecteur directeur $v$.
+\end{list}
+\end{Sec}
+
+
+
+\begin{Sec}
+{Les nombres de géométrie}
+\begin{list}{$\bullet$}{}
+\item \textcolor{red}{\texttt{Longueur[v]}}: Norme du vecteur $v$.
+\item \textcolor{red}{\texttt{Longueur[ A]}}: Distance $OA$.
+\item \textcolor{red}{\texttt{Aire[A,B,C, ...] }}: Aire du polygone défini par les points $A, B$, et $C$\dots
+\item \textcolor{red}{\texttt{Aire[c]}}: Aire délimitée par la conique $c$ (cercle ou ellipse).
+\item \textcolor{red}{\texttt{Distance[A,B]}}: Distance $AB$.
+\item \textcolor{red}{\texttt{Distance[A,g]}}: Distance d'un point $A$ à une ligne $g$.
+\item \textcolor{red}{\texttt{Distance[g,h]}}: Distance des lignes $g$ et $h$.
+\item \textcolor{red}{\texttt{Pente[g]}}: Pente d'une ligne $g$. Note : Cette commande trace aussi le triangle permettant de visualiser la pente
+(quand j'avance de 1, je monte de « pente »).
+\item \textcolor{red}{\texttt{Courbure[A,f]}}: Courbure de la courbe représentative de $f$ au point $A$.
+\item \textcolor{red}{\texttt{Courbure[A, c]}}: Courbure de la courbe c au point $A$.
+\item \textcolor{red}{\texttt{Rayon[c]}}: Rayon du cercle $c$.
+\item \textcolor{red}{\texttt{Circonférence[c]}}: Retourne la circonférence de la conique $c$ (cercle ou ellipse).
+\item \textcolor{red}{\texttt{Périmètre[poly]}}: Périmètre du polygone poly
+\item \textcolor{red}{\texttt{Paramètre [p]}}: Paramètre de la parabole p (distance entre la directrice et le foyer).
+\item \textcolor{red}{\texttt{LongueurPremierAxe[c]}}: Longueur du premier axe (axe principal) de la conique $c$.
+\item \textcolor{red}{\texttt{LongueurSecondAxe[c]}}: Longueur du second axe de la conique $c$.
+\item \textcolor{red}{\texttt{ExcentricitéLinéaire[c]}}: Excentricité linéaire de la conique (ellipse ou hyperbole) $c$ (à savoir : la demi distance focale).
+\item \textcolor{red}{\texttt{RapportColinéarité[A,B,C]}}: Retourne le rapport de colinéarité  de 3 points $A, B,$ et $C$ alignés, tel que $AC= \lambda \times AB$ ou $C=A+ \lambda \times AB$
+\item \textcolor{red}{\texttt{Birapport[A,B,C,D]}}: Birapport  de 4 points A, B, C, et D alignés, tel que:\\
+$\lambda =\dfrac{\text{RapportColinéarité}[C,B,A]}{\text{RapportColinéarité}[D,B,A]}$
+\end{list}
+\end{Sec}
+\end{multicols*}
+
+\newpage
+
+\Chapter{R-cran AU LYCÉE}
+
+\begin{multicols*}{2}
+
+\begin{Sec}
+{	Créer des listes (ou vecteurs).}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{c(8,7,8,9)}>>} pour générer la liste des nombres 8, 7, 8 et 9.
+\item \textcolor{red}{<<\texttt{x=c(8,7,8,9)}>>} pour générer la liste des nombres 8, 7, 8 et 9 dans la variable $x$.
+\item \textcolor{red}{<<\texttt{x=scan()}>>} pour écrire dans la variable x, les valeurs à la suite en appuyant sur entrée entre chaque valeur. (2 fois entrée pour finir)
+\item \textcolor{red}{<<\texttt{1:10}>>} pour générer les nombres entiers de 1 à 10
+\item \textcolor{red}{<<\texttt{seq(1,10)}>>}  pour générer une \textbf{séquence} des nombres entiers de 1 à 10, le pas est 1 par défaut.
+\item \textcolor{red}{<<\texttt{seq(1,10,2)}>>}  pour générer une \textbf{séquence} des nombres de 1 à 10 avec un pas de 2.
+\item \textcolor{red}{<<\texttt{seq(1,10,length=20}>>}  pour générer une \textbf{séquence} de 8 nombres de 1 à 10.
+\item \textcolor{red}{<<\texttt{rep(2,6) }>>} pour \textbf{répéter} 6 fois le nombre 2. C'est identique à $c(2,2,2,2,2,2)$.
+\item \textcolor{red}{<<\texttt{1,rep(2,6),rep(3,4) }>>} est identique à $c(1,2,2,2,2,2,2,3,3,3,3)$.
+\item \textcolor{red}{<<\texttt{x=c(1,2,3); n=c(1,6,4); rep(x,n)}>>} On obtient ainsi un 1, six 2 et quatre 3. Très pratique les regroupements par classes.
+
+$x$ et $n$ doivent avoir le même nombre d'éléments.
+
+\item \textcolor{red}{<<\texttt{table(x)}>>}  pour visualiser sous forme de tableau les regroupements par classe.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Fonctions élémentaires sur les listes.}
+
+Par exemple pour $x=c(8,7,8,9)$
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{min(x)}>>} est la valeur \textbf{minimum} de $x$.
+\item \textcolor{red}{<<\texttt{max(x)}>>} est la valeur \textbf{maximum} de $x$.
+\item \textcolor{red}{<<\texttt{range(x)}>>} est la liste contenant le minimum et le maximum de $x$.
+\item \textcolor{red}{<<\texttt{sum(x)}>>} est la \textbf{somme} des valeurs de $x$.
+\item \textcolor{red}{<<\texttt{length(x)}>>} est le nombre de valeurs que contient $x$.
+\item \textcolor{red}{<<\texttt{mean(x)}>>} retourne la \textbf{moyenne} de $x$.
+
+
+\item \textcolor{red}{<<\texttt{var}>>} retourne la \textbf{variance} variance (non-biaisée) de $x$. Ce n'est pas la variance (de la population entière non estimée) que nous utilisons au lycée.\\
+
+
+	Sur vos calculatrice c'est la variance qui correspond à la touche S.
+	Pour obtenir la variance utilisé au lycée  il y a plusieurs méthodes %mais la plus simple est encore d'utiliser la définition.
+
+	\begin{list}{\ding{212}}{}
+	\item mean((a-mean(a))\string^2) \quad \textit{(la définition de la variance)}
+	\item length(x)*sum((x - mean(x))\string^2) \quad \textit{(la propriété de la variance)}
+	\item var(x)*(length(x)-1)/length(x) \quad \textit{lien entre les deux formules.}
+	\end{list}
+\item \textcolor{red}{<<\texttt{sd}>>} retourne l'\textbf{écart type} de $x$ (sd pour standard deviation).
+\item \textcolor{red}{<<\texttt{summary}>>} retourne un résumé des valeurs de $x$: le Minimum, 1\ier Quartile, la médiane, le 3\ieme quartile et la maximum.
+\item \textcolor{red}{<<\texttt{IQR}>>} retourne l'écart interquartile de $x$. (Interquartile Range)
+\item \textcolor{red}{<<\texttt{sort(x)}>>} trie $x$ par ordre croissant.
+\item \textcolor{red}{<<\texttt{sort(x,decreasing=True)}>>} ou  \textcolor{red}{<<\texttt{sort(x,de=T)}>>}  trie $x$ par ordre décroissant.
+\item \textcolor{red}{<<\texttt{cumsum(x)}>>} retourne les valeurs \textbf{cumulées} et \textbf{croissantes} de $x$
+\item \textcolor{red}{<<\texttt{median(x)}>>} retourne la valeur \textbf{médiane} de $x$
+\item \textcolor{red}{<<\texttt{quantile(x,0.25)}>>} retourne le 1° quartile $\boldsymbol{Q_1}$ de $x$.
+\item \textcolor{red}{<<\texttt{quantile(x,0.75)}>>} retourne le 3° quartile $\boldsymbol{Q_3}$ de $x$.
+\item \textcolor{red}{<<\texttt{quantile(x,0.1)}>>} retourne le 1° décile $\boldsymbol{D_1}$ de $x$.
+\item \textcolor{red}{<<\texttt{quantile(x,0.9)}>>} retourne le 9° décile $\boldsymbol{D_9}$ de $x$.
+
+%\item \textcolor{red}{<<\texttt{fivenum}>>} retourne les 5 valeurs de $x$ pour la boite à moutache: le minimum, 2° qurtile, la médiane, 3° quartile et le maximum.
+
+%cumsum , cummax et cummin , sort , diff mean , sd   standard deviation = écart type ) fivenum , summary et IQR (Inter Quartile Range) boxplot.stats, median, quantile, range.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Opération sur les nombres}
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{round(x)}>>} \textbf{arrondi} $x$ à l'entier
+\item \textcolor{red}{<<\texttt{round(x, 2)}>>}  \textbf{arrondi} $x$ au centième.
+\item \textcolor{red}{<<\texttt{round(x, -1)}>>} \textbf{arrondi} $x$ aux dizaines
+\item \textcolor{red}{<<\texttt{ceiling(x)}>>} renvoie le plus petit entier supérieur à $x$.
+\item \textcolor{red}{<<\texttt{floor(x)}>>} renvoie le plus grand entier inférieur à $x$.
+\item \textcolor{red}{<<\texttt{trunc(x)}>>} renvoie la \textbf{troncature} de $x$.
+\item \textcolor{red}{<<\texttt{7\%/\%2}>>} renvoie le \textbf{quotient} de la division euclidienne de 7 par 2.
+\item \textcolor{red}{<<\texttt{7\%\%2}>>} renvoie le \textbf{reste} de la division euclidienne de 7 par 2.\\
+Si n\%\%2=0 alors n est pair  sinon n est impair.
+\item \textcolor{red}{<<\texttt{x<=30}>>} $x$ est il plus petit ou égale à 30?
+\item \textcolor{red}{<<\texttt{sum(x<=30)}>>} Le \textbf{nombre d'élément} de $x$ inférieur ou égale à 30.
+\item \textcolor{red}{<<\texttt{which(x<=30)}>>} renvoie la \textbf{positions} des valeurs de $x$ inférieur ou égale à 30.
+\item \textcolor{red}{<<\texttt{factorial (7)}>>} \quad \textbf{Factorielle} de 7, $\quad$7!=5040
+\item \textcolor{red}{<<\texttt{choose (10,2)}>>} \quad Nombre de \textbf{combinaisons} de $p$ parmi $n\quad$\\
+\texttt{for (n in 0:10) print(choose(n, k = 0\string:n))}  pour avoir le triangle de pascal
+\item \textcolor{red}{\texttt{combn(5,2)}} \quad génère toutes les combinaisons de 2 éléments parmi 5.
+
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Aléatoire}
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{runif(1,2, 10)}>>} génère un \textbf{nombre aléatoire} entre 2 et 10. runif est la loi uniforme.
+\item \textcolor{red}{<<\texttt{runif(1000, 2, 10)}>>} génère 1000 nombres aléatoires entre 2 et 10.
+\item \textcolor{red}{<<\texttt{sample(1:10, 1)}>>} génère 1 nombre entier aléatoirement \textbf{sans répétition}  entre 1 et 10.
+\item \textcolor{red}{<<\texttt{sample(1:10, 5)}>>} génère 5 nombres entiers aléatoirement \textbf{sans répétition} entre 1 et 10.
+\item \textcolor{red}{<<\texttt{ sample(1:6,50,replace=TRUE)}>>} ou \textcolor{red}{<<\texttt{ sample(1:6,50,re=T)}>>}   génère 50 nombres entiers aléatoirement \textbf{avec répétition} entre 1 et 6.
+
+Par exemple pour génèrer 50 lancers d'un dé équilibré à 6 faces.
+
+
+\item \textcolor{red}{<<\texttt{sample(1:6,50,replace=T, p=c(1,1,1,1,4,4)/12)}>>} génère 50 lancers d'un dé à 6 faces pipé de probabilité $p_1=p_2=p_3=p_4=\dfrac{1}{12}$ et $p_5=p6=\dfrac{4}{12}=\dfrac{1}{3}$.
+
+On aurait pu utiliser  $p=c(1/6,1/6,1/6,1/6,1/3,1/3)$
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les lois de probabilité.}
+
+\begin{list}{$\bullet $}{Le nom de chaque loi est précédé de r comme randomn, d pour la densité et  p pour la fonction de répartition.}
+\item \textbf{\underline{La loi uniforme}}
+	\begin{list}{\ding{212}}{}
+	\item \textcolor{red}{<<\texttt{runif(x,min,max)}>>} donne x nombres  qui suivent une la \textbf{loi uniforme} (voir le paragraphe précédent).
+	\item \textcolor{red}{<<\texttt{dunif(x, min, max)}>>} est la densité de la loi uniforme.
+	\item \textcolor{red}{<<\texttt{punif(x, min, max)}>>} est la fonction de répartition de la loi uniforme.
+\end{list}
+
+\item \textbf{\underline{La loi binomiale}}
+	\begin{list}{\ding{212}}{}
+	\item \textcolor{red}{<<\texttt{rbinom(x,n,p)}>>}: donne x nombres  qui suivent La \textbf{loi Binomiale} de paramètre $n$ et $p$.
+	\item \textcolor{red}{<<\texttt{dbinom(x, min, max)}>>} est la densité de la loi binomiale.
+
+	\item \textcolor{red}{<<\texttt{pbinom(x, min, max)}>>} est la fonction de répartition de la loi binomiale.
+	\item Par exemple supposons que $X$ suit la loi binomiale $B(10,0.6)$.
+
+	\lstR
+	%\lstset{language=R}
+\begin{lstlisting}
+dbinom(4,10,0.6) # donne P(X = 4)
+sum(dbinom(4:8,10,0.6) # donne P(4<X<8)
+\end{lstlisting}
+\end{list}
+%	\begin{list}{\ding{212}}{}
+%	\item \textcolor{red}{<<\texttt{dbinom(4,10,0.6)}>>}  donne P(X = 4)
+%	\item \textcolor{red}{<<sum(dbinom(4:8,10,0.6)>>} donne P(4<X<8)
+
+\item \textbf{\underline{La loi exponentielle}}
+	\begin{list}{\ding{212}}{}
+	\item \textcolor{red}{<<\texttt{rexp(x,p)}>>}: donne x nombres  qui suivent La \textbf{loi exponentielle} de paramètre $p$.
+	\item \textcolor{red}{<<\texttt{dexp(x,p)}>>} est la densité de la loi exponentielle.
+	\item \textcolor{red}{<<\texttt{pexp(x,p)}>>} est la fonction de répartition de la loi exponentielle.
+\end{list}
+
+\item \textbf{\underline{La loi normale}}
+	\begin{list}{\ding{212}}{}
+	\item \textcolor{red}{<<rnorm(5000,0,1)>>} génère 5000 nombres suivant la loi normale d'espérance 0 et d'écart type 1.
+	\item \textcolor{red}{<<dnorm(5000,0,1)>>} est la densité de la loi normale.
+	\item \textcolor{red}{<<pnorm(5000,0,1)>>}est la fonction de répartition de la loi normale.
+	\item \lstR
+%\lstset{language=R}
+\begin{lstlisting}
+x=rnorm(5000,0,1)
+hist(x, nclass=50, col="blue", main="loi normale")
+\end{lstlisting}
+\end{list}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	les conditions}
+
+par exemple $x=c(50,30,10,20,60,30,20,40)$.
+
+\begin{list}{$\bullet $}{}
+\item \texttt{<<\textcolor{red}{20\%in\%x} >>} 20 appartient il à $x$?
+\item \texttt{<<\textcolor{red}{x<20 \textbf{|} x>40 }>>} x est il  inférieur à 20 \textbf{ou} supérieur à 40.
+\item \texttt{<<\textcolor{red}{x<40 \textbf{\string&} x>30}>>} x est il  inférieur à 20 \textbf{et} supérieur à 40.
+\item \texttt{<<\textcolor{red}{!}>>} signifie le contraire
+\item \texttt{<<\textcolor{red}{\texttt{x!=20}}>>} $x$ n'est pas égal à 20.
+%\item \texttt{<<\textcolor{red}{}>>}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	boucles}
+
+%Il est plus efficace d'utiliser la fonction apply  que les boucles.
+\begin{list}{$\bullet $}{}
+%\item \textcolor{red}{<<\texttt{for(i in 1:100){a<-sample(1:6, 600,replace=T) ; t<-table(a)/600; u[i]<-sum((t-1/6)\string^2)}}>>}
+
+\item \texttt{\textcolor{red}{if} (condition) $\textcolor{red}{\boldsymbol{\{}}$  <instruction> $\textcolor{red}{\boldsymbol{\}}}$  \textcolor{red}{else} $\textcolor{red}{\boldsymbol{\{}}$  <instruction2> $\textcolor{red}{\boldsymbol{\}}}$  }
+
+	\texttt{\textcolor{red}{if} (condition)  $\textcolor{red}{\boldsymbol{\{}}$<instruction1> ; <instruction2>$\textcolor{red}{\boldsymbol{\}}}$  \textcolor{red}{else}  $\textcolor{red}{\boldsymbol{\{}}$<instruction3>$\textcolor{red}{\boldsymbol{\}}}$ }
+
+\begin{minipage}[t]{8cm}
+Pour plus de clareté il est préférable de rédiger en verticale
+\end{minipage}\hspace{0.5cm}
+\begin{minipage}[t]{5cm}
+\texttt{\textcolor{red}{if} (condition)  $\textcolor{red}{\boldsymbol{\{}}$\\ <instruction1> \\ <instruction2>$\textcolor{red}{\boldsymbol{\}}}$ \\ \textcolor{red}{else}  $\textcolor{red}{\boldsymbol{\{}}$\\  <instruction3> \\ <instruction4>$\textcolor{red}{\boldsymbol{\}}}$ }
+\end{minipage}
+
+\item \texttt{\textcolor{red}{for} (i in 1:10) $\textcolor{red}{\boldsymbol{\{}}$ instruction $\textcolor{red}{\boldsymbol{\}}}$} signifie pour i allant de 1 à 10 faire\\
+Exemple:
+\lstR
+%\lstset{language=R}
+\begin{lstlisting}
+	for (i in 1:10) {print(i^2)}
+\end{lstlisting}
+
+\item \texttt{\textcolor{red}{while} (i<=10)  $\textcolor{red}{\boldsymbol{\{}}$ instruction \dots $\textcolor{red}{\boldsymbol{\}}}$} signifie tant que $x$ est inférieur à 10 faire
+
+Exemple:
+%\lstset{language=R}
+\lstR
+\begin{lstlisting}
+i=0
+while (i<=10) {print(i)}; i=i+1
+\end{lstlisting}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Les graphiques}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{hist(x, breaks}>>} crée un histogramme de la variable $x$ avec un découpage breaks.\\
+hist(x, seq(0,2,0.2) donnera un histogramme de $x$ avec les classes 0,0.2,0.4,0.6,\dots2
+\item \textcolor{red}{<<\texttt{hist(x, nclass=10}>>} crée un histogramme de la variable $x$ avec 10 classes.
+\item \textcolor{red}{<<\texttt{plot(function(x) x\string^2,col= 'red' , xlim=c(-2,10))}>>} trace la fonction carrée sur [0;5].
+\item \textcolor{red}{<<\texttt{plot(function(x,y,type='l')}>>} Trace les points de coordonnées x et y relié par une ligne. x et y sont des vecteurs de même dimension
+
+\item \textcolor{red}{<<\texttt{abline(1,0.5)}>>} trace la droite $y=0.5x+1$.
+\item \textcolor{red}{<<\texttt{abline(h=0,v=2)}>>} trace la droite $y=0$ et $x=2$.
+\item \textcolor{red}{<<\texttt{segments(1,2, 3, 0)}>>} trace le segment $A(1;2)$ $B(3;0)$
+\item On trouve les paramètres
+\begin{list}{\ding{212}}{}
+\item \textcolor{red}{<<\texttt{add=TRUE}>>} ajoute au graphique déjà tracé
+\item \textcolor{red}{<<\texttt{col='cyan'}>>} La couleur est verte
+\item \textcolor{red}{<<\texttt{xlim=c(2,10)}>>} trace le graphique avec  $x\in[2,10]$.
+\item \textcolor{red}{<<\texttt{ylim=c(2,10)}>>} trace le graphique avec  $y\in[2,10]$.
+\item \textcolor{red}{<<\texttt{main='courbe'}>>} Le titre du graphique est 'titre'
+\item \textcolor{red}{<<\texttt{sub='sous titre'}>>} sous titre du graphique
+\item \textcolor{red}{<<\texttt{xlab='x'}>>} Label sur l'axe des abscisses.
+\item \textcolor{red}{<<\texttt{xlab='y'}>>} Label sur l'axe des ordonnées.
+%\item \textcolor{red}{<<\texttt{bg}>>}
+\item \textcolor{red}{<<\texttt{pch=18}>>} type de point (de 0 à 25)
+\item \textcolor{red}{<<\texttt{lty=3}>>} type de ligne.
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+%\item \textcolor{red}{<<\texttt{<++>}>>} <++>
+\end{list}
+%plot(dnorm(seq(0,20,0.2),10,2),col="green")
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Échange avec les autres logiciels}
+\begin{list}{$\bullet $}{}
+\item \texttt{\textcolor{red}{x <- read.table("data.dat")}} permet de \textbf{lire} le fichier de données data.dat dans la variable $x$.\\
+\texttt{\textcolor{red}{ write.table(x, file = "", sep = " ",eol = "\string\n",header=FALSE )}} où file est le nom du fichier, sep est le séparateur de champ, eol le caractère de fin de ligne (\string\n correspond à un retour chariot) et headers indique si le fichier contient les noms des variables sur la 1\iere ligne.\\
+%R peut lire les formats de type tableur comme
+\item \texttt{\textcolor{red}{write.table(x, file = "data.dat"}} permet de \textbf{sauvegarder} la variable $x$ dans la fichier data.dat.
+\item Pour sauver un graphique
+
+postscript('rplot.eps')\\
+plot(x,y)\\
+dev.off()\\
+
+
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Divers}
+\begin{list}{$\bullet $}{}
+\item \texttt{\textcolor{red}{options(max.print=10\string^5)}} Pour pouvoir afficher à l'écran $10^{5}$ nombres.\\
+\item \texttt{\textcolor{red}{function}} Pour créer une fonction.\\
+	\texttt{f=function(x) {x\string^2}}  pour la fonction carrée.
+\end{list}
+\end{Sec}
+
+
+\end{multicols*}
+
+
+
+
+\Chapter{MAXIMA AU LYCÉE}
+
+\begin{multicols*}{3}%%
+\begin{Sec}
+{Feuille de calcul}
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{<<\texttt{ ; }>>} exécute une commande en affichant le résultat. Par exemple \texttt{1+2/3;}
+\item \textcolor{red}{<<\texttt{ \$ }>>} exécute une commande sans afficher le résultat. Par exemple \texttt{a:2 \$}
+\item \textcolor{red}{<<\texttt{ \% }>>} rappelle le dernier calcul effectué
+\item \textcolor{red}{\texttt{? plot2d }}  affiche l'aide en ligne sur  l'instruction \texttt{plot2d}
+\item \textcolor{red}{\texttt{example(expand)}} affiche des exemples d'utilisation de l'instruction \texttt{expand}
+\item \textcolor{red}{\texttt{kill(all)}} réinitialise le système
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{Opérateurs}
+\begin{list}{$\bullet $}{}
+\item    les quatre opérations usuelles \textcolor{red}{\texttt{ + , - , * , / }}
+\item    opérateur \textcolor{red}{<<\texttt{ \^ } >>} élévation à une puissance. \texttt{x\^\,3} est $x^3$
+\item   opérateur \textcolor{red}{<<\texttt{ \#} >>}  non égal à (ou différent de)
+\item    opérateurs de comparaison \textcolor{red}{\texttt{ = , < , <= , > , >=}}
+\item   opérateur \textcolor{red}{<<\texttt{ : }>>} d'affectation.\\ \texttt{a:3}\quad donne la valeur 3 à la variable $a$.
+\item   opérateur \textcolor{red}{<<\texttt{ := }>>} pour définir une fonction.
+\item   opérateur \textcolor{red}{<<\texttt{ = }>>} indique une équation dans Maxima.
+\item   opérateur \textcolor{red}{<<\texttt{ !} >>} factoriel d'un entier naturel,\\ par exemple $5!=1\times 2 \times 3\times 4\times 5=120$.
+\item   opérateur \textcolor{red}{<<\texttt{ .} >>} de multiplication de deux matrices.
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{Constantes}
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{\%pi}}\quad désigne $\pi\approx 3,14159$
+\item   \textcolor{red}{\texttt{\%e}}\;\quad  désigne $\e=\exp(1)\approx 2,7183$
+\item  \textcolor{red}{\texttt{\%i}}  est l'imaginaire pur de module 1, d'argument $\pi/2$
+\item   \textcolor{red}{\texttt{true}}  \quad\;valeur "vrai"
+\item   \textcolor{red}{\texttt{false}} \quad valeur "faux"
+\item   \textcolor{red}{\texttt{inf}}  \quad désigne $+\infty$
+\item   \textcolor{red}{\texttt{minf}} \quad désigne $-\infty$
+\item   \textcolor{red}{\texttt{\%gamma}} \quad constante d'Euler-Mascheroni qui est la\\ limite de la suite de terme général $\left(\displaystyle\sum^{n}_{k=1}\frac{1}{k}\right)-\ln n$
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{Nombres réels}
+\Subsec{ fonctions usuelles}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{abs(x)}}\quad valeur absolue de $x$
+\item    \textcolor{red}{\texttt{floor(x)}} \quad partie entière de $x$
+\item    \textcolor{red}{\texttt{sqrt(x)}}\quad racine carrée de $x$
+\item    \textcolor{red}{\texttt{sin(x) , cos(x) , tan(x)}}
+\item    \textcolor{red}{\texttt{exp(x) , log(x)}}\quad \emph{Attention} : log désigne la fonction \textbf{logarithme népérien}
+\end{list}
+
+\Subsec{valeurs approchées}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{float(x)}} fournit une valeur décimale approchée de $x$
+\item    \textcolor{red}{\texttt{bfloat(x)}} donne une valeur approchée de $x$ en notation scientifique
+\item    \textcolor{red}{\texttt{fpprec:20}}\quad fixe la précision de la valeur approchée\\ donnée par \texttt{bfloat} (20 chiffres affichés au lieu de 16 par défaut)
+\end{list}
+
+
+\Subsec{ trigonométrie }
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{acos(0.2)}} donne la mesure en radian de l'angle géométrique ayant pour cosinus 0,2
+\item    \textcolor{red}{\texttt{trigexpand(a)}} développe l'expression\\ trigonométrique $a$ en utilisant les formules d'addition de cos et sin. Par exemple, \texttt{trigexpand(cos(x+y))}\\ renvoie $\cos x\cos y-\sin x\sin y$
+\item    \textcolor{red}{\texttt{trigreduce(a)}} permet de linéariser un polynôme trigonométrique $a$. Par exemple,\\ \texttt{trigreduce(sin(x)\^\,3)} renvoie $\frac{3\sin x-\sin(3x)}{4} $
+\item    \textcolor{red}{\texttt{trigsimp(a)}} simplifie l'expression trigonométrique $a$ en utilisant la relation $\cos^2t+\sin^2t=1$ et en remplaçant $\tan t$ par $\frac{\sin t}{\cos t} $
+²
+\item  \textcolor{red}{\texttt{load(ntrig)}} Permet de charger le package permettant de calculer des lignes pour des valeurs de $x$ non usuelles.
+
+Exemple : Pour calculer $cos\dfrac{\pi}{10}$  on fait :
+
+load(ntrig)
+
+cos(\%pi/10) et on obtient $\dfrac{\sqrt[]{\sqrt[]{5}+5}}{2\sqrt[]{2}}$.
+
+ \end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Arithmétique des  entiers}
+%\section{Arithmétique des  entiers}
+Soit $a$ et $b$ deux entiers. Soit $n$ et $p$ deux entiers naturels.\\
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{divide(a,b)}} \quad division euclidienne de $a$ par $b$.\\
+	Le résultat est une liste dont le premier élément est le quotient et le second élément le reste
+\item    \textcolor{red}{\texttt{divisors(a)}} \quad ensemble des diviseurs positifs de $a$
+\item    \textcolor{red}{\texttt{divsum(a)}} \quad somme des diviseurs positifs de $a$
+\item   \textcolor{red}{\texttt{mod(a,b)}}  \quad reste de la division de $a$ par $b$
+\item    \textcolor{red}{\texttt{gcd(a,b)}}\quad pgcd de $a$ et $b$
+\item   \textcolor{red}{\texttt{load(functs) \$ lcm(a,b)}} \quad ppcm de $a$ et $b$
+\item   \textcolor{red}{\texttt{primep(p)}} \quad teste si $p$ est premier
+\item    \textcolor{red}{\texttt{p:prev\_prime(n)}}\quad donne le nombre premier $p$ qui\\ vient juste avant $n$, avec $p<n$
+\item   \textcolor{red}{\texttt{next\_prime(n)}} \quad donne le nombre premier qui vient juste après $n$
+\item   \textcolor{red}{\texttt{factor(n)}} \quad décompose $n$ en produit de facteurs premiers
+\item   \textcolor{red}{\texttt{ifactors(n)}} \quad décompose $n$ en produit de facteurs premiers en affichant le résultat sous forme de liste
+\item   \textcolor{red}{\texttt{binomial(n,p)}}  est le cefficient binomial $\begin{pmatrix} n \\p\end{pmatrix} $
+\item  \textcolor{red}{\texttt{random(n)}} renvoie un entier naturel, choisi au hasard entre 0 et $n-1$ lorsque $n\in\N^*$
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Nombres complexes}
+%\section{ Nombres complexes}
+Soit $z$ un nombre complexe.\\
+\begin{list}{$\bullet $}{}
+\item  \textcolor{red}{\texttt{\%i}}   \quad désigne le complexe $i$
+\item  \textcolor{red}{\texttt{realpart(z)}} \quad partie réelle de $z$
+\item  \textcolor{red}{\texttt{imagpart(z)}} \quad partie imaginaire de $z$
+\item  \textcolor{red}{\texttt{conjugate(z)}} \quad conjugué de $z$
+\item  \textcolor{red}{\texttt{abs(z)}}\quad module de $z$
+\item  \textcolor{red}{\texttt{carg(z)}}\quad argument de $z$ (dans $]-\pi,\pi]$)
+\item  \textcolor{red}{\texttt{rectform(z)}}  \quad écrit $z$ sous forme algébrique
+\item  \textcolor{red}{\texttt{polarform(z)}}  \quad écrit $z$ sous forme exponentielle
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{	Calcul algébrique}
+%\section{ Calcul algébrique }
+Soit $P$ et $Q$ deux polynômes.\\
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{expand(P)}} \quad développe $P$
+\item   \textcolor{red}{\texttt{factor(P)}} \quad factorise $P$
+\item   \textcolor{red}{\texttt{gfactor(P)}} \quad factorise $P$ dans l'ensemble $\C$
+\item    \textcolor{red}{\texttt{divide(P,Q,x)}}\quad calcule le quotient et le reste de la divison de $P$ par $Q$. Le résultat est une liste dont le premier élément est le quotient et le second élément le reste
+\item   \textcolor{red}{\texttt{partfrac(P/Q,x)}}\quad  décompose la fonction rationnelle $P/Q$ (de la variable $x$) en éléments simples
+\item   \textcolor{red}{\texttt{ratsimp(expr)}} \quad simplifie l'expression  \texttt{expr}\\ (en écrivant  tout sur le même dénominateur)
+\item    \textcolor{red}{\texttt{subst(1/z,x,expr)}}\quad remplace $x$ par $1/z$ dans\\ l'expression \texttt{expr}
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{	Fonctions numériques }
+%\section{ Fonctions numériques }
+\Subsec{ définir une fonction}
+
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{f(x):=x\^ \:2+2*x-3}}
+\item    \textcolor{red}{\texttt{define(f(x),x\^\:2+2*x-3)}}
+\item    \textcolor{red}{\texttt{f:lambda([x],x\^\,2+2*x-3)}}
+\end{list}
+
+\Subsec{ limites, tangentes et asymptotes}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{limit(sin(x)/x,x,0)}}\quad limite en 0
+\item    \textcolor{red}{\texttt{limit(1/x,x,0,plus)}}\quad limite à droite en 0
+\item    \textcolor{red}{\texttt{limit(1/x,x,0,minus)}}\quad limite à gauche en 0
+\item    \textcolor{red}{\texttt{limit(x*exp(x),x,minf)}}\quad limite en $-\infty$
+\item    \textcolor{red}{\texttt{taylor(f(x),x,a,1)}}\; permet d'obtenir l'équation réduite de la tangente à $\mathcal C_f$ au point $A(a,f(a))$
+\item    \textcolor{red}{\texttt{taylor(sqrt(1+x\^\,2),x,inf,2)}}\quad permet d'obtenir le développement asymptotique à 2 termes de $x\mapsto \sqrt{1+x^2}$ en $+\infty$
+\end{list}
+
+\Subsec{ dérivation}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{diff(f(x),x)}} \quad calcule la dérivée $f'(x)$
+\item    \textcolor{red}{\texttt{diff(f(x),x,2)}}\quad calcule $f''(x)$, dérivée seconde
+\item  \textcolor{red}{\texttt{ define(fp(x),diff(f(x),x))}} \quad définie la fonction fp comme la fonction dérivée de f.
+\end{list}
+
+
+\Subsec{ courbes représentatives}
+Pour afficher les courbes $\mathcal C_f$ et $\mathcal C_g$ sur le même graphique, dans la fenêtre $[x_1,x_2]\times[y_1,y_2]$, on entre :\\
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{plot2d([f(x),g(x)],[x,x1,x2],[y,y1,y2])}}
+\end{list}
+
+
+
+\Subsec{ intégrales}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{integrate(f(x),x)}}\quad calcule une primitive de la fonction $f$
+\item \textcolor{red}{\texttt{integrate(f(x),x,a,b)}} calcule l'intégrale $\int^{b}_{a}f(x)\,\text dx $
+\item \textcolor{red}{\texttt{romberg(1/log(x),x,2,3)}} fournit une approximation de l'intégrale $\int^{3}_{2}\frac{1}{\ln x}\,\text dx $
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Suites }
+\Subsec{Définition}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{u[n]:=1/n}}\quad est la suite définie par son terme général $u_n=\dfrac{1}{n}$
+\item    \textcolor{red}{\texttt{u[0]:1}}\quad on définie $u_0$.\\
+	\textcolor{red}{\texttt{u[n]:=1/(1+u[n-1])}}\quad est la suite définie par récurrence $u_{n+1}=\dfrac{1}{1+u_n}$  \\
+	\textit{On ne peut pas écrire \texttt{u[n+1]:=1/(1+u[n])}}
+\end{list}
+
+\Subsec{Calcul sur les suites}
+\begin{list}{$\bullet $}{}
+\item\textcolor{red}{\texttt{ makelist(u[k], k, 0, 5);}}\quad Affiche les 6 premiers termes de la suite $u_n$.  \\
+\item    \textcolor{red}{\texttt{sum(1/u[n],n,0,20)}}\quad pour calculer $S=u_0+u_1+\dots+u_{20}$.
+\item    \textcolor{red}{\texttt{limit(u[n],n,inf);}}\quad pour calculer la convergence de la suite $u_n$ lorsque $u_n$ est définie par sa formule générale.
+	%\item 	\textcolor{red}{\texttt{lim(u[n],0,inf}}\quad est la limite de la suite $u_n$ en $+\infty$
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{	Équations}
+\Subsec{ résolution d'équations}
+Résolution exacte dans l'ensemble $\C$ des complexes :\\
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{solve(x\^\:2+x=1,x)}}  \\
+	Résolution approchée dans $\R$ :
+\item   \textcolor{red}{\texttt{find\_root(x\^\,5=1+x,x,1,2)}} \quad solution dans $[1,2]$
+\end{list}
+
+\Subsec{ systèmes linéaires}
+Pour résoudre le système $\left\{
+\begin{array}{l} 3x+2y=1 \\ x-y=2
+\end{array}
+\right. $\\
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{S1:[3*x+2*y=1,x-y=2]}}
+\item    \textcolor{red}{\texttt{solve(S1,[x,y])}}
+\end{list}
+
+\Subsec{ équations différentielles}
+Pour résoudre l'équation différentielle $y''+w^2\,y=\sin x$, on définit d'abord l'équation :\\
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{eqn:'diff(y,x,2)+w\^\,2*y=sin(x)}} \\
+On la résout :
+\item   \textcolor{red}{\texttt{sol:ode2(eqn,y,x)}}  \\
+Pour trouver la solution satisfaisant aux conditions initiales $y(0)=1$ et $y'(0)=-1$, on entre :
+\item    \textcolor{red}{\texttt{ic2(sol,x=0,y=1,diff(y,x)=-1)}} \\
+Pour trouver la solution satisfaisant aux conditions $y(0)=1$ et $y(1)=0$, on entre :
+\item    \textcolor{red}{\texttt{bc2(sol,x=0,y=1,x=1,y=0)}}
+\item  \textcolor{red}{\texttt{rhs(sol)}} saisit le membre de droite de l'égalité \texttt{sol} obtenue ci-dessus.
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Listes}
+%\section{ Listes }
+Une liste est un type de données, qui tient compte de l'ordre, accepte les répétitions d'éléments et est délimité par les caractères [ et ]. Une liste est numérotée à partir de 0.  Voici quelques fonctions importantes concernant les listes :\\
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{L:makelist(k\^\,2,k,0,9)}} permet de créer la liste des carrés des 10 premiers naturels, $k$ prenant toutes les valeurs entières de 0 jusqu'à 9.
+\item   \textcolor{red}{\texttt{L[2]:5}} remplace le 3\ieme élément de la liste $L$ par 5.
+\item    \textcolor{red}{\texttt{length(L)}} donne le nombre d'éléments de la liste $L$.
+\item    \textcolor{red}{\texttt{first(L) ; second(L) ; last(L)}} renvoient respectivement le premier, le second, le dernier élément de $L$.
+\item    \textcolor{red}{\texttt{member(x,L)}} vaut \texttt{true} si $x$ appartient à la liste $L$ (\texttt{false} sinon).
+\item    \textcolor{red}{\texttt{append([a,1,3],[2,7])}} regroupe les deux listes en une seule liste $[a,1,3,2,7]$.
+\item    \textcolor{red}{\texttt{join(l,m)}} crée une nouvelle liste constituée des éléments des listes $l$ et $m$, intercalés. La liste obtenue est $\left[ l[1],m[1],l[2],m[2],l[3],m[3],\ldots\right] $.
+\item    \textcolor{red}{\texttt{sort(L)}} permet de ranger les éléments de la liste $L$ par ordre croissant.
+\item    \textcolor{red}{\texttt{map(f,L)}} permet d'appliquer la fonction $f$ à tous les éléments de la liste $L$.
+\end{list}
+
+\end{Sec}
+
+
+
+\begin{Sec}
+{	Sommation et produit }
+%\section{ Sommation et produit }
+\Subsec{ somme finie }
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{sum(1/k\^\,2,k,1,10)}} calcule la somme des inverses des carrés des entiers compris entre 1 et 10.
+\end{list}
+
+\Subsec{ produit fini}
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{product(sqrt(k),k,1,10)}} calcule le produit des racines carrées des entiers compris entre 1 et 10.
+\end{list}
+
+
+
+\Subsec{ somme infinie}
+On peut montrer que la suite $(u_n)_{n\in\N^*}$ de terme général $u_n=\displaystyle\sum^{n}_{k=1}\frac{1}{k^2}$ est convergente. Sa limite est notée $\displaystyle\sum^{+\infty}_{k=0}\frac{1}{k^2}$. On peut demander sa valeur exacte comme suit :\\
+\begin{list}{$\bullet $}{}
+\item    \textcolor{red}{\texttt{load(simplify\_sum) \$ sum(1/k\^\,2,k,1,inf) \$ \\simplify\_sum(\%) }}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Vecteurs}
+\begin{list}{$\bullet $}{}
+	\item   \textcolor{red}{u:[a,b,c]} Définit les coordonnées du vecteur $u$.
+	\item   \textcolor{red}{u+v} Renvoie les coordonnées de $u+v$
+	\item   \textcolor{red}{u . v} Renvoie le produit scalaire de $u$ et de $v$ ( le point est précédé et suivi d'un espace )
+	\item   \textcolor{red}{load(vect)} Permet de charger le package  pour calculer le produit vectoriel de deux vecteurs.
+	\item   \textcolor{red}{express($u \sim v$)} : Renvoie le produit vectoriel de u et v.
+	\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Programmation }
+%\section{ Programmation }
+\Subsec{ syntaxe d'une procédure}
+nom(paramètres en entrée) := block\textbf{(} [variables locales],\\
+<instruction 1>,
+<instruction 2>, $\ldots$\\
+/* -------Commentaire------ */ \\
+\textbf{)\$}\\ Voici un exemple simple de procédure qui additionne deux nombres.\\
+\begin{list}{$\bullet $}{}
+\item   \textcolor{red}{\texttt{somme(a,b):=block([c], c:a+b, return(c))}}
+\end{list}
+
+\Subsec{ structure conditionnelle}
+\begin{list}{$\bullet $}{}
+\item  \texttt{if (condition)\\ then (<instruction1> , <instruction2>)\\  else (<instruction3> , <instruction4>)}
+\end{list}
+
+\Subsec{ structures itératives}
+Boucle \textbf{For} et affichage d'un tableau de valeurs de la fonction $f$:\\
+\begin{list}{$\bullet $}{}
+\item  \texttt{f(x):=x\string^2;}\\
+	\texttt{for i from -2 thru 4 step 0.5 do ( }\\
+	\texttt{print("f(",i,")=",f(i)) }\\
+	\texttt{);}\\
+
+Boucle \textbf{While} et affichage de la table de 7 :
+
+\item    \texttt{k:1 \$ while k<11 do\\ ( print("7 fois",k,"égale",7*k) , k:k+1 )}
+\end{list}
+\end{Sec}
+
+\begin{Sec}
+{	Matrices }
+Soit $B$ une matrice de taille $3\times 3$.\\
+On définit la matrice $A=
+\begin{pmatrix} 1 & 2 & 3\\ 4 & 5 & 6 \\ 7 & 8 & -9
+\end{pmatrix}$
+   ligne par ligne de la façon suivante :\\
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{\texttt{A:matrix([1,2,3],[4,5,6],[7,8,9])}}
+\item \textcolor{red}{\texttt{A+B}} \quad somme des matrices $A$ et $B$
+\item \textcolor{red}{\texttt{3*A}} \quad produit de la matrice $A$ par le réel 3
+\item \textcolor{red}{\texttt{A.B}} \quad produit des matrices $A$ et $B$
+\item \textcolor{red}{\texttt{A\char94\char94\,3}}  \quad matrice $A$ élevée à la puissance 3
+\item \textcolor{red}{\texttt{invert(A)}}\quad inverse $A^{-1}$ de la matrice $A$
+\end{list}
+\end{Sec}
+
+
+\begin{Sec}
+{Dénombrement}
+
+\begin{list}{$\bullet $}{}
+\item \textcolor{red}{\texttt{factorial (7)}} \quad \textbf{Factorielle} de 7, $\quad$7!=5040
+\item \textcolor{red}{\texttt{binomial (10,2)}} \quad Nombre de \textbf{combinaisons} de $p$ parmi $n\quad$
+$\begin{pmatrix}10 \\ 2 \end{pmatrix}=45$;
+\item \textcolor{red}{\texttt{mod(11,2)}} \quad 11 modulo 2.
+\end{list}
+\end{Sec}
+
+\end{multicols*}%%
+
+
+\end{document}
+
