@@ -1,7 +1,7 @@
 
 %Fichier: memento_python.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 05 juil. 2015 10:20:15
+%Dernière modification: 28 oct. 2016 14:31:11
 
 \documentclass[landscape,10pt,dvipsnames,  dvips]{report}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -435,6 +435,14 @@ In [7]: # idem mais au premier mot ayant la syllabe ment.
 In [8]: re.findall(r"^.*?ment", text)
 Out[8]: ["Il s'était prudemment"]
 \end{lstlisting}
+
+Pour une recherche sur plusieurs lignes il faut utiliser l'option \textit{\textbf{re.DOTALL}}
+
+\begin{lstlisting}
+ re.findall(r"<p>.*?</p>", text, re.DOTALL)
+\end{lstlisting}
+
+\bigskip
 
 Utilisation de substitute
 \begin{lstlisting}
