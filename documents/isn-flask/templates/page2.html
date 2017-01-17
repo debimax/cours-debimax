@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{ titre }}</title>
+<link href="{{ url_for('static', filename='mon_style.css') }}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{url_for('static', filename='mes_scripts.js') }}"></script>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+<header><h1>{{ titre }} <img src="{{ url_for('static', filename = 'fleur.png') }}"  alt="fleur" title="fleur" border="0"></h1></header>
+<section>
+<p>Bonjour <b>{{ prenom }} {{ nom }}.</b></p>
+</section>
+<footer>Nous sommes le <em class=Rouge id="date"></em> <script type="text/javascript"> window.onload = datejs('date');</script> et il est <em class=Rouge id="heure"></em><script type="text/javascript">window.onload = heurejs('heure');</script>.</footer>
+</body>
+</html>
