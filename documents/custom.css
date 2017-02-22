@@ -42,3 +42,10 @@ div.CodeMirror { /* code font */
 .rendered_html blockquote { margin: 1em 2em; background: red; }
 .rendered_html ol { list-style:decimal; margin: 1em 2em; }
 
+
+/* classe pour inverse video */
+.reverse{
+    background-color: black;
+    color: white;
+}
+
