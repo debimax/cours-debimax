@@ -1,12 +1,25 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 app = Flask(__name__) # Initialise l'application Flask
 
-@app.route('/')   # C'est un décorateur, on donne la route ici "/"  l'adresse sera donc localhost:5000/
+@app.route('/', methods=['GET','POST'])  # On doit indiquer que l'on utilise les deux méthodes
 def accueil():
-        Lignes=['ligne {}'.format(i) for i in range(1,10)] # Que fait cette ligne?
-        return render_template("accueil.html", titre="Bienvenue !",lignes=Lignes) # On utilise le template accueil.html, avec les variables titre et lignes
+        lignes=['ligne {}'.format(i) for i in range(1,10)]
+        try:
+                nom=request.form['nom']
+        except:
+                nom=''
+        try:
+                prenom=request.form['prenom']
+        except:
+                prenom=''
+        try:
+                texte=request.form['texte']
+        except:
+                texte=''
+        titre="Méthode {}".format(request.method)
+        return render_template("accueil.html", titre=titre,lignes=lignes,nom=nom,prenom=prenom,texte=texte)
 
 if __name__ == '__main__':
-        app.run(debug=True)
+    app.run(debug=True)
