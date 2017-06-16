@@ -1,5 +1,11 @@
-div.text_cell_render titre{font-size: 24pt; color:#ff0000;  text-decoration: underline;}
-
+/* Pour le titre comme cela il n'y a pas de numérotation au */
+#titre{
+font-size: 24pt; 
+color:#ff0000;
+text-decoration: underline;
+text-align: center;
+font-weight: boldtomatique;
+}
 
 div.text_cell_render { font-size: 12pt;   line-height: 145%; }
 div.text_cell_render h1{font-size: 24pt; color:#ff0000;  text-decoration: underline;}
