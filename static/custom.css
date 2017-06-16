@@ -1,10 +1,10 @@
 
 
 div.text_cell_render { font-size: 12pt;   line-height: 145%; }
-div.text_cell_render h1{text-align: center;font-size: 24pt; color:#ff0000;  text-decoration: underline;}
-div.text_cell_render h2{font-size: 20pt;color:#ff0000;  text-decoration: underline;}
-div.text_cell_render h3{font-size: 14pt;color:#ff0000;  text-decoration: underline;}
-div.text_cell_render h4{font-size: 12pt;color:#ff0000;  text-decoration: underline; }
+div.text_cell_render h1{font-size: 24pt; color:#ff0000;  text-decoration: underline;}
+div.text_cell_render h2{font-size: 18pt;color:#0000ff;  text-decoration: underline;}
+div.text_cell_render h3{font-size: 14pt;color:#0000ff;  text-decoration: underline;}
+div.text_cell_render h4{font-size: 12pt;color:#0000ff;  text-decoration: underline; }
 div.text_cell_render h5 {font-weight: 300;}
 
 
