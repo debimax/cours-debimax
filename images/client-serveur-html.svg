@@ -311,9 +311,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="34.059942"
-     inkscape:cy="120.8118"
+     inkscape:zoom="4"
+     inkscape:cx="154.51888"
+     inkscape:cy="88.040163"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -508,7 +508,7 @@
     </g>
     <g
        id="g4717"
-       transform="matrix(0.06725353,0,0,0.06725353,-36.441979,241.10646)">
+       transform="matrix(0.05447536,0,0,0.05447536,-28.987237,249.34626)">
       <g
          id="g3652"
          transform="matrix(1.25,0,0,1.25,-2.6736208,185.78368)">
@@ -773,13 +773,6 @@
        inkscape:connector-curvature="0"
        inkscape:transform-center-x="-0.51673716"
        inkscape:transform-center-y="-3.2560576" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.19419259px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7109-6);marker-end:url(#Arrow2Mstart-2-7)"
-       d="m 6.4575292,249.18724 -0.133008,5.74794 v -0.0362"
-       id="path5419-2-3"
-       inkscape:connector-curvature="0"
-       inkscape:transform-center-x="-4.7435068"
-       inkscape:transform-center-y="0.21491852" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -805,27 +798,38 @@
          id="flowPara6213">Bb</flowPara></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="17.717634"
-       y="263.17111"
+       x="16.638552"
+       y="263.36292"
        id="text6217"><tspan
          sodipodi:role="line"
          id="tspan6215"
-         x="17.717634"
-         y="263.17111"
+         x="16.638552"
+         y="263.36292"
          style="stroke-width:0.26458332px">Brython</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.21840137px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7109-6-3);marker-end:url(#Arrow2Mstart-2-7-7)"
-       d="m 18.063479,249.54039 -0.10319,9.3713 v -0.059"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.19656123px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7109-6-3);marker-end:url(#Arrow2Mstart-2-7-7)"
+       d="m 13.661105,249.72536 -0.09287,8.43417 v -0.0531"
        id="path5419-2-3-3"
        inkscape:connector-curvature="0"
-       inkscape:transform-center-x="-3.6800743"
-       inkscape:transform-center-y="0.35039876" />
+       inkscape:transform-center-x="-3.3120674"
+       inkscape:transform-center-y="0.31535416" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.19419259px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7109-6-3-2);marker-end:url(#Arrow2Mstart-2-7-7-0)"
-       d="m 16.847317,262.46048 -5.74794,-0.13301 h 0.0362"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.12740976px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker7109-6-3-2);marker-end:url(#Arrow2Mstart-2-7-7-0)"
+       d="m 15.589847,262.29702 -3.771223,-0.0873 h 0.02375"
        id="path5419-2-3-3-6"
        inkscape:connector-curvature="0"
-       inkscape:transform-center-x="0.21491854"
-       inkscape:transform-center-y="4.7435038" />
+       inkscape:transform-center-x="0.14100817"
+       inkscape:transform-center-y="3.1121964" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.82222223px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="11.400549"
+       y="261.01166"
+       id="text6053-3"><tspan
+         sodipodi:role="line"
+         id="tspan6051-6"
+         x="11.400549"
+         y="261.01166"
+         style="stroke-width:0.26458332px">ou</tspan></text>
   </g>
 </svg>
