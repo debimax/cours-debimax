@@ -1,7 +1,7 @@
 
 %Fichier: algorithmique-python3.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 03 déc. 2014 15:15:26
+%Dernière modification: 19 juin 2017 09:04:25
 
 \documentclass[10pt,dvipsnames,  dvips]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -187,6 +187,102 @@
 
 
 \begin{document}
+
+
+\Chapter{Utilisation de mes cours}
+
+\section{Pyzo}
+
+Pour la première utilisation il faut faire quelques réglages. Dans le shell python exécuter les séquences suivantes.
+
+
+\begin{list}{\ding{212}}{}
+\item Installer jupyter
+
+\begin{list}{$\bullet$}{}
+\item pip  install  jupyter
+\item pip  install  jupyter\string_nbextensions
+\item pip  install  jupyter\string_contrib\string_nbextensions
+\item pip  install  jupyter\string_nbextensions\string_configurator 
+\end{list}
+
+\item  ouvrir un fichier
+
+Première méthode:
+\begin{list}{$\bullet$}{}
+\item notebook  (votre navigateur  s'ouvre)  \ding{212} new \ding{212} Indiquez le fichier base.ipy 
+\end{list}
+
+
+Deuxième méthode:
+\begin{list}{$\bullet$}{}
+\item Dans votre gestionnaire de fichier sélectionner le fichier \textbf{\textit{base.ipy}}.
+Indiquer alors pour ouvrir ce fichier l'application c/Programme file32/jupyter/jupyter
+\end{list}
+
+\item Ouvrez un onglet à l'adresse \url{localhost:8888/nbextensions}
+
+Cochez les extensions \textbf{\textit{Exercise2}} , \textbf{\textit{Tabe of content (2)}} , \textbf{\textit{Chrome Clipboard}} , \textbf{\textit{Codefolding in Editor}}
+\end{list}
+
+
+
+\section{Jupyter}
+
+Mes cours sont au format \textbf{ipynb}. Ces fichiers sont lisibles avec le programme \textbf{jupyter-notebook} (son ancien nom était \textbf{ipython-notebook}).
+
+%ipython a changé de nom récemment et s'appelle désormais  \textbf{jupyter-notebook}.
+
+L'intérêt de ce format est que le fichier se lit avec un navigateur (firefox ou chrome) et que l'on peut exécuter du code python en même temps en appuyant sur:
+
+\begin{list}{\ding{212}}{}
+\item \textbf{CTRL+Entrée}: pour exécuter le code et rester sur la même cellule.
+\item \textbf{Maj+Entrée}: pour exécuter le code et passer à la cellule suivante.
+\item Les flèches \textit{UP} et \textit{DOWN} pour naviguer dans la page sans exécuter les cellules.
+\item Entrée:  pour éditer la cellule
+\item Esc: pour sortir du mode édition.
+\end{list}
+
+%Les cellules peuvent contenir du texte markdown,  html,  latex, python ruby etc \dots
+\bigskip
+
+\begin{enumerate}
+\item Avec un logiciel en ligne.
+
+	\begin{list}{$\bullet$}{}
+	\item Mes cours : \url{https://github.com/debimax/cours-debimax}
+
+	par exemple pour le 1° cours, on télécharge le fichier \textbf{bases.ipynb} cliquez sur:\\
+	\textit{bases.ipynb \ding{212} Raw \ding{212} Enregistrez sous}
+	\item Deux fichiers important pour vous aider lorsque vous êtes sur mon git.
+\begin{list}{-}{}
+\item \url{/documents/algorithmique-python3.pdf} qui regroupe l'essentiel de mes cours 
+\item \url{/documents/memento_python.pdf} qui est comme son nom l'indique mon mémento pour python.
+\end{list}
+
+N'oubliez pas de cliquer sur \textit{Raw} pour les obtenir.
+	\item jupyter en ligne :  \url{https://try.jupyter.org/}  puis cliquez sur :\\
+	\item Pour juste les visualiser sans pouvoir exécuter le code \url{http://nbviewer.ipython.org/github/debimax/cours-debimax/tree/master/}
+	\textit{Upload \ding{212} indiquez votre fichier .ipynb \ding{212} Upload \ding{212} bases.ipynb} 
+	\end{list}
+\item Depuis votre gestionnaire de fichier.
+	\begin{list}{$\bullet$}{}
+	\item Cliquez directement sur le fichier ipynb.
+	\item Une fenêtre s'ouvre \textit{c:Program File32/pyzo32/jupyter-notebook}
+	\item L'adresse du navigateur et en principe \url{localhost:8888}.
+	\end{list}
+\item Sous windows
+Installez par exemple \textbf{pyzo} \url{http://www.pyzo.org/} qui la version utilisé de python pour l'agrégation de mathématiques.
+
+ipython est installé par défaut. %et vous pouvez toujours installer jupiter en tapant dans la console pip install jupyter
+\item Sous linux on travaillera avec \textit{geany} ou avec \textit{pyzo}. Je vous conseille cependant pour les test d'utiliser une  jupyter-console (ipython3).
+\item Pour booter une clef usb sur un ordinateur il faut modifier l'odre du bios
+\end{enumerate}
+
+\newpage
+
+
+
 
 \Chapter{Algorithmique et python}
 
