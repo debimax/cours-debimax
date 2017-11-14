@@ -1,7 +1,7 @@
 
 %Fichier: algorithmique-python3.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 05 sept. 2017 21:35:25
+%Dernière modification: 14 nov. 2017 12:07:12
 
 \documentclass[10pt,dvipsnames,  dvips]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -15,6 +15,7 @@
 \usepackage{ulem}
 \usepackage{array}
 \usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{verbatim}
 \usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
 \usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
 \usepackage{amsmath}%%%pour dfrac  etc...
@@ -185,57 +186,76 @@
   #3
 \end{minipage}}
 
-\setlength\parindent{10pt}%noident
+\setlength\parindent{0pt}%noident
 \begin{document}
-
+%Lextronic
 
 \Chapter{Utilisation de mes cours}
 
 \section{Pyzo}
 
-Ouvrez \textbf{Pyzo}. Pour la première utilisation de pyzo il faut faire quelques réglages.\\
+Ouvrez \textbf{Pyzo}. S'il vous le demande cliquez sur ``use this environement''.
+
+Pour la première utilisation de pyzo il faut faire quelques réglages. 
+Pour installer ou mettre à jour des modules python  on utilise \verb=pip=  ou \verb=conda=.  %Conda a l'avantage d'installer tout un ensemble de module python.
+
 Dans le shell python de \textbf{Pyzo} exécuter les séquences suivantes.
 
 
 \begin{list}{\ding{212}}{}
 \item Installer \textit{jupyter}.
 \begin{list}{$\bullet$}{}
-\item pip  install  jupyter
-\item pip  install  jupyter\string_nbextensions
-\item pip  install  jupyter\string_contrib\string_nbextensions
-\item pip  install  jupyter\string_nbextensions\string_configurator 
+\item \verb=pip install --upgrade pip=
+\item \verb=conda install  jupyter=  \hspace{1cm}Cela prend du temps car python est mis à jour.
+\item  \verb=conda install  anaconda-client=
+\item \verb=conda install  -c conda-forge  jupyter_contrib_nbextensions=
+%\item pip  install  jupyter
+%\item pip  install  jupyter\string_nbextensions
+%\item pip  install  jupyter\string_contrib\string_nbextensions
+%\item contrib nbextension install --user
+%\item pip  install  jupyter\string_nbextensions\string_configurator 
+
+\item  \verb+notebook --no-browser  --NotebookApp.token=''+
+%\item \verb=notebook  --generate-config=
+%\item \verb=notebook password=  (mettre par exemple un pass vide)
 \end{list}
 
-\item  Mes cours : \url{https://github.com/debimax/cours-debimax}
-
+\item  Télécharger un de mes cours : Ils se trouvent à l'adresse \url{https://github.com/debimax/cours-debimax}.\\
 Sinon utilisez un moteur de recherche avec les mots clefs: \textit{git debimax}
 
-\medskip
-Par exemple pour le 1° cours, on télécharge le fichier \textbf{bases.ipynb} cliquez sur:\\
-\textit{bases.ipynb \ding{212} Raw \ding{212} Enregistrez sous}
 
 \medskip
-Sur mon git, Deux fichiers sont important pour vous aider en \textit{ISN}.
+Sur mon git, deux fichiers sont important pour vous aider en \textit{ISN}.
 \begin{list}{-}{}
 \item \url{/documents/algorithmique-python3.pdf} qui regroupe l'essentiel de mes cours 
 \item \url{/documents/memento_python.pdf} qui est comme son nom l'indique, mon mémento pour python.
 \end{list}
 
+Téléchargez ces deux fichiers  (Cliquez sur leur nom puis sur download).
+
+Télécharger aussi mon 1° cours, \textbf{\textit{bases.ipynb}} (cliquez sur \textit{\textbf{base.ipynb}} puis sur \textit{\textbf{Raw}} et enregistrer sous).\\
 
 
-Ouvrez un navigateur à l'adresse \url{https://github.com/debimax/cours-debimax} et cliquez sur \textit{base.py} puis sur le bouton \href{https://github.com/debimax/cours-debimax/raw/master/bases.ipynb}{Raw}. Sauvegarder ce fichier où vous voulez.
-\item  ouvrir un fichier
+
+
+
+%Ouvrez un navigateur à l'adresse \url{https://github.com/debimax/cours-debimax} et cliquez sur \textit{bases.ipynb} puis sur le bouton \href{https://github.com/debimax/cours-debimax/raw/master/bases.ipynb}{Raw}. Sauvegarder ce fichier où vous voulez.
+\item  Ouvrir un fichier  \textbf{\textit{.ipynb}}
 \begin{list}{-}{}
-\item Première méthode:
-\begin{list}{$\bullet$}{}
-\item Dans la console pyzo tapez \textit{notebook}  (votre navigateur  s'ouvre)  \ding{212} new \ding{212} Indiquez le fichier base.ipy 
-\end{list}
+\item Première méthode:  Dans votre gestionnaire de fichier cliquez sur le fichier\\
+ \textbf{\textit{bases.ipynb}}  \ding{212} \textit{Sélectionner un programme dans la liste des programmes installés} \ding{212} Parcourir et indiquez alors le chemin  \verb+C://Programmes/Miniconda/Scripts/jupyter-notebook+
 
-\item Deuxième méthode:
-\begin{list}{$\bullet$}{}
-\item Dans votre gestionnaire de fichier sélectionner le fichier \textbf{\textit{base.ipy}}.
-Indiquer alors pour ouvrir ce fichier l'application c:\string\Programme~file32\string\jupyter\string\jupyter
-\end{list}
+%Sur certain ordinateurs le chemin est \verb+C:\Programme file32\jupyter\jupyter+
+
+
+\item Deuxième méthode:  Ouvrez pyzo.\\
+ Dans la console pyzo tapez \textit{notebook}  (votre navigateur  s'ouvre)  \ding{212} Upload \ding{212} Indiquez le fichier bases.ipynb	\medskip
+
+	Petit problème car il s'est chargé sous le nom \textit{\textbf{bases.ipynb.txt}} et il faut le renommer.  Cocher alors le fichier puis sur renommer.  On doit bien avoir \textit{\textbf{bases.ipynb}}.
+
+Il ne reste plus qu'à double cliquer sur le fichier \textit{\textbf{bases.ipynb}}.
+
+
 \end{list}
 
 \item Ouvrez un onglet à l'adresse \url{localhost:8888/nbextensions}
