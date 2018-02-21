@@ -11,7 +11,7 @@ Mes cours python3 au format jupyter (ipython) pour l'isn en classe de terminale.
   - [Parser des pages internet](./Parser_des_pages_internet.ipynb)
   - [Brython (coté) client](./Brython.ipynb)
   - [Flask (coté serveur)](./flask.ipynb)
-  - [bases de données sqlite]("./Bases de donnees.ipynb")
+  - [bases de données sqlite]("./Bases%20de%20donnees.ipynb")
 
 ## Classe de seconde
 
