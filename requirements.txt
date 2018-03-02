@@ -1,3 +1,5 @@
 wheel
 folium
 bs4
+panda
+os
