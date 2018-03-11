@@ -1,4 +1,0 @@
-wheel
-folium
-bs4
-panda
