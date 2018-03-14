@@ -1,0 +1,62 @@
+/* Pour le titre comme cela il n'y a pas de numérotation au */
+#titre{
+font-size: 24pt; 
+color:#ff0000;
+text-decoration: underline;
+text-align: center;
+font-weight: bold;
+}
+
+div.text_cell_render { font-size: 12pt;   line-height: 145%; }
+div.text_cell_render h1{font-size: 24pt; color:#0000ff;  text-decoration: underline;}
+div.text_cell_render h2{font-size: 18pt;color:#0000ff;  text-decoration: underline;}
+div.text_cell_render h3{font-size: 14pt;color:#0000ff;  text-decoration: underline;}
+div.text_cell_render h4{font-size: 12pt;color:#0000ff;  text-decoration: underline; }
+div.text_cell_render h5 {font-weight: 300;}
+
+
+div.cell.code_cell { /* area that contains code + output */
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding-top: 1ex;
+}
+
+div.input_area { /* box around box with code */
+    border: none;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-top: 0.5ex;
+    padding-bottom: 0.5ex;
+    padding-left: 0.5em;
+}
+
+div.input { /* box with code */
+}
+
+div.CodeMirror { /* code font */
+    font-family: "Inconsolata-dz", monospace;
+    font-size: 10pt;
+}
+
+
+
+
+
+/*div.text_cell_render  code { font-size: medium; border: 3px #ababab solid; background-color: #f5f5f5;}*/
+/*.rendered_html code { border: 3px #ababab solid; background-color:  #f5f5f5;}*/
+.rendered_html blockquote { margin: 1em 2em; background: red; }
+.rendered_html ol { list-style:decimal; margin: 1em 2em; }
+
+
+/* classe pour inverse video */
+.reverse{
+    background-color: black;
+    color: white;
+}
+/*  strick   <s>texte/<s>*/
+.barre{
+
+}
+
