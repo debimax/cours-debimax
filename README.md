@@ -6,7 +6,7 @@ Mes cours python3 au format jupyter (ipython) pour l'isn en classe de terminale.
 - [Les bases de python](./bases.ipynb)
 - [Chaines, listes et tuples](./string-listes.ipynb)
 - [Image](./images.ipynb)
-- [Geomatique](./Catographie.ipynb)
+- [Geomatique](./Cartographie.ipynb)
 - Sites internet
   - [Parser des pages internet](./Parser_des_pages_internet.ipynb)
   - [Brython (coté) client](./Brython.ipynb)
