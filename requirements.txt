@@ -2,3 +2,4 @@ wheel
 folium
 pandas
 bs4
+brythonmagic
