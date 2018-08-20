@@ -1,0 +1,254 @@
+
+%Fichier: cours-beamer-html.tex
+%Crée le 11 nov. 2011 avec vim
+%Dernière modification: 15 août 2018 09:38:32
+
+\documentclass[hyperref=dvips,11pt,svgnames, smaller,  aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{default}
+%\usepackage{graphicx}
+%les fontes
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{array}
+\usepackage{xcolor} % utiliser par exemple black!20
+%\usepackage{pstricks-add}
+\usepackage[francais]{babel}
+\usepackage{pifont} %%%%  font  ding
+\usepackage{lmodern}
+%theme beamer
+%\usetheme{Warsaw}
+%\usetheme{Madrid}
+
+%\useoutertheme{}
+%Pour les blocs arrondis et ombrés.
+\useinnertheme[shadow=true]{rounded}
+
+%\useoutertheme[]{smoothbars}
+\useoutertheme{infolines}
+
+%\setbeamertemplate{footline}[page number]{}
+\usecolortheme{crane}
+%\author{Meilland jean claude}
+
+\institute{Lycée pablo neruda}
+\date{2012}
+\logo{}
+\title{Cours algorithme}
+
+%\addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+
+
+%\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\hypersetup{
+	%bookmarksopen=false,
+	bookmarksopenlevel=0,
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     pdfstartview = FitH, % vue adaptée à la largeur
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets pour Acrobat
+     bookmarksopen=true, %si les signets Acrobat sont créés, les afficher complètement.
+     pdftitle={Algorithmique}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={}          %sous Acrobat.
+     pdfpagemode = FullScreen,% afficher le pdf en plein écran
+}
+
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+
+
+
+
+
+
+
+
+\begin{document}
+
+\title{www et HTML langage de description}
+
+\section{Introduction au World Wide Web}
+\subsection{L'Internet et le Web, quelle différence ?}
+\begin{frame}
+\begin{block}{L'Internet et le Web, quelle différence ?}
+	\only<1>{\vspace{1.8cm}}
+\only<2>{
+\textbf{Internet} est un réseau informatique mondial.
+
+Le \textbf{World Wide Web}, que l'on appelle le plus souvent \textbf{Web}, est un des services disponibles sur Internet.
+
+D'autres services disponibles sur Internet sont par exemple la messagerie électronique (\textbf{email}) ou le transfert de fichier (\textbf{FTP})
+}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Le Web ou World Wide Web, à quoi ça sert ?}
+Le Web ("la toile" en français) est un système permettant de visualiser et d'échanger des informations à distance.
+
+Les informations sont présentées sur des pages Web et reliées les unes aux autres par des liens hypertextes.
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Qu'est-ce qu'une page Web ? Qu'est-ce qu'un site Web ?}
+Une page Web est généralement un fichier texte écrit dans un langage informatique baptisé HTML.\\
+Ce fichier peut contenir des images ou d'autres contenus multimédias (audio, vidéo, application).
+
+Un site Web est un ensemble de pages Web reliées les unes aux autres par des liens hypertextes et accessible en ligne à une adresse.
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{Le langage HTML}
+\only<1>{\vspace{1.8cm}}
+\only<2>{
+	\textbf{HTML} est l'acronyme d'\textbf{H}yper\textbf{t}ext \textbf{M}arkup  \textbf{L}anguage qui peut se traduire ainsi : langage hypertexte à balise.
+
+	Le HTML est un langage informatique utilisant des \textbf{textes} et des \textbf{balises}. On peut utiliser un simple éditeur de texte pour créer un fichier HTML.
+}
+\only<3>{
+Pour visionner un fichier en HTML on utilise un navigateur. Un navigateur est un logiciel qui va lire le code HTML et l'interpréter. Chaque balise donne au navigateur des informations sur comment afficher tel ou tel élément.}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{block}{À propos des balises}
+	\only<1>{\vspace{3cm}}
+\only<2>{
+Une balise (markup en anglais) est un mot clé qui va donner des indications au navigateur sur ce qu'il doit afficher.
+
+Une balise HTML commence par le caractère \og < \fg et termine par le caractère \og > \fg .
+
+Les caractères qui ne sont pas compris entre les signes \og < \fg et \og > \fg sont donc considérés comme du texte et seront affichés tel quel par le navigateur.
+}
+
+
+\only<2>{
+	\begin{list}{$\bullet$}{}
+	\item  Il existes des balises ouvrantes et des balises fermantes qui correspondent au début et la fin d'une instruction.
+	\item Les balises de fermeture sont identiques à celles d'ouverture à l'exception de l'ajout d'un caractère \og / \fg (slash) pour signaler la fermeture. Ce caractère se place juste après le signe \og > \fg (inférieur)
+	\end{list}
+}
+	\end{block}
+\end{frame}
+
+\begin{frame}[containsverbatim]
+	\begin{block}{Structure d'un fichier HTML}
+Un fichier HTML (un document HTML) commence par l'ouverture d'une balise <html> et se termine par la balise fermante </html> 
+
+Tous les fichiers HTML sont composés d'une entête (balise "head") et d'un corps (balise "body"). L'entête contient des informations sur la page.\\
+Le corps contient le contenu de la page.
+
+\lstset{title={},caption={Exemple}, language=html}
+\begin{lstlisting}
+<html>
+  <head>
+  </head>
+  <body>
+    Texte de la page ici.
+  </body>
+</html>
+\end{lstlisting}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{Principe du Web}
+
+Structure simplifiée d’une adresse, d’une URL :
+
+protocole :// serveur/ressource
+
+
+\url{http://www.univ-nancy2.fr/formations/calendrier_licence.html}
+
+protocole: Hyper Text Transfer\\
+nom du serveur : nom de domaine de l'ordinateur hébergeant la ressource demandée:  \\
+Emplacement de la ressource sur le serveur:  en général emplacement (répertoire) et nom du fichier demandé (html ou autre).
+	\end{block}
+\end{frame}
+
+
+
+%Souvent .htm, html. Mais également .asp,php... pour des pages générées dynamiquement.
+
+\begin{frame}
+	\begin{block}{HTTP et HTML}
+
+\begin{list}{$\bullet$}{}
+\item HTTP=Hypertext Transfer Protocol :
+	\begin{list}{-}{}
+	\item Protocole utilisé pour transférer des fichiers (html, mais pas forcément) entre un serveur http et un navigateur
+	\end{list}
+\item Que se passe-t-il lorsque je consulte une page web ?
+	\begin{list}{-}{}
+	\item Grâce à l’url de la page, mon navigateur consulte un DNS (qui peut lui-même demander à un autre DNS) le serveur qui l’héberge,
+	\item Mon navigateur demande au serveur (grâce à HTTP) la page 
+	\item Le serveur la renvoie (toujours grâce à HTTP)
+	\item Mon navigateur affiche la page (grâce à HTML)
+	\end{list}
+\item HTML=Hypertext Markup Language :
+	\begin{list}{-}{}
+	\item Langage de balisage hypertexte
+	\item Langage informatique créé pour écrire des pages web
+	\item Cours détaillés sur html dans une prochaine séance
+	\end{list}
+\end{list}
+	\end{block}
+\end{frame}
+
+
+
+\begin{frame}[containsverbatim]¶
+	\begin{block}{}
+\lstset{title={},caption={}, language=html}
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- En-tête de la page -->
+  <meta charset="utf-8" />
+  <title>Titre</title>
+</head>
+<body>
+  <!-- Corps de la page -->
+</body>
+</html>
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+%\begin{frame}[label=pagesimple]
+%\end{frame}
+
+%\only<2>{}
+%\only<2>{}
+\end{document}

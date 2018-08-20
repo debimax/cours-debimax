@@ -1,7 +1,7 @@
 
 %Fichier: memento_python.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 28 oct. 2016 14:31:11
+%Dernière modification: 20 août 2018 10:58:02
 
 \documentclass[landscape,10pt,dvipsnames,  dvips]{report}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -439,7 +439,7 @@ Out[8]: ["Il s'était prudemment"]
 Pour une recherche sur plusieurs lignes il faut utiliser l'option \textit{\textbf{re.DOTALL}}
 
 \begin{lstlisting}
- re.findall(r"<p>.*?</p>", text, re.DOTALL)
+ re.findall(r"<p>.*?</p>", text, flags=re.DOTALL)
 \end{lstlisting}
 
 \bigskip
@@ -447,10 +447,10 @@ Pour une recherche sur plusieurs lignes il faut utiliser l'option \textit{\textb
 Utilisation de substitute
 \begin{lstlisting}
 In [9]: text = "Confessions Publiques (Live)/20-Madame rêve.mp3"
-In [10]: re.sub(r'/[0-9]+-','/',text)
+In [10]: re.sub(r'/[0-9]+-',r'/',text)
 Out[10]: 'Confessions Publiques (Live)/Madame rêve.mp3'
 In [11]: regex = re.compile('/[0-9]+-')  # ou alors
-In [12]: regex.sub('/',text)
+In [12]: regex.sub(r'/',text)
 Out[12]: 'Confessions Publiques (Live)/Madame rêve.mp3';
 \end{lstlisting}
 
