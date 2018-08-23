@@ -1,0 +1,572 @@
+
+%Fichier: algorithmique-python3-seconde.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 21 juin 2018 16:43:54
+
+\documentclass[10pt,dvipsnames,  dvips]{article}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}  %  pour  leqslant 
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%mise en page
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+\usepackage{ulem}
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{verbatim}
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{xcolor} % utiliser par exemple black!20
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+
+
+
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+%\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+
+%les fontes
+%\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+\usepackage{pst-eucl} %%% pour les dessin geométrique pstricks %%%
+\usepackage{multido}
+\newcounter{numeroexo}[section]
+\newcommand{\exerciceun}[1]{\par\stepcounter{numeroexo}\hspace{-0.5cm}\underline{\textbf{Exercice \arabic{numeroexo}}}\quad \textit{#1}\:}
+
+
+
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Correspondance algorithmique python}       %sous Acrobat.
+}
+
+
+
+%\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+%\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+%\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\C}{\mathbb{C}}
+%\newcommand{\e}{\mathrm{e}}
+\newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+%\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+\newcommand{\Chapter}[1]{\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
+
+%\setcounter{secnumdepth}{1}% enlève la numérotation après les sections
+\usepackage{titlesec}
+
+
+%redéfinition des sections
+\titleformat{\section}
+   {\large\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesection}% apparence du numéro
+   {1em}% espacement numéro/texte
+   {}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{1pt}{1pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+
+%redéfinition des subsubsections
+\titleformat{\subsubsection}[hang]
+   {\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesubsubsection}% apparence du numéro
+   {0em}% espacement numéro/texte
+   {\underline}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{0pt}{0pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+%\setlength{\parindent}{0pt}
+\pagestyle{fancy} 
+\lhead{\small\textsc{Lycée Pablo neruda}}
+\chead{\small\textsc{Aide mémoire python seconde}}
+\rhead{Page \thepage/\pageref{LastPage} }
+\cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Pour les algorithmes
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+%\setlength{\parskip}{2pt}
+%Pour l'environnement multicolonne
+%\setlength{\columnseprule}{0pt}
+%\setlength{\columnsep}{0.5cm}
+
+%\setlength{\parindent}{1cm} %
+%\setlength{\parskip}{1cm plus4mm minus3mm}
+
+
+
+%%%% debut macro figure à gauche \figgauche %%%%
+ \newlength\jataille
+ \newcommand{\figgauche}[3]%
+ {\jataille=\linewidth\advance\jataille by -#1
+ %\jataille=\textwidth\advance\jataille by -#1
+ \advance\jataille by -1cm
+ \begin{minipage}[t]{#1}
+ #2
+ \end{minipage}\hfill
+ \begin{minipage}[t]{\jataille}
+  #3
+ \end{minipage}}
+ %%%% fin macro %%%%
+
+ %%%% debut macro figure à droite \figdroite%%%%
+ \newlength\jatail
+ \newcommand{\figdroite}[3]%
+ {\jatail=\linewidth\advance\jatail by -#1
+ \advance\jatail by -0.5cm
+\begin{minipage}[t]{\jatail}
+ #2
+ \end{minipage}
+ \hfill
+\begin{minipage}[t]{#1}
+  #3
+\end{minipage}}
+
+\setlength\parindent{0pt}%noident
+\begin{document}
+%Lextronic
+
+
+
+
+\begin{list}{$\bullet$}{}
+\item  Mes cours se trouvent à l'adresse \url{https://mybinder.org/v2/gh/debimax/cours-debimax/master}
+\item Éditeur python en ligne:\url{https://repl.it/site/languages/python_turtle}
+\end{list}
+
+\section{Les bases de python3}
+
+\subsubsection*{Les types}
+
+Les différents types entiers, flottants, complexes, chaînes de caractères, boléens, listes, tuples et dictionnaires.
+
+
+%\begin{minipage}[3]{0.3\linewidth}
+
+\begin{list}{-}{}
+\item \textbf{\textit{entier (integer)}}: 3
+\item \textbf{\textit{flotant (float)}}: 2.3
+%\item \textbf{\textit{complexe}}: 1+2j
+\item \textbf{\textit{chaînes de caractères (string)}}: 'ISN'
+\item \textbf{\textit{Boléen}}: True
+%\item \textbf{\textit{Listes}}: [0,1,2,3]
+%\item \textbf{\textit{Tuples}}: (0,1,2,3)
+%\item \textbf{\textit{Dictionnaires}}: {'zero':0, 'un':1, 'deux':2,'trois':3}
+%\item \textbf{\textit{Byte}}: b'toto'
+%\end{minipage}
+
+\item  On aura toujours à l'esprit que $0.2+0.7=0.8999999999999999\neq 0.9$
+
+ \item \textbf{\textit{int()}} permet de convertir, un nombre ou une chaîne de caractère en un entier.
+
+ \item \textbf{\textit{float()}} permet de convertir, un nombre ou une chaîne de caractère en un flottant.
+\item On utilise le caractère \# pour écrire un commentaire 
+\end{list}
+
+%Quelques opérateur déjà vu et très utiles
+
+
+
+
+%\section{Les bases}
+
+%\section{Les opérateurs}
+%\underline{Les opérateurs}
+\subsubsection*{Les opérateurs}
+
+\begin{tabular}[]{| r |>{\raggedright}m{6 cm} | >{\raggedright}m{3cm} |}
+\hline Opération & algorithme &  python\tabularnewline
+\hline  Addition & 2+3 & 2+3\tabularnewline
+\hline  Soustraction & 12-5 & 12-5\tabularnewline
+\hline  Multiplication & 3*6 & 3*6\tabularnewline
+\hline  Division & 7/2 & 7/2\tabularnewline
+\hline  Quotient  de  la  division  euclidienne & 7 div  2  ou  div(7,2) & 7//2\tabularnewline
+\hline  Reste  de  la  division euclidienne & 7  mod  2  ou  mod(7,2) & 7\%2\tabularnewline
+\hline  puissance & 7\string^2 & 7**2\tabularnewline
+\hline  racine  carrée & $\sqrt[]{2}$ ou  sqrt(2) & sqrt(2)\tabularnewline
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+\subsubsection*{Variables}
+
+\begin{minipage}[t]{12cm}
+\begin{list}{$\bullet$}{}
+\item Python utilise le symbole $\boldsymbol{=}$ pour affecter une valeur à une variable.
+\item Attention à ne pas confondre $a=12$ et $a==12$.
+\end{list}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{5cm}
+\lstset{ style=PYTHON}
+\vspace{-1cm}
+\begin{lstlisting}
+A=3; B=5
+C='toto'
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection*{Entrées}
+
+
+\begin{minipage}[t]{9cm}
+\begin{list}{$\bullet$}{}
+\item \textbf{\textit{input("texte")}} permet de saisir du texte pour un programme.
+\item Il faudra éventuellement convertir ce texte dans le type voulu avec \textbf{\textit{int()}} ou \textbf{\textit{float()}}
+\end{list}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{8cm}
+\lstset{ style=PYTHON}
+\begin{lstlisting}
+a=input("Saisir un texte a:  ")
+b=int(input("Saisir un entier b:    "))
+c=float(input("Saisir un réel c:    "))
+\end{lstlisting}
+\end{minipage}
+
+
+\subsubsection*{Affichage}
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{list}{$\bullet$}{}
+\item On utilise de préférence la méthode \textbf{\textit{format()}} pour afficher du texte et des variables.
+\end{list}
+
+\begin{lstlisting}
+print("La valeur de la variable a est",str(a),".") # si a est un nombre
+print("La valeur de la variable a est " + str(a) + ".") # autre forme
+print("La valeur de la variable a est {}.".format(a)) # je préfére
+print("Le produit de {} par {} est {}".format(a,b,a*b))
+print("{0}*{1}={2} et {0}/{1}={3}".format(a,b,a*b,a/b))
+\end{lstlisting}
+
+\subsubsection*{Connecteurs logiques}
+\vspace{-0.3cm}\hspace{5cm}
+%\begin{center}
+\begin{minipage}[t]{5cm}
+\begin{tabular}[]{|c |>{\centering}m{2cm} |}
+\hline algorithmique & python \tabularnewline
+\hline a = b  &   a==b\tabularnewline
+\hline a$\neq $b    &  a!=b\tabularnewline
+\hline a $\leqslant$ b  &   a<=b\tabularnewline
+\hline
+\end{tabular}
+\end{minipage}\hspace{1cm}
+\begin{minipage}[t]{5cm}
+\begin{tabular}[]{|c |>{\centering}m{2cm} |}
+\hline algorithmique & python \tabularnewline
+\hline A et B &   A and B \tabularnewline
+\hline A ou B  &  A or B \tabularnewline
+%\hline A xor B  & A \string^ B \tabularnewline
+\hline non A &  not(A)  \tabularnewline
+\hline
+\end{tabular}
+\end{minipage}
+%\end{center}
+
+
+\subsubsection*{Fonction}
+\begin{tabular}[]{>{\raggedright}m{0.35\linewidth} >{\raggedright}m{0.65\linewidth}}
+Syntaxe: & 
+Créer la fonction affine $f:x\longmapsto 3x+1$
+et afficher les valeurs de $f(-5)$ à $f(5)$.\tabularnewline
+%\lstset{title={ ''},caption={'syntaxe'}, style=PYTHON}
+\begin{lstlisting}
+def nomfonction(parametres):
+	instructions
+	instructions
+	return valeur
+\end{lstlisting}
+ & 
+ \lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+def f(x):
+	return 3*x+1
+for i in range(-5,6):
+	print(f(i))
+\end{lstlisting}
+ \tabularnewline
+\end{tabular} 
+
+
+
+\subsubsection*{Condition SI}
+
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Deb{
+%\Si{<~condition~>}{<~instructions~>}
+%}
+%\end{algorithm}
+%\end{minipage}
+%\hspace{0.5cm}
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Si{<~condition~>}
+%{<~instructions~>}
+%\Sinon{<~autre instructions~>}
+%\end{algorithm}
+%\end{minipage}
+%\hspace{0.5cm}
+%\begin{minipage}[t]{5.6cm}
+%\begin{algorithm}[H]
+%\Deb{
+%\Si{<~condition 1~>}
+%{<~instructions 1~>}
+%\eSi{<~condition 2~>}{<~instructions 2~>}{<~autre instructions~>}
+%}
+%\end{algorithm}
+%\end{minipage}\vspace{0.2cm}
+
+\hspace{-0.5cm}
+\begin{minipage}[t]{5.6cm}
+\begin{lstlisting}
+if x<0:
+	print(']-inf;0[')
+\end{lstlisting}
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[t]{6cm}
+\begin{lstlisting}
+if x<0:
+	print(']-inf;0[')
+else:
+	print('[0;+inf[')
+\end{lstlisting}
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[t]{6.7cm}
+\begin{lstlisting}
+if x<0:
+	print(']-inf;0[')
+elif 0<=x<=20:
+	print('[0;20]')
+else:
+	print(']20;+inf[')
+\end{lstlisting}
+\end{minipage}
+
+%\newpage
+Exemple:\\
+\begin{lstlisting}
+print("Saisissez deux valeurs numériques")
+a=float(input("Saisir a: "))
+b=float(input("Saisir b: "))
+if a==b :
+	print("Vous avez saisi deux fois la même valeur, à savoir {}.".format(a))
+else :
+	print("Vous avez saisi deux valeurs différentes {} et {}.".format(a,b))
+\end{lstlisting}
+
+
+\subsubsection*{Boucle pour}
+
+\begin{lstlisting}
+for i in range(7):     # pour i allant de de 0 à 6
+	print(i)
+for i in range(1,7):     # pour i allant de de 1 à 6
+	print(i)
+for i in range(1,6,2):    # pour i allant de de 1 à 6 par pas de 2 donc: 1 3 5
+	print(i)
+\end{lstlisting}
+
+La syntaxe générale est \textbf{\textit{for i in range(m,n,p)}}:
+
+\textbf{\textit{i}} prend alors toutes les valeurs de \textbf{\textit{m à n-1 par pas de p}}
+
+\subsubsection*{Tant que}
+
+\begin{lstlisting}
+i=1
+while i<=5:
+	print(i)
+	i=i+1 #où en plus concis i+=1
+# Affichage: 1 2 3 4 5
+# À la sortie de la boucle i=6
+\end{lstlisting}
+
+
+
+
+\subsubsection*{Turtle}
+
+
+\begin{tabular}[]{| r | >{\raggedright}m{12cm} |}
+\hline \textbf{reset()} & On efface tout et on recommence  \tabularnewline
+\hline \textbf{goto(x,y)} & Aller à l’endroit de coordonnées x et y  \tabularnewline
+\hline \textbf{forward(distance)} & Avancer d’une distance donnée\tabularnewline
+\hline \textbf{backward(distance)} & Reculer  \tabularnewline
+\hline \textbf{up()}  &  Relever le crayon (pour pouvoir avancer sans dessiner)  \tabularnewline
+\hline \textbf{down()}  & Abaisser le crayon (pour pouvoir recommencer à dessiner)  \tabularnewline
+\hline \textbf{color(couleur)} &  Couleur peut être une chaîne prédéfinie (’red’, ’blue’, ’green’, etc.)  \tabularnewline
+\hline \textbf{left(angle)}  & Tourner à gauche d’un angle donné (exprimé en degré)  \tabularnewline
+\hline \textbf{right(angle)}  & Tourner à droite  \tabularnewline
+\hline \textbf{width(épaisseur)}  & Choisir l’épaisseur du tracé  \tabularnewline
+\hline \textbf{fill(1)}  & Remplir un contour fermé à l’aide de la couleur sélectionnée (on termine la construction par fill(0))  \tabularnewline
+\hline \textbf{write(texte)}  &  texte doit être une chaîne de caractères délimitée avec des " ou des ’\tabularnewline
+\hline
+\end{tabular} 
+
+
+
+
+\newpage
+\section{Turtle}
+
+\begin{list}{$\bullet$}{}
+\item Importer le module \textbf{turtle}  
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+import turtle
+\end{lstlisting}
+\item Création d'une fenètre de largeur  (\textbf{width})  600px, de hauteur (\textbf{height}) 400px, \\
+	\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+turtle.setup(640, 480) 
+\end{lstlisting}
+\end{list}
+	%la largeur (\textbf{width}) de notre fenêtre, sa hauteur (\textbf{height}), la position en largeur (\textbf{startx})% puis la position en hauteur (\textbf{starty}) du coin en haut à gauche de notre fenêtre par rapport au coin en haut à gauche de l'écran.
+
+\begin{center}
+\raisebox{-0.1cm}{\includegraphics[width=6cm]{images/turtle}}
+\end{center}
+
+\subsection{ Mouvements de la tortue}
+
+\begin{list}{$\bullet$}{}
+\item  \textbf{forward(d)} : fait avancer la tortue de d (en pixel), le trait est dessiné si le crayon est baissé ;
+\item  \textbf{backward(d)} : fait reculer la tortue de d (en pixel), le trait est dessiné si le crayon est baissé ;
+\item  \textbf{left(a)} : fait pivoter la tortue d’un angle de a degrés vers la gauche ;
+\item  \textbf{right(a)} : fait pivoter la tortue d’un angle de a degrés vers la droite ;
+\item  \textbf{goto(x,y)} : la tortue va se positionner au point de coordonnées ( x ; y );
+\item  \textbf{circle(r)} : trace un cercle de rayon r , le point de départ de la tortue appartient au cercle (attention il n’est
+pas centré sur la position de la tortue) ;
+\item  \textbf{circle(r,s)} : trace une portion du cercle correspondant à s degrés ;
+\end{list}
+
+\subsection{Contrôle du stylo}
+
+\begin{list}{$\bullet$}{}
+\item  \textbf{up()} : lève le crayon ;
+\item  \textbf{down()} : baisse le crayon ;
+\item  \textbf{pensize()} ou \textbf{width()} : fixe la largeur du trait (en pixel) ;
+\item  \textbf{reset()} : nettoie la fenêtre de dessin, réinitialise la tortue ; elle est située alors au centre de l’écran de
+dessin tournée vers la droite.
+\item  \textbf{pencolor(c)} : la couleur par défaut est le noir, on peut la changer en mettant une couleur prédéfinie
+"red" , "green" , "blue" , "yellow" , . . . ;
+\item  \textbf{color(c1,c2)} : modifie la couleur du trait c1 et la couleur du remplissage c2 . On peut aussi les
+modifier séparement avec pencolor(c) et fillcolor(c) .
+\item  \textbf{begin\string_fill()} et \textbf{end\_fill()} permettent de commencer et de terminer le remplissage d’une
+figure géométrique.
+\end{list}
+
+\newpage
+\subsection{TP}
+
+
+\exerciceun{}
+
+
+\begin{enumerate}
+\item Dessiner un triangle équilatéral de coté 100 pixel.
+\item Écrire la fonction \textbf{\textit{triangle1(cote)}} qui dessine un triangle équilatéral dont les côtés sont de longueur \textit{cote} et qui a la pointe vers le haut.
+\item Écrire la fonction \textbf{\textit{triangle2(cote)}} qui dessine un triangle équilatéral dont les côtés sont de longueur \textit{cote} et qui a la pointe vers le bas.
+\item Écrire la fonction \textbf{\textit{triangle3(cote,angle)}} qui dessine un triangle équilatéral dont les côtés sont de longueur \textit{cote} et d’une orientation bien déterminée.
+\end{enumerate}
+
+
+
+\exerciceun{}
+
+\begin{enumerate}
+	\item Écrire la fonction \textbf{\textit{carre(cote)}} qui trace un carre de côté cote . Il est préférable que la tortue termine son dessin là où elle a démarré et avec la même orientation.
+\item En déduire la fonction \textbf{ligne\_de\_carres(n,cote)} qui trace n carrés sur une ligne chaque carré étant de coté \textbf{cote} (on utilisera la fonction carre ).
+\begin{center}
+\psset{xunit=1cm , yunit=1cm}
+\begin{pspicture*}(-.5,-0.1)(10.5,1)
+	\multido{\n=0+1}{7}{\put(\n,0){ \pspolygon(0,0)(0.8,0)(0.8,0.8)(0,0.8) }}
+	\end{pspicture*}
+\end{center}
+\item Écrire la fonction \textbf{\textit{carres\string_croissants(n,cote)}} qui trace une ligne de n carrés, le premier carré étant de côté cote , le suivant de côté 1,25 fois la taille du côté du carré qui le précède ; les carrés seront espacés la première fois de cote/4 puis cette distance sera multipliée aussi par 1,25 à chaque fois.\\
+	Vous utiliserez la fonction carre mais pas \textbf{\textit{ligne\string_de\string_carres}} .
+\end{enumerate}
+
+
+\end{document}
+

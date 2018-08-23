@@ -1,0 +1,234 @@
+
+%Fichier: liens.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 23 août 2018 13:21:41
+
+\documentclass[10pt,dvipsnames,  dvips]{article}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb}  %  pour  leqslant 
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%mise en page
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+\usepackage{ulem}
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{verbatim}
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{xcolor} % utiliser par exemple black!20
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+
+
+
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+%\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+
+%les fontes
+%\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+\usepackage{pst-eucl} %%% pour les dessin geométrique pstricks %%%
+\usepackage{multido}
+\newcounter{numeroexo}[section]
+\newcommand{\exerciceun}[1]{\par\stepcounter{numeroexo}\hspace{-0.5cm}\underline{\textbf{Exercice \arabic{numeroexo}}}\quad \textit{#1}\:}
+
+
+
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Correspondance algorithmique python}       %sous Acrobat.
+}
+
+
+
+%\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+%\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+%\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\C}{\mathbb{C}}
+%\newcommand{\e}{\mathrm{e}}
+\newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+%\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+\newcommand{\Chapter}[1]{\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec} #1} } \\}
+
+%\setcounter{secnumdepth}{1}% enlève la numérotation après les sections
+\usepackage{titlesec}
+
+
+%redéfinition des sections
+\titleformat{\section}
+   {\large\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesection}% apparence du numéro
+   {1em}% espacement numéro/texte
+   {}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{1pt}{1pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+
+%redéfinition des subsubsections
+\titleformat{\subsubsection}[hang]
+   {\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesubsubsection}% apparence du numéro
+   {0em}% espacement numéro/texte
+   {\underline}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{0pt}{0pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+%\setlength{\parindent}{0pt}
+\pagestyle{fancy} 
+\lhead{\small\textsc{Lycée Pablo neruda}}
+\chead{\small\textsc{Aide mémoire python seconde}}
+\rhead{Page \thepage/\pageref{LastPage} }
+\cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Pour les algorithmes
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+%\setlength{\parskip}{2pt}
+%Pour l'environnement multicolonne
+%\setlength{\columnseprule}{0pt}
+%\setlength{\columnsep}{0.5cm}
+
+%\setlength{\parindent}{1cm} %
+%\setlength{\parskip}{1cm plus4mm minus3mm}
+
+
+
+%%%% debut macro figure à gauche \figgauche %%%%
+ \newlength\jataille
+ \newcommand{\figgauche}[3]%
+ {\jataille=\linewidth\advance\jataille by -#1
+ %\jataille=\textwidth\advance\jataille by -#1
+ \advance\jataille by -1cm
+ \begin{minipage}[t]{#1}
+ #2
+ \end{minipage}\hfill
+ \begin{minipage}[t]{\jataille}
+  #3
+ \end{minipage}}
+ %%%% fin macro %%%%
+
+ %%%% debut macro figure à droite \figdroite%%%%
+ \newlength\jatail
+ \newcommand{\figdroite}[3]%
+ {\jatail=\linewidth\advance\jatail by -#1
+ \advance\jatail by -0.5cm
+\begin{minipage}[t]{\jatail}
+ #2
+ \end{minipage}
+ \hfill
+\begin{minipage}[t]{#1}
+  #3
+\end{minipage}}
+
+\setlength\parindent{0pt}%noident
+\begin{document}
+%Lextronic
+
+\begin{list}{\ding{212}}{}
+%\item Seconde
+%	\begin{list}{$\bullet$}{}
+%	\item 
+%	\end{list}
+\item ICN
+	\begin{list}{$\bullet$}{}
+	\item \href{https://github.com/debimax/cours-debimax/raw/master/icn/cours-html.pdf}{Cours HTML}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=seconde%2Fpython_seconde.ipynb}{Les bases de pythons}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=icn%2FProcessing_Python_1.ipynb}{Processing 1}
+	\item \href{http://htmlpreview.github.com/?https://github.com/debimax/cours-debimax/blob/master/icn/Processing_Python_2.html}{Processing 2}
+	\end{list}
+\item ISN
+	\begin{list}{$\bullet$}{}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2Fbases.ipynb}{Les bases de python}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2Fstring-listes.ipynb}{Compléments python, Chaine de caractères, listes, tuples.}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2Fimages.ipynb}{Image}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2FCartographie.ipynb}{Geomatique}
+	\item Sites internet
+		\begin{list}{-}{}
+		\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2FParser_des_pages_internet.ipynb}{Parser des pages internet}
+		\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2FBrython.ipynb}{Brython (coté) client}
+		\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2Fflask.ipynb}{Flask (coté serveur)}
+		\end{list}
+	\item \href{https://mybinder.org/v2/gh/debimax/cours-debimax/master?filepath=isn%2FBases%20de%20donnees.ipynb}{bases de données sqlite}
+	\end{list}
+\end{list}
+
+\end{document}
+
+%https://github.com/CE-Programming/CEmu/releases
