@@ -1,7 +1,7 @@
 
 %Fichier: cours-html.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 29 juil. 2018 21:05:45
+%Dernière modification: 02 oct. 2018 12:05:24
 
 \documentclass[10pt,dvipsnames, dvips, svgnames]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -208,6 +208,130 @@
 
 
 \begin{document}
+
+
+\section{Introduction au World Wide Web}
+\subsection{L'Internet et le Web, quelle différence ?}
+
+
+\textbf{Internet} est un réseau informatique mondial.
+
+Le \textbf{World Wide Web}, que l'on appelle le plus souvent \textbf{Web}, est un des services disponibles sur Internet.
+
+D'autres services disponibles sur Internet sont par exemple la messagerie électronique (\textbf{email}) ou le transfert de fichier (\textbf{FTP})
+
+\subsubsection{Le Web ou World Wide Web, à quoi ça sert ?}
+
+Le Web ("la toile" en français) est un système permettant de visualiser et d'échanger des informations à distance.
+
+Les informations sont présentées sur des pages Web et reliées les unes aux autres par des liens hypertextes.
+	
+\subsubsection{Qu'est-ce qu'une page Web ? Qu'est-ce qu'un site Web ?}
+
+Une page Web est généralement un fichier texte écrit dans un langage informatique baptisé HTML.\\
+Ce fichier peut contenir des images ou d'autres contenus multimédias (audio, vidéo, application).
+
+Un site Web est un ensemble de pages Web reliées les unes aux autres par des liens hypertextes et accessible en ligne à une adresse.
+
+
+\subsubsection{Le langage HTML}
+
+\textbf{HTML} est l'acronyme d'\textbf{H}yper\textbf{t}ext \textbf{M}arkup  \textbf{L}anguage qui peut se traduire ainsi : langage hypertexte à balise.
+
+Le HTML est un langage informatique utilisant des \textbf{textes} et des \textbf{balises}. On peut utiliser un simple éditeur de texte pour créer un fichier HTML.
+
+
+Pour visionner un fichier en HTML on utilise un navigateur. Un navigateur est un logiciel qui va lire le code HTML et l'interpréter. Chaque balise donne au navigateur des informations sur comment afficher tel ou tel élément.
+
+\subsubsection{À propos des balises}
+
+Une balise (markup en anglais) est un mot clé qui va donner des indications au navigateur sur ce qu'il doit afficher.
+
+Une balise HTML commence par le caractère \og < \fg et termine par le caractère \og > \fg .
+
+Les caractères qui ne sont pas compris entre les signes \og < \fg et \og > \fg sont donc considérés comme du texte et seront affichés tel quel par le navigateur.
+
+
+\begin{list}{$\bullet$}{}
+	\item  Il existes des balises ouvrantes et des balises fermantes qui correspondent au début et la fin d'une instruction.
+	\item Les balises de fermeture sont identiques à celles d'ouverture à l'exception de l'ajout d'un caractère \og / \fg (slash) pour signaler la fermeture. Ce caractère se place juste après le signe \og > \fg (inférieur)
+	\end{list}
+
+\subsubsection{Structure d'un fichier HTML}
+
+Un fichier HTML (un document HTML) commence par l'ouverture d'une balise <html> et se termine par la balise fermante </html> 
+
+Tous les fichiers HTML sont composés d'une entête (balise "head") et d'un corps (balise "body"). L'entête contient des informations sur la page.\\
+Le corps contient le contenu de la page.
+
+\lstset{title={},caption={Exemple}, language=html}
+\begin{lstlisting}
+<html>
+  <head>
+  </head>
+  <body>
+    Texte de la page ici.
+  </body>
+</html>
+\end{lstlisting}
+
+
+\subsubsection{Principe du Web}
+
+Structure simplifiée d’une adresse, d’une URL :
+
+protocole :// serveur/ressource
+
+
+\url{http://www.univ-nancy2.fr/formations/calendrier_licence.html}
+
+protocole: Hyper Text Transfer\\
+nom du serveur : nom de domaine de l'ordinateur hébergeant la ressource demandée:  \\
+Emplacement de la ressource sur le serveur:  en général emplacement (répertoire) et nom du fichier demandé (html ou autre).
+
+
+
+%Souvent .htm, html. Mais également .asp,php... pour des pages générées dynamiquement.
+
+\newpage
+\subsubsection{HTTP et HTML}
+
+\begin{list}{$\bullet$}{}
+\item HTTP=Hypertext Transfer Protocol :
+	\begin{list}{-}{}
+	\item Protocole utilisé pour transférer des fichiers (html, mais pas forcément) entre un serveur http et un navigateur
+	\end{list}
+\item Que se passe-t-il lorsque je consulte une page web ?
+	\begin{list}{-}{}
+	\item Grâce à l’url de la page, mon navigateur consulte un DNS (qui peut lui-même demander à un autre DNS) le serveur qui l’héberge,
+	\item Mon navigateur demande au serveur (grâce à HTTP) la page 
+	\item Le serveur la renvoie (toujours grâce à HTTP)
+	\item Mon navigateur affiche la page (grâce à HTML)
+	\end{list}
+\item HTML=Hypertext Markup Language :
+	\begin{list}{-}{}
+	\item Langage de balisage hypertexte
+	\item Langage informatique créé pour écrire des pages web
+	\item Cours détaillés sur html dans une prochaine séance
+	\end{list}
+\end{list}
+
+
+
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- En-tête de la page -->
+  <meta charset="utf-8" />
+  <title>Titre</title>
+</head>
+<body>
+  <!-- Corps de la page -->
+</body>
+</html>
+\end{lstlisting}
+\newpage
 
 
 \section{HTML}
@@ -880,6 +1004,83 @@ Voici différents thèmes.
 	\item 
 	\end{list}
 \item Faire des recherche sur le thème choisit puis faire un site internet pour expliquer.
+\end{list}
+
+
+
+
+\newpage
+
+\section{Résumé  html}
+
+Le \textbf{World Wide Web}, que l'on appelle le plus souvent \textbf{Web}, est un des services disponibles sur Internet.
+
+D'autres services disponibles sur Internet sont par exemple la messagerie électronique (\textbf{email}) ou le transfert de fichier (\textbf{FTP})
+
+\begin{list}{$\bullet$}{}
+\item 
+\lstset{title={},caption={Structure  générale}, language=html}
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- En-tête de la page -->
+  <meta charset="utf-8" />
+  <title>Titre</title>
+</head>
+<body>
+  <!-- Corps de la page -->
+</body>
+</html>
+\end{lstlisting}
+\item \textcolor{Blue}{<p> \dots </p>} pour encadrer un paragraphe
+\item \textcolor{Blue}{<br />} pour sauter une ligne
+\item  \textcolor{Blue}{<h1> \dots </h1>} : signifie \og titre très important \fg.
+\item  \textcolor{Blue}{<h2> \dots </h2>} : signifie \og titre important \fg.
+\item  \textcolor{Blue}{<h3> \dots </h3>} : pareil, c'est un titre un peu moins important.  etc\dots
+\item \begin{minipage}[t]{0.5\linewidth}
+\lstset{title={},caption={Listes à puces (\textit{unordonned})}, language=html}
+\begin{lstlisting}
+<ul>
+  <li> Fraises </li>
+  <li> Framboises </li>
+  <li> Cerises </li>
+</ul>
+\end{lstlisting}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+\lstset{title={},caption={Listes numérotés (\textit{ordonned})}, language=html}
+\begin{lstlisting}
+<ol>
+  <li> Fraises </li>
+  <li> Framboises </li>
+  <li> Cerises </li>
+</ol>
+\end{lstlisting}
+\end{minipage}
+\item \lstset{title={},caption={Un tableau}, language=html}
+\begin{lstlisting}
+<table>
+  <tr><th>Nom</th><th>prénom</th><th>âge</th></tr>
+  <tr><td>Onette</td><td>Camille</td><td>15</td></tr>
+  <tr><td>Vanille</td><td>Douglas</td><td>16</td></tr>
+  <tr><td>Bijoba</td><td>Joe</td><td>16</td></tr>
+</table>
+\end{lstlisting}
+
+\item \lstset{title={},caption={Une image}, language=html}
+\begin{lstlisting}
+<img alt='Pablo Neruda' src='https://upload.wikimedia.org/wikipedia/commons/8/86/Pablo_Neruda_1963.jpg' width=200px />
+<img alt='Texte alternatif' src='Monimage.jpg' width=200px />
+\end{lstlisting}
+
+\item\lstset{title={},caption={Un lien}, language=html}
+\begin{lstlisting}
+<h1>Les liens</h1>
+<p>Cliquez sur <a href="http://wikipedia.org">ce lien externe</a>pour aller sur Wikipédia.</p>
+<p>Cliquez sur <a href="page2.html">ce lien interne</a>pour aller sur une deuxième page html.</p>
+\end{lstlisting}
+
 \end{list}
 
 
