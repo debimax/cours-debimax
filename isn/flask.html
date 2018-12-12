@@ -12232,7 +12232,7 @@ Il est possible d'insérer dans une balise <strong><em>&lt;FORM&gt;</em></strong
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;&lt;input type=&quot;button&quot; value=&quot;GO !&quot; style=&quot;cursor:pointer; padding:5px 20px; background-color:#24DB00; </span>
-<span class="s1">color:white; border:dotted 2px grey; border-radius:5px;&quot; /&gt; 	</span>
+<span class="s1">color:white; border:dotted 2px grey; border-radius:5px;&quot; /&gt;</span>
 <span class="s1">&#39;&#39;&#39;</span>
 <span class="n">HTML</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
 </pre></div>
@@ -12273,12 +12273,12 @@ Pour cela on doit indiquer une <strong><em>methode</em></strong> d'envoie des do
 <li><p><strong><em>METHOD</em></strong> indique sous quelle forme seront envoyées les réponses. Il y a deux méthodes <strong><em>GET</em></strong> ou <strong><em>POST</em></strong> ?<br>
 Le choix de la méthode dépend de la façon dont les données sont reçues, de la taille et la nature des données.</p>
 <ul>
-<li><strong><em>La méthode GET:</em></strong> Elle correspond à un envoi des données codées dans l'URL, et séparées de l'adresse du script par un point d'interrogation.<br>
+<li><strong><em>La méthode GET</em></strong>  correspond à un envoi des données codées dans l'URL, et séparées de l'adresse du script par un point d'interrogation.<br>
 Noter que lorsqu'on utilise le bouton retour, les requêtes GET sont exécutées à nouveau.
 Les données de formulaire doivent être uniquement des codes ASCII et la taille d'une URL est limitée à par le serveur.<br>
 Par exemple <a href="https://www.google.fr/?q=python">https://www.google.fr/?q=python</a> utilise la méthode <strong><em>get</em></strong> avec la variable <strong><em>q</em></strong> (pour query). Testez ce lien dans un onglet.<br>
 Si on modifie l'adresse (par exemple <strong><em>python</em></strong> en <strong><em>python+isn</em></strong>), on modifie le contenu de la variabe <strong><em>q</em></strong> et donc la page html.</li>
-<li><strong><em>La méthode POST:</em></strong> Elle correspond à un envoi de données stockées dans le corps de la requête. C'est généralement ce que l'on utilise.</li>
+<li><strong><em>La méthode POST</em></strong> correspond à un envoi de données stockées dans le corps de la requête.</li>
 </ul>
 </li>
 <li><p><strong><em>ACTION</em></strong> indique l'url de la page qui recevra et traitera les informations soumises. Cela peut aussi être l'envoie d'un mail (mailto:adresse.email@machine).</p>
@@ -12325,6 +12325,26 @@ On importe <strong><em>flask.request</em></strong></p>
 <p>Le nom et le prenom sont envoyé au 2° template dans avec variables nom et prenom avec la méthode <strong><em>POST</em></strong>.<br>
 On les affiche dans le template <strong><em>page2.html</em></strong> avec {{ nom }} et {{ prenom }}.<br>
 Regarder le code du  deuxième template <strong><em>templates/page2.html</em></strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ajouter-Un-lien-qui-ram&#232;ne-sur-la-premi&#232;re-page">Ajouter Un lien qui ram&#232;ne sur la premi&#232;re page<a class="anchor-link" href="#Ajouter-Un-lien-qui-ram&#232;ne-sur-la-premi&#232;re-page">&#182;</a></h3><p>Vous connaissez tous les liens sur les pages <em>html</em>.  Quand on clic dessus  le lien vous renvoie sur une autre page.<br>
+La syntaxe est:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;urldulien&quot;</span> <span class="p">&gt;</span> texte à afficher<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+<p>Par exemple pour créer un lien qui redirige vers mes cours  on utiolisera quelque chose comme ca.</p>
+<p><a  href="https://github.com/debimax/cours-debimax">Aller sur mon github</a></p>
+<p>Par contre la syntaxe pour rediriger vers une autre page de mon site est un peu différent.  On utilise la fonction <strong><em>urlfor</em></strong>.</p>
+<p>Éditez avec pyzo le fichier  <strong><em>templates/page2.html</em></strong></p>
+<p>Àjouter vers la fin du fichier</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;accueil4&#39;) }}&quot;</span> <span class="p">&gt;</span>Formulaire avec redirection vers la même page<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre></div>
+<p><strong><em>accueil4</em></strong> est le nom de la fonction python (<em>isnflask.py</em>) qui créer la page html.</p>
 
 </div>
 </div>
@@ -12405,6 +12425,64 @@ Il y en a d'autres <a href="http://sametmax.com/quel-hebergement-web-pour-les-pr
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercices">Exercices<a class="anchor-link" href="#Exercices">&#182;</a></h2><h3 id="Exercice-1">Exercice 1<a class="anchor-link" href="#Exercice-1">&#182;</a></h3><p>En partant de l'exemple qui redirige vers la même page créer un site pour calculer l'indice de la masse corporelle (IMC).</p>
+<p>On utilisera</p>
+<ul>
+<li>Deux labels (masse et taille),</li>
+<li>Deux balises <strong><em>&lsaquo;input &rsaquo;</em></strong> de type number,</li>
+<li>Un bouton  et un label pour afficher l'imc.</li>
+<li>On placera le tout avec un tableau pour faire simple.</li>
+</ul>
+<h3 id="Exercice-2">Exercice 2<a class="anchor-link" href="#Exercice-2">&#182;</a></h3><p>On ne souhaite pas  afficher les images lorsque le client est un téléphone mobile.</p>
+<p>Pour Flask <strong><em>request.user_agent</em></strong>  détermine l'<strong><em>useragent</em></strong>.</p>
+<p>Dans exemple.py, il faut modifier l'import du  module Flask</p>
+<div class="highlight"><pre><span></span><span class="mo">03</span> <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">request</span>
+</pre></div>
+<p>Ajouter la fonction <strong><em>ismobile()</em></strong> que nous avons déjà utilisé pour brython.</p>
+<div class="highlight"><pre><span></span><span class="mi">09</span><span class="k">def</span> <span class="nf">ismobile</span><span class="p">():</span>
+<span class="mi">10</span>    <span class="n">Agent</span><span class="o">=</span><span class="n">window</span><span class="o">.</span><span class="n">navigator</span><span class="o">.</span><span class="n">userAgent</span>
+<span class="mi">11</span>    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;android|iphone|blackberry|symbian|symbianos|symbos|netfront|modelorange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook&#39;</span><span class="p">,</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">True</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">False</span>
+</pre></div>
+<p>Transmettre si c'est un mobile template html</p>
+<div class="highlight"><pre><span></span><span class="mi">15</span><span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;accueil.html&quot;</span><span class="p">,</span> <span class="n">titre</span><span class="o">=</span><span class="s2">&quot;Bienvenue !&quot;</span><span class="p">,</span><span class="n">lignes</span><span class="o">=</span><span class="n">Lignes</span><span class="p">,</span><span class="n">ismobile</span><span class="o">=</span><span class="n">ismobile</span><span class="p">()))</span>
+</pre></div>
+<p>Modifier alors le template <strong><em>acceuil.html</em></strong> pour ne pas afficher les images si c'est un mobile.</p>
+<p>Pour vérifier si cela fonctionne avec le mobile  on poura le  remplacer <strong><em>ismobile=ismobile()</em></strong> par <strong><em>ismobile=True</em></strong></p>
+<h3 id="Exercice-3">Exercice 3<a class="anchor-link" href="#Exercice-3">&#182;</a></h3><ol>
+<li><ul>
+<li>Créer un dossier <strong><em>static/file/</em></strong> et mettre dans ce dossier quelques fichiers textes (.txt) et images (.png ou .jpg).  </li>
+<li>À partir de la console pyzo esssayez de lister les noms des fichiers contenus dans un dossier quelconque <em>(On utilisera la librairie <strong>os</strong> pour lister)</em>.<br>
+<strong><em>Aide module OS</em></strong>: <a href="http://apprendre-python.com/page-gestion-fichiers-dossiers-python">ce site</a>  ou <a href="http://www.w3big.com/fr/python3/python3-os-file-methods.html">le site w3big</a></li>
+<li>Modifier le fichier <strong><em>exemple.py</em></strong> en ajoutant une fonction <strong><em>listdir()</em></strong> qui retourne la liste les noms des fichiers contenus dans le dossier  <strong><em>static/file/</em></strong> .  </li>
+<li>modifier le <strong><em>templates/accueil.html</em></strong> pour faire afficher le nom des fichiers.</li>
+</ul>
+</li>
+<li>Modifier alors la fonction <strong><em>listdir()</em></strong> pour n'afficher que le nom des images.</li>
+<li>Afficher cette fois les images dans la page internet avec la balise &lsaquo;img   /&rsaquo;.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Prolongement">Prolongement<a class="anchor-link" href="#Prolongement">&#182;</a></h2><ul>
+<li>Utilisation d'une base de donnée</li>
+<li>Créer une image aux couleurs aléatoire (module pil) et l'afficher.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Exemple-de-formulaire-utilisant-la-m&#233;thode-GET">Exemple de formulaire utilisant la m&#233;thode GET<a class="anchor-link" href="#Exemple-de-formulaire-utilisant-la-m&#233;thode-GET">&#182;</a></h3><p>Modifions la page <strong><em>templates/accueil.html</em></strong> pour mettre un <em>formulaire</em></p>
 <p><span class="reverse">22&lt;/ul&gt;</span></p>
 <div class="highlight"><pre><span></span>23<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
@@ -12436,116 +12514,6 @@ Il y en a d'autres <a href="http://sametmax.com/quel-hebergement-web-pour-les-pr
 <p>Le nom et le prenom sont envoyé au 2° template dans avec variables nom et prenom avec la méthode <strong><em>POST</em></strong>.<br>
 On les affiche dans le template <strong><em>page2.html</em></strong> avec {{ nom }} et {{ prenom }}.<br>
 Regarder le code du  deuxième template <strong><em>templates/page2.html</em></strong>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Ajouter-Un-lien-qui-ram&#232;ne-sur-la-premi&#232;re-page">Ajouter Un lien qui ram&#232;ne sur la premi&#232;re page<a class="anchor-link" href="#Ajouter-Un-lien-qui-ram&#232;ne-sur-la-premi&#232;re-page">&#182;</a></h3><p>Vous connaissez tous les liens sur les pages <em>html</em>.  Quand on clic dessus  le lien vous renvoie sur une autre page.<br>
-La syntaxe est:</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;urldulien&quot;</span> <span class="p">&gt;</span> texte à afficher<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre></div>
-<p>Par exemple pour créer un lien qui redirige vers mes cours  on utiolisera quelque chose comme ca.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%%</span><span class="k">html</span>
-&lt;a  href=&quot;https://github.com/debimax/cours-debimax&quot;&gt;Aller sur mon github&lt;/a&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<a  href="https://github.com/debimax/cours-debimax">Aller sur mon github</a>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Par contre la syntaxe pour rediriger vers une autre page de mon site est un peu différent.  On utilise la fonction <strong><em>urlfor</em></strong>.</p>
-<p>Éditez avec pyzo le fichier  <strong><em>templates/page2.html</em></strong></p>
-<p>Àjouter vers la fin du fichier</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;accueil4&#39;) }}&quot;</span> <span class="p">&gt;</span>Formulaire avec redirection vers la même page<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</pre></div>
-<p><strong><em>accueil4</em></strong> est le nom de la fonction python (<em>isnflask.py</em>) qui créer la page html.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Exercices">Exercices<a class="anchor-link" href="#Exercices">&#182;</a></h2><h3 id="Exercice-1">Exercice 1<a class="anchor-link" href="#Exercice-1">&#182;</a></h3><p>On ne souhaite pas  afficher les images lorsque le client est un téléphone mobile.</p>
-<p>Pour Flask <strong><em>request.user_agent</em></strong>  détermine l'<strong><em>useragent</em></strong>.</p>
-<p>Dans exemple.py, il faut modifier l'import du  module Flask</p>
-<div class="highlight"><pre><span></span><span class="mo">03</span> <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">url_for</span><span class="p">,</span> <span class="n">request</span>
-</pre></div>
-<p>Ajouter la fonction <strong><em>ismobile()</em></strong> que nous avons déjà utilisé pour brython.</p>
-<div class="highlight"><pre><span></span><span class="mi">09</span><span class="k">def</span> <span class="nf">ismobile</span><span class="p">():</span>
-<span class="mi">10</span>    <span class="n">Agent</span><span class="o">=</span><span class="n">window</span><span class="o">.</span><span class="n">navigator</span><span class="o">.</span><span class="n">userAgent</span>
-<span class="mi">11</span>    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;android|iphone|blackberry|symbian|symbianos|symbos|netfront|modelorange|javaplatform|iemobile|windows phone|samsung|htc|opera mobile|opera mobi|opera mini|presto|huawei|blazer|bolt|doris|fennec|gobrowser|iris|maemo browser|mib|cldc|minimo|semc-browser|skyfire|teashark|teleca|uzard|uzardweb|meego|nokia|bb10|playbook&#39;</span><span class="p">,</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">True</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="k">return</span> <span class="bp">False</span>
-</pre></div>
-<p>Transmettre si c'est un mobile template html</p>
-<div class="highlight"><pre><span></span><span class="mi">15</span><span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;accueil.html&quot;</span><span class="p">,</span> <span class="n">titre</span><span class="o">=</span><span class="s2">&quot;Bienvenue !&quot;</span><span class="p">,</span><span class="n">lignes</span><span class="o">=</span><span class="n">Lignes</span><span class="p">,</span><span class="n">ismobile</span><span class="o">=</span><span class="n">ismobile</span><span class="p">()))</span>
-</pre></div>
-<p>Modifier alors le template <strong><em>acceuil.html</em></strong> pour ne pas afficher les images si c'est un mobile.</p>
-<p>Pour vérifier si cela fonctionne avec le mobile  on poura le  remplacer <strong><em>ismobile=ismobile()</em></strong> par <strong><em>ismobile=True</em></strong></p>
-<h3 id="Exercice-2">Exercice 2<a class="anchor-link" href="#Exercice-2">&#182;</a></h3><ol>
-<li><ul>
-<li>Créer un dossier <strong><em>static/file/</em></strong> et mettre dans ce dossier quelques fichiers textes (.txt) et images (.png ou .jpg).  </li>
-<li>À partir de la console pyzo esssayez de lister les noms des fichiers contenus dans un dossier quelconque <em>(On utilisera la librairie <strong>os</strong> pour lister)</em>.<br>
-<strong><em>Aide module OS</em></strong>: <a href="http://apprendre-python.com/page-gestion-fichiers-dossiers-python">ce site</a>  ou <a href="http://www.w3big.com/fr/python3/python3-os-file-methods.html">le site w3big</a></li>
-<li>Modifier le fichier <strong><em>exemple.py</em></strong> en ajoutant une fonction <strong><em>listdir()</em></strong> qui retourne la liste les noms des fichiers contenus dans le dossier  <strong><em>static/file/</em></strong> .  </li>
-<li>modifier le <strong><em>templates/accueil.html</em></strong> pour faire afficher le nom des fichiers.</li>
-</ul>
-</li>
-<li>Modifier alors la fonction <strong><em>listdir()</em></strong> pour n'afficher que le nom des images.</li>
-<li>Afficher cette fois les images dans la page internet avec la balise &lsaquo;img   /&rsaquo;.</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prolongement">Prolongement<a class="anchor-link" href="#Prolongement">&#182;</a></h2><ul>
-<li>Utilisation d'une base de donnée</li>
-<li>Créer une image aux couleurs aléatoire (module pil) et l'afficher.</li>
-</ul>
 
 </div>
 </div>
