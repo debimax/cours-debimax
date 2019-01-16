@@ -1,7 +1,12 @@
 #!python3
 # -*- coding: utf-8 -*-
+import  sys
+import subprocess
+import os
 
-lienpy="C:\\ProgramData\\Miniconda3\\python.exe"
+
+linpy=sys.executable
+#lienpy="C:\\ProgramData\\Miniconda3\\python.exe"
 dirflask="test-flask\isnflask"
 file_python_flask="isnflask.py"
 
