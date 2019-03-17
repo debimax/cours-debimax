@@ -1,0 +1,618 @@
+
+%Fichier: tuto-lightty-python.tex
+%Crée le 17 avril 2012
+%Dernière modification: 16 mars 2019 13:19:44
+
+\documentclass[a4paper,10pt,usenames]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%les fontes
+\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+%mise en page
+%\usepackage{multicol}
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+
+%couleur
+%\usepackage{colortbl}%%%pour colorer les cases d'un tableau
+\usepackage[usenames,dvipsnames]{xcolor} % utiliser par exemple black!20
+\definecolor{Bleulighttpd}{RGB}{75,105,131}
+\definecolor{Rougelighttpd}{RGB}{204,0,0}
+\definecolor{Jaunelighttpd}{RGB}{255,255,204}
+\definecolor{Grispythoninfo}{RGB}{242,242,242}
+\definecolor{Jaunepythoninfo}{RGB}{255,255,204}
+%\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+\usepackage{colortbl}
+
+%Encadrement etc etc
+%\usepackage{fancybox} %%% pour encadrer du texte
+%\usepackage{framed} %%% pour encadrer les formules etc ..
+%\usepackage[amsmath,thmmarks,hyperref,framed]{ntheorem} %%%% Pour encadrer les thm, propriétés et définitions
+
+\usepackage{array}
+%\usepackage{enumerate} %%% pour les numerotation de liste \begin{enumerate}[i] ... %%%
+
+% Pour les algorithmes
+%\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%\usepackage{listings} %%% pour un environnement listings %%%%
+%\input{mes_listings.tex} %%% pour les listings R-cran R etc... %%%%
+
+%\usepackage{alltt} %%% pour un environnement programme bof %%%%
+
+%\usepackage{pstricks-add}
+%\usepackage{pst-eucl} %%%%
+%\usepackage{pst-tree} %%%%
+
+
+\usepackage[a4paper,tmargin=1.1cm,bmargin=2.4cm,lmargin=2cm,rmargin=1.7cm]{geometry} % Fixer les dimensions d'une page
+
+\usepackage[francais]{babel}
+
+%%% pour mes bas de pages %%%
+%\usepackage{fancyhdr} %%%% Pour gérer les hauts et bas de pages.
+%\pagestyle{fancy} %on met par défaut la page fancy
+%\fancyhf{} %On efface tous pour définir ce que l'on veut
+%\rfoot{\textit{Page \thepage}}
+%\lfoot{\textit{Seconde}}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\renewcommand{\headrulewidth}{0pt} %%%
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+\usepackage{verbatim}
+
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+
+%informations pour le lecteur pdf
+\hypersetup{
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	pdfauthor=Meilland jean claude,
+	pdftitle=tuoriel raspberry lighttpd fastcgi python  flask,
+}
+
+\setlength{\parskip}{0pt}% espace entre paragraphe
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{3pt}{1pt}
+
+
+\title{Installer un serveur web  configuré pour python. (lighttpd+fastcgi+Flask)}
+\author{Meilland jean claude}
+%\date{}
+
+\begin{document}
+\maketitle
+
+
+Avant de commencer je précise que vous avez un tutoriel  pour \href{https://raspbian-france.fr/installer-serveur-web-raspberry-lamp/}{Apache + PHP + Mysql} sur raspbian-france
+
+
+
+\section{Installation}
+
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{lighttpd}} est un serveur léger donc idéal pour notre raspberry.
+\item \textit{\textbf{Flask}} est un framwork  pour réaliser un site internet en python.
+\item \textit{\textbf{Flup}} est un module python pour  \textit{Web Server Gateway Interface} (WSGI)
+\end{list}
+
+Commençons par installer le serveur et flask.
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo apt-get install  lighttpd
+sudo apt-get install  python3-flask
+sudo pip3 install flup
+\end{lstlisting}
+
+Les différents modules que l'on peux charger se trouvent dans le dossier \textit{/etc/lighttpd/conf-available/}
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+ls /etc/lighttpd/conf-available/
+\end{lstlisting}
+
+Nous utiliseront les modules \textit{\textbf{10-fastcgi.conf,  10-rewrite.conf}} et \textbf{\textit{10-userdir.conf}}.
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo lighttpd-enable-mod  fastcgi
+sudo lighttpd-enable-mod  rewrite
+sudo lighttpd-enable-mod  userdir
+\end{lstlisting}
+
+Les modules chargés se trouvent dans le dossier  \textit{\textbf{/etc/lighttpd/conf-enabled/}}
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+ls /etc/lighttpd/conf-enabled/
+\end{lstlisting}
+
+Il ne reste plus qu'à relancer \textit{\textbf{lighttpd}}
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo service  lighttpd restart
+\end{lstlisting}
+
+\section{Vérification}
+
+
+\begin{list}{\ding{212}}{}
+\item Vérifions que le \textit{\textbf{lighttpd}} soit fonctionnel.
+
+Ouvrez un navigateur à l'adresse \url{http://localhost/}.  Vous devez voir cette page 
+
+
+%\fbox{\begin{minipage}[t]{\linewidth}
+%
+%\colorbox{Bleulighttpd}{\begin{minipage}[t]{0.98\linewidth}
+%	\begin{center}
+%		\huge\textcolor{white}{\textbf{Placeholder page}}
+%
+%\vspace{0.3cm}
+%\scriptsize
+%%\footnotesize
+%\textcolor{white}{The owner of this web site has not put up any web pages yet. Please come back later.}
+%	\end{center}
+%\end{minipage}
+%}
+%
+%\scriptsize
+%%\footnotesize
+%\textbf{You should replace this page with your own web pages as soon as possible.}
+%
+%
+%Unless you changed its configuration, your new server is configured as follows:
+%
+%\begin{list}{$\bullet$}{}
+%\item Configuration files can be found in /etc/lighttpd. Please read /etc/lighttpd/conf-available/README file.
+%\item The DocumentRoot, which is the directory under which all your HTML files should exist, is set to /var/www/html.
+%\item CGI scripts are looked for in /usr/www/cgi-bin, which is where Debian packages will place their scripts. You can enable cgi module by using command "lighty-enable-mod cgi".
+%\item Log files are placed in /var/log/lighttpd, and will be rotated weekly. The frequency of rotation can be easily changed by editing /etc/logrotate.d/lighttpd.
+%\item The default directory index is index.html, meaning that requests for a directory /foo/bar/ will give the contents of the file /var/www/foo/bar/index.html if it exists (assuming that /var/www is your DocumentRoot).
+%\item You can enable user directories by using command "\textbf{lighty-enable-mod userdir}"
+%\end{list}
+%
+%About this page
+%This is a placeholder page installed by the Debian release of the \colorbox{Jaunelighttpd}{\textcolor{Rougelighttpd}{Lighttpd server package}}.
+%
+%This computer has installed the Debian GNU/Linux operating system, but it has nothing to do with the Debian Project. Please do not contact the Debian Project about it.
+%
+%If you find a bug in this Lighttpd package, or in Lighttpd itself, please file a bug report on it. Instructions on doing this, and the list of known bugs of this package, can be found in the \colorbox{Jaunelighttpd}{\textcolor{Rougelighttpd}{\textbf{Debian Bug Tracking System.}}}
+%\end{minipage}}
+
+\begin{center}
+	\raisebox{-0.1cm}{\includegraphics[width=0.8\linewidth]{images/placeholder}}
+\end{center}
+\normalsize 
+
+\item Idem pour le module \textit{\textbf{userdir}}\\
+	Ouvrez un navigateur à l'adresse \url{http://localhost/\string~pi/}, vous devez voir la même page.\\
+Évidemment remplacez \textbf{\textit{pi}} par votre \textbf{\textit{\$USER}}.\\
+	Le module \textit{\textbf{userdir}}  permet d'écrire les programmes dans le dossier \textbf{\textit{/home/pi/public\string_html/}}
+\item Vérifions le module  \textit{\textbf{Flask}}. Commençons par tester un mini site \textit{Pythoninfo}  (comme \textbf{\textit{phpinfo}}).
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+mkdir ~/public_html/pythoninfo
+sudo pip3 install pyinfo
+\end{lstlisting}
+
+%On utilises le dossier \textit{static} pour mettre les images, fichiers css etc\ldots et le dossier templates pour mettre évidement les templates (squelettes) html.
+
+Créer le fichier \textit{\textbf{\string~/public\string_html/pythoninfo/pythoninfo.py}}
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/pyinfo')
+@app.route('/')
+def info():
+    import pyinfo
+    return pyinfo.info_as_html()
+
+if __name__ == '__main__':
+    app.run(debug=True)
+\end{lstlisting}
+
+On peut déjà tester ce fichier en local
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+python3 pythoninfo.py
+\end{lstlisting}
+
+Ouvrez votre navigateur à l'adresse \url{http://localhost:5000} Vous devez voir ceci
+
+ 
+\footnotesize
+\begin{center}
+	\fbox{\begin{minipage}[t]{12cm}
+
+	\begin{center}
+		
+	\begin{tabular}[]{|>{\raggedright}m{3cm} >{\raggedleft}m{8cm} |}
+		\hline \textbf{Python 3.5.3} & \raisebox{-0.1cm}{\includegraphics[width=2cm]{images/python-logo}}\tabularnewline
+		\hline 
+	\end{tabular} 
+	\bigskip
+
+	\textbf{System}
+
+	\begin{tabular}[]{| >{\raggedright \bfseries \columncolor{Jaunepythoninfo}}m{3cm} | >{\raggedleft}m{7cm} |}
+%	\begin{tabular}[]{|>{ \bfseries \columncolor{Jaunepythoninfo}}l| >{ \small}m{5cm}<{.}|}
+\hline Python version & 3.5.3\tabularnewline
+\hline OS Version & Linux 4.9.59-v7+ (Debian 9.3) \tabularnewline
+\hline Executable & /usr/bin/python3 \tabularnewline
+\hline Build Date & Jan 19 2017 14:11:04 \tabularnewline
+\hline Compiler & GCC 6.3.0 20170124 \tabularnewline
+\hline Python API & 1013 \tabularnewline
+\hline
+		\end{tabular} 
+	\end{center}
+\end{minipage}}
+\end{center}
+\normalsize
+
+\item Configurez \textbf{\textit{ligthttpd}} pour notre site internet \textit{\textbf{pythoninfo}}.
+
+Créer le fichier \textit{\textbf{\string~/public\string_html/pythoninfo/pythoninfo.fcgi}}
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+from flup.server.fcgi import WSGIServer
+from pythoninfo import app
+
+if __name__ == '__main__':
+    WSGIServer(app).run()
+\end{lstlisting}
+
+Rendez ce fichier exécutable.
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+chmod +x ~/public_html/pythoninfo/pythoninfo.fcgi
+\end{lstlisting}
+
+
+Ouvrez avec les droits root le fichier   \textit{\textbf{/etc/lighttpd/conf-enabled/10-fastcgi.conf}} 
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo editor /etc/lighttpd/conf-enabled/10-fastcgi.conf
+\end{lstlisting}
+
+Ajouter au bas du fichier
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+# http//localhost/~pi/pythoninfo
+fastcgi.server += ( "/~pi/pythoninfo" =>
+    ((
+        "socket" => "/tmp/pythoninfo-user-fcgi.sock",
+        "bin-path" => "/home/pi/public_html/pythoninfo/pythoninfo.fcgi",
+        "check-local" => "disable",
+        "max-procs"  => 1
+    ))
+)
+
+url.rewrite-once += (
+    "^/~pi/pythoninfo$" => "/~pi/pythoninfo/"
+)
+\end{lstlisting}
+
+
+vérifiez que la syntaxe soit correcte avec la commande suivante:
+
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+lighttpd -t -f /etc/lighttpd/lighttpd.conf
+\end{lstlisting}
+
+
+Il faut relancer le servide lighttpd.  
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo service lighttpd restart
+\end{lstlisting}
+
+Il ne reste plus qu'à vérifier. Ouvrez votre navigateur à l'adresse \url{http://localhost/~pi/pythoninfo/}  ou à l'adresse \url{http://localhost/~pi/pythoninfo/pyinfo}
+\end{list}
+
+
+\section{Un exemple de formulaire avec flask}
+
+\subsection{Formulaire avec redirection sur une deuxième page}
+
+
+Vous pouvez télécharger directement les fichiers \url{http://megamaths.hd.free.fr/~pi/statics/testflask.zip}
+
+%Voici un exemple de  formulaire avec une redirection vers une deuxième page.\\
+
+
+\begin{list}{\ding{212}}{}
+\item On créer les dossiers puis on télécharge deux images pour le site.
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+mkdir -p   ~/public_html/testflask/templates
+mkdir   ~/public_html/testflask/static
+cd ~/public_html/testflask/static/
+wget http://megamaths.hd.free.fr/~pi/statics/favicon.ico
+wget http://megamaths.hd.free.fr/~pi/statics/fleur.png
+\end{lstlisting}
+
+\item Créer le fichier  \textit{\textbf{\string~/public\string_html/testflask/testflask.py}}
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, url_for, request
+app = Flask(__name__)   # Initialise l'application Flask
+
+@app.route('/') # C'est un décorateur, on donne la route ici "/"  l'adresse sera donc localhost:5000/
+def page1():
+    return render_template("formulaire1_page1.html", titre="Formulaire 1")
+
+
+@app.route('/hello', methods=['POST'])  
+def hello():
+    Nom=request.form['nom']
+    Prenom=request.form['prenom']
+    return render_template('formulaire1_page2.html' ,titre="Page 2", nom=Nom, prenom=Prenom)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',debug=True)
+\end{lstlisting}
+
+
+
+\item Créer le fichier  \textit{\textbf{\string~/public\string_html/testflask/formulaire1\string_page1.html}}
+
+\lstset{title={},caption={}, language=HTML}
+\begin{lstlisting}
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{ titre }}</title>
+<!-- On importe notre frichier css -->
+<link href="{{ url_for('static', filename='mon_style.css') }}" rel="stylesheet" type="text/css" />
+<!-- Les images -->
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<header><h1>{{ titre }} <img src="{{ url_for('static',filename ='fleur.png') }}" alt="fleur" title="fleur" border="0"></h1></header>
+<section>
+<div>
+    <form method="post" action="{{ url_for('hello') }}">
+    <label for="nom">Entrez votre nom:</label>
+    <input type="text" name="nom" /><br />
+    <label for="prenom">Entrez votre prénom:</label>
+    <input type="text" name="prenom" /><br />
+    <input type="submit" type="submit" value="Envoyer" />
+    </form>
+</div>
+</section>
+</body>
+</html>
+\end{lstlisting}
+
+
+\item Créer le fichier  \textit{\textbf{\string~/public\string_html/testflask/formulaire1\string_page2.html}}
+
+\lstset{title={},caption={}, language=HTML}
+\begin{lstlisting}
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{ titre }}</title>
+<!-- On importe notre frichier css -->
+<link href="{{ url_for('static', filename='mon_style.css') }}" rel="stylesheet" type="text/css" />
+<!-- Les images -->
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<header class="site-header"><h1>{{ titre }} <img src="{{ url_for('static',filename ='fleur.png') }}" alt="fleur" title="fleur" border="0"></h1></header>
+<section>
+<div
+<p>bonjour <b><em>{{ prenom }} {{ nom }}</em></b></p>
+<p><a href="{{ url_for('page1') }}" >Lien pour revenir sur la 1° page</a></p>  
+<!-- Attention le lien redirige sur la fonction python, pas sur le template html -->
+</div>
+</section>
+</body>
+</html>
+\end{lstlisting}
+
+\item N'oublions pas le fichier \textit{\textbf{public\string_html/testflask/static/mon\string_style.css}}
+
+
+\lstset{title={},caption={}, language=css}
+\begin{lstlisting}
+h1 {
+    color: red;
+}
+\end{lstlisting}
+
+\item Éxécuter le fichier python
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+python3 ~/public_html/testflask.py
+\end{lstlisting}
+
+Lancer votre navigateur à l'adresse \url{http://localhost:5000}
+
+\begin{center}
+	\raisebox{-0.1cm}{\includegraphics[height=5cm]{images/formulaire1a}}\\
+	\raisebox{-0.1cm}{\includegraphics[height=5cm]{images/formulaire1b}}\\
+\end{center}
+\item Configurer \textit{\textbf{ligthttpd}} pour notre site internet \textit{\textbf{testflask}}.
+
+Créer le fichier \textit{\textbf{\string~/public\string_html/testflask/testflask.fcgi}}
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from flup.server.fcgi import WSGIServer
+from testflask import app
+
+if __name__ == '__main__':
+    WSGIServer(app).run()
+\end{lstlisting}
+
+Rendez ce fichier exécutable.
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+chmod +x ~/public_html/pythoninfo/testflask.fcgi
+\end{lstlisting}
+
+
+Ouvrez avec les droits root le fichier   \textit{/etc/lighttpd/conf-enabled/10-fastcgi.conf} 
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo editor /etc/lighttpd/conf-enabled/10-fastcgi.conf
+\end{lstlisting}
+
+Ajouter au bas du fichier
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+# http//localhost/~pi/testflask
+fastcgi.server += ( "/~pi/testflask" =>
+    ((
+        "socket" => "/tmp/testflask-user-fcgi.sock",
+        "bin-path" => "/home/pi/public_html/testflask/testflask.fcgi",
+        "check-local" => "disable",
+        "max-procs"  => 1
+    ))
+)
+
+url.rewrite-once += (
+    "^/~pi/testflask$" => "/~pi/testflask/"
+)
+\end{lstlisting}
+
+Vérifier la syntaxe et relancer le servide lighttpd.  
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+lighttpd -t -f /etc/lighttpd/lighttpd.conf
+sudo service lighttpd restart
+\end{lstlisting}
+
+Il ne reste plus qu'à vérifier. Ouvrez votre navigateur à l'adresse \url{http://localhost/~pi/testflask}  ou à l'adresse \url{http://votrenomdedomaine/~pi/testflask}
+
+
+\end{list}
+
+
+
+\subsection{Formulaire avec redirection sur la même page}
+
+
+
+\begin{list}{\ding{212}}{}
+\item Sauvegardons notre fichier python.
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+cp ~/public_html/testflask/testflask.py ~/public_html/testflask/testflask.old.py
+\end{lstlisting}
+
+\item Modifier le fichier \textit{\textbf{\string~/public\string_html/testflask/testflask.py}}
+
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, url_for, request
+app = Flask(__name__)   # Initialise l'application Flask
+
+@app.route('/', methods=['GET','POST'])  # On doit indiquer que l'on utilise les deux méthodes
+def page1():
+    try:
+        nom=request.form['nom']
+    except:
+        nom=''
+    try:
+        prenom=request.form['prenom']
+    except:
+        prenom=''
+    methode=format(request.method)
+    return render_template("formulaire2.html", titre='Formulaire 2',methode=methode,nom=nom,prenom=prenom)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',debug=True)
+
+\end{lstlisting}
+
+\item Créer le fichier  \textit{\textbf{\string~/public\string_html/testflask/formulaire2.html}}
+
+\lstset{title={},caption={}, language=HTML}
+\begin{lstlisting}
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{ titre }}</title>
+<!-- On importe notre frichier css -->
+<link href="{{ url_for('static', filename='mon_style.css') }}" rel="stylesheet" type="text/css" />
+<!-- Les images -->
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+<header><h1>{{ titre }} <img src="{{ url_for('static',filename ='fleur.png') }}" alt="fleur" title="fleur" border="0"></h1></header>
+<section>
+	<p>Cette page a été obtenue avec la méthode  <b><em>{{ methode }}</em></b>.</p>
+{% if  request.method == 'GET' %}
+<div>
+    <form method="post" action="{{ url_for('page1') }}">
+    <label for="nom">Entrez votre nom:</label>
+    <input type="text" name="nom" /><br />
+    <label for="prenom">Entrez votre prénom:</label>
+    <input type="text" name="prenom" /><br />
+    <input type="submit" type="submit" value="Envoyer" />
+    </form>
+</div>
+{% else %}
+    {% if  nom != '' or prenom != '' %}
+    <p>bonjour <b><em>{{ prenom }} {{ nom }}</em></b></p>
+    {% endif %}
+{% endif %}
+</section>
+</body>
+</html>
+\end{lstlisting}
+
+\item Relancer \textbf{\textit{lighttpd}}
+
+\lstset{title={},caption={}, style=bash}
+\begin{lstlisting}
+sudo service lighttpd restart
+\end{lstlisting}
+\item Ouvrez votre navigateur à l'adresse \url{http://votrenomdedomaine/~pi/testflask}
+\end{list}
+
+\end{document}

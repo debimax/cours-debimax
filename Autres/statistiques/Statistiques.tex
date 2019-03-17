@@ -1,0 +1,697 @@
+
+%Fichier: Statistiques.tex
+%Crée le 05 juil. 2008
+%Dernière modification: 12 mars 2019 17:14:47
+
+
+
+\documentclass[10pt,dvipsnames, dvips, svgnames]{article}
+%%%%%%%% mes package %%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tabularx}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{colortbl}%%%pour colorer les cases d'un tableau
+\usepackage{amssymb}  %  pour  leqslant 
+\usepackage[verbose,a4paper,tmargin=2.2cm,bmargin=1.5cm,lmargin=1.3cm,rmargin=1.3cm]{geometry} %%%%pour fixer les marges du texte
+%mise en page
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+\usepackage{multicol} %%%%
+\usepackage{ulem}
+\usepackage{array}
+\usepackage[dvips,ps2pdf]{hyperref}
+\usepackage{verbatim}
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+\usepackage{amsfonts,t1enc} %%% pour avoir les ensembles N Z Q R C
+\usepackage{amsmath}%%%pour dfrac  etc...
+\usepackage{pstricks,pst-plot}
+\usepackage{xcolor} % utiliser par exemple black!20
+\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+\usepackage{graphicx} %%%%
+
+
+
+\usepackage{fancyhdr,fancybox}  %%%%pour les hauts et bas de pages
+\usepackage{graphicx} %%%%pour inclure les graphiques
+\usepackage{lastpage} %%%%pour inclure le le nombre total de page
+%\usepackage{makeidx}
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{alltt}
+
+%les fontes
+%\usepackage{lmodern}
+%\usepackage{frcursive} %pour la fonte cursuive
+\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+\usepackage{pst-eucl} %%% pour les dessin geométrique pstricks %%%
+\usepackage{multido}
+\newcounter{numeroexo}[section]
+\newcommand{\exerciceun}[1]{\par\stepcounter{numeroexo}\hspace{-0.5cm}\underline{\textbf{Exercice \arabic{numeroexo}}}\quad \textit{#1}\:}
+
+
+
+
+
+% mon fichier listing se télécharge ic http://megamaths.free.fr/pdf/mes_listings.tex
+
+
+\input{mes_listings.tex} %%% pour les listings R-cran xcas etc... %%%%
+\lstloadlanguages{R} %pour éviter bug  avec language=R
+
+
+\usepackage[frenchb]{babel}
+%%%%%%%%            %%%%%%%%%%%%%%%%%
+\hypersetup{
+     backref=true,    %permet d'ajouter des liens dans...
+     pagebackref=true,%...les bibliographies
+     hyperindex=true, %ajoute des liens dans les index.
+     colorlinks=true, %colorise les liens
+     breaklinks=true, %permet le retour à la ligne dans les liens trop longs
+     urlcolor= blue, %couleur des hyperliens
+     linkcolor= blue, %couleur des liens internes
+     bookmarks=true, %créé des signets
+     bookmarksopen=false,  %si les signets Acrobat sont créés,
+                          %les afficher complètement.
+     pdftitle={aide mémoire}, %informations apparaissant dans
+     pdfauthor={Meilland jean claude},     %dans les informations du document
+     pdfsubject={Correspondance algorithmique python}       %sous Acrobat.
+}
+
+
+
+%\renewcommand{\vec}[1]{\overrightarrow{#1}}%écriture d'un vecteur
+%\newcommand{\cc}[1]{\mathcal{C} _{#1}}%pour écrire Cf la courbe représentative
+%\newcommand{\dd}[1]{\mathcal{D} _{#1}}%pour écrire Df le domaine de définition
+%\newcommand{\R}{\mathbb{R}}
+%\newcommand{\N}{\mathbb{N}}
+%\newcommand{\C}{\mathbb{C}}
+%\newcommand{\e}{\mathrm{e}}
+
+
+
+\newcommand{\code}[1]{\fcolorbox{black}{cyan!10}{\lstinline!#1!}}
+
+\newcounter{Chapter}
+\newcounter{Sec}[Chapter]
+\newcounter{Subsec}[Sec]
+%\newcounter{Subsubsection}[Subsec]
+
+
+%\newsavebox\boxofgeogebra
+
+%\newcommand{\Chapter}[1]{\pdfbookmark[1]{#1}{chapter\theChapter}\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+\newcommand{\Chapter}[1]{\stepcounter{Chapter}\chead{\colorbox{black!15}{ \Large\textbf{\Roman{Chapter} #1}}  }}
+
+
+\newlength\taille
+\newenvironment{Sec}[1]
+{
+\stepcounter{Sec}
+\taille=\linewidth\advance\taille by -0.4cm % On réduit la largeur du cadre gris
+\pdfbookmark[2]{#1}{Sec\theChapter-\theSec}
+\begin{center}
+\colorbox{black!15}{
+	\begin{minipage}{\taille}
+	\begin{flushleft}
+	\textbf{
+		\arabic{Sec}  #1
+	}
+	\end{flushleft}
+	\end{minipage}\par
+}\end{center}
+}
+
+\newcommand{\Subsec}[1]{\stepcounter{Subsec} \underline{\textbf{\alph{Subsec}~ #1} } \\}
+
+%\setcounter{secnumdepth}{1}% enlève la numérotation après les sections
+\usepackage{titlesec}
+
+
+%redéfinition des sections
+\titleformat{\section}
+   {\large\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\thesection}% apparence du numéro
+   {1em}% espacement numéro/texte
+   {}% apparence du titre
+\titlespacing{\subsubsection}{1pt}{1pt}{1pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+
+%redéfinition des subsubsections
+\titleformat{\subsubsection}[hang]
+   {\selectfont\bfseries}% apparence commune au titre et au numéro  %\normalfont\fontsize{11pt}{13pt}
+   {\alph{subsubsection}\string)\ }% apparence du numéro
+   {2pt}% espacement numéro/texte
+   {\underline}% apparence du titre
+\titlespacing{\subsubsection}{2pt}{1pt}{2pt}  %\titlespacing{\section}{espace horizontal}{espace avant}{espace après}
+
+%\setlength{\parindent}{0pt}
+\pagestyle{fancy}  
+\lhead{\small\textsc{Icn: Pablo neruda}}
+\chead{\small\textsc{TP HTML}}
+\rhead{Page \thepage/\pageref{LastPage} } \cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Pour les algorithmes
+
+
+\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%SetKwData{fonction}{fonction: }
+\SetKwInput{Fonction}{\textbf{fonction}}
+\SetKwInput{Procedure}{\textbf{procédure} }
+\SetKwInput{Variable}{\textbf{Variable}}
+\SetKwInput{Constante}{\textbf{Constante}}
+\SetKw{EntSor}{E/S}
+\SetKw{Ent}{E}
+\SetKw{Sor}{S}
+%\SetKwInput{Variable}{Variable}
+%\SetKw{fonction}{fonction:}
+\SetKwSwitch{Selon}{Cas}{Autre}{selon}{}{cas où}{autres cas}{fin d'alternative}
+\SetAlCapFnt{\color{red}}
+
+%\setlength{\parskip}{2pt}
+%Pour l'environnement multicolonne
+%\setlength{\columnseprule}{0pt}
+%\setlength{\columnsep}{0.5cm}
+
+%\setlength{\parindent}{1cm} %
+%\setlength{\parskip}{1cm plus4mm minus3mm}
+
+
+
+%%%% debut macro figure à gauche \figgauche %%%%
+ \newlength\jataille
+ \newcommand{\figgauche}[3]%
+ {\jataille=\linewidth\advance\jataille by -#1
+ %\jataille=\textwidth\advance\jataille by -#1
+ \advance\jataille by -1cm
+ \begin{minipage}[t]{#1}
+ #2
+ \end{minipage}\hfill
+ \begin{minipage}[t]{\jataille}
+  #3
+ \end{minipage}}
+ %%%% fin macro %%%%
+
+ %%%% debut macro figure à droite \figdroite%%%%
+ \newlength\jatail
+ \newcommand{\figdroite}[3]%
+ {\jatail=\linewidth\advance\jatail by -#1
+ \advance\jatail by -0.5cm
+\begin{minipage}[t]{\jatail}
+ #2
+ \end{minipage}
+ \hfill
+\begin{minipage}[t]{#1}
+  #3
+\end{minipage}}
+
+\setlength\parindent{0pt}%noident
+
+
+
+
+
+
+\begin{document}
+
+\section{Paradoxe de Simpson}
+
+
+\href{https://sciencetonnante.wordpress.com/2013/04/29/le-paradoxe-de-simpson/}{Ref: sciencetonnante}
+
+
+\subsection{Fumer est bon pour la santé}
+
+Je vous invite à voir (ou revoir) l'excellent  film  \textit{\textbf{merci de fumer}}  réalisé par \textit{jason reitman}.
+\medskip
+
+\href{http://www.biostat.envt.fr/wp-content/uploads/Faouzi/Enseignement/A1ENVT-2015-16-ver01.pdf}{Ref: http://www.biostat.envt.fr/wp-content/uploads/Faouzi/Enseignement/A1ENVT-2015-16-ver01.pdf}
+
+
+1314 femmes ont été suivies pendant 20 ans, et l'objectif était de comparer le taux de mortalité des fumeuses et des non-fumeuses  \textit{(données issues du fichier smoking du package SMPractical pour R)}.
+
+
+
+
+\begin{center}
+\begin{tabular}[]{|c |c |c |c |c |}
+\hline âge & fume ? & vivante & morte &  \% décès \\
+\hline \hline 18‐24 & fumeuse & 53 & 2 &  \\
+\hline 18‐24 & non  fumeuse & 61 & 1 &  \\
+\hline 25‐34 & fumeuse & 121 & 3 &  \\
+\hline 25‐34 & non  fumeuse & 152 & 5 &  \\
+\hline 35‐44 & fumeuse & 95 & 14 &  \\
+\hline 35‐44 & non  fumeuse & 114 & 7 &  \\
+\hline 45‐54 & fumeuse & 103 & 27 &  \\
+\hline 45‐54 & non  fumeuse & 66 & 12 &  \\
+\hline 55‐64 & fumeuse & 64 & 51 &  \\
+\hline 55‐64 & non  fumeuse & 81 & 40 &  \\
+\hline 65‐74 & fumeuse & 7 & 29 &  \\
+\hline 65‐74 & non  fumeuse & 28 & 101 &  \\
+\hline 75+ & fumeuse & 0 & 13 &  \\
+\hline 75+ & non  fumeuse & 0 & 64 &  \\
+\hline 
+\hline Total & fumeuse &  &  &   \\
+\hline Total & non  fumeuse &  &  &  \\
+\hline 
+
+\end{tabular} 
+\end{center}
+
+
+
+\begin{enumerate}
+	\item Compléter le tableau précédent
+	\item Est il préférable de fumer ou de ne pas fumer?
+
+
+
+\end{enumerate}
+
+
+
+
+\subsection{Berkeley}
+
+\href{https://www.apprendre-en-ligne.net/MADIMU2/STATI/STATI1.PDF}{Ref: apprendre-en-ligne}
+
+
+
+En 1973, l'université américaine de Berkeley (Californie), fut poursuivie pour discrimination envers les filles.
+
+
+
+
+%L'affaire semblait claire : parmi les candidates, seules 30\% étaient retenues, alors que 46\% des candidatures masculines l'étaient.
+
+
+L'étude a été précisée sur les six départements les plus importants, notés ici de A à F : 
+
+\begin{center}
+\begin{tabular}[]{|c |c |c |c |c |}
+\hline Département & Garçons & Admis & Filles & Admises \\
+\hline A & 825 & 62\% & 108 & 82\% \\
+\hline B & 560 & 63\% & 25  & 68 \% \\
+\hline C & 325 & 37\% & 593 & 34\% \\
+\hline D & 417 & 33\% & 375 & 35\% \\
+\hline E & 191 & 28\% & 393 & 24\% \\
+\hline F & 272 & 6 \% & 341 & 7 \% \\
+\hline Total &  &  &  &  \\
+%\hline Total & 2590 & 46\% & 1835 & 30\% \\
+\hline  
+\end{tabular} 
+\end{center}
+
+\begin{enumerate}
+	\item Complétez la dernière ligne du tableau (On pourra  utiliser un tableur ou les listes de la calculatrice)
+	\item L'université américaine est elle discriminatoire envers les filles?
+\end{enumerate}
+
+
+Explication:
+
+\begin{list}{\ding{212}}{}
+\item l'université américaine de Berkeley:
+L'explication de ce paradoxe apparent vient quand on regarde le nombre de candidatures dans ces départements. Les femmes semblent avoir tendance à postuler en masse à des départements très sélectifs. Dans ceux-ci, leur taux d'admission est à peine plus faible que celui des hommes. Dans les autres, elles sont plus largement sélectionnées que les hommes.\\
+Quand on fait la moyenne globale, ce sont les départements sélectifs qui ont plus de poids, puisqu'elles y postulent en masse.
+\end{list}
+
+
+
+\newpage
+\section{Paradoxe de Simpson}
+
+
+\href{https://sciencetonnante.wordpress.com/2013/04/29/le-paradoxe-de-simpson/}{Ref: sciencetonnante}
+
+
+\subsection{Berkeley}
+
+\href{https://www.apprendre-en-ligne.net/MADIMU2/STATI/STATI1.PDF}{Ref: apprendre-en-ligne}
+
+En 1973, l'université américaine de Berkeley (Californie), fut poursuivie pour discrimination envers les filles. L'affaire semblait claire : parmi les candidates, seules 30\% étaient retenues, alors que 46\% des candidatures masculines l'étaient.
+
+
+L'étude a été précisée sur les six départements les plus importants, notés ici de A à F : 
+
+\begin{center}
+\begin{tabular}[]{|c |c |c |c |c |}
+\hline Département & Garçons & Admis & Filles & Admises \\
+\hline A & 825 & 62\% & 108 & 82\% \\
+\hline B & 560 & 63\% & 25  & 68 \% \\
+\hline C & 325 & 37\% & 593 & 34\% \\
+\hline D & 417 & 33\% & 375 & 35\% \\
+\hline E & 191 & 28\% & 393 & 24\% \\
+\hline F & 272 & 6 \% & 341 & 7 \% \\
+\hline Total & 2590 & 46\% & 1835 & 30\% \\
+\hline  
+\end{tabular} 
+\end{center}
+
+Ce tableau, si l'on excepte la dernière ligne, ne montre aucune discrimination envers les femmes. Au contraire, le taux d'admission des filles dans le principal département (A) est nettement supérieur à celui des garçons.\\
+L'explication de ce paradoxe apparent vient quand on regarde le nombre de candidatures dans ces départements. Les femmes semblent avoir tendance à postuler en masse à des départements très sélectifs. Dans ceux-ci, leur taux d'admission est à peine plus faible que celui des hommes. Dans les autres, elles sont plus largement sélectionnées que les hommes.\\
+Quand on fait la moyenne globale, ce sont les départements sélectifs qui ont plus de poids, puisqu'elles y postulent en masse.
+
+\subsection{Fumer est bon pour la santé}
+
+Je vous invite à voir (ou revoir) l'excellent  film  \textit{\textbf{merci de fumer}}  réalisé par \textit{jason reitman}.
+\medskip
+
+\href{http://www.biostat.envt.fr/wp-content/uploads/Faouzi/Enseignement/A1ENVT-2015-16-ver01.pdf}{Ref: http://www.biostat.envt.fr/wp-content/uploads/Faouzi/Enseignement/A1ENVT-2015-16-ver01.pdf}
+
+
+
+
+1314 femmes ont été suivies pendant 20 ans, et l'objectif était de comparer le taux de mortalité des fumeuses et des non-fumeuses  \textit{(données issues du fichier smoking du package SMPractical pour R)}.
+
+\begin{center}
+\begin{tabular}[]{|c |c |c |c | c |}
+\hline & vivantes & mortes & Total & \% mortes \\
+\hline \hline  non  fumeuses & 502 & 230 & 732 & 31,42\% \\
+\hline fumeuses & 443 & 139 & 582 & 23,88\% \\
+\hline Total & 945 & 369 & 1314 & 28,08\% \\
+\hline 
+\end{tabular} 
+\end{center}
+
+Et si on regardait les données par classe d'âge :
+
+
+%Femme:\\
+%\begin{tabular}[]{|c |c |c |c |}
+%\hline âge & vivante & morte & \% mortes \\
+%\end{tabular} 
+
+
+\begin{center}
+\begin{tabular}[]{|c |c |c |c |c |}
+\hline âge & fume ? & vivante & morte &  \% mortes \\
+\hline \hline 18‐24 & fumeuse & 53 & 2 & 3.64\% \\
+\hline 18‐24 & non  fumeuse & 61 & 1 & 1.61\% \\
+\hline 25‐34 & fumeuse & 121 & 3 & 2.42\% \\
+\hline 25‐34 & non  fumeuse & 152 & 5 & 3.18\% \\
+\hline 35‐44 & fumeuse & 95 & 14 & 12.84\% \\
+\hline 35‐44 & non  fumeuse & 114 & 7 & 05.79\% \\
+\hline 45‐54 & fumeuse & 103 & 27 & 20.77\% \\
+\hline 45‐54 & non  fumeuse & 66 & 12 & 15.38\% \\
+\hline 55‐64 & fumeuse & 64 & 51 & 44.35\% \\
+\hline 55‐64 & non  fumeuse & 81 & 40 & 33.06\% \\
+\hline 65‐74 & fumeuse & 7 & 29 & 80.56\% \\
+\hline 65‐74 & non  fumeuse & 28 & 101 & 78.29\% \\
+\hline 75+ & fumeuse & 0 & 13 & 100\% \\
+\hline 75+ & non  fumeuse & 0 & 64 & 100\% \\
+\hline 
+\end{tabular} 
+\end{center}
+
+
+\subsection{Pharmacie}
+
+
+
+On mène des tests en double aveugle sur un nouveau médicament traitant la maladie grave MG.
+
+On a traité 160 patients, dont 80 ont reçu le médicament, et les 80 autres un placebo.
+
+Le taux de guérison varie selon que l'on considère les malades ayant pris le médicament ou ceux ayant pris le placebo (voir le tableau 1 ci-contre). Parmi les 80 patients ayant pris le médicament, 40 ont été guéris (50 \%). Parmi les 80 patients ayant reçu le placebo, seuls 32 ont été guéris (40 \%).
+
+Ces résultats suggèrent que le médicament est efficace. Il faut donc le prescrire pour soigner les patients atteints de la maladie MG.
+
+Mais en analysant plus en détail les données et en considérant le sexe des personnes
+
+\begin{tabular}[]{|c |c |c |c |}
+	\hline Total & Guéri & Non guéri & Taux de guérison \\
+	\hline Médicament & 40  & 40  & 50 \% \\
+	\hline Placebo & 32 &  48 & 40 \% \\
+	\hline 
+\end{tabular} 
+
+
+\begin{tabular}[]{|c |c |c |c |}
+	\hline Hommes & Guéri & Non guéri & Taux de guérison \\
+	\hline Médicament & 36  & 24  & 60\% \\
+	\hline Placebo & 14 & 6 & 70\% \\
+	\hline 
+\end{tabular} 
+
+
+
+
+\begin{tabular}[]{|c |c |c |c |}
+\hline  Femmes & Guéri & Non guéri &Taux de guérison \\
+\hline Médicament & 4 & 16 & 20 \% \\
+\hline   Placebo  & 18 & 42 & 30 \%  \\
+\hline 
+\end{tabular} 
+
+\subsubsection{ Comment raisonner ?}
+
+Tout n'est cependant pas réglé pour autant et, dans la réalité, un médecin face aux données des trois tableaux indiqués doit prendre une décision : oui ou non, faut-il prescrire le médicament qui semble efficace (d'après le tableau 1) et qui semble moins bon que le placebo (d'après les tableaux 2 et 3) ?
+
+Imaginez-vous à la place du médecin.
+
+Comment allez-vous raisonner ? Plusieurs attitudes sont possibles.
+
+\begin{list}{\ding{212}}{}
+\item \textbf{Point de vue 1}. Quand j'ignore si c'est un homme ou une femme (car par exemple je suis en train de traiter le cas d'un malade anonyme), je ne tiens compte que de la statistique générale qui est celle qui s'applique dans ce cas.  
+Je donne donc le médicament, car je sais qu'il conduit à la guérison dans 50 \% des cas d'après le tableau 1, alors que le placebo ne conduit à la guérison que dans 40 \% des cas. En revanche, lorsque j'ai plus de précisions sur la personne à traiter et que je sais s'il s'agit d'un homme ou d'une femme, je regarde la statistique correspondante (donc le tableau 2 ou le tableau 3).
+
+Pour un homme, je donne le placebo, car la statistique du tableau 2 pour les hommes me conseille de donner le placebo. Pour une femme, je donne aussi le placebo, car la statistique du tableau 3 pour les femmes me dit que c'est préférable. L'information sur le sexe du patient me conduit à changer de prescription. Ce n'est pas absurde : l'apport de nouvelles informations justifie souvent de changer ses choix.
+
+Mais à y regarder de près, ce point de vue met mal à l'aise et ne semble pas rationnel.
+
+C'est ce qu'exprime le second point de vue.
+
+\item \textbf{Point de vue 2}. La conclusion du point de vue 1 est absurde. Un patient est soit un homme, soit une femme, et que ce soit l'un ou l'autre quand je connais le sexe du patient la consigne déduite est la même : donner le placebo. Ma décision ne dépend pas du résultat de la question : « S'agit-il d'un homme ou d'une femme ? » Il en résulte donc, de toute évidence, que même quand j'ignore le sexe du patient, je dois donner le placebo et ne pas tenir compte de la statistique générale qui ne sert plus à rien dès l'instant où je dispose des deux statistiques particulières.  
+
+On se trouve dans un cas assez usuel : la connaissance de nouvelles données (ici les statistiques particulières concernant séparément les hommes et les femmes) change la conclusion que je faisais avant d'en disposer. Ce changement est général et n'est pas dû à ma connaissance du sexe du patient, mais à ma connaissance des tableaux 2 et 3. Il n'y a rien d'irrationnel à changer d'avis quand on est mieux informé, certes, mais ici le changement doit conduire à oublier le tableau 1 qui ne sert plus à rien quand on a les deux autres. 
+
+Notons que, pour tirer une règle de données statistiques, on exige en général d'avoir des effectifs totaux plus élevés que ceux qui apparaissent dans nos tableaux. Mais cela est sans importance pour tout ce que nous venons de dire et pour tout ce que nous dirons plus loin, car on peut très bien imaginer que tous les nombres de nos tableaux sont multipliés par 100 ou même 10 000 et que les déductions que nous faisons des statistiques des tableaux sont de ce fait parfaitement sûres.
+
+
+%Le point de vue 2 est confirmé par un argument formel : de ($A \Longrightarrow  B$) et (non-$A \Longrightarrow  B$), on déduit $B$. C'est ce qu'on nomme parfois le « principe de la chose sûre » : si, lorsque $A$ est vrai, j'en déduis $B$, et que, lorsque $A$ est faux, j'en déduis aussi $B$, alors c'est que $B$ est toujours vrai.
+
+
+%Le point de vue 2 correspond à l'analyse classique du paradoxe et semble nous en libérer. On l'exprime parfois en disant qu'il faut prendre des précautions pour agréger des données. Je croyais satisfaisant ce point de vue, quand j'ai pris conscience d'une critique qui en montre l'absurdité. 
+
+
+
+\item  \textbf{Point de vue 3}. 
+\end{list}
+
+\newpage
+\section{Avec Python}
+
+%\lstset{title={},caption={}, style=PYTHON}
+%\begin{lstlisting}
+%M=[['age',  'smoker',  'alive', 'dead'],
+%   ['18-24',  1,  53,  2],  
+%   ['18-24',  0,  61,  1],  
+%   ['25-34',  1,  121,  3],  
+%   ['25-34',  0,  152,  5],  
+%   ['35-44',  1,  95,  14],  
+%   ['35-44',  0,  114,  7],  
+%   ['45-54',  1,  103,  27],  
+%   ['45-54',  0,  66,  12],  
+%   ['55-64',  1,  64,  51],  
+%   ['55-64',  0,  81,  40],  
+%   ['65-74',  1,  7,   29],  
+%   ['65-74',  0,  28,  101],  
+%   ['75+'  ,  1,  0,   13],  
+%   ['75+'  ,  0,  0,   64]
+%  ]
+%\end{lstlisting}
+%
+%En python  les listes commencent à 0  mais ici j'ai rajouté les titres.
+%
+%\code{M[1]}   désignera la première donnés qui correspond donc à la liste  ['18-24',  1,  53,  2]
+%
+%Pour obtenir le premier élément de cette liste on utilise donc \code{M[1][0]}
+%
+%Pour afficher le nombre de morts de la classe '18-24'  qui fument on utilise. \code{print(M[1][3])} et affichera 2.
+%
+\subsubsection{Lire un fichier de data R}
+
+Par exemple le fichier \textbf{\textit{smokingR}} se trouve dans le dossier \textit{dataR}.
+
+\lstset{title={},caption={}, style=PYTHON}
+%import rpy2.robjects as robjects
+\begin{lstlisting}
+In [1]: from  rpy2.robjects  import r
+In [2]: r['load']('dataR/smoking.rda')
+In [3]: dataR = r["smoking"]
+In [4]: print(type(dataR))
+Out[4]: <class 'rpy2.robjects.vectors.DataFrame'>
+In [5]: print(dataR)
+Out[5]:      age smoker alive dead
+      : 1  18-24      1    53    2
+      : 2  18-24      0    61    1
+      : 3  25-34      1   121    3
+      : 4  25-34      0   152    5
+      : 5  35-44      1    95   14
+      : 6  35-44      0   114    7
+      : 7  45-54      1   103   27
+      : 8  45-54      0    66   12
+      : 9  55-64      1    64   51
+      : 10 55-64      0    81   40
+      : 11 65-74      1     7   29
+      : 12 65-74      0    28  101
+      : 13   75+      1     0   13
+      : 14   75+      0     0   64
+\end{lstlisting}
+
+Si on ne dispose pas du fichier \textit{\textbf{smoking.rda}} il faut alors le télécharger.
+
+\url{https://github.com/cran/SMPracticals/raw/master/data/smoking.rda}
+
+\lstset{title={},caption={}, style=PYTHON}
+%#import rpy2.robjects as robjects
+\begin{lstlisting}
+In [1]: from  rpy2.robjects  import r
+In [2]: from  urllib.request import urlopen
+In [3]: url='https://github.com/cran/SMPracticals/raw/master/data/smoking.rda'
+In [4]: with urlopen(url) as response:
+      :     smokingR = response.read()   #.decode("utf8")
+In [5]: fichier = open("smoking.rda", "wb")
+In [6]: fichier.write(smokingR)
+In [7]: fichier.close()
+In [8]: r['load']('smoking.rda')
+In [9]: dataR = r["smoking"]
+In [10]: print(dataR)
+Out[10]:      age smoker alive dead
+       : 1  18-24      1    53    2
+       : 2  18-24      0    61    1
+       : 3  25-34      1   121    3
+....................................
+       \end{lstlisting}
+
+
+Les données peuvent être converties  pour être utilisé avec  panda :
+
+
+%from rpy2.robjects import default_converter
+%from rpy2.robjects import pandas2ri
+%from rpy2.robjects.conversion import localconverter
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+In [11]: from rpy2.robjects import (default_converter, pandas2ri)
+In [12]: from rpy2.robjects.conversion import localconverter
+In [13]: with localconverter(default_converter + pandas2ri.converter) as cv:
+       :     dataP = r["smoking"]
+In [14]: print(type(dataP))
+Out[14]: <class 'pandas.core.frame.DataFrame'>
+In [15]: print(dataP)
+       :       age  smoker  alive   dead
+       : 0   18-24     1.0   53.0    2.0
+       : 1   18-24     0.0   61.0    1.0
+       : 2   25-34     1.0  121.0    3.0
+       : 3   25-34     0.0  152.0    5.0
+       : ....................................
+\end{lstlisting}
+
+
+Il ne reste plus qu'à travailler avec ces données avec \textbf{\textit{panda}}.
+
+
+\lstset{title={},caption={}, style=PYTHON}
+\begin{lstlisting}
+In [16]: smokeP = dataP[dataP['smoker']==1]
+In [17]: nosmokeP = dataP[dataP['smoker']==0]
+In [18]: print(smokeP)
+Out[18]:       age  smoker  alive  dead
+       : 0   18-24     1.0   53.0   2.0
+       : 2   25-34     1.0  121.0   3.0
+       : 4   35-44     1.0   95.0  14.0
+       : 6   45-54     1.0  103.0  27.0
+       : 8   55-64     1.0   64.0  51.0
+       : 10  65-74     1.0    7.0  29.0
+       : 12    75+     1.0    0.0  13.0
+In [19]: smokeP[['alive','dead']].sum()
+Out[19]: alive    443.0
+       : dead     139.0
+       : dtype: float64
+In [20]: nosmokeP[['alive','dead']].sum()
+Out[20]: alive    502.0
+       : dead     230.0
+       : dtype: float64
+\end{lstlisting}
+
+
+
+\section{Avec le logiciel R}
+
+
+Ouvrez  R-cran 
+
+\lstset{title={},caption={},  language=R  }
+\begin{lstlisting}
+install.packages("SMPracticals")
+library("ellipse")
+library("SMPracticals")
+data("smoking")
+\end{lstlisting}
+
+Et enfin pour voir les données: 
+
+\lstset{title={},caption={},  language=R  }
+\begin{lstlisting}
+> smoking
+     age smoker alive dead
+1  18-24      1    53    2
+2  18-24      0    61    1
+3  25-34      1   121    3
+4  25-34      0   152    5
+5  35-44      1    95   14
+6  35-44      0   114    7
+7  45-54      1   103   27
+8  45-54      0    66   12
+9  55-64      1    64   51
+10 55-64      0    81   40
+11 65-74      1     7   29
+12 65-74      0    28  101
+13   75+      1     0   13
+14   75+      0     0   64
+> Smoke<-subset(smoking,smoker==1)
+> Smoke
+     age smoker alive dead
+1  18-24      1    53    2
+3  25-34      1   121    3
+5  35-44      1    95   14
+7  45-54      1   103   27
+9  55-64      1    64   51
+11 65-74      1     7   29
+13   75+      1     0   13
+> NoSmoke<-subset(smoking,smoker==0)
+> NoSmoke
+     age smoker alive dead
+2  18-24      0    61    1
+4  25-34      0   152    5
+6  35-44      0   114    7
+8  45-54      0    66   12
+10 55-64      0    81   40
+12 65-74      0    28  101
+14   75+      0     0   64
+> Smoke[c('alive','dead')]  #  ou Smoke[3:4]
+   alive dead
+1     53    2
+3    121    3
+5     95   14
+7    103   27
+9     64   51
+11     7   29
+13     0   13
+> colSums(Smoke[c('alive','dead')])
+alive  dead 
+  443   139 
+> colSums(NoSmoke[c('alive','dead')])
+alive  dead 
+  502   230 
+\end{lstlisting}
+
+\end{document}
+
