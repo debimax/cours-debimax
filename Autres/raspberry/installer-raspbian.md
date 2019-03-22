@@ -77,10 +77,10 @@ sudo apt-get install f2fs-tools
 
 On formate la partition:  
 ```
-    sudo mkfs.f2fs /dev/sdb2
+    sudo mkfs.f2fs -f /dev/sdb2
 ```
 
-Débrancher la carte,  la rebrancher et __vérifier qu'on est toujours  en sdb2 avec ` sudo fdisk -l`__)
+Débrancher la carte,  la rebrancher et __vérifier qu'on est toujours  en sdb2 avec `sudo fdisk -l`__)
 
 On remonte la partition:   
 ```
@@ -104,13 +104,13 @@ Et modifiez la ligne concernant mmcblk0p2 (partition de votre carte sd) pour rem
 
 On  démonte  
 ```bash
-sudo umount  ~/tmp
+sudo umount  /dev/sdb2
 ```
 
 On a un deuxième fichier à modifier sur la partition /sdb1  
 ```
   sudo mount /dev/sdb1 ~/tmp
-  sudo editor ~/tmp/boot/cmdline.txt
+  sudo editor ~/tmp/cmdline.txt
 ```
 
 et remplacez ext4 par f2fs dans le paramètre suivant ___`rootfstype=f2fs`___.  
