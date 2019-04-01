@@ -1,7 +1,7 @@
 
 %Fichier: algorithmique-python3-seconde.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 14 nov. 2018 14:17:18
+%Dernière modification: 01 avril 2019 18:31:43
 
 \documentclass[10pt,dvipsnames,  dvips]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -464,6 +464,112 @@ while i<=5:
 
 
 
+
+
+\section{Les listes}
+
+\subsection{Le slicing}%\quad Si \textbf{\textit{L}}  est une liste alors:
+
+
+\begin{lstlisting}
+In [1]: l=[1,2,3,4,5]
+In [2]: l[0]            # 1° élément de la liste
+Out[2]: 1
+In [3]: l[1]            # 2° élément de la liste
+Out[3]: 2
+In [4]: l[-1]           # dernier élément de la liste
+Out[4]: 5
+In [5]: l[1:4]          # Du 2° élément jusqu'au 4°.
+Out[5]: [2, 3, 4]
+In [6]: l[1:]          # Du 2° élément jusqu'à la fin
+Out[6]: [2, 3, 4, 5]
+\end{lstlisting}
+
+%Plus généralement si $i$ et $j$ sont des indices positifs, la syntaxe S[i:j] désigne la séquence, de même nature que S, formée des éléments S[k] où $i \leq k < j$.
+Plus généralement, la syntaxe $S[i:j]$ désigne la séquence, de même nature que S, de $S[i]$ compris à $S[j]$ non compris.
+
+\subsection{Les principales méthodes de listes}
+\begin{list}{$\bullet$}{}
+\item \textit{\textbf{l.append(x) :}} Ajoute x à la fin de la liste.
+\begin{lstlisting}
+In [1]: l=[1,2,3,4,5]
+In [2]: l.append(6)
+In [3]: l
+Out[3]: [1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+
+
+\item \textit{\textbf{l.clear() }} Efface la liste l \textit{(depuis python3.3)}.
+\begin{lstlisting}
+In [4]: l.clear()
+In [5]: l
+Out[5]: []
+\end{lstlisting}
+
+\item \textit{\textbf{l.extend (t) :}} concatène la liste l avec le contenu de la liste t sans réaffectation.
+\begin{lstlisting}
+In [6]: t=(2,3,4,2)
+In [7]: l1=[1,2,3]
+In [8]: l2=[4,5,6]
+In [9]: l1.extend(l2)
+\end{lstlisting}
+\item \textit{\textbf{l.insert(n,x) :}} insert x à la liste l à l'indice n.
+\begin{lstlisting}
+In [10]: l=[1,2,3,4]
+In [11]: l.insert(1,8)
+In [12]: l
+Out[13]: [1, 8, 2, 3, 4]
+\end{lstlisting}
+
+\item \textit{\textbf{l.pop ([i]) :}}  affiche l'élément d'indice i et aussi supprime cet élément de l.
+\begin{lstlisting}
+In [14]: l=[1,2,3,1]
+In [15]: a=l.pop(2)
+In [16]: a
+Out[16]: 3
+In [17]: l
+Out[17]: [1, 2, 1]
+\end{lstlisting}
+
+\item \textit{\textbf{l.remove (x) :}} supprime le premier élément x de $s$ et affiche une \textit{ValueError} s'il ne le trouve pas.
+\begin{lstlisting}
+In [9]: l=[1,2,3,1]
+In [10]: l.remove(1)
+In [11]: l
+Out[11]: [2, 3, 1]
+In [12]: l.remove(1)
+In [13]: l
+Out[13]: [2, 3]
+In [14]: l.remove(1)
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-14-ce3fdfde5d67> in <module>()
+----> 1 l.remove(1)
+ValueError: list.remove(x): x not in list
+\end{lstlisting}
+
+\item \textit{\textbf{l.reverse() }} inverse les éléments de l.
+\begin{lstlisting}
+In [16]: l=[1,2,3]
+In [17]: l.reverse()
+In [18]: l
+Out[18]: [3, 2, 1]
+\end{lstlisting}
+
+\item \textit{\textbf{l.sort() }} Trie les éléments de l.
+\begin{lstlisting}
+In [19]: l=[4,6,2,1,0,5,3]
+In [20]: l.sort()
+In [21]: l
+Out[21]: [0, 1, 2, 3, 4, 5, 6]
+\end{lstlisting}
+\end{list}
+
+
+
+\newpage
+
+
 \subsubsection*{Turtle}
 
 
@@ -487,6 +593,8 @@ while i<=5:
 
 
 \newpage
+
+
 \section{Turtle}
 
 \begin{list}{$\bullet$}{}
