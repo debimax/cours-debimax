@@ -65,4 +65,22 @@ div.CodeMirror { /* code font */
 .rouge, label {cursor:pointer; border:3px; border-style: dashed; border-color: blue; }
 input { display:none;  }
 #exo1:checked+.exo {  display:none; }
+#exo2:checked+.exo {  display:none; }
+#exo3:checked+.exo {  display:none; }
+#exo4:checked+.exo {  display:none; }
+#exo5:checked+.exo {  display:none; }
+#exo6:checked+.exo {  display:none; }
+#exo7:checked+.exo {  display:none; }
+#exo8:checked+.exo {  display:none; }
+#exo9:checked+.exo {  display:none; }
+#exo11:checked+.exo {  display:none; }
+#exo12:checked+.exo {  display:none; }
+#exo13:checked+.exo {  display:none; }
+#exo14:checked+.exo {  display:none; }
+#exo15:checked+.exo {  display:none; }
+#exo16:checked+.exo {  display:none; }
+#exo17:checked+.exo {  display:none; }
+#exo18:checked+.exo {  display:none; }
+#exo19:checked+.exo {  display:none; }
+#exo20:checked+.exo {  display:none; }
 .rouge { color: red;}
