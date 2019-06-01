@@ -60,3 +60,9 @@ div.CodeMirror { /* code font */
 
 }
 
+
+/*  Afficher ou cacher la solution d'un exercice  */
+.rouge, label {cursor:pointer; border:3px; border-style: dashed; border-color: blue; }
+input { display:none;  }
+#exo1:checked+.exo {  display:none; }
+.rouge { color: red;}

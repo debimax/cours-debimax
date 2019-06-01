@@ -1,7 +1,7 @@
 
 %Fichier: algorithmique-python3-seconde.tex
 %Crée le 05 juil. 2008
-%Dernière modification: 01 avril 2019 18:31:43
+%Dernière modification: 11 avril 2019 21:15:12
 
 \documentclass[10pt,dvipsnames,  dvips]{article}
 %%%%%%%% mes package %%%%%%%%%%%%%%%%%
@@ -622,10 +622,12 @@ turtle.setup(640, 480)
 \item  \textbf{backward(d)} : fait reculer la tortue de d (en pixel), le trait est dessiné si le crayon est baissé ;
 \item  \textbf{left(a)} : fait pivoter la tortue d’un angle de a degrés vers la gauche ;
 \item  \textbf{right(a)} : fait pivoter la tortue d’un angle de a degrés vers la droite ;
+\item  \textbf{setheading(a)} : oriente la tortue dans la direction a (toujours mesurée par rapport à Ox;
 \item  \textbf{goto(x,y)} : la tortue va se positionner au point de coordonnées ( x ; y );
 \item  \textbf{circle(r)} : trace un cercle de rayon r , le point de départ de la tortue appartient au cercle (attention il n’est
 pas centré sur la position de la tortue) ;
 \item  \textbf{circle(r,s)} : trace une portion du cercle correspondant à s degrés ;
+\item \textbf{delay(d)} permet de choisir le temps écoulé (en millisecondes) entre deux mises à jour du dessin, et donc indirectement de choisir la vitesse du tracé;
 \end{list}
 
 \subsection{Contrôle du stylo}
