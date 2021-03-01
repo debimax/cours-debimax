@@ -1,0 +1,100 @@
+
+%Fichier: graphe.tex
+%Crée le 17 juil. 2013
+%Dernière modification: 26 févr. 2021 08:07:06
+
+
+\PassOptionsToPackage{svgnames,dvipsnames}{xcolor} 
+\documentclass{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bm}
+\pagestyle{empty}
+\usepackage[svgnames,dvipsnames]{xcolor} % utiliser par exemple black!20  	
+
+%les fontes
+%\usepackage{frcursive} %pour la fonte cursuive
+%\usepackage{pifont} % pour la fonte ding
+\usepackage{textcomp} %%%Pour autoriser les caractères ° etc...
+
+%mise en page
+%\usepackage{multicol}
+%\usepackage{lscape} %%% pour localement utiliser \begin{landscape}...\end{landscape}
+
+%couleur
+%\usepackage{colortbl}%%%pour colorer les cases d'un tableau
+
+%\usepackage[dvips,ps2pdf]{hyperref} %%%Pour les liens
+%\usepackage{graphicx} %%%%
+
+%Encadrement etc etc
+%\usepackage{fancybox} %%% pour encadrer du texte
+%\usepackage{framed} %%% pour encadrer les formules etc ..
+%\usepackage[amsmath,thmmarks,hyperref,framed]{ntheorem} %%%% Pour encadrer les thm, propriétés et définitions
+
+%\usepackage{enumerate} %%% pour les numerotation de liste \begin{enumerate}[i] ... %%%
+
+% Pour les algorithmes
+%\usepackage[french,boxed,vlined]{algorithm2e}  %,linesnumbered,inoutnumbered
+%\usepackage{listings} %%% pour un environnement listings %%%%
+%\input{mes_listings.tex} %%% pour les listings R-cran R etc... %%%%
+
+%\usepackage{alltt} %%% pour un environnement programme bof %%%%
+
+%\usepackage{pstricks-add}
+%\usepackage{pst-eucl} %%%%
+%\usepackage{pst-circ} %%%%
+%\usepackage{pst-tree} %%%%
+
+
+\usepackage[francais]{babel}
+
+%%% pour mes bas de pages %%%
+%\usepackage{fancyhdr} %%%% Pour gérer les hauts et bas de pages.
+%\pagestyle{fancy} %on met par défaut la page fancy
+%\fancyhf{} %On efface tous pour définir ce que l'on veut
+%\rfoot{\textit{Page \thepage}}
+%\lfoot{\textit{Seconde}}
+%\renewcommand{\footrulewidth}{0.4pt}
+%\renewcommand{\headrulewidth}{0pt} %%%
+
+%%%%  pour écrire le code python
+\usepackage[framemethod=pstricks]{mdframed} % à charger  après hyperref
+
+
+%\renewcommand{\FancyVerbFormatLine}[1]{\colorbox{LemonChiffon}{#1}}
+\usepackage{pythontex}
+%\colorlet{shadecolor}{LavenderBlush2}
+%\colorlet{framecolor}{Red1}
+\newcommand{\pyverb}[1]{\fcolorbox{black}{Lemon1}{\pyv{#1}}}
+\newcommand{\pyvinline}[1]{\colorbox{LemonChiffon}{\pyv{#1}}}
+
+% Mettre en couleur le fond
+\surroundwithmdframed[backgroundcolor=LemonChiffon]{pyverbatim}
+\surroundwithmdframed[backgroundcolor=LemonChiffon]{pyconsole}
+
+
+
+%\title{Le titre}
+%\author{Meilland jean claude}
+%\date{}
+
+\begin{document}
+%\maketitle
+
+\psset{xunit=1cm , yunit=1cm}
+
+\begin{psmatrix}[fillstyle=solid,mnode=circle,fillcolor=LightBlue]
+   &a  \\
+   b &  & [fillcolor=LemonChiffon]c & d \\
+   & [fillcolor=LemonChiffon]e & f  \\
+ \end{psmatrix}
+ \ncline{1,2}{2,3}\ncline{2,1}{2,3}\ncline{2,3}{3,3}\ncline{2,1}{3,2}\ncline{3,2}{3,3}\ncline{3,2}{2,4}
+
+
+\end{document}

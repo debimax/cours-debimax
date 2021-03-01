@@ -1,4 +1,8 @@
 # Cours Debimax
+
+Attention ces cours ne seront plus maintenus.  Je bascule  sur [framagit](https://framagit.org/debimax/cours-debimax)
+
+
 Mes cours python3 au format jupyter (ipython) pour l'isn en classe de terminale.
 
 ## ISN
