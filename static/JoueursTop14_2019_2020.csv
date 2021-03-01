@@ -1,0 +1,634 @@
+Nom;Prénom;Âge;Taille;Poids;Nationalité;Poste;Club;Contrat;Statut JIFF
+ZIRAKASHVILI;Davit;36;179;120;Géorgie;Pilier;Clermont;Pro;NON JIFF
+JACQUET;Loïc;34;198;117;France;2ème ligne;Castres;Pro;JIFF
+JAMES;Brock;38;179;89;Australie;Ouverture;La Rochelle;Pro;NON JIFF
+COMBEZOU;Thomas;33;184;94;France;Centre;Castres;Pro;JIFF
+PALISSON;Alexis;32;177;85;France;Ailier;Lyon;Pro;JIFF
+IGUINIZ;Aretz;36;188;114;France;Pilier;Bayonne;Pro;JIFF
+CAPO ORTEGA;Rodrigo;39;195;110;Uruguay;2ème ligne;Castres;Pro;NON JIFF
+PURICELLI;Julien;38;196;103;France;3ème ligne;Lyon;Pro;JIFF
+WISNIEWSKI;Jonathan;34;180;85;France;Ouverture;Lyon;Pro;JIFF
+PICAMOLES;Louis;34;192;118;France;3ème ligne;Montpellier;Pro;JIFF Formé
+GORGODZE;Mamuka;35;196;120;Géorgie;2ème ligne;Toulon;Pro;NON JIFF
+OUEDRAOGO;Fulgence;33;191;99;France;3ème ligne;Montpellier;Pro;JIFF Formé
+TRINH-DUC;François;33;186;90;France;Ouverture;Racing 92;Pro;JIFF
+GUIRADO;Guilhem;33;183;105;France;Talonneur;Montpellier;Pro;JIFF
+HIRÈCHE;Saïd;34;183;102;France;3ème ligne;Brive;Pro;JIFF
+PARISSE;Sergio;36;196;122;Italie;3ème ligne;Toulon;Pro;NON JIFF
+ARIAS;Julien;36;178;89;France;Ailier;Paris;Pro;JIFF
+CLÉMENT;Stéphane;32;183;121;France;Pilier;Paris;Pro;JIFF
+LEDEVEDEC;Julien;33;199;114;France;2ème ligne;Montpellier;Pro;JIFF
+MERMOZ;Maxime;33;181;93;France;Centre;Toulouse;Pro;JIFF
+HUGET;Yoann;32;190;97;France;Ailier;Toulouse;Pro;JIFF
+MÉDARD;Maxime;33;180;85;France;Arrière;Toulouse;Pro;JIFF Formé
+DELBOULBÈS;Laurent;33;181;106;France;Pilier;Bordeaux;Pro;JIFF
+HUGUES;Rémy;34;183;114;France;Pilier;Toulouse;Pro;JIFF
+JOHNSTON;Census;38;189;130;Samoa;Pilier;Bayonne;Pro;NON JIFF
+DAVID;Yann;31;185;102;France;Centre;Castres;Pro;JIFF
+PARRA;Morgan;31;180;81;France;Mêlée;Clermont;Pro;JIFF
+ABENDANON;Nick;33;178;83;Angleterre;Arrière;Clermont;Pro;NON JIFF
+TOEAVA;Isaia;34;181;100;Samoa;Arrière;Clermont;Pro;NON JIFF
+SAMSON;Christophe;35;198;107;France;2ème ligne;Castres;Pro;JIFF
+SAMSON;Christophe;35;198;107;France;2ème ligne;Castres;Pro;JIFF
+LAKAFIA;Raphaël;31;191;115;France;3ème ligne;Toulon;Pro;JIFF
+THOMAS;Teddy;26;185;90;France;Ailier;Racing 92;Pro;JIFF Formé
+LESGOURGUES;Yann;29;174;71;France;Mêlée;Bordeaux;Pro;JIFF
+GOMEZ KODELA;Francisco;34;184;121;Argentine;Pilier;Lyon;Pro;NON JIFF
+CHAUME;Raphaël;30;185;110;France;Pilier;Lyon;Pro;JIFF
+KOTZE;Daniel;32;187;120;Afrique du sud;Pilier;Castres;Pro;NON JIFF
+BARDY;Julien;33;188;98;France;3ème ligne;Montpellier;Pro;JIFF
+STANLEY;Benson;35;184;98;Samoa;Centre;Pau;Pro;NON JIFF
+BUTTIN;Jean-Marcellin;28;190;94;France;Arrière;Lyon;Pro;JIFF
+RADOSAVLJEVIC;Ludovic;30;180;95;France;Mêlée;Castres;Pro;JIFF
+RIC;Clément;31;182;117;France;Pilier;Lyon;Pro;JIFF
+NAKAITACI;Noa;29;190;94;Fidji;Ailier;Lyon;Pro;JIFF
+LAPANDRY;Alexandre;30;194;101;France;3ème ligne;Clermont;Pro;JIFF Formé
+TICHIT;Antoine;30;182;112;France;Pilier;Castres;Pro;JIFF
+JENNEKER;Jody;35;185;106;Afrique du sud;Talonneur;Castres;Pro;NON JIFF
+URDAPILLETA;Benjamin;33;178;86;Argentine;Ouverture;Castres;Pro;NON JIFF
+AGUILLON;Pierre;32;180;93;France;Centre;La Rochelle;Pro;JIFF
+FOFANA;Wesley;32;182;93;France;Centre;Clermont;Pro;JIFF Formé
+TOLOFUA;Christopher;26;182;117;France;Talonneur;Toulon;Pro;JIFF
+MAESTRI;Yoann;32;202;119;France;2ème ligne;Paris;Pro;JIFF
+CAMARA;Yacouba;25;195;112;France;3ème ligne;Montpellier;Pro;JIFF
+TEKORI;Iosefa;36;198;127;Samoa;2ème ligne;Toulouse;Pro;NON JIFF
+FICKOU;Gaël;25;190;100;France;Centre;Paris;Pro;JIFF
+FIRMIN;Kévin;27;183;105;France;Talonneur;Castres;Pro;JIFF
+BAILLE;Cyril;26;182;116;France;Pilier;Toulouse;Pro;JIFF Formé
+GALAN;Gillian;28;193;120;France;3ème ligne;Toulouse;Pro;JIFF Formé
+BÉZY;Sébastien;28;174;74;France;Mêlée;Toulouse;Pro;JIFF Formé
+JEDRASIAK;Paul;27;200;118;France;2ème ligne;Clermont;Pro;JIFF Formé
+ROUET;Guillaume;31;170;75;France;Mêlée;Bayonne;Pro;JIFF Formé
+ÉTRILLARD;Anthony;26;183;110;France;Talonneur;Toulon;Pro;JIFF
+MONRIBOT;Jean;32;183;99;France;3ème ligne;Bayonne;Pro;JIFF
+OLLIVON;Charles;26;199;114;France;3ème ligne;Toulon;Pro;JIFF
+SLIMANI;Rabah;30;178;113;France;Pilier;Clermont;Pro;JIFF
+FLANQUART;Alexandre;30;204;120;France;2ème ligne;Bordeaux;Pro;JIFF
+PLISSON;Jules;28;184;88;France;Ouverture;La Rochelle;Pro;JIFF
+PLISSON;Jules;28;184;88;France;Ouverture;Paris;Pro;JIFF Formé
+DANTY;Jonathan;27;181;107;France;Centre;Paris;Pro;JIFF Formé
+NAYACALEVU;Waisea;29;193;104;Fidji;Ailier;Paris;Pro;NON JIFF
+BONNEVAL;Hugo;29;185;90;France;Arrière;Toulon;Pro;JIFF
+BONFILS;Rémi;31;178;101;France;Talonneur;Paris;Pro;JIFF Formé
+KAKOVIN;Vasil;30;183;110;Géorgie;Pilier;Racing 92;Pro;JIFF
+GUILLAMON;Antoine;28;192;136;France;Pilier;Montpellier;Pro;JIFF
+DOUSSAIN;Jean-Marc;29;174;88;France;Ouverture;Lyon;Pro;JIFF
+TAOFIFENUA;Sébastien;27;178;130;France;Pilier;Toulon;Pro;JIFF
+VAHAAMAHINA;Sébastien;28;203;120;France;2ème ligne;Clermont;Pro;JIFF
+TAOFIFENUA;Romain;29;200;127;France;2ème ligne;Toulon;Pro;JIFF
+LOPEZ;Camille;30;176;87;France;Ouverture;Clermont;Pro;JIFF
+DELONCA;Maxime;31;180;107;France;Talonneur;Bayonne;Pro;JIFF
+GUITOUNE;Sofiane;30;186;96;France;Centre;Toulouse;Pro;JIFF
+WAQANIBUROTU;Dominiko;33;193;114;Fidji;3ème ligne;Pau;Pro;NON JIFF
+NAMY;Guillaume;30;182;83;France;Ailier;Brive;Pro;JIFF Formé
+DA ROS;François;36;179;104;France;Talonneur;Brive;Pro;JIFF
+ASIESHVILI;Karlen;32;180;118;Géorgie;Pilier;Brive;Pro;NON JIFF
+LARANJEIRA;Thomas;27;186;90;France;Ouverture;Brive;Pro;JIFF Formé
+JAULHAC;Adam;32;198;125;France;2ème ligne;Bayonne;Pro;JIFF
+MADAULE;Louis-Benoît;31;190;104;France;3ème ligne;Toulouse;Pro;JIFF
+CONNOR;Blair;31;183;82;Australie;Ailier;Bordeaux;Pro;NON JIFF
+MAYNADIER;Clément;31;187;100;France;Talonneur;Bordeaux;Pro;JIFF
+MARAIS;Jandré;30;198;118;Afrique du sud;2ème ligne;Bordeaux;Pro;NON JIFF
+SAUBUSSE;Emmanuel;30;181;84;France;Mêlée;Bayonne;Pro;JIFF
+ALDEGHERI;Dorian;26;180;119;France;Pilier;Toulouse;Pro;JIFF Formé
+METZ;Fabrice;29;196;121;France;2ème ligne;Pau;Pro;JIFF
+LAURET;Wenceslas;30;188;103;France;3ème ligne;Racing 92;Pro;JIFF
+GÉRONDEAU;Camille;31;194;113;France;3ème ligne;Castres;Pro;JIFF
+MACHENAUD;Maxime;31;174;87;France;Mêlée;Racing 92;Pro;JIFF
+ANDREU;Marc;34;170;75;France;Ailier;La Rochelle;Pro;JIFF
+DUMOULIN;Alexandre;30;189;101;France;Centre;Pau;Pro;JIFF
+CHAVANCY;Henry;31;181;92;France;Centre;Racing 92;Pro;JIFF Formé
+VAKATAWA;Virimi;27;185;98;Fidji;Centre;Racing 92;Pro;JIFF Formé
+BEN AROUS;Eddy;29;183;117;France;Pilier;Racing 92;Pro;JIFF Formé
+QOVU;Jone;34;197;134;Fidji;2ème ligne;La Rochelle;Pro;NON JIFF
+LE ROUX;Bernard;30;196;113;Afrique du sud;3ème ligne;Racing 92;Pro;JIFF Formé
+FALL;Benjamin;30;186;93;France;Arrière;Montpellier;Pro;JIFF
+IVALDI;Mickaël;29;181;108;France;Talonneur;Lyon;Pro;JIFF
+TULOU;Alex;32;192;114;Samoa;3ème ligne;Castres;Pro;NON JIFF
+PÉLISSIÉ;Jonathan;31;179;83;France;Mêlée;Lyon;Pro;JIFF
+NAGUSA;Timoci;32;183;106;Fidji;Ailier;Montpellier;Pro;NON JIFF
+PAILLAUGUE;Benoît;32;172;74;France;Mêlée;Montpellier;Pro;JIFF
+BATTUT;Antoine;36;192;104;France;3ème ligne;Bayonne;Pro;JIFF
+LAPEYRE;Benjamin;33;181;87;France;Ailier;Castres;Pro;JIFF
+BRUNI;Virgile;31;198;109;France;2ème ligne;Lyon;Pro;JIFF
+MARTIN;Vincent;27;185;93;France;Centre;Montpellier;Pro;JIFF
+CHIOCCI;Xavier;30;180;110;France;Pilier;Lyon;Pro;JIFF
+BASTAREAUD;Mathieu;31;183;123;France;Centre;Lyon;Pro;JIFF
+TUISOVA;Josua;26;180;91;Fidji;Ailier;Lyon;Pro;JIFF
+DIABY;Mahamadou;29;188;105;France;3ème ligne;Bordeaux;Pro;JIFF
+NARIASHVILI;Misha;29;186;118;Géorgie;Pilier;Montpellier;Pro;JIFF Formé
+GALLETIER;Kélian;27;188;100;France;3ème ligne;Montpellier;Pro;JIFF Formé
+MIKAUTADZE;Konstantine;28;200;128;Géorgie;2ème ligne;Montpellier;Pro;JIFF
+CAMINATI;Julien;34;178;88;France;Ailier;Castres;Pro;JIFF
+ORIOLI;Jean-Charles;30;179;110;France;Talonneur;La Rochelle;Pro;JIFF
+CHILACHAVA;Levan;28;188;118;Géorgie;Pilier;Montpellier;Pro;JIFF
+WULF;Rudi;36;182;90;Samoa;Centre;Lyon;Pro;NON JIFF
+LEBAS;Victor;26;193;108;France;2ème ligne;Brive;Pro;JIFF Formé
+GALALA;Seva;27;188;105;Fidji;Centre;Brive;Pro;JIFF Formé
+ISA;Facundo;26;188;111;Argentine;3ème ligne;Toulon;Pro;NON JIFF
+WIHONGI;Karena;40;186;130;Nouvelle-Zélande;Pilier;Castres;Pro;NON JIFF
+GRAY;Richie;30;206;125;Ecosse;2ème ligne;Toulouse;Pro;NON JIFF
+CLAASSEN;Antonie;35;191;106;Afrique du sud;3ème ligne;Racing 92;Pro;NON JIFF
+KOCKOTT;Rory;33;180;92;Afrique du sud;Mêlée;Castres;Pro;NON JIFF
+LAMERAT;Rémi;30;184;105;France;Centre;Bordeaux;Pro;JIFF
+RALLIER;Marc-Antoine;31;182;107;France;Talonneur;Castres;Pro;JIFF Formé
+PEIKRISHVILI;Anton;32;183;122;Géorgie;Pilier;Agen;Pro;NON JIFF
+ROODT;Hendrik;32;198;126;Afrique du sud;2ème ligne;Lyon;Pro;NON JIFF
+PALIS;Geoffrey;28;189;93;France;Arrière;Castres;Pro;JIFF
+BABILLOT;Mathieu;26;190;111;France;3ème ligne;Castres;Pro;JIFF Formé
+GROSSO;Rémy;31;191;104;France;Ailier;Clermont;Pro;JIFF
+DULIN;Brice;29;176;82;France;Arrière;Racing 92;Pro;JIFF
+CAMARA;Djibril;30;183;90;France;Ailier;Bayonne;Pro;JIFF
+DOUMAYROU;Geoffrey;30;186;92;France;Centre;La Rochelle;Pro;JIFF
+SINZELLE;Jérémy;29;184;88;France;Centre;La Rochelle;Pro;JIFF
+POIROT;Jefferson;27;181;117;France;Pilier;Bordeaux;Pro;JIFF
+STEYN;Morné;35;183;91;Afrique du sud;Ouverture;Paris;Pro;NON JIFF
+SERIN;Baptiste;25;180;79;France;Mêlée;Toulon;Pro;JIFF
+TAULEIGNE;Marco;26;191;115;France;3ème ligne;Bordeaux;Pro;JIFF Formé
+PLACINES;Alban;26;189;110;France;3ème ligne;Toulouse;Pro;JIFF
+VOTU;Watisoni;34;187;100;Fidji;Ailier;Pau;Pro;NON JIFF
+ACQUIER;Thomas;30;181;112;France;Talonneur;Brive;Pro;JIFF
+ROMANET;Franck;33;178;89;France;Ailier;Brive;Pro;JIFF
+FITZPATRICK;Damien;30;183;105;Australie;Talonneur;Paris;Pro;NON JIFF
+DUMORA;Julien;31;184;96;France;Arrière;Castres;Pro;JIFF
+ARNOLD;Toby;32;178;86;Nouvelle-Zélande;Ailier;Lyon;Pro;NON JIFF
+RATTEZ;Vincent;27;180;78;France;Arrière;La Rochelle;Pro;JIFF
+FICHTEN;Grégory;29;183;124;France;Pilier;Montpellier;Pro;JIFF
+HOUNKPATIN;Wilfrid;28;192;132;France;Pilier;Castres;Pro;JIFF
+MARQUÈS;Samuel;31;177;76;France;Mêlée;Pau;Pro;JIFF
+TETRASHVILI;Giorgi;26;177;112;Géorgie;Pilier;Agen;Pro;JIFF
+HAMADACHE;Malik;31;193;141;France;Pilier;Pau;Pro;JIFF
+REGARD;Thibaut;26;180;95;France;Centre;Lyon;Pro;JIFF Formé
+VATUBUA;Jale;28;189;121;Fidji;Centre;Pau;Pro;JIFF Formé
+RAMSAY;Daniel;35;197;114;Nouvelle-Zélande;2ème ligne;Pau;Pro;NON JIFF
+DAUBAGNA;Thibault;25;177;80;France;Mêlée;Pau;Pro;JIFF Formé
+FUMAT;Julien;32;180;83;France;Centre;Pau;Pro;JIFF Formé
+MOÏSE;Geoffrey;28;187;130;France;Pilier;Pau;Pro;JIFF Formé
+LE GUEN;Kévin;29;183;105;France;Talonneur;Racing 92;Pro;JIFF
+PULETUA;Jordan;29;193;105;Samoa;Centre;Agen;Pro;NON JIFF
+ULUGIA;John;34;180;115;Australie;Talonneur;Clermont;Pro;NON JIFF
+DUBIÉ;Jean-Baptiste;30;181;85;France;Centre;Bordeaux;Pro;JIFF
+ATONIO;Uini;29;196;152;Nouvelle-Zélande;Pilier;La Rochelle;Pro;NON JIFF
+SAZY;Romain;33;199;105;France;2ème ligne;La Rochelle;Pro;JIFF
+GOUJON;Loann;30;194;106;France;3ème ligne;Lyon;Pro;JIFF
+TAU;Sione;30;192;105;Tonga;3ème ligne;Bayonne;Pro;NON JIFF
+BALÈS;Alexi;29;174;80;France;Mêlée;La Rochelle;Pro;JIFF
+PARIS;Taylor;27;185;93;Canada;Ailier;Castres;Pro;JIFF
+LAMOULIE;Mathieu;29;184;93;France;Arrière;Agen;Pro;JIFF Formé
+ABADIE;Paul;25;176;88;France;Mêlée;Agen;Pro;JIFF
+AFATIA;Viliamu;29;189;124;Samoa;Pilier;Bayonne;Pro;NON JIFF
+NICOT;Florian;33;184;95;France;Centre;Pau;Pro;JIFF
+FALATEA;Tapu;31;187;137;France;Pilier;Castres;Pro;JIFF
+BATLLE;Armand;32;188;92;France;Ailier;Castres;Pro;JIFF
+PUECH;Martin;31;193;95;France;3ème ligne;Pau;Pro;JIFF
+MIGNOT;Xavier;26;188;100;France;Ailier;Lyon;Pro;JIFF
+PELO;Vincent;31;187;130;France;Pilier;La Rochelle;Pro;JIFF
+MALIÉ;Charly;28;185;87;France;Arrière;Pau;Pro;JIFF
+POINTUD;Lucas;32;189;127;France;Pilier;Pau;Pro;JIFF
+IRIBAREN;Teddy;29;170;70;France;Mêlée;Racing 92;Pro;JIFF
+JOLY;Arthur;31;189;123;France;Pilier;La Rochelle;Pro;JIFF
+ERBANI;Antoine;30;192;100;France;3ème ligne;Pau;Pro;JIFF
+LAGARDE;Raphaël;31;182;92;France;Ouverture;Agen;Pro;JIFF
+GOURDON;Kévin;30;190;103;France;3ème ligne;La Rochelle;Pro;JIFF
+PÉLISSIÉ;Adrien;29;181;110;France;Talonneur;Bordeaux;Pro;JIFF
+FAJARDO;Brandon;25;181;77;France;Ouverture;Bayonne;Pro;JIFF
+VIALELLE;Florian;26;185;88;France;Centre;Castres;Pro;JIFF Formé
+BARTHÉLÉMY;Romain;30;186;97;France;Centre;Bayonne;Pro;JIFF
+FRESIA;Florian;28;185;110;France;Pilier;Toulon;Pro;JIFF Formé
+BELAN;Théo;27;187;94;France;Centre;Toulouse;Pro;JIFF
+IMHOFF;Juan;31;185;90;Argentine;Ailier;Racing 92;Pro;NON JIFF
+MAUROUARD;Jérémie;27;181;100;France;Talonneur;Lyon;Pro;JIFF
+MAKA;Edwin;27;196;140;Tonga;2ème ligne;Bayonne;Pro;JIFF
+CHALUREAU;Bastien;28;202;121;France;2ème ligne;Toulouse;Pro;JIFF
+SANCHEZ;Nicolas;31;177;85;Argentine;Ouverture;Paris;Pro;NON JIFF
+FOURCADE;Richard;26;200;110;France;2ème ligne;Brive;Pro;JIFF
+DAGUIN;Clément;27;180;87;France;Mêlée;Paris;Pro;JIFF Formé
+DESMAISON;Walter;28;188;119;France;Pilier;Agen;Pro;JIFF
+CORBEL;Mike;27;179;118;France;Pilier;La Rochelle;Pro;JIFF
+LEE;Fritz;31;188;107;Samoa;3ème ligne;Clermont;Pro;NON JIFF
+FALGOUX;Etienne;27;182;112;France;Pilier;Clermont;Pro;JIFF Formé
+BOUGHANMI;Mohamed;28;194;126;France;Pilier;Pau;Pro;JIFF
+KIEFT;Zeno;28;191;102;Pays-Bas;3ème ligne;La Rochelle;Pro;JIFF Formé
+EBERSOHN;Robert;30;180;89;Afrique du sud;Centre;Castres;Pro;NON JIFF
+MÉRIC;Anthony;24;177;77;France;Mêlée;Toulon;Pro;JIFF Formé
+ONAMBÉLÉ;Stéphane;27;188;94;France;3ème ligne;Toulon;Pro;JIFF
+FA'ANUNU;Paea;31;191;125;Tonga;Pilier;Castres;Pro;NON JIFF
+BARTHOMEUF;Marc;28;174;100;France;Talonneur;Agen;Pro;JIFF Formé
+MURIMURIVALU;Kini;30;176;97;Fidji;Arrière;La Rochelle;Pro;NON JIFF
+TIMANI;Sitaleki;33;203;120;Tonga;2ème ligne;Clermont;Pro;NON JIFF
+KAULASHVILI;Lekso;27;187;120;Géorgie;Pilier;Bordeaux;Pro;JIFF
+N'KINSI;Hans;27;195;115;France;2ème ligne;Castres;Pro;JIFF
+YATO;Peceli;27;196;120;Fidji;3ème ligne;Clermont;Pro;JIFF Formé
+BONNEVAL;Arthur;24;181;82;France;Ailier;Toulouse;Pro;JIFF Formé
+CHAUVEAU;Xavier;27;180;84;France;Mêlée;Agen;Pro;JIFF
+WEBB;Rhys;31;183;93;Pays-de-Galles;Mêlée;Toulon;Pro;NON JIFF
+LAIDLAW;Greig;34;176;78;Ecosse;Mêlée;Clermont;Pro;NON JIFF
+DUNBAR;Alex;29;191;103;Ecosse;Centre;Brive;Pro;NON JIFF
+RAMOS;Thomas;24;178;86;France;Arrière;Toulouse;Pro;JIFF Formé
+MAVINGA;Sami;26;181;116;France;Pilier;Paris;Pro;JIFF
+BOTIA;Levani;30;182;103;Fidji;Centre;La Rochelle;Pro;NON JIFF
+HERRERA;Ramiro;31;194;123;Argentine;Pilier;La Rochelle;Pro;NON JIFF
+HERRERA;Ramiro;31;194;123;Argentine;Pilier;La Rochelle;Pro;NON JIFF
+CERQUEIRA;Steevy;26;206;114;France;3ème ligne;Brive;Pro;JIFF
+JOHNSTON;James;33;191;129;Samoa;Pilier;Brive;Pro;NON JIFF
+ZEBO;Simon;29;187;94;Irlande;Ailier;Racing 92;Pro;NON JIFF
+RYAN;Donnacha;36;201;114;Irlande;2ème ligne;Racing 92;Pro;NON JIFF
+MARAIS;Peet;29;199;120;Afrique du sud;2ème ligne;Brive;Pro;NON JIFF
+MASILEVU;Benito;30;178;83;Fidji;Ailier;Agen;Pro;NON JIFF
+HAYES;Dylan;26;194;114;Nouvelle-Zélande;3ème ligne;Agen;Pro;JIFF
+ALOFA;Alofa;28;185;95;Australie;Centre;Bayonne;Pro;NON JIFF
+PYLE;Hugh;31;201;116;Australie;2ème ligne;Paris;Pro;NON JIFF
+GOOSEN;Johan;27;184;89;Afrique du sud;Arrière;Montpellier;Pro;NON JIFF
+UGENA;Matthieu;24;186;106;France;3ème ligne;Pau;Pro;JIFF
+GABRILLAGUES;Paul;26;199;119;France;2ème ligne;Paris;Pro;JIFF Formé
+NETI;Rodrigue;24;185;124;France;Pilier;Toulouse;Pro;JIFF Formé
+MOREAUX;Victor;26;200;123;France;2ème ligne;Castres;Pro;JIFF
+FARRÉ;Vincent;29;193;103;France;3ème ligne;Agen;Pro;JIFF
+TADJER;Mike;30;183;110;France;Talonneur;Clermont;Pro;JIFF
+MACALOU;Sekou;24;195;100;France;3ème ligne;Paris;Pro;JIFF Formé
+GIMENO;Kévin;28;195;106;France;3ème ligne;Castres;Pro;JIFF
+TUTAIA;Masalosalo;35;204;125;Nouvelle-Zélande;2ème ligne;Bordeaux;Pro;NON JIFF
+TUTAIA;Masalosalo;35;204;125;Nouvelle-Zélande;2ème ligne;Bordeaux;Pro;NON JIFF
+CAZEAUX;Cyril;25;198;113;France;2ème ligne;Bordeaux;Pro;JIFF Formé
+LESPIAUCQ-BRETTES;Quentin;24;180;95;France;Talonneur;Pau;Pro;JIFF Formé
+LUCU;Maxime;27;177;79;France;Mêlée;Bordeaux;Pro;JIFF
+HAMDAOUI;Kylan;25;182;84;France;Arrière;Paris;Pro;JIFF
+FORTUNEL;Thomas;24;177;76;France;Ouverture;Castres;Pro;JIFF
+POURAILLY;Bastien;26;177;80;France;Ailier;Pau;Pro;JIFF Formé
+KLEMENCZAK;Olivier;23;181;81;France;Centre;Racing 92;Pro;JIFF
+BRIATTE;Romain;26;194;105;France;3ème ligne;Agen;Pro;JIFF
+ETIEN;Lester;24;180;90;France;Ailier;Paris;Pro;JIFF
+CHOUZENOUX;Baptiste;26;202;107;France;3ème ligne;Racing 92;Pro;JIFF
+CANCORIET;Judicaël;23;194;112;France;3ème ligne;Clermont;Pro;JIFF Formé
+VAN LILL;Pieter Jan;36;193;120;Namibie;2ème ligne;Bayonne;Pro;NON JIFF
+NGAUAMO;Paula;29;182;117;Tonga;Talonneur;Agen;Pro;NON JIFF
+MARCHAND;Julien;24;181;95;France;Talonneur;Toulouse;Pro;JIFF Formé
+SANCONNIE;Fabien;24;195;110;France;3ème ligne;Racing 92;Pro;JIFF
+SEPTAR;Atila;23;195;99;France;Centre;Pau;Pro;JIFF
+TANGUY;Mathieu;23;195;110;France;2ème ligne;La Rochelle;Pro;JIFF Formé
+ROUDIL;Eliott;23;184;97;France;Ailier;La Rochelle;Pro;JIFF Formé
+LAMBEY;Félix;25;196;105;France;2ème ligne;Lyon;Pro;JIFF Formé
+SOBELA;Patrick;27;188;105;France;3ème ligne;Lyon;Pro;JIFF
+DE GIOVANNI;Mathieu;26;197;115;France;2ème ligne;Paris;Pro;JIFF Formé
+PRISO;Dany;26;182;110;Cameroun;Pilier;La Rochelle;Pro;JIFF
+DUPONT;Antoine;23;174;82;France;Mêlée;Toulouse;Pro;JIFF
+CHAT;Camille;24;178;101;France;Talonneur;Racing 92;Pro;JIFF Formé
+FEARNS;Carl;30;191;118;Angleterre;3ème ligne;Lyon;Pro;NON JIFF
+LUAMANU;Mat;31;193;127;Nouvelle-Zélande;3ème ligne;Bayonne;Pro;NON JIFF
+RUSSELL;Finn;27;183;87;Ecosse;Ouverture;Racing 92;Pro;NON JIFF
+STRAUSS;Josh;33;200;114;Afrique du sud;3ème ligne;Paris;Pro;NON JIFF
+BOTICA;Ben;30;178;93;Nouvelle-Zélande;Ouverture;Bordeaux;Pro;NON JIFF
+MERRICK;George;27;201;126;Angleterre;2ème ligne;Clermont;Pro;NON JIFF
+PEARCE;Laurence;29;192;120;Angleterre;3ème ligne;Agen;Pro;NON JIFF
+DOUGLAS;Kane;30;202;123;Australie;2ème ligne;Bordeaux;Pro;NON JIFF
+TE'O;Ben;33;188;105;Samoa;Centre;Toulon;Pro;NON JIFF
+FOTUALI'I;Kahn;37;183;96;Samoa;Mêlée;Montpellier;Pro;NON JIFF
+COBILAS;Vadim;36;180;118;Moldavie;Pilier;Bordeaux;Pro;NON JIFF
+OLDING;Stuart;26;180;87;Irlande;Centre;Brive;Pro;NON JIFF
+RYAN;Dave;33;183;116;Irlande;Pilier;Agen;Pro;NON JIFF
+STROË;Tudor;26;184;112;France;Pilier;Castres;Pro;JIFF
+DUCUING;Nans;28;181;90;France;Arrière;Bordeaux;Pro;JIFF
+HIDALGO-CLYNE;Sam;26;175;76;Ecosse;Mêlée;Lyon;Pro;NON JIFF
+HIDALGO-CLYNE;Sam;26;175;76;Ecosse;Mêlée;Racing 92;Pro;NON JIFF
+LEES;Mitch;31;196;120;Australie;2ème ligne;Brive;Pro;NON JIFF
+GALARZA;Mariano;33;202;114;Argentine;2ème ligne;Bayonne;Pro;NON JIFF
+PUAFISI;Sila;31;183;128;Tonga;Pilier;La Rochelle;Pro;NON JIFF
+WILLEMSE;Paul;27;201;126;Afrique du sud;2ème ligne;Montpellier;Pro;NON JIFF
+BÉTHUNE;Quentin;24;183;112;France;Pilier;Paris;Pro;JIFF
+HÉRITEAU;Julien;25;181;90;France;Centre;Toulon;Pro;JIFF
+HINGANO;Malietoa;28;180;95;Australie;Centre;Bayonne;Pro;NON JIFF
+ITURRIA;Arthur;25;198;112;France;3ème ligne;Clermont;Pro;JIFF
+ALO-EMILE;Paul;28;180;128;Australie;Pilier;Paris;Pro;NON JIFF
+TAMEIFUNA;Ben;28;182;140;Nouvelle-Zélande;Pilier;Racing 92;Pro;NON JIFF
+FERNANDEZ;Patricio;25;192;100;Argentine;Ouverture;Lyon;Pro;JIFF
+DU PLESSIS;Jacques;26;201;123;Afrique du sud;2ème ligne;Montpellier;Pro;NON JIFF
+PANIS;Laurent;26;180;102;France;Talonneur;Paris;Pro;JIFF Formé
+CROS;François;25;190;95;France;3ème ligne;Toulouse;Pro;JIFF Formé
+VAN DER MERWE;Marcel;29;188;120;Afrique du sud;Pilier;Toulon;Pro;NON JIFF
+TAYLOR;Tom;30;183;90;Nouvelle-Zélande;Ouverture;Pau;Pro;NON JIFF
+CASSANG;Charlie;25;173;84;France;Mêlée;Clermont;Pro;JIFF Formé
+GOMES SA;Cedate;26;185;113;Portugal;Pilier;Racing 92;Pro;JIFF Formé
+ROBINSON;Sean;26;181;90;Afrique du sud;Ailier;Bayonne;Pro;JIFF
+SLADE;Colin;32;183;90;Nouvelle-Zélande;Ouverture;Pau;Pro;NON JIFF
+OULAI;Evrard Dion;26;198;135;Côte d'Ivoire;2ème ligne;Bayonne;Pro;NON JIFF
+LIEBENBERG;Wiaan;27;189;105;Afrique du sud;3ème ligne;La Rochelle;Pro;NON JIFF
+JANÉ;Julien;30;186;100;France;Ailier;Agen;Pro;JIFF
+SEUTENI;Ulupano;26;185;95;Australie;Centre;Bordeaux;Pro;JIFF
+BELLEAU;Anthony;23;177;85;France;Ouverture;Toulon;Pro;JIFF Formé
+DU PLESSIS;Bismarck;35;189;114;Afrique du sud;Talonneur;Montpellier;Pro;NON JIFF
+DU PLESSIS;Jannie;37;188;121;Afrique du sud;Pilier;Montpellier;Pro;NON JIFF
+KAMIKAMICA;Kitione;23;188;105;Fidji;3ème ligne;Brive;Pro;JIFF
+TOLOT;Loris;26;185;90;France;Arrière;Agen;Pro;JIFF Formé
+NEGROTTO;Jeronimo;31;189;117;Argentine;Pilier;Agen;Pro;NON JIFF
+STEYN;François;32;191;111;Afrique du sud;Centre;Montpellier;Pro;NON JIFF
+ALBERTS;Willem;35;192;120;Afrique du sud;3ème ligne;Paris;Pro;NON JIFF
+ADRIAANSE;Lourens;32;181;115;Afrique du sud;Pilier;Pau;Pro;NON JIFF
+RETIÈRE;Arthur;22;173;75;France;Ailier;La Rochelle;Pro;JIFF Formé
+BLANC;Julien;27;175;81;France;Mêlée;Brive;Pro;JIFF
+FOUYSSAC;Pierre;24;190;100;France;Centre;Toulouse;Pro;JIFF
+SADIE;Johann;31;188;96;Afrique du sud;Centre;Agen;Pro;NON JIFF
+HOLMES;Zack;29;175;90;Australie;Ouverture;Toulouse;Pro;NON JIFF
+MELIKIDZE;Giorgi;23;179;117;Géorgie;Pilier;Paris;Pro;JIFF Formé
+KAKABADZE;Beqa;24;181;110;Géorgie;Pilier;Clermont;Pro;JIFF Formé
+SANGA;Enzo;24;176;75;France;Mêlée;Montpellier;Pro;JIFF
+PENAUD;Damian;23;192;94;France;Ailier;Clermont;Espoir;JIFF
+RAKA;Alivereti;25;189;97;Fidji;Ailier;Clermont;Pro;JIFF Formé
+TABIDZE;Lasha;22;185;117;Géorgie;Pilier;Bordeaux;Espoir;JIFF
+NAQALEVU;Apisai;30;188;104;Fidji;Centre;Clermont;Pro;NON JIFF
+MURDAY;Tom;30;200;114;Australie;2ème ligne;Agen;Pro;NON JIFF
+CASTETS;Clément;23;183;110;France;Pilier;Toulouse;Pro;JIFF Formé
+DEVERGIE;Martin;24;193;116;France;3ème ligne;Montpellier;Pro;JIFF Formé
+MARCHOIS;Denis;26;198;115;France;2ème ligne;Pau;Pro;JIFF
+GRAY;Talalelei;29;194;110;Australie;3ème ligne;Paris;Pro;NON JIFF
+TAUFA;Toma'Akino;24;180;125;Tonga;Pilier;Bayonne;Pro;NON JIFF
+DUCAT;Guillaume;23;205;115;France;2ème ligne;Bayonne;Pro;JIFF Formé
+MÉRET;Lucas;25;178;85;France;Ouverture;Bordeaux;Pro;JIFF Formé
+MAMAO;Maile;24;187;117;Tonga;Centre;Bayonne;Pro;JIFF Formé
+LAVEAU;Martin;23;182;78;France;Ailier;Castres;Pro;JIFF
+LAFAGE;Maxime;25;183;84;France;Ouverture;Bayonne;Pro;JIFF
+PLESSIS-COUILLAUD;Brieuc;25;180;95;France;Centre;La Rochelle;Pro;JIFF
+SOURY;Bastien;24;180;105;France;Talonneur;Toulon;Pro;JIFF Formé
+DE CLERCQ;Jean-Baptiste;25;183;115;Belgique;Pilier;Bayonne;Pro;JIFF
+TAOFIFENUA;Filimo;26;188;100;France;3ème ligne;Bayonne;Pro;JIFF
+ARRATE;Alex;22;180;90;France;Centre;Paris;Pro;JIFF
+ROUMAT;Alexandre;22;198;104;France;3ème ligne;Bordeaux;Espoir;JIFF
+LABORDE;Dorian;23;178;107;France;Ailier;Racing 92;Pro;JIFF
+DACHARY;Théo;22;184;92;France;Centre;Toulon;Pro;JIFF
+NADOLO;Nemani;32;194;130;Fidji;Ailier;Montpellier;Pro;NON JIFF
+RAVAI;Peni;29;185;119;Fidji;Pilier;Bordeaux;Pro;NON JIFF
+VOLAVOLA;Ben;29;191;93;Fidji;Ouverture;Racing 92;Pro;NON JIFF
+LOBZHANIDZE;Vasil;23;175;75;Géorgie;Mêlée;Brive;Pro;JIFF Formé
+ETZEBETH;Eben;28;203;120;Afrique du sud;2ème ligne;Toulon;Pro;NON JIFF
+POLLARD;Handré;25;189;98;Afrique du sud;Ouverture;Montpellier;Pro;NON JIFF
+LEVAVE;Faifili;34;193;111;Nouvelle-Zélande;3ème ligne;Clermont;Pro;NON JIFF
+NANAI-WILLIAMS;Tim;30;182;90;Samoa;Ailier;Clermont;Pro;NON JIFF
+KAINO;Jerome;36;196;113;Etats-Unis;3ème ligne;Toulouse;Pro;NON JIFF
+SMITH;Ben;33;186;94;Nouvelle-Zélande;Ailier;Pau;Pro;NON JIFF
+VITO;Victor;32;192;112;Nouvelle-Zélande;3ème ligne;La Rochelle;Pro;NON JIFF
+SAVEA;Julian;29;192;108;Nouvelle-Zélande;Centre;Toulon;Pro;NON JIFF
+FAUMUINA;Charlie;33;184;128;Nouvelle-Zélande;Pilier;Toulouse;Pro;NON JIFF
+CORDERO;Santiago;26;177;83;Argentine;Ailier;Bordeaux;Pro;NON JIFF
+MATERA;Pablo;26;193;110;Argentine;3ème ligne;Paris;Pro;NON JIFF
+MESSAM;Liam;35;190;109;Nouvelle-Zélande;3ème ligne;Toulon;Pro;NON JIFF
+KERR-BARLOW;Tawera;29;187;91;Nouvelle-Zélande;Mêlée;La Rochelle;Pro;NON JIFF
+VAN JAARSVELD;Torsten;32;175;106;Namibie;Talonneur;Bayonne;Pro;NON JIFF
+SERFONTEIN;Jan;26;187;97;Afrique du sud;Centre;Montpellier;Pro;NON JIFF
+PAIGE;Rudy;30;169;77;Afrique du sud;Mêlée;Clermont;Pro;NON JIFF
+NAKOSI;Filipo;27;182;98;Fidji;Ailier;Castres;Pro;NON JIFF
+DUPICHOT;Louis;24;183;86;France;Arrière;Racing 92;Pro;JIFF Formé
+IKPEFAN;Daniel;26;185;92;France;Ailier;Toulon;Pro;JIFF
+CHAMBORD;Ronan;25;177;104;France;Talonneur;Montpellier;Pro;JIFF
+BETHAM;Peter;31;191;98;Samoa;Ailier;Clermont;Pro;NON JIFF
+SCHOLES;Rory;26;186;95;Irlande;Ailier;Brive;Pro;NON JIFF
+VANAÏ;Malino;26;183;119;France;Pilier;Agen;Pro;JIFF
+DELANNOY;Julien;24;198;123;France;2ème ligne;Pau;Pro;JIFF
+DELARUE;David;23;190;85;France;Mêlée;Brive;Pro;JIFF Formé
+NARISIA;Peniami Nasali;22;187;104;Fidji;Talonneur;Brive;Espoir;JIFF
+JELONCH;Anthony;23;193;105;France;3ème ligne;Castres;Pro;JIFF Formé
+BUROS;Romain;22;187;91;France;Arrière;Bordeaux;Espoir;JIFF
+REILHAC;Yvan;24;182;92;France;Centre;Montpellier;Pro;JIFF Formé
+DECRON;Nathan;21;184;94;France;Centre;Agen;Espoir;JIFF
+DUFOUR;Florian;22;183;117;France;Talonneur;Bordeaux;Espoir;JIFF
+MIQUEL;Antoine;25;192;109;France;3ème ligne;Toulouse;Pro;JIFF
+WARDI;Reda;24;185;110;France;Pilier;La Rochelle;Pro;JIFF
+GORGADZE;Béka;24;189;105;Géorgie;3ème ligne;Bordeaux;Pro;JIFF
+HABEL-KUEFFNER;Giovanni;25;190;110;Samoa;3ème ligne;Pau;Pro;JIFF Formé
+CROS;Geoffrey;22;185;85;France;Arrière;Bordeaux;Espoir;JIFF
+GILL;Liam;27;184;100;Australie;3ème ligne;Lyon;Pro;NON JIFF
+ALKHAZASHVILI;Badri;24;185;110;Géorgie;Talonneur;Lyon;Pro;JIFF
+TIERNEY;Matt;23;191;132;Canada;Pilier;Castres;Pro;JIFF
+PLAZY;Nicolas;25;188;85;France;Ailier;Bordeaux;Pro;JIFF
+TUICUVU;Setariki;24;179;94;Fidji;Arrière;Clermont;Pro;JIFF
+LE BAIL;Clovis;24;173;74;France;Mêlée;Pau;Pro;JIFF Formé
+COUILLOUD;Baptiste;22;176;77;France;Mêlée;Lyon;Espoir;JIFF
+PAÏVA;Thierry;24;184;125;France;Pilier;Bordeaux;Pro;JIFF Formé
+AXTENS;Carl;28;193;117;Nouvelle-Zélande;3ème ligne;Toulouse;Pro;NON JIFF
+MALAFOSSE;Dan;28;195;121;France;2ème ligne;Pau;Pro;JIFF
+OZ;Ali;24;193;140;France;Pilier;Racing 92;Pro;JIFF
+JOLMÈS;Thomas;24;204;116;France;2ème ligne;La Rochelle;Pro;JIFF
+CRUDEN;Aaron;31;178;84;Nouvelle-Zélande;Ouverture;Montpellier;Pro;NON JIFF
+TAUZIN;Lucas;21;187;98;France;Ailier;Toulouse;Espoir;JIFF
+TISSERON;Julien;24;182;82;France;Arrière;Bayonne;Pro;JIFF Formé
+VAIPULU;Ma'ama;30;190;112;Nouvelle-Zélande;3ème ligne;Castres;Pro;NON JIFF
+GODENER;Loïc;24;188;115;France;3ème ligne;Paris;Pro;JIFF
+BEKOSHVILI;Soso;26;180;116;Géorgie;Pilier;Brive;Pro;NON JIFF
+GIGASHVILI;Beka;27;177;114;Géorgie;Pilier;Toulon;Pro;NON JIFF
+REY;Lucas;22;175;95;France;Talonneur;Pau;Espoir;JIFF
+PALU;Boris;24;193;109;France;3ème ligne;Racing 92;Pro;JIFF Formé
+VOISIN;Matthieu;23;193;104;France;3ème ligne;Brive;Pro;JIFF
+COVILLE;Arthur;22;178;83;France;Mêlée;Paris;Espoir;JIFF
+REBBADJ;Swan;25;202;116;France;2ème ligne;Toulon;Pro;JIFF Formé
+DUPUTS;Arnaud;24;188;98;France;3ème ligne;Bayonne;Pro;JIFF Formé
+PESENTI;Baptiste;22;195;118;France;3ème ligne;Pau;Espoir;JIFF
+GALLETIER;Guillaume;22;178;98;France;Centre;Brive;Pro;JIFF
+PHÉLIPPONNEAU;Morgan;30;185;106;France;Pilier;Agen;Pro;JIFF
+UYS;Jan;26;195;120;Afrique du sud;2ème ligne;Brive;Pro;NON JIFF
+HASTOY;Antoine;22;180;86;France;Ouverture;Pau;Espoir;JIFF
+VAN RENSBURG;Nicolaas Janse;25;200;112;Afrique du sud;2ème ligne;Montpellier;Pro;NON JIFF
+BONIFACE;Ugo;21;190;125;France;Pilier;Bayonne;Espoir;JIFF
+IMMELMAN;Henry;24;189;96;Afrique du sud;Arrière;Montpellier;Pro;NON JIFF
+SAURS;Valentin;25;182;82;France;Ailier;Agen;Pro;JIFF Formé
+VAN DYK;Maks;28;186;118;Afrique du sud;Pilier;Toulouse;Pro;NON JIFF
+BULIRUARUA;Rico;23;186;106;Fidji;Arrière;Brive;Pro;JIFF
+BRENNAN;Daniel;21;192;132;Irlande;Pilier;Montpellier;Espoir;JIFF
+MOUSSET;Luc;25;180;115;France;Pilier;Bayonne;Pro;JIFF
+BOUDEHENT;Pierre;22;196;105;France;Ailier;La Rochelle;Espoir;JIFF
+HALL;James;24;172;84;Afrique du sud;Mêlée;Paris;Pro;JIFF
+DEVISME;Vivien;27;175;112;France;Pilier;Lyon;Pro;JIFF
+CALLES;Ignacio;24;187;116;Argentine;Pilier;Pau;Pro;JIFF Formé
+MULLER;Axel;26;186;94;Argentine;Ailier;Brive;Pro;NON JIFF
+JEGERLEHNER;Jessy;22;190;97;France;3ème ligne;Agen;Espoir;JIFF
+RADRADRA;Semi;27;188;102;Fidji;Centre;Bordeaux;Pro;NON JIFF
+KORNATH;Kévin;23;194;110;France;3ème ligne;Montpellier;Pro;JIFF
+TEDDER;Tristan;23;180;80;Afrique du sud;Ouverture;Toulouse;Espoir;JIFF Formé
+MARAIS;Retief;24;194;109;Afrique du sud;3ème ligne;Brive;Pro;JIFF Formé
+ZAFRA;Andrés;23;197;116;Colombie;2ème ligne;Agen;Pro;JIFF
+KAABÈCHE;Hamza;23;188;118;France;Pilier;Lyon;Pro;JIFF Formé
+HAOUAS;Mohamed;25;185;127;France;Pilier;Montpellier;Pro;JIFF Formé
+MOTOC;Adrian;23;197;108;Roumanie;2ème ligne;Agen;Pro;JIFF
+SETIANO;Emerick;23;183;114;France;Pilier;Toulon;Espoir;JIFF Formé
+BEHEREGARAY;Yohan;23;180;102;France;Talonneur;Clermont;Pro;JIFF Formé
+VAOTOA;Christopher;23;185;138;France;Pilier;Paris;Pro;JIFF
+BOUTHIER;Anthony;27;182;86;France;Arrière;Montpellier;Pro;JIFF
+ANGA'AELANGI;Sione;31;180;106;Nouvelle-Zélande;Talonneur;Paris;Pro;NON JIFF
+MAUVAKA;Péato;23;184;115;France;Talonneur;Toulouse;Espoir;JIFF
+TAFILI;Paulo;23;183;132;France;Pilier;Toulouse;Pro;JIFF Formé
+THOMPSON-STRINGER;Hayden;25;190;119;Angleterre;Pilier;Brive;Pro;NON JIFF
+MUSCARDITZ;Peyo;24;174;88;France;Centre;Bayonne;Pro;JIFF Formé
+BARASSI;Pierre-Louis;21;188;93;France;Centre;Lyon;Espoir;JIFF
+CRETIN;Dylan;22;195;101;France;3ème ligne;Lyon;Espoir;JIFF
+GIUDICELLI;Vincent;22;183;100;France;Talonneur;Montpellier;Pro;JIFF Formé
+SEGONDS;Joris;22;180;91;France;Ouverture;Paris;Espoir;JIFF
+GIORGADZE;Otar;23;193;108;Géorgie;3ème ligne;Brive;Pro;JIFF
+BAUBIGNY;Teddy;21;187;111;France;Talonneur;Racing 92;Espoir;JIFF
+FA'ASO'O;So'otala;25;194;127;Samoa;3ème ligne;Brive;Pro;NON JIFF
+MOALA;George;29;187;104;Tonga;Centre;Clermont;Pro;NON JIFF
+ARNOLD;Rory;29;208;120;Australie;2ème ligne;Toulouse;Pro;NON JIFF
+TIMANI;Lopeti;29;193;124;Tonga;3ème ligne;La Rochelle;Pro;NON JIFF
+NAIVALU;Sefa;28;186;101;Fidji;Ailier;Paris;Pro;NON JIFF
+LATU;Tolu;26;180;113;Tonga;Talonneur;Paris;Pro;NON JIFF
+MOYANO;Ramiro;29;180;86;Argentine;Arrière;Toulon;Pro;NON JIFF
+RUAUD;Julien;22;196;116;France;3ème ligne;Clermont;Espoir;JIFF
+MAPOE;Lionel;31;183;95;Afrique du sud;Centre;Paris;Pro;NON JIFF
+MAPOE;Lionel;31;183;95;Afrique du sud;Centre;Paris;Pro;NON JIFF
+COMBRINCK;Ruan;29;183;97;Afrique du sud;Arrière;Paris;Pro;NON JIFF
+HINO;Takeshi;30;172;100;Japon;Talonneur;Toulouse;Pro;NON JIFF
+TOLOFUA;Selevasio;22;186;115;France;3ème ligne;Toulouse;Espoir;JIFF
+NTAMACK;Romain;20;186;84;France;Ouverture;Toulouse;Espoir;JIFF
+VERHAEGHE;Florian;22;202;108;France;2ème ligne;Toulouse;Espoir;JIFF
+KOLBE;Cheslin;26;171;80;Afrique du sud;Ailier;Toulouse;Pro;NON JIFF
+UHILA;Loni;30;182;125;Tonga;Pilier;Clermont;Pro;NON JIFF
+FRANCOZ;Charlie;21;195;108;France;3ème ligne;Paris;Espoir;JIFF
+ALAINU'UESE;Brian;25;202;135;Samoa;2ème ligne;Toulon;Pro;NON JIFF
+VERDU;Hugo;23;176;82;France;Mêlée;Agen;Pro;JIFF
+BOSCH;Facundo;28;180;100;Argentine;Talonneur;La Rochelle;Pro;NON JIFF
+HAMEL;Issam;22;180;110;France;Talonneur;Racing 92;Espoir;JIFF
+OOSTHUIZEN;Etienne;27;198;120;Afrique du sud;2ème ligne;Lyon;Pro;NON JIFF
+GIBERT;Antoine;22;177;76;France;Mêlée;Racing 92;Pro;JIFF Formé
+JALIBERT;Matthieu;21;180;79;France;Ouverture;Bordeaux;Espoir;JIFF
+GIMBERT;Jules;21;170;67;France;Mêlée;Bordeaux;Espoir;JIFF
+LAMOTHE;Maxime;21;184;109;France;Talonneur;Bayonne;Espoir;JIFF
+CARBONEL;Louis;21;180;85;France;Ouverture;Toulon;Espoir;JIFF
+ALLDRITT;Greg;22;191;115;France;3ème ligne;La Rochelle;Pro;JIFF
+BOURGARIT;Pierre;22;184;105;France;Talonneur;La Rochelle;Pro;JIFF
+EZEALA;Samuel;20;187;94;Espagne;Ailier;Clermont;Espoir;JIFF
+CORATO;Nicolas;22;184;120;France;Pilier;Pau;Espoir;JIFF
+DE CONINCK;Lucas;24;194;110;France;3ème ligne;Montpellier;Pro;JIFF Formé
+WOKI;Cameron;21;196;103;France;3ème ligne;Bordeaux;Espoir;JIFF
+CORMENIER;Swan;24;178;117;France;Pilier;Bayonne;Pro;JIFF
+WILSON;Callum;29;182;95;Angleterre;Centre;Bayonne;Pro;NON JIFF
+BERDEU;Léo;21;195;95;France;Ouverture;Agen;Espoir;JIFF
+ORDAS;Manuel;21;186;83;France;Ouverture;Bayonne;Espoir;JIFF
+DARMON;Thomas;21;181;89;France;Ouverture;Montpellier;Espoir;JIFF
+BITUNIYATA;Setareki;24;190;89;Fidji;Ailier;Brive;Pro;NON JIFF
+TANGA-MANGENE;Yoan;23;185;108;France;3ème ligne;Racing 92;Pro;JIFF
+COLOMBE;Georges-Henri;21;193;133;France;Pilier;Racing 92;Espoir;JIFF
+KOLINGAR;Hassane;21;186;116;France;Pilier;Racing 92;Pro;JIFF Formé
+N'GANDEBE;Gabriel;22;174;75;Cameroun;Ailier;Montpellier;Pro;JIFF
+TCHEISHVILI;Ushangi;22;178;103;Géorgie;Pilier;Montpellier;Espoir;JIFF
+HIGGINBOTHAM;Scott;33;195;110;Australie;3ème ligne;Bordeaux;Pro;NON JIFF
+GORIN;André;32;192;111;Roumanie;3ème ligne;Bayonne;Pro;NON JIFF
+CORDIN;Gervais;21;172;73;France;Arrière;Toulon;Espoir;JIFF
+GÉRACI;Kilian;20;200;106;France;2ème ligne;Lyon;Espoir;JIFF
+VAKA;Sam;27;187;98;Nouvelle-Zélande;Centre;Agen;Pro;NON JIFF
+LAPORTE;Clément;22;181;87;France;Arrière;Lyon;Espoir;JIFF
+DUHAU;Arthur;22;181;86;France;Ailier;Bayonne;Espoir;JIFF
+YAMEOGO;Kévin;22;193;125;France;Pilier;Lyon;Espoir;JIFF
+DELORD;Quentin;21;171;74;France;Mêlée;Brive;Espoir;JIFF
+VILI;Tani;19;187;109;France;Centre;Clermont;Espoir;JIFF
+VERNET;Corentin;23;200;127;France;2ème ligne;Toulon;Pro;JIFF Formé
+GROS;Jean-Baptiste;20;187;110;France;Pilier;Toulon;Espoir;JIFF
+SMAÏLI;Mathieu;20;180;84;France;Ouverture;Toulon;Espoir;JIFF
+PARIS;Léonard;23;180;92;France;Centre;Racing 92;Pro;JIFF Formé
+HÉGUY;Baptiste;21;196;97;France;3ème ligne;Bayonne;Espoir;JIFF
+FALATEA;Sipili;22;184;116;France;Pilier;Clermont;Espoir;JIFF
+APRASIDZE;Gela;22;175;70;Géorgie;Mêlée;Montpellier;Espoir;PAS ENCORE JIFF
+MARTINEZ;Clément;23;181;105;France;Talonneur;Agen;Pro;JIFF
+MCINTYRE;Jake;25;177;88;Australie;Ouverture;Clermont;Pro;NON JIFF
+TATRE;Pierre;20;180;85;France;Ouverture;Castres;Espoir;JIFF
+DELHOMMEL;Youri;23;181;100;France;Talonneur;Montpellier;Pro;JIFF
+AZAGOH;Pierre-Henri;21;198;105;France;2ème ligne;Paris;Espoir;JIFF
+DELBOUIS;Julien;20;185;95;France;Centre;Paris;Espoir;JIFF
+DELAPORTE;Baptiste;22;190;112;France;3ème ligne;Castres;Espoir;JIFF
+FISCHER;Alexandre;22;188;103;France;3ème ligne;Clermont;Espoir;JIFF
+MARCHAND;Guillaume;21;183;100;France;Talonneur;Toulouse;Espoir;JIFF
+THOMAS;Cody;23;186;124;Afrique du sud;Pilier;Brive;Pro;JIFF
+FERNANDEZ;Jérémy;22;175;82;France;Mêlée;Castres;Espoir;JIFF
+HOARAU;Thomas;24;190;112;France;3ème ligne;Toulon;Pro;JIFF
+VAN TONDER;Jaco;21;197;118;Afrique du sud;2ème ligne;Clermont;Espoir;PAS ENCORE JIFF
+FISI'IHOI;Siegfried;32;184;125;Tonga;Pilier;Pau;Pro;NON JIFF
+ELSTADT;Rynhardt;30;198;120;Afrique du sud;3ème ligne;Toulouse;Pro;NON JIFF
+DA SILVA;Lucas;22;188;115;France;Talonneur;Paris;Espoir;JIFF
+HERVÉ;Enzo;21;177;89;France;Ouverture;Brive;Espoir;JIFF
+VINCENT;Arthur;20;183;90;France;Centre;Montpellier;Espoir;JIFF
+LOUW;Wilco;25;185;133;Afrique du sud;Pilier;Toulon;Pro;NON JIFF
+CORRÉA;Fernandez;22;181;100;Sénégal;Pilier;Agen;Espoir;JIFF
+NUENO;Pierre;23;184;90;France;Centre;Pau;Pro;JIFF Formé
+TAGITAGIVALU;Lekima;24;193;109;Fidji;3ème ligne;Pau;Pro;JIFF Formé
+HEEM;Bryce;31;193;105;Nouvelle-Zélande;Ailier;Toulon;Pro;NON JIFF
+PHILLIPS;Pierce;27;203;119;Angleterre;2ème ligne;Agen;Pro;NON JIFF
+BIRD;Dominic;28;206;115;Nouvelle-Zélande;2ème ligne;Racing 92;Pro;NON JIFF
+TAULAGI;JJ;26;180;90;Samoa;Arrière;Agen;Pro;NON JIFF
+WHITELOCK;Luke;29;190;116;Nouvelle-Zélande;3ème ligne;Pau;Pro;NON JIFF
+BAMBA;Demba;21;185;124;France;Pilier;Lyon;Espoir;JIFF
+CHAUVAC;Simon-Pierre;21;189;116;France;Pilier;Brive;Espoir;JIFF
+SCHREUDER;Louis;29;184;82;Afrique du sud;Mêlée;Toulon;Pro;NON JIFF
+AHKI;Pita;27;189;97;Nouvelle-Zélande;Centre;Toulouse;Pro;NON JIFF
+WEST;Ihaia;28;175;85;Nouvelle-Zélande;Ouverture;La Rochelle;Pro;NON JIFF
+NGATAI;Charlie;29;188;103;Nouvelle-Zélande;Centre;Lyon;Pro;NON JIFF
+TAMANIVALU;Seta;27;189;110;Fidji;Centre;Bordeaux;Pro;NON JIFF
+VINCENT;Thomas;20;185;81;France;Ouverture;Agen;Espoir;JIFF
+JOSEPH;Jordan;19;190;124;France;3ème ligne;Racing 92;Espoir;JIFF
+CHAPUIS;Ryan;22;189;104;France;3ème ligne;Paris;Espoir;JIFF
+ABADIE;Esteban;22;188;95;France;3ème ligne;Brive;Espoir;JIFF
+LESTRADE;Yan;22;179;92;France;Centre;Bayonne;Espoir;JIFF
+LUC;Aymeric;22;180;76;France;Arrière;Bayonne;Espoir;JIFF
+MARTY;Maxime;21;182;83;France;Ailier;Toulouse;Espoir;JIFF
+BAGET;Rémy;22;182;84;France;Ailier;Bayonne;Espoir;JIFF
+GRAAFF;Johannes Petrus;30;179;77;Afrique du sud;Arrière;Bayonne;Pro;NON JIFF
+TOURNEBIZE;Pierre;21;186;98;France;Ailier;Montpellier;Espoir;JIFF
+LAPÈGUE;Adrien;21;181;88;France;Ailier;Paris;Espoir;JIFF
+BARKA;Rayne;21;180;103;France;Talonneur;Pau;Espoir;JIFF
+TIMU;Caleb;25;190;117;Nouvelle-Zélande;3ème ligne;Montpellier;Pro;NON JIFF
+FOURNIER;Clément;19;190;105;France;3ème ligne;Pau;Espoir;JIFF
+PAGÈS;Pierre;29;180;78;France;Mêlée;Toulouse;Pro;JIFF
+LEE;Nico;25;180;89;Afrique du sud;Centre;Brive;Pro;NON JIFF
+LEBEL;Matthis;20;185;91;France;Arrière;Toulouse;Espoir;JIFF
+RAMETTE;Alban;21;188;91;France;Centre;Brive;Espoir;JIFF
+SADIE;Carlü;22;180;124;Afrique du sud;Pilier;Paris;Pro;NON JIFF
+ENGELBRECHT;JJ;30;190;94;Afrique du sud;Centre;Clermont;Pro;NON JIFF
+RURU;Michael;29;182;93;Nouvelle-Zélande;Mêlée;Bayonne;Pro;NON JIFF
+ARNOLD;Richie;29;208;127;Australie;2ème ligne;Toulouse;Pro;NON JIFF
+KARKADZE;Vano;19;178;103;Géorgie;Talonneur;Brive;Espoir;PAS ENCORE JIFF
+JAPARIDZE;Luka;21;180;125;Géorgie;Pilier;Brive;Espoir;PAS ENCORE JIFF
+VISAGIE;Jaco;27;188;105;Afrique du sud;Talonneur;Toulouse;Pro;NON JIFF
+DIAZ BONILLA;Joaquin;30;177;80;Argentine;Ouverture;Racing 92;Pro;NON JIFF
+DARLET;Tom;23;188;104;France;3ème ligne;Bayonne;Espoir;JIFF
+DIALLO;Ibrahim;22;193;109;France;3ème ligne;Racing 92;Pro;JIFF Formé
+LAVAULT;Thomas;20;199;105;France;2ème ligne;La Rochelle;Espoir;JIFF
+MARAVAT;Gauthier;19;197;106;France;2ème ligne;Agen;Espoir;JIFF
+BERIA;Giorgi;20;175;107;France;Pilier;Clermont;Espoir;JIFF
+FAVRE;Jules;20;181;88;France;Ailier;La Rochelle;Espoir;JIFF
+GOGICHASHVILI;Guram;21;183;118;Géorgie;Pilier;Racing 92;Espoir;PAS ENCORE JIFF
+AINU'U;David;20;178;123;Etats-Unis;Pilier;Toulouse;Espoir;PAS ENCORE JIFF
+BOUDEHENT;Paul;20;193;97;France;3ème ligne;La Rochelle;Espoir;JIFF
+SAUZARET;Paul;22;184;107;France;Talonneur;Castres;Espoir;JIFF
+DOGE;Mesake;26;178;122;Fidji;Pilier;Brive;Pro;NON JIFF
+BERJON;Thomas;21;177;87;France;Mêlée;La Rochelle;Espoir;JIFF
+COTTIN;Yoan;22;0;0;France;Mêlée;Toulon;Espoir;JIFF
+SEILLÉ;Valentin;20;182;108;France;Talonneur;Montpellier;Espoir;JIFF
+JOHNSON;Ewan;20;203;120;Ecosse;2ème ligne;Racing 92;Espoir;JIFF
+TREILLES;Leo;20;187;88;France;Centre;Clermont;Espoir;JIFF
+JURAND;Joris;24;188;106;France;Arrière;Brive;Pro;JIFF
+PINTO;Vincent;20;187;93;France;Ailier;Pau;Espoir;JIFF
+DEVAUX;Bruce;23;183;108;France;Pilier;Toulon;Pro;JIFF Formé
+LATUNIPULU;Latu;22;0;0;Australie;Ailier;Bayonne;Pro;NON JIFF
+MEAFOU;Emmanuel;21;203;145;Australie;2ème ligne;Toulouse;Espoir;PAS ENCORE JIFF
+ZARANTONELLO;Loris;19;183;102;France;Talonneur;Agen;Espoir;JIFF
+FUTEU;Thierry;24;186;114;Cameroun;Pilier;Paris;Pro;NON JIFF
+LEROUX;Rémi;21;195;113;France;2ème ligne;La Rochelle;Espoir;JIFF
+VILLIÈRE;Gabin;24;180;87;France;Ailier;Toulon;Pro;JIFF
+ORY;Julien;23;0;0;France;3ème ligne;Toulon;Pro;JIFF Formé
+DAKUWAQA;Masivesi;26;190;105;Fidji;Ailier;Toulon;Pro;NON JIFF
+LANEN;Clément;21;196;103;France;3ème ligne;Clermont;Espoir;JIFF
+LANEN;Thibault;21;196;106;France;2ème ligne;Clermont;Espoir;JIFF
+PALMIER;Marc;20;0;0;France;Ouverture;Clermont;Espoir;JIFF
+LEBRUN;Brendan;22;181;110;France;Talonneur;La Rochelle;Espoir;JIFF
+DESSAIGNE;Lucas;21;188;96;France;3ème ligne;Clermont;Espoir;JIFF
+GAUBAN;Louis;21;186;86;France;Ailier;Agen;Espoir;JIFF
+CLERC;Dorian;21;194;110;France;3ème ligne;Castres;Espoir;JIFF
+TAOFIFENUA;Donovan;20;179;84;France;Arrière;Clermont;Espoir;JIFF
+AZARIASHVILI;Luka;20;186;118;Géorgie;Pilier;Montpellier;Espoir;JIFF
+CRAMONT;Guillaume;19;183;100;France;Talonneur;Toulouse;Espoir;JIFF
+TIREFORT;Valentin;21;0;0;France;Ailier;La Rochelle;Espoir;JIFF
+IDJELLIDAINE;Théo;18;168;71;France;Mêlée;Toulouse;Espoir;JIFF
+KOK;Werner;27;177;78;Afrique du sud;Ailier;Toulouse;Pro;NON JIFF
+LE CORVEC;Mattéo;19;192;113;France;3ème ligne;Toulon;Espoir;JIFF
+BEAUDON;William;20;0;0;France;Mêlée;Toulon;Espoir;JIFF
+DE BENEDITTIS;Wayan;20;185;107;France;Pilier;Castres;Espoir;JIFF
+AHOLELEI;Duane;30;189;130;Tonga;Pilier;Clermont;Pro;NON JIFF
+DECAUX;Alexis;19;0;0;France;Pilier;Castres;Espoir;JIFF
+KOROI;Joketani;24;198;115;Fidji;3ème ligne;Paris;Pro;NON JIFF
+TAGI;Luke;22;187;130;Fidji;Pilier;Paris;Pro;NON JIFF
+JORDAAN;Jeremy;29;198;127;Afrique du sud;2ème ligne;Agen;Pro;NON JIFF
+TCHITCHIASHVILI;Aleksi;18;178;117;Géorgie;Pilier;Montpellier;Espoir;PAS ENCORE JIFF

@@ -1,0 +1,66 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="330" height="124" view_box="0 0 330 124"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.8 le Sat, 12 Dec 2020 16:34:11</desc>
+
+<rect id="frame" x="0" y="0" width="330" height="124" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Entity livre -->
+<g id="entity-livre">
+	<g id="frame-livre">
+		<rect x="9" y="18" width="54" height="26" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+		<rect x="9" y="44.0" width="54" height="62" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+		<rect x="9" y="18" width="54" height="88" fill="none" stroke="#7fbc41" stroke-width="1.5"/>
+		<line x1="9" y1="44" x2="63" y2="44" stroke="#7fbc41" stroke-width="1"/>
+	</g>
+	<text x="14" y="36.6" fill="#000000" font-family="Courier New" font-size="14">livre</text>
+	<text x="14" y="62.6" fill="#000000" font-family="Courier New" font-size="14">isbn</text>
+	<line x1="14" y1="65.0" x2="49" y2="65.0" stroke="#000000" stroke-width="1"/>
+	<text x="14" y="80.6" fill="#000000" font-family="Courier New" font-size="14">titre</text>
+	<text x="14" y="98.6" fill="#000000" font-family="Courier New" font-size="14">annee</text>
+</g>
+
+<!-- Entity ecrire -->
+<g id="entity-ecrire">
+	<g id="frame-ecrire">
+		<rect x="96" y="27" width="62" height="26" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+		<rect x="96" y="53.0" width="62" height="44" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+		<rect x="96" y="27" width="62" height="70" fill="none" stroke="#7fbc41" stroke-width="1.5"/>
+		<line x1="96" y1="53" x2="158" y2="53" stroke="#7fbc41" stroke-width="1"/>
+	</g>
+	<text x="101" y="45.6" fill="#000000" font-family="Courier New" font-size="14">ecrire</text>
+	<text x="101" y="71.6" fill="#000000" font-family="Courier New" font-size="14">num_ss</text>
+	<line x1="101" y1="74.0" x2="153" y2="74.0" stroke="#000000" stroke-width="1"/>
+	<text x="101" y="89.6" fill="#000000" font-family="Courier New" font-size="14">isbn </text>
+	<line x1="101" y1="92.0" x2="144" y2="92.0" stroke="#000000" stroke-width="1"/>
+</g>
+
+<!-- Entity auteur -->
+<g id="entity-auteur">
+	<g id="frame-auteur">
+		<rect x="191" y="9" width="130" height="26" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+		<rect x="191" y="35.0" width="130" height="80" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+		<rect x="191" y="9" width="130" height="106" fill="none" stroke="#7fbc41" stroke-width="1.5"/>
+		<line x1="191" y1="35" x2="321" y2="35" stroke="#7fbc41" stroke-width="1"/>
+	</g>
+	<text x="230" y="27.6" fill="#000000" font-family="Courier New" font-size="14">auteur</text>
+	<text x="196" y="53.6" fill="#000000" font-family="Courier New" font-size="14">num_ss</text>
+	<line x1="196" y1="56.0" x2="248" y2="56.0" stroke="#000000" stroke-width="1"/>
+	<text x="196" y="71.6" fill="#000000" font-family="Courier New" font-size="14">nom</text>
+	<text x="196" y="89.6" fill="#000000" font-family="Courier New" font-size="14">prenom</text>
+	<text x="196" y="107.6" fill="#000000" font-family="Courier New" font-size="14">date_naissance</text>
+</g>
+
+<!-- Link from "num_ss" (ecrire) to "num_ss" (auteur) -->
+<path d="M158 67.0 C 174.5 58.0 169.0 49.0 191 49.0" fill="none" stroke="#de77ae" stroke-width="1"/>
+<path d="M 191 49.0 L 179.0 55.0 L 183.0 49.0 L 179.0 43.0 Z" fill="#de77ae" stroke-width="0"/>
+<circle cx="158" cy="67.0" r="1.5" stroke="#de77ae" stroke-width="1.5" fill="#de77ae"/>
+
+<!-- Link from "isbn" (ecrire) to "isbn" (livre) -->
+<path d="M96 85.0 C 79.5 71.5 85.0 58.0 63 58.0" fill="none" stroke="#de77ae" stroke-width="1"/>
+<path d="M 63 58.0 L 75.0 52.0 L 71.0 58.0 L 75.0 64.0 Z" fill="#de77ae" stroke-width="0"/>
+<circle cx="96" cy="85.0" r="1.5" stroke="#de77ae" stroke-width="1.5" fill="#de77ae"/>
+</svg>

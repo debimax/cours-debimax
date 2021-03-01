@@ -1,0 +1,13 @@
+Nom,HP,Attaque,Défense,Vitesse,Type 1,Type 2
+Herbizarre,60,62,63,60,Plante,Poison
+Dracaufeu,78,84,78,100,Feu,Vol
+Carabaffe,59,63,80,58,Eau
+Aspicot,40,35,30,50,Insecte,Poison
+Raichu,60,90,55,110,Electrik
+Kadabra,40,35,30,105,Psy
+Bulbizarre,45,49,49,45,Plante,Poison
+Salamèche,39,52,43,65,Feu
+Carapuce,44,48,65,43,Eau
+Pikachu,35,55,40,90,Electrik
+Aéromite,70,65,60,90,Insecte,Poison
+Miaouss,40,45,35,90,Normal

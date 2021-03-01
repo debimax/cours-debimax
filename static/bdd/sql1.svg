@@ -1,0 +1,54 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="334" height="124" view_box="0 0 334 124"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.8 le Sat, 12 Dec 2020 16:44:33</desc>
+
+<rect id="frame" x="0" y="0" width="334" height="124" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association ecrire -->
+<line x1="36" y1="62" x2="129" y2="62" stroke="#de77ae" stroke-width="1"/>
+<text x="68" y="78.0" fill="#4d9221" font-family="Courier New" font-size="12">1,n</text>
+<line x1="260" y1="62" x2="129" y2="62" stroke="#de77ae" stroke-width="1"/>
+<text x="167" y="78.0" fill="#4d9221" font-family="Courier New" font-size="12">1,n</text>
+<g id="association-ecrire">
+	<path d="M 148 36 a 14 14 90 0 1 14 14 V 62 h -66 V 50 a 14 14 90 0 1 14 -14" fill="#f1b6da" stroke="#f1b6da" stroke-width="0"/>
+	<path d="M 162 62.0 v 12 a 14 14 90 0 1 -14 14 H 110 a 14 14 90 0 1 -14 -14 V 62.0 H 66" fill="#fde0ef" stroke="#fde0ef" stroke-width="0"/>
+	<rect x="96" y="36" width="66" height="52" fill="none" rx="14" stroke="#de77ae" stroke-width="1.5"/>
+	<line x1="96" y1="62" x2="162" y2="62" stroke="#de77ae" stroke-width="1"/>
+	<text x="103" y="54.6" fill="#000000" font-family="Courier New" font-size="14">ecrire</text>
+</g>
+
+<!-- Entity livre -->
+<g id="entity-livre">
+	<g id="frame-livre">
+		<rect x="9" y="18" width="54" height="26" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+		<rect x="9" y="44.0" width="54" height="62" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+		<rect x="9" y="18" width="54" height="88" fill="none" stroke="#7fbc41" stroke-width="1.5"/>
+		<line x1="9" y1="44" x2="63" y2="44" stroke="#7fbc41" stroke-width="1"/>
+	</g>
+	<text x="14" y="36.6" fill="#000000" font-family="Courier New" font-size="14">livre</text>
+	<text x="14" y="62.6" fill="#000000" font-family="Courier New" font-size="14">isbn</text>
+	<line x1="14" y1="65.0" x2="49" y2="65.0" stroke="#000000" stroke-width="1"/>
+	<text x="14" y="80.6" fill="#000000" font-family="Courier New" font-size="14">titre</text>
+	<text x="14" y="98.6" fill="#000000" font-family="Courier New" font-size="14">annee</text>
+</g>
+
+<!-- Entity auteur -->
+<g id="entity-auteur">
+	<g id="frame-auteur">
+		<rect x="195" y="9" width="130" height="26" fill="#b8e186" stroke="#b8e186" stroke-width="0"/>
+		<rect x="195" y="35.0" width="130" height="80" fill="#e6f5d0" stroke="#e6f5d0" stroke-width="0"/>
+		<rect x="195" y="9" width="130" height="106" fill="none" stroke="#7fbc41" stroke-width="1.5"/>
+		<line x1="195" y1="35" x2="325" y2="35" stroke="#7fbc41" stroke-width="1"/>
+	</g>
+	<text x="234" y="27.6" fill="#000000" font-family="Courier New" font-size="14">auteur</text>
+	<text x="200" y="53.6" fill="#000000" font-family="Courier New" font-size="14">num_ss</text>
+	<line x1="200" y1="56.0" x2="252" y2="56.0" stroke="#000000" stroke-width="1"/>
+	<text x="200" y="71.6" fill="#000000" font-family="Courier New" font-size="14">nom</text>
+	<text x="200" y="89.6" fill="#000000" font-family="Courier New" font-size="14">prenom</text>
+	<text x="200" y="107.6" fill="#000000" font-family="Courier New" font-size="14">date_naissance</text>
+</g>
+</svg>
